@@ -4,6 +4,7 @@
   "description": "An App Where Friends Collaborate On Goals",
   "main": "index.js",
   "scripts": {
+    "dev:test": "webpack-dev-server --entry ./src/index.js --output nofussSite/dist/bundle.js --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -26,6 +27,13 @@
     "babel-core": "^6.26.3",
     "babel-loader": "^8.0.6",
     "css-loader": "^3.4.2",
+    "eslint": "^6.8.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.18.3",
+    "eslint-plugin-standard": "^4.0.1",
     "file-loader": "^5.0.2",
     "html-webpack-plugin": "^3.2.0",
     "style-loader": "^1.1.3",
@@ -37,6 +45,7 @@
     "axios": "^0.19.2",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
+    "eslint-plugin-prettier": "^3.1.2",
     "express": "^4.17.1",
     "mongodb": "^3.5.2",
     "mongoose": "^5.8.11",
