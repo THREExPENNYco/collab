@@ -16,10 +16,10 @@ connection.once('open', () => {
   console.log('connected')
 })
 
-const newUserRoute = require('./routes/newUserRoute')
+const newUserRoute = require('./routes/userRoutes.js')
 const indexRoute = require('./routes/indexRoute.js')
 app.use('/', indexRoute)
-app.use('/newUser', newUserRoute)
+app.use('/users', newUserRoute)
 app.listen(port, () => {
   console.log(`You\'re listening on: ${port}`)
 })
