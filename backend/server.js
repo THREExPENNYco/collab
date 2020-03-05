@@ -11,11 +11,15 @@ app.use(express.json())
 
 const mongoUri = process.env.MONGO_URI
 mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
-const connection = mongoose.connection
+const { connection } = mongoose
 connection.once('open', () => {
   console.log('connected')
 })
 
+const newUserRoute = require('./routes/newUserRoute')
+const indexRoute = require('./routes/indexRoute.js')
+app.use('/', indexRoute)
+app.use('/newUser', newUserRoute)
 app.listen(port, () => {
   console.log(`You\'re listening on: ${port}`)
 })
