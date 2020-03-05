@@ -5,19 +5,21 @@ const userSchema = require('./User.js')
 
 const commentSchema = new Schema(
   {
-    created_by: userSchema,
+    createdBy: userSchema,
     likes: {
       type: Number,
       required: false
     },
     image: {
       type: String,
-      required: false
+      required: false,
+      trim: true
     },
     text: {
       type: String,
       min: 0,
       max: 120,
+      trim: true,
       required: false
     }
   },

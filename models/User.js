@@ -3,6 +3,7 @@ const { Schema } = mongoose
 
 const commentSchema = require('./Comment.js')
 const groupSchema = require('./Group.js')
+const goalSchema = require('./Goal.js')
 
 const userSchema = new Schema(
   {
@@ -25,6 +26,7 @@ const userSchema = new Schema(
       required: [true, 'Last Name is required'],
       min: 5,
       max: 12,
+      trim: true,
       unique: [true, 'That username is taken'],
       validate: {
         validator (userName) {
@@ -38,6 +40,7 @@ const userSchema = new Schema(
       required: [true, 'A password is required'],
       min: 8,
       max: 15,
+      trim: true,
       validate: {
         validator (userName) {
           return /^([a-zA-Z0-9@*#]{8,15})$/.test(userName)
@@ -78,5 +81,4 @@ const userSchema = new Schema(
 )
 
 const User = mongoose.model('User', userSchema)
-
 module.exports = User
