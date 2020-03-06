@@ -1,7 +1,7 @@
 const router = require('express').Router()
-
+// Index route
 router.route('/').get((req, res) => {
-  res.send('ok')
+  console.log(req.headers.connection)
 })
 
 module.exports = router
