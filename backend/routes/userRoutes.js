@@ -24,7 +24,7 @@ router.route('/newUser').post((req, res) => {
     .catch(err => res.json(err))
 })
 
-router.route('/user_id=:id/create_group').post((req, res) => { 
+router.route('/user_id=:id/create_comment').post((req, res) => { 
   const user = (req.params.id)
   const newComment = new Comment(req.body)
   newComment
