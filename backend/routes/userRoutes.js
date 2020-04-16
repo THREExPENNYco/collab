@@ -1,5 +1,6 @@
 // User model
 const { User } = require('../models/User.js')
+const { Commmen } = require('../models/Comment.js')
 const router = require('express').Router()
 
 // Root route for users
@@ -23,4 +24,12 @@ router.route('/newUser').post((req, res) => {
     .catch(err => res.json(err))
 })
 
+router.route('/user_id=:id/create_group').post((req, res) => { 
+  const user = (req.params.id)
+  const newComment = new Comment(req.body)
+  newComment
+  .save()
+  .then(newComment => res.status(200).json(newComment))
+  .catch(err => res.json(err))
+})
 module.exports = router
