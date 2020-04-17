@@ -1,11 +1,15 @@
 const mongoose = require('mongoose')
 const { Schema } = mongoose
 
-const userSchema = require('./User.js')
+const { userSchema } = require('./User.js')
 
 const commentSchema = new Schema(
   {
-    createdBy: userSchema,
+    createdBy: {
+      type: mongoose.Types.ObjectId,
+      ref: 'User',
+      required: true
+    },
     likes: {
       type: Number,
       required: false
@@ -30,5 +34,7 @@ const commentSchema = new Schema(
 
 const Comment = mongoose.model('Comment', commentSchema)
 
-module.exports = Comment
-module.exports = commentSchema
+module.exports = {
+  Comment,
+  commentSchema
+}

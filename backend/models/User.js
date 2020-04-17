@@ -63,15 +63,18 @@ const userSchema = new Schema(
       }
     },
     groups: {
-      type: [groupSchema],
+      type: [mongoose.Types.ObjectId],
+      ref: 'Groups',
       required: false
     },
     comments: {
-      type: [commentSchema],
+      type: [mongoose.Types.ObjectId],
+      ref: 'Comment',
       required: false
     },
     goals: {
-      type: [goalSchema],
+      type: [mongoose.Types.ObjectId],
+      ref: 'Goal',
       required: false
     }
   },
