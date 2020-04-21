@@ -81,7 +81,7 @@ router.route('/user_id=:user_id/group_id=:group_id/add_user_to_group').post((req
     }
   )
 })
-// create goal
+// create goal and add to group
 router.route('/user_id=:user_id/group_id=:group_id/create_goal').post((req, res) => { 
   const goalName = req.body.goalName
   const goal = req.body.goal
@@ -106,10 +106,21 @@ router.route('/user_id=:user_id/group_id=:group_id/create_goal').post((req, res)
   Group.findByIdAndUpdate(
     req.params.group_id,
     { $push: { goals: newGoal._id } },
+    { useFindAndModify: false },
     function (err, model) {
       err ? res.status(404).json(err) : res.status(200).json(model)
     }
   )
 })
-
+// route to add goalstep
+router.route('/goal_id=:goal_id/create_goalstep').post((req, res) => { 
+  const newGoalStep = req.body.newGoalStep 
+  Goal.findByIdAndUpdate( // refactor so code isn't so dry but works for now
+    req.params.goal_id,
+    { $push: { goalStep: newGoalStep } },
+    function (err, model) {
+      err ? res.status(404).json(err) : res.status(200).json(newGoalStep)
+    }
+  )
+})
 module.exports = router
