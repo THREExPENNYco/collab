@@ -32,7 +32,7 @@ router.route('/newUser').post((req, res) => {
   newUser
     .save()
     .then(newUser => res.status(200).json(newUser))
-    .catch(err => res.status(400).json(err))
+    .catch(err => res.status(404).json(err))
 })
 // route to create the comments 
 router.route('/user_id=:id/create_comment').post((req, res) => {
