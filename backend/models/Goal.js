@@ -5,7 +5,10 @@ const userSchema = require('./User.js')
 
 const goalSchema = new Schema(
   {
-    createdBy: userSchema,
+    createdBy:  { 
+      type: mongoose.Types.ObjectId,
+      ref: 'User'
+    }, 
     goalName: {
       type: String,
       min: 5,
@@ -20,13 +23,7 @@ const goalSchema = new Schema(
       trim: true,
       required: [true, 'Required to create a goal']
     },
-    goalStep: {
-      type: String,
-      min: 5,
-      max: 100,
-      trim: true,
-      required: false
-    }
+    goalStep: [String]
   },
   {
     timstamps: true
@@ -34,5 +31,7 @@ const goalSchema = new Schema(
 )
 
 const Goal = mongoose.model('Goal', goalSchema)
-module.exports = Goal
-module.exports = goalSchema
+module.exports = { 
+  Goal, 
+  goalSchema
+}
