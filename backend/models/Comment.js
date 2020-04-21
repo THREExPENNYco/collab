@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const { Schema } = mongoose
-
+const { User } = require('./User.js')
 const { userSchema } = require('./User.js')
 
 const commentSchema = new Schema(
@@ -33,7 +33,6 @@ const commentSchema = new Schema(
 )
 
 const Comment = mongoose.model('Comment', commentSchema)
-
 module.exports = {
   Comment,
   commentSchema
