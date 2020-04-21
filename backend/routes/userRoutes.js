@@ -1,6 +1,7 @@
 // User model
 const { User } = require('../models/User.js')
 const { Comment } = require('../models/Comment.js')
+const { Group } = require('../models/Group.js')
 const router = require('express').Router()
 
 // Root route for users
@@ -48,6 +49,19 @@ router.route('/user_id=:id/create_comment').post((req, res) => {
   newComment
     .save()
     .then(newComment => res.status(200).json(newComment))
+    .catch(err => res.status(404).json(err))
+})
+//route to create group 
+router.route('/user_id=:id/create_group').post((req, res) => { 
+  const createdBy = req.params.id
+  const groupName = req.body.groupName
+  const newGroup = new Group({
+    createdBy: createdBy, 
+    groupName: groupName
+  })
+  newGroup
+    .save()
+    .then(newGroup => res.status(400).json(newGroup))
     .catch(err => res.status(404).json(err))
 })
 

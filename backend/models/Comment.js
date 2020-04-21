@@ -10,6 +10,11 @@ const commentSchema = new Schema(
       ref: 'User',
       required: true
     },
+    group: { 
+      type: mongoose.Types.ObjectId, 
+      ref: 'Group', 
+      required: true
+    },
     likes: {
       type: Number,
       required: false

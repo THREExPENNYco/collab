@@ -6,7 +6,11 @@ const goalSchema = require('./Goal.js')
 
 const groupSchema = new Schema(
   {
-    created_by: userSchema,
+    createdBy: { 
+      type: mongoose.Types.ObjectId, 
+      ref: 'User', 
+      required: true
+    },
     groupName: {
       type: String,
       min: 3,
@@ -24,5 +28,7 @@ const groupSchema = new Schema(
 )
 
 const Group = mongoose.model('Group', groupSchema)
-module.exports = Group
-module.exports = groupSchema
+module.exports = { 
+  Group,
+  groupSchema
+}
