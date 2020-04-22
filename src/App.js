@@ -1,10 +1,12 @@
 import React from 'react'
 
 // Main component for the app
-function collabMain () {
-  return (
-    <h1>An App About Collaboration</h1>
-  )
+class App extends Component { 
+  render() { 
+    return (
+
+     )
+  }
 }
 
-export default collabMain
+export default App
