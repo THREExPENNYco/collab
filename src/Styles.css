@@ -1,11 +1,12 @@
 /* this attempts to use BEM as the convention for naming CSS styes */
 
-.main { 
-    min-height: 100%;
-    max-height: 100%;
+body { 
+    top: 0; 
+    margin: 0;
 }
 .nav-bar { 
     background-color: black;
-    min-height: 100px;
+    min-height: 50px;
     width: 100%;
-}                           
+    top: 0; 
+}
