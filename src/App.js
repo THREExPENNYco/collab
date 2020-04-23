@@ -1,13 +1,17 @@
-import React from 'react'
-import Header from './components/header.js'
-
+import React, { Component }  from 'react'
+import Navbar from './components/navbar.js'
+import Main from './components/main.js'
+import Styles from './Styles.css'
 // Main component for the app
-class App extends Component { 
-  render() { 
+class App extends Component {
+  render () {
     return (
-      <Header />
-     )
+      <section className="main">
+        <Main />
+        <Navbar />  
+      </section> 
+    )
   }
 }
-
+ 
 export default App

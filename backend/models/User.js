@@ -1,10 +1,6 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const commentSchema = require('./Comment.js')
-const groupSchema = require('./Group.js')
-const goalSchema = require('./Goal.js')
-
 const userSchema = new Schema(
   {
     fname: {
