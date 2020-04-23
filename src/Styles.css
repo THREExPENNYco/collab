@@ -1,0 +1,6 @@
+/* this attempts to use BEM as the convention for naming CSS styes */
+.nav-bar { 
+    background-color: black;
+    min-height: 100px;
+    width: 100%;
+}

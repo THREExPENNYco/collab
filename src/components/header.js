@@ -1,8 +1,8 @@
 import React from 'react'
 
-function header() { 
-    <div className="services"> 
-    </div> 
+function Header () {
+  return <div className="nav-bar">
+  </div>
 }
 
 export default Header
