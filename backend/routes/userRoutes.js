@@ -94,9 +94,9 @@ router.route('/user_id=:user_id/group_id=:group_id/create_goal').post((req, res)
     goalStep: goalStep, 
   })
   newGoal
-    .save()
-    .then(newGoal => res.status(200).json(newGoal))
-    .catch(err => res.status(404).json(err))
+  .save()
+  .then(newGoal => res.status(200).json(newGoal))
+  .catch(err => res.status(404).json(err))
   Goal.findByIdAndUpdate(
     newGoal._id,
     { $push: { goalStep: goalStep } },
