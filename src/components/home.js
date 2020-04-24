@@ -1,16 +1,14 @@
-import React, { Component } from 'react'
-import Navbar from './navbar.js'
+import React from 'react'
 import Hero from './hero.js'
 import Info from './info.js'
 
-function Home() {
-    return (
-        <section className="main">
-            <Navbar />
-            <Hero />
-            <Info />
-        </section>
-    )
+function Home () {
+  return (
+    <section className="main">
+      <Hero />
+      <Info />
+    </section>
+  )
 }
 
 export default Home

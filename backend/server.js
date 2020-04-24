@@ -1,6 +1,7 @@
 const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
+const path = require('path')
 require('dotenv').config({ path: '../.env' })
 
 const cors = require('cors')
@@ -20,8 +21,8 @@ connection.once('open', () => {
 const newUserRoute = require('./userRoutes.js')
 app.use('/', newUserRoute)
 // remember that the route of this route will be "/"
-app.get('/*', function(req, res) {
-  res.sendFile(path.resolve('./public/index.html'), function(err) {
+app.get('/*', function (req, res) {
+  res.sendFile(path.resolve('../public/index.html'), function (err) {
     if (err) {
       res.status(500).send(err)
     }
