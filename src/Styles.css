@@ -14,19 +14,19 @@ body {
 }
 .logo { 
     padding-left: 20px; 
-    padding-top: 10px;
+    padding-top: 15px;
     margin: 0;
     color: white;
     font-family: 'Roboto', sans-serif;
-    font-size: 20px;
+    font-size: 15px;
 }
 .login { 
-    padding-top: 10px;
+    padding-top: 15px;
     padding-right: 20px;
     margin: 0;
     color: white;
     font-family: 'Roboto', sans-serif;
-    font-size: 20px;
+    font-size: 15px;
     text-align: right;
 }
 .hero-pressure, .hero-peer { 
@@ -40,19 +40,20 @@ body {
 }
 
 .hero-peer { 
-    font-size: calc(15vw + 15vh + 0.2vmin);
+    margin-top: 15px;
+    font-size: calc(10vw + 1.45vh + 0.2vmin);
 }
 
 .hero-pressure { 
-    margin-top: -40px;
+    margin-top: -12px;
     margin-bottom: 30px; 
-    font-size: calc(10vw + 10vh + 0.2vmin);
+    font-size: calc(10vw + 1.45vh + 0.2vmin);
 }
 .info-home { 
     color: white;
     background-color: black;
     width: 100%;
-    height: 500px; /* temporary */ 
+    height: 1000px; /* temporary */ 
 }
 
 .info-home__quote { 

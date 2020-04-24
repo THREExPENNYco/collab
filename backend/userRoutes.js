@@ -1,15 +1,13 @@
 // User model
-const { User } = require('../models/User.js')
-const { Comment } = require('../models/Comment.js')
-const { Group } = require('../models/Group.js')
-const { Goal } = require('../models/Goal.js')
+const { User } = require('./models/User.js')
+const { Comment } = require('./models/Comment.js')
+const { Group } = require('./models/Group.js')
+const { Goal } = require('./models/Goal.js')
 const router = require('express').Router()
 const path = require('path')
 // Root route for users
 router.route('/').get((req, res) => {
-  console.log(__dirname)
-  console.log(path.join('/', 'public', 'index.html'))
-  res.sendFile('index.html', { root: path.join('../public') })
+  res.sendFile(path.resolve('../public/index.html'))
 })
 // Route for user filtered by id
 router.route('/user_id=:id').get((req, res) => {

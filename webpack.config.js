@@ -5,7 +5,8 @@ module.exports = {
   entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
-    filename: 'bundle.js'
+    filename: 'bundle.js', 
+    publicPath: '/'
   },
   optimization: {
     minimize: true
@@ -30,6 +31,9 @@ module.exports = {
         use: ['file-loader']
       }
     ]
+  },
+  devServer: { 
+    historyApiFallback: true, 
   },
   plugins: [new HtmlWebpackPlugin({ template: 'public/index.html' })]
 }
