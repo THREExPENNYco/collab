@@ -10,3 +10,22 @@ body {
     width: 100%;
     top: 0; 
 }
+.hero-pressure, .hero-peer { 
+    max-width: 100%;
+    font-size: 150px;
+    margin-top: 0; 
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+    color: black;
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+.hero-peer { 
+    font-size: 300px;
+}
+
+.hero-pressure { 
+    margin-top: -80px;
+}
