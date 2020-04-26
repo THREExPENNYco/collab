@@ -4,6 +4,7 @@ const { Comment } = require('./models/Comment.js')
 const { Group } = require('./models/Group.js')
 const { Goal } = require('./models/Goal.js')
 const router = require('express').Router()
+const bcrypt = require('bcryptjs')
 const path = require('path')
 // Root route for users
 router.route('/').get((req, res) => {
@@ -19,16 +20,28 @@ router.route('/user_id=:id').get((req, res) => {
 router.route('/newUser').post((req, res) => {
   const userName = req.body.userName
   const passWord = req.body.passWord
+  const hash = bcrypt.hashSync(passWord, 8)
   const email = req.body.email
   const newUser = new User({
     userName: userName,
-    passWord: passWord,
+    passWord: hash,
     email: email
   })
   newUser
     .save()
     .then(newUser => res.status(200).json(newUser))
     .catch(err => res.status(404).json(err))
+})
+// login route
+router.route('/login').get((req, res) => { 
+  User.findOne({ userName: req.body.userName }, (err, user) => { 
+    if (!user || !bcrypt.compareSync(req.body.passWord, user.passWord)) { 
+      res.status(404).json(err)
+    }
+
+    req.session.userId = user._id
+    res.status(200).json(user)
+  })
 })
 // route to create the comments 
 router.route('/user_id=:id/create_comment').post((req, res) => {

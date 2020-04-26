@@ -21,14 +21,7 @@ const userSchema = new Schema(
       type: String,
       required: [true, 'A password is required'],
       min: 8,
-      max: 15,
       trim: true,
-      validate: {
-        validator (userName) {
-          return /^([a-zA-Z0-9@*#]{8,15})$/.test(userName)
-        },
-        message: 'Password must consists of at least 8 characters and no more than 15 characters.'
-      }
     },
     email: {
       type: String,

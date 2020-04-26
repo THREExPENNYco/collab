@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const mongoose = require('mongoose')
 const path = require('path')
+const sessions = require('client-sessions')
 require('dotenv').config({ path: '../.env' })
 
 const cors = require('cors')
@@ -18,9 +19,15 @@ connection.once('open', () => {
   console.log('connected')
 })
 
+app.use(sessions({
+  cookieName: "session", 
+  secret: process.env.SESSION_STRING, 
+  duration: 24 * 60 * 60 * 1000,
+  activeDuration: 100 * 60 * 5,
+}))
+
 const newUserRoute = require('./userRoutes.js')
 app.use('/', newUserRoute)
-// remember that the route of this route will be "/"
 app.get('/*', function (req, res) {
   res.sendFile(path.resolve('../public/index.html'), function (err) {
     if (err) {
