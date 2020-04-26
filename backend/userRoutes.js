@@ -17,14 +17,10 @@ router.route('/user_id=:id').get((req, res) => {
 })
 // New user route
 router.route('/newUser').post((req, res) => {
-  const fname = req.body.fname
-  const lname = req.body.lname
   const userName = req.body.userName
   const passWord = req.body.passWord
   const email = req.body.email
   const newUser = new User({
-    fname: fname,
-    lname: lname,
     userName: userName,
     passWord: passWord,
     email: email
