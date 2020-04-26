@@ -1,47 +1,44 @@
 /* this attempts to use BEM as the convention for naming CSS styes */
 
-body { 
-    top: 0; 
+body {
+    top: 0;
     margin: 0;
 }
-.nav-bar { 
+
+.nav-bar {
     background-color: black;
     min-height: 50px;
     width: 100%;
-    top: 0; 
+    top: 0;
     display: flex;
     justify-content: space-between;
     text-decoration: none;
 }
+
 .nav-bar a {
     text-decoration: none;
     color: white;
 }
-.nav-bar a:hover { 
+
+.nav-bar a:hover {
     color: red;
 }
-.login-signup { 
-   display: flex;
-   justify-content: center; 
+
+.login-signup {
+    display: flex;
+    justify-content: center;
 }
-.logo { 
-    padding-left: 20px; 
+
+.logo {
+    padding-left: 20px;
     padding-top: 15px;
     margin: 0;
     color: white;
     font-family: 'Roboto', sans-serif;
     font-size: 15px;
 }
-.login { 
-    padding-top: 15px;
-    padding-right: 20px;
-    margin: 0;
-    color: white;
-    font-family: 'Roboto', sans-serif;
-    font-size: 15px;
-    text-align: right;
-}
-.signup { 
+
+.login {
     padding-top: 15px;
     padding-right: 20px;
     margin: 0;
@@ -50,8 +47,20 @@ body {
     font-size: 15px;
     text-align: right;
 }
-.hero-pressure, .hero-peer { 
-    margin-top: 0; 
+
+.signup {
+    padding-top: 15px;
+    padding-right: 20px;
+    margin: 0;
+    color: white;
+    font-family: 'Roboto', sans-serif;
+    font-size: 15px;
+    text-align: right;
+}
+
+.hero-pressure,
+.hero-peer {
+    margin-top: 0;
     margin-bottom: 0;
     margin-left: 0;
     margin-right: 0;
@@ -60,18 +69,20 @@ body {
     font-family: 'Roboto', sans-serif;
 }
 
-.hero-peer { 
+.hero-peer {
     margin-top: 15px;
     font-size: calc(10vw + 1.45vh + 0.2vmin);
 }
 
-.hero-pressure { 
+.hero-pressure {
     margin-top: -12px;
-    margin-bottom: 30px; 
+    margin-bottom: 30px;
     font-size: calc(10vw + 1.45vh + 0.2vmin);
 }
-.hero-signup__sign, .hero-signup__up { 
-    margin-top: 0; 
+
+.hero-signup__sign,
+.hero-signup__up {
+    margin-top: 0;
     margin-bottom: 0;
     margin-left: 0;
     margin-right: 0;
@@ -81,22 +92,25 @@ body {
     font-size: calc(10vw + 15.45vh + 0.2vmin);
     margin-bottom: -8%;
 }
-.hero-signup__up { 
-    margin-left: 20px; 
+
+.hero-signup__up {
+    margin-left: 20px;
 }
-.info-home { 
+
+.info-home {
     color: white;
     background-color: black;
     width: 100%;
-    height: 1000px; /* temporary */ 
+    height: 1000px;
+    /* temporary */
 }
 
-.info-home__quote { 
+.info-home__quote {
     color: white;
     background-color: black;
     width: 55%;
     height: 85%;
-    font-family: 'Roboto italic', sans-serif; 
+    font-family: 'Roboto italic', sans-serif;
     font-style: italic;
     font-weight: 300;
     font-size: calc(1.50vw + 1.50vh + 0.2vmin);
@@ -107,44 +121,50 @@ body {
     margin-left: auto;
     margin-right: auto;
 }
+
 .form-container {
-    height: 85%; 
+    height: 85%;
     width: 85%;
-    margin-right: auto; 
-    margin-left: auto; 
-    font-family: 'Roboto italic', sans-serif; 
+    margin-right: auto;
+    margin-left: auto;
+    font-family: 'Roboto italic', sans-serif;
 }
-.signup-form { 
+
+.signup-form {
     margin-left: auto;
     margin-right: auto;
-    width: 75%; 
+    width: 75%;
     height: 75%;
     display: flex;
     margin-top: 5%;
     flex-direction: column;
     margin-bottom: 5%;
 }
-.form-label, .form-input { 
+
+.form-label,
+.form-input {
     margin-top: 10px;
     width: 50%;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
 }
-.form-submit-button { 
-    margin-top: 20px; 
+
+.form-submit-button {
+    margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
-    color: white; 
-    background-color:black;
+    color: white;
+    background-color: black;
     border-style: none;
     width: 20%;
     height: 30px;
 }
-.info-signup-form { 
+
+.info-signup-form {
     font-size: 12px;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-    font-family: 'Roboto italic', sans-serif; 
+    font-family: 'Roboto italic', sans-serif;
 }
