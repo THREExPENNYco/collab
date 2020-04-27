@@ -35,9 +35,6 @@ app.use(sessions({
   secret: process.env.SESSION_STRING, 
   duration: 24 * 60 * 60 * 1000,
   activeDuration: 24 * 60 * 60 * 1000,
-  cookie: { 
-    httpOnly: false
-  }
 }))
 
 
