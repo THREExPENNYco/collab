@@ -3,6 +3,7 @@ const app = express()
 const mongoose = require('mongoose')
 const path = require('path')
 const sessions = require('client-sessions')
+
 require('dotenv').config({ path: '../.env' })
 
 const cors = require('cors')
@@ -18,12 +19,12 @@ const { connection } = mongoose
 connection.once('open', () => {
   console.log('connected')
 })
-
+// session must be above routes if sessions are needed for routes
 app.use(sessions({
   cookieName: "session", 
   secret: process.env.SESSION_STRING, 
   duration: 24 * 60 * 60 * 1000,
-  activeDuration: 100 * 60 * 5,
+  activeDuration: 24 * 60 * 60 * 1000,
 }))
 
 const newUserRoute = require('./userRoutes.js')

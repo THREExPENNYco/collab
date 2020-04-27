@@ -168,3 +168,17 @@ body {
     margin-right: auto;
     font-family: 'Roboto italic', sans-serif;
 }
+
+.dashboard { 
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.hero-dashboard { 
+    margin-top: 15px;
+    font-size: calc(10vw + 1.45vh + 0.2vmin);
+    font-family: 'Roboto', sans-serif;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}

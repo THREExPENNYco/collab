@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Home from './components/home.js'
 import LoginForm from './components/loginForm.js'
+import Dashboard from './components/dashboard.js'
 import SignUpForm from './components/signUpForm.js'
 import {
   BrowserRouter as Router,
@@ -24,6 +25,7 @@ class App extends Component {
         <Route exact path='/' component={Home} />
         <Route path='/login' component={LoginForm} />
         <Route path='/signup' component={SignUpForm} />
+        <Route path='/dashboard' component={Dashboard} /> 
       </Router>
     )
   }

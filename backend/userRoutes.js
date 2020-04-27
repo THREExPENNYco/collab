@@ -33,13 +33,13 @@ router.route('/newUser').post((req, res) => {
     .catch(err => res.status(404).json(err))
 })
 // login route
-router.route('/login').get((req, res) => { 
+router.route('/login').post((req, res) => { 
   User.findOne({ userName: req.body.userName }, (err, user) => { 
     if (!user || !bcrypt.compareSync(req.body.passWord, user.passWord)) { 
       res.status(404).json(err)
     }
-
-    req.session.userId = user._id
+		req.session.userId = user._id
+		console.log(req.session.userId)
     res.status(200).json(user)
   })
 })
