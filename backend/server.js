@@ -21,11 +21,25 @@ connection.once('open', () => {
 })
 // session must be above routes if sessions are needed for routes
 app.use(sessions({
-  cookieName: "session", 
+  cookieName: "Every", 
   secret: process.env.SESSION_STRING, 
   duration: 24 * 60 * 60 * 1000,
   activeDuration: 24 * 60 * 60 * 1000,
+  cookie: { 
+    httpOnly: false
+  }
 }))
+
+app.use(sessions({
+  cookieName: "Michael", 
+  secret: process.env.SESSION_STRING, 
+  duration: 24 * 60 * 60 * 1000,
+  activeDuration: 24 * 60 * 60 * 1000,
+  cookie: { 
+    httpOnly: false
+  }
+}))
+
 
 const newUserRoute = require('./userRoutes.js')
 app.use('/', newUserRoute)
@@ -39,3 +53,5 @@ app.get('/*', function (req, res) {
 app.listen(port, () => {
   console.log(`You\'re listening on: ${port}`)
 })
+
+module.exports = app

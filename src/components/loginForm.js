@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom';
 import axios from 'axios'
+import Cookie from 'js-cookie'
 
 function LoginForm() {
 
@@ -18,6 +19,7 @@ function LoginForm() {
 			})
 			.then((res) => {
 				if (res.status == 200)
+				Cookie.get('session')
 				setLogin(true)
 			})
 			.catch((err) => {
