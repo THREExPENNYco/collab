@@ -40,7 +40,16 @@ router.route('/login').post((req, res) => {
 		if (!user || !bcrypt.compareSync(req.body.passWord, user.passWord)) {
 			res.status(404).json(err)
 		}
-		req.Every.userId = user._id
+		req.session.userId = user._id
+		res.status(200).json(user)
+	})
+})
+router.route('/dashboard/:userName').get((req, res) => { 
+	console.log(req.session.userId)
+	User.findOne({ _id: req.params.userName }, (err, user) => { 
+		if (req.session.userId != user._id) { 
+			res.status(401).json(err)
+		}
 		res.status(200).json(user)
 	})
 })

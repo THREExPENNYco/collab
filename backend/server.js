@@ -21,22 +21,14 @@ connection.once('open', () => {
 })
 // session must be above routes if sessions are needed for routes
 app.use(sessions({
-  cookieName: "session", 
-  secret: process.env.ACCESS_TOKEN, 
+  cookieName: "session",
+  secret: process.env.ACCESS_TOKEN,
   duration: 24 * 60 * 60 * 1000,
   activeDuration: 24 * 60 * 60 * 1000,
   cookie: { 
     httpOnly: true
   }
 }))
-
-app.use(sessions({
-  cookieName: "Michael", 
-  secret: process.env.SESSION_STRING, 
-  duration: 24 * 60 * 60 * 1000,
-  activeDuration: 24 * 60 * 60 * 1000,
-}))
-
 
 const newUserRoute = require('./userRoutes.js')
 app.use('/', newUserRoute)

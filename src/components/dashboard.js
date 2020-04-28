@@ -4,11 +4,12 @@ import { Redirect } from 'react-router-dom';
 function Dashboard(props) {
 	const status = props.location.state || false 
 
-	const [loginStatus] = useState(status)
-	
+	const [currUser] = useState(status)
+	console.log(currUser)
+
 	return (
 		<section className="dashboard">
-			{loginStatus.loggedIn ? <p className="hero-dashboard">DASHBOARD</p>
+			{currUser ? <p className="hero-dashboard">DASHBOARD</p>
 				: <Redirect to='/login' />}
 		</section>
 	)
