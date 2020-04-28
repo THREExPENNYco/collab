@@ -40,7 +40,7 @@ router.route('/login').post((req, res) => {
 		if (!user || !bcrypt.compareSync(req.body.passWord, user.passWord)) {
 			res.status(404).json(err)
 		}
-		req.Every.userId = user._id
+		req.session.userId = user._id
 		res.status(200).json(user)
 	})
 })

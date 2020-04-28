@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom'
 
 function Dashboard(props) {
 	const status = props.location.state || false 
@@ -8,8 +8,8 @@ function Dashboard(props) {
 	
 	return (
 		<section className="dashboard">
-			{loginStatus.loggedIn ? <p className="hero-dashboard">DASHBOARD</p>
-				: <Redirect to='/login' />}
+			{ loginStatus.loggedIn ? <p className="hero-dashboard">DASHBOARD</p>
+				: <Redirect to='/login' /> }
 		</section>
 	)
 }
