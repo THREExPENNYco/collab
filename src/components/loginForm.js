@@ -1,26 +1,28 @@
 import React, { useState } from 'react'
 import { Redirect } from 'react-router-dom';
 import axios from 'axios'
-import Cookie from 'js-cookie'
+import Cookies from 'js-cookie'
 
 function LoginForm() {
 
-	const [currUser, setUserName] = useState('')
+	const [user, setUserName] = useState('')
 	const [userPassWord, setPassWord] = useState('')
 	const [loggedIn, setLogin] = useState(false)
 	const [error, setError] = useState('')
+	const [currUser, setCurrUser] = useState('')
 	
 	function login(e) {
 		e.preventDefault()
 		axios
 			.post('http://localhost:3030/login', {
-				userName: currUser,
+				userName: user,
 				passWord: userPassWord,
 			})
 			.then((res) => {
 				if (res.status == 200)
-				Cookie.get('session')
+
 				setLogin(true)
+				setCurrUser(res.data.userName)
 			})
 			.catch((err) => {
 				setError(err)
@@ -39,7 +41,7 @@ function LoginForm() {
 				<input className="form-input" type="text" name="password" onChange={(e) => setPassWord(e.target.value)} />
 				<input className="form-submit-button" type="submit" value="SUBMIT" />
 			</form>
-			{ loggedIn ? <Redirect to={{pathname: "/dashboard", state: { loggedIn: loggedIn } }} /> : <Redirect to='/login' /> }
+			{ loggedIn ? <Redirect to={{pathname: "/dashboard", state: { currUser: currUser } }} /> : <Redirect to='/login' /> }
 		</section>
 	)
 }
