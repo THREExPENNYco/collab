@@ -21,12 +21,12 @@ connection.once('open', () => {
 })
 // session must be above routes if sessions are needed for routes
 app.use(sessions({
-  cookieName: "Every", 
-  secret: process.env.SESSION_STRING, 
+  cookieName: "session", 
+  secret: process.env.ACCESS_TOKEN, 
   duration: 24 * 60 * 60 * 1000,
   activeDuration: 24 * 60 * 60 * 1000,
   cookie: { 
-    httpOnly: false
+    httpOnly: true
   }
 }))
 
