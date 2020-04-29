@@ -25,7 +25,7 @@ class App extends Component {
         <Route exact path='/' component={Home} />
         <Route path='/login' component={LoginForm} />
         <Route path='/signup' component={SignUpForm} />
-        <Route path='/dashboard' component={Dashboard} /> 
+        <Route path='/dashboard/:userName' component={Dashboard} /> 
       </Router>
     )
   }
