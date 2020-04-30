@@ -9,17 +9,18 @@ const path = require('path')
 
 // Root route for users
 router.route('/').get((req, res) => {
-  res.sendFile(path.resolve('../public/index.html'))
+	res.sendFile(path.resolve('../public/index.html'))
 })
 // Route for user filtered by id
 router.route('/user_id=:id').get((req, res) => {
-  User.findById(req.params.id)
-    .then(user => res.status(200).json(user))
-    .catch(err => res.status(404).json(err))
+	User.findById(req.params.id)
+	.then(user => res.status(200).json(user))
+	.catch(err => res.status(404).json(err))
 })
 // New user route
+// login route
 router.route('/newUser').post((req, res) => {
-  const userName = req.body.userName
+	const userName = req.body.userName
   const passWord = req.body.passWord
   const hash = bcrypt.hashSync(passWord, 8)
   const email = req.body.email
@@ -33,7 +34,6 @@ router.route('/newUser').post((req, res) => {
     .then(newUser => res.status(200).json(newUser))
     .catch(err => res.status(404).json(err))
 })
-// login route
 router.route('/login').post((req, res) => {
   res.cookie('session', req.session)
   User.findOne({ userName: req.body.userName }, (err, user) => {
