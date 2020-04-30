@@ -172,13 +172,46 @@ body {
 .dashboard { 
     margin-left: auto;
     margin-right: auto;
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 85%; 
 }
 
-.hero-dashboard { 
-    margin-top: 15px;
+.dashboard-info { 
+    display: flex;
+    flex-direction: row;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+}
+
+.dashboard-hero { 
+    margin-top: -100px;
+    margin-bottom: -150px;
     font-size: calc(10vw + 1.45vh + 0.2vmin);
     font-family: 'Roboto', sans-serif;
     margin-left: auto;
     margin-right: auto;
     text-align: center;
+}
+
+.dashboard-info__section-header { 
+    display: row;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    font-size: calc(5vw + 1.45vh + 0.2vmin);
+    font-family: 'Roboto', sans-serif;
+}
+
+.dashboard-info__section { 
+    text-align: center;
+    width: 50%;
+    margin-right: auto; 
+    margin-left: auto;
+}
+
+.dashboard-info__section-info { 
+    font-family: 'Roboto', sans-serif;
+    font-size: calc(1vw + 1.45vh + 0.2vmin);
 }
