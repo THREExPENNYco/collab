@@ -35,20 +35,24 @@ router.route('/newUser').post((req, res) => {
 })
 // login route
 router.route('/login').post((req, res) => {
+  res.cookie('session', req.session)
   User.findOne({ userName: req.body.userName }, (err, user) => {
     if (!user || !bcrypt.compareSync(req.body.passWord, user.passWord)) {
       res.status(404).json(err)
       return
     }
     req.session.userId = user._id
+    console.log(req.session)
+    req.session.save()
     res.status(200).json(user)
   })
 })
 router.route('/dashboard/:userName').get((req, res) => {
-  console.log(req.session.userId)
-  User.findOne({ _id: req.params.userName }, (err, user) => {
-    if (req.session.userId !== user._id) {
+  console.log(req.session)
+  User.findOne({ userName: req.params.userName }, (err, user) => {
+    if (user.userName !== req.params.userName) {
       res.status(401).json(err)
+      return
     }
     res.status(200).json(user)
   })
