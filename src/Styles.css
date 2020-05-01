@@ -215,3 +215,15 @@ body {
     font-family: 'Roboto', sans-serif;
     font-size: calc(1vw + 1.45vh + 0.2vmin);
 }
+
+.dashboard-info__section-info__button {
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+    background-color: black;
+    border-style: none;
+    width: 40%;
+    height: 30px;
+    font-family: 'Roboto', sans-serif;
+    font-size: calc(1vw + 1.45vh + 0.2vmin);
+}
