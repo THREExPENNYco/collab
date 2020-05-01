@@ -7,6 +7,7 @@ function Dashboard(props) {
   const currUser = props.location.state.currUser;
   const [currUserData, setCurrUserData] = useState("");
   const [error, setError] = useState("");
+  const [createGroup, setCreateGroup] = useState(false);
   useEffect(() => {
     axios
       .get(`http://localhost:3030/dashboard/${currUser}`, {
@@ -23,13 +24,19 @@ function Dashboard(props) {
       });
   }, []);
 
-  function Button(props) { 
-	return ( 
-		<button className="dashboard-info__section-info__button">CREATE GROUP</button>
-	)
+  function Button(props) {
+    return (
+      <button className="dashboard-info__section-info__button">
+        CREATE GROUP
+      </button>
+    );
   }
 
-  console.log(currUserData.groups)
+  const handleCreateGroup = () => {
+    setCreateGroup(true);
+  };
+
+  console.log(currUserData.groups);
   return (
     <section className="dashboard">
       <section className="dashboard-hero">
@@ -39,31 +46,38 @@ function Dashboard(props) {
         <section className="dashboard-info__section">
           <h1 className="dashboard-info__section-header">GROUPS</h1>
           <section className="dashboard-info__section-info">
-            {currUserData.group === 1
-              ? currUserData.groups.map((index, group) => {
-                  <li
-                    key={index}
-                    classname="dashboard-info_section-info__content"
-                  >
-                    {group.name}
-                  </li>
-                })
-              : <Button />}
+            {currUserData.group === null ? (
+              currUserData.groups.map((index, group) => {
+                <li
+                  key={index}
+                  classname="dashboard-info_section-info__content"
+                >
+                  {group.name}
+                </li>;
+              })
+            ) : (
+              <Button onClick={handleCreateGroup} />
+            )}
           </section>
         </section>
         <section className="dashboard-info__section">
           <h1 className="dashboard-info__section-header">GOALS</h1>
           <section className="dashboard-info__section-info">
-              {currUserData.goals
-              ? currUserData.goals.map((index, goal) => {
-                  <li
-                    key={index}
-                    className="dashboard-info_section-info__content"
-                  >
-                    {goal.name}
-                  </li>
-                })
-              : <Button />}
+            {currUserData.goals === null ? (
+              currUserData.goals.map((index, goal) => {
+                <li
+                  key={index}
+                  className="dashboard-info__section-info__content"
+                >
+                  {goal.name}
+                </li>;
+              })
+            ) : (
+              <p className="dashboard-info__section-info__content">
+                Peer Pressure is meant to be enjoyed with peers. Create a group
+                to create a goal.
+              </p>
+            )}
           </section>
         </section>
       </section>
