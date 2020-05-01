@@ -28,7 +28,7 @@ function LoginForm() {
   };
   return (
     <section className="form-container">
-      <p className="hero-signup__sign">LOGIN</p>
+      <p className="hero-signup__top">LOGIN</p>
       {error ? <p className="info-signup-form">{error.message}</p> : null}
       <form className="signup-form" onSubmit={(e) => login(e)}>
         <label className="form-label">USERNAME</label>

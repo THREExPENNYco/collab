@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
 
-function Form() {
+function signUpForm() {
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [passWord, setPassWord] = useState("");
@@ -27,8 +27,8 @@ function Form() {
   };
   return (
     <section className="form-container">
-      <p className="hero-signup__sign">SIGN</p>
-      <p className="hero-signup__up">UP</p>
+      <p className="hero-signup__top">SIGN</p>
+      <p className="hero-signup__bottom">UP</p>
       <form className="signup-form" onSubmit={(e) => signup(e)}>
         <label className="form-label">USERNAME</label>
         <input
@@ -61,4 +61,4 @@ function Form() {
   );
 }
 
-export default Form;
+export default signUpForm;

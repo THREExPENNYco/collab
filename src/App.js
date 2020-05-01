@@ -3,6 +3,7 @@ import Home from "./components/home.js";
 import LoginForm from "./components/loginForm.js";
 import Dashboard from "./components/dashboard.js";
 import SignUpForm from "./components/signUpForm.js";
+import NewGroupForm from "./components/newGroupForm.js"
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Styles from "./Styles.css";
 
@@ -28,6 +29,7 @@ class App extends Component {
         <Route path="/login" component={LoginForm} />
         <Route path="/signup" component={SignUpForm} />
         <Route path="/dashboard/:userName" component={Dashboard} />
+        <Route path="/user_id=:user_id/create_group" component={NewGroupForm} />
       </Router>
     );
   }

@@ -18,7 +18,6 @@ router.route("/user_id=:id").get((req, res) => {
     .catch((err) => res.status(404).json(err));
 });
 // New user route
-// login route
 router.route("/newUser").post((req, res) => {
   const userName = req.body.userName;
   const passWord = req.body.passWord;
@@ -34,8 +33,8 @@ router.route("/newUser").post((req, res) => {
     .then((newUser) => res.status(200).json(newUser))
     .catch((err) => res.status(404).json(err));
 });
+// login route
 router.route("/login").post((req, res) => {
-  res.cookie("session", req.session);
   User.findOne({ userName: req.body.userName }, (err, user) => {
     if (!user || !bcrypt.compareSync(req.body.passWord, user.passWord)) {
       res.status(404).json(err);
@@ -47,8 +46,8 @@ router.route("/login").post((req, res) => {
     res.status(200).json(user);
   });
 });
+//dashboard route
 router.route("/dashboard/:userName").get((req, res) => {
-  console.log(req.session);
   User.findOne({ userName: req.params.userName }, (err, user) => {
     if (user.userName !== req.params.userName) {
       res.status(401).json(err);
@@ -83,17 +82,22 @@ router.route("/user_id=:id/create_group").post((req, res) => {
   });
   newGroup
     .save()
-    .then((newGroup) => res.status(400).json(newGroup))
+    .then((newGroup) => res.status(200).json(newGroup._id))
     .catch((err) => res.status(404).json(err));
-  Group.findByIdAndUpdate(
-    newGroup._id,
-    { $push: { members: req.params.id } },
-    function (err, model) {
-      err ? res.status(404).json(err) : res.status(200).json(model);
-    }
-  );
 });
-// route to add user to group
+// add group to user array
+router
+  .route("/user_id=:user_id/group_id=:group_id/group_to_user")
+  .post((req, res) => {
+    User.findByIdAndUpdate(
+      req.params.user_id,
+      { $push: { groups: req.params.group_id } },
+      function (err, model) {
+        err ? res.status(404).json(err) : res.status(200).json(model);
+      }
+    );
+  });
+// route to add user to group array
 router
   .route("/user_id=:user_id/group_id=:group_id/add_user_to_group")
   .post((req, res) => {
@@ -104,7 +108,17 @@ router
         err ? res.status(404).json(err) : res.status(200).json(model);
       }
     );
-  });
+	});
+// find group 
+router.route("/user_id=:user_id/find_group").get((req, res) => { 
+	Group.find({ members: req.params.user_id  })
+	.then((groups) => {
+		res.status(200).json(groups)
+	})
+	.catch((err) => { 
+		res.status(400).json(err)
+	})
+})
 // create goal and add to group
 router
   .route("/user_id=:user_id/group_id=:group_id/create_goal")

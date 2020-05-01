@@ -2,10 +2,13 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
+import { set } from "mongoose";
 
 function Dashboard(props) {
   const currUser = props.location.state.currUser;
   const [currUserData, setCurrUserData] = useState("");
+  const [groups, setGroups] = useState([]);
+  const [userId, setUserId] = useState("");
   const [error, setError] = useState("");
   const [createGroup, setCreateGroup] = useState(false);
   useEffect(() => {
@@ -15,28 +18,28 @@ function Dashboard(props) {
       })
       .then((res) => {
         if (res.status === 200) {
-          const userData = res.data;
-          setCurrUserData(userData);
+          setCurrUserData(res.data);
+          getGroups(res.data._id);
+          setUserId(res.data._id);
         }
       })
       .catch((err) => {
         setError(err);
       });
   }, []);
-
-  function Button(props) {
-    return (
-      <button className="dashboard-info__section-info__button">
-        CREATE GROUP
-      </button>
-    );
-  }
-
   const handleCreateGroup = () => {
     setCreateGroup(true);
   };
-
-  console.log(currUserData.groups);
+  const getGroups = (data) => {
+    axios
+      .get(`http://localhost:3030/user_id=${data}/find_group`)
+      .then((res) => {
+        setGroups(res.data);
+      })
+      .catch((err) => {
+        setError(err);
+      });
+  };
   return (
     <section className="dashboard">
       <section className="dashboard-hero">
@@ -46,18 +49,24 @@ function Dashboard(props) {
         <section className="dashboard-info__section">
           <h1 className="dashboard-info__section-header">GROUPS</h1>
           <section className="dashboard-info__section-info">
-            {currUserData.group === null ? (
-              currUserData.groups.map((index, group) => {
-                <li
-                  key={index}
-                  classname="dashboard-info_section-info__content"
-                >
-                  {group.name}
-                </li>;
-              })
-            ) : (
-              <Button onClick={handleCreateGroup} />
-            )}
+            {groups.length === 0
+              ? null
+              : groups.map((group, index) => (
+                  <section className="dashboard-info__section_info__content-groups">
+                    <li
+                      key={index}
+                      className="dashboard-info__section-info__content-groups__item"
+                    >
+                      {group.groupName}
+                    </li>
+                  </section>
+                ))}
+            <button
+              className="dashboard-info__section-info__button"
+              onClick={handleCreateGroup}
+            >
+              CREATE GROUP
+            </button>
           </section>
         </section>
         <section className="dashboard-info__section">
@@ -69,7 +78,7 @@ function Dashboard(props) {
                   key={index}
                   className="dashboard-info__section-info__content"
                 >
-                  {goal.name}
+                  {goal}
                 </li>;
               })
             ) : (
@@ -81,7 +90,16 @@ function Dashboard(props) {
           </section>
         </section>
       </section>
+      {console.log(createGroup)}
       {currUser ? null : <Redirect to="/login" />}
+      {createGroup ? (
+        <Redirect
+          to={{
+            pathname: `/user_id=${currUserData._id}/create_group`,
+            state: { currUser: currUserData },
+          }}
+        />
+      ) : null}
     </section>
   );
 }
