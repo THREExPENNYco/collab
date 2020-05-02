@@ -5,9 +5,8 @@ import { Redirect } from "react-router-dom";
 function groupDashboard(props) { 
     return(
     <section className="dashboard">
-        <section className="dashboard-hero">
-            <h1>DASHBOARD</h1>
-        </section>
+      <p className="dashboard-hero__top">GROUP</p>
+      <p className="dashboard-hero__bottom">DASHBOARD</p>
     </section>
     )
 }

@@ -210,6 +210,10 @@ body {
   margin-left: auto;
 }
 
+.dashboard-info__section a { 
+	text-decoration: none;
+}
+
 .dashboard-info__section-info {
   font-family: "Roboto", sans-serif;
   font-size: calc(1vw + 1.45vh + 0.2vmin);
@@ -232,10 +236,27 @@ body {
 .dashboard-info__section-info__content-groups__item {
 	margin-bottom: 10px;
 	font-family: "Roboto", sans-serif;
-  font-size: calc(0.8vw + 1.45vh + 0.2vmin);
+	font-size: calc(0.8vw + 1.45vh + 0.2vmin);
+}
+
+.dashboard-info__section-info__content-groups__item a:hover { 
+  color: red;
+  cursor: pointer;
 }
 
 .dashboard-info__section-info__content-group__item__hr { 
 	width: 50%;
 	opacity: 25%;
+}
+
+.dashboard-hero__top, 
+.dashboard-hero__bottom { 
+   margin-top: 0;
+  margin-left: 0;
+  margin-right: 0;
+  color: black;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-size: calc(3vw + 15.45vh + 0.2vmin);
+  margin-bottom: -3%;
 }

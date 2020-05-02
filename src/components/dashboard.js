@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react";
-import { Redirect } from "react-router-dom";
+import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
 
 function Dashboard(props) {
@@ -56,7 +56,7 @@ function Dashboard(props) {
                       key={index}
                       className="dashboard-info__section-info__content-groups__item"
                     >
-                      <a>{group.groupName}</a>
+                      <Link to={`/group_dashboard/${group._id}`} className="dashboard-info__section-info__content-groups__item__link">{group.groupName}</Link>
                     </li>
 					<hr className="dashboard-info__section-info__content-group__item__hr"></hr>
                   </section>
@@ -72,8 +72,8 @@ function Dashboard(props) {
         <section className="dashboard-info__section">
           <h1 className="dashboard-info__section-header">GOALS</h1>
           <section className="dashboard-info__section-info">
-            {currUserData.goals === null ? (
-              currUserData.goals.map((index, goal) => {
+            {currUser.goals === null ? (
+          currUser.goals.map((index, goal) => {
                 <li
                   key={index}
                   className="dashboard-info__section-info__content"
