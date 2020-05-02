@@ -2,7 +2,6 @@
 import React, { useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import axios from "axios";
-import { set } from "mongoose";
 
 function Dashboard(props) {
   const currUser = props.location.state.currUser;
@@ -57,8 +56,9 @@ function Dashboard(props) {
                       key={index}
                       className="dashboard-info__section-info__content-groups__item"
                     >
-                      {group.groupName}
+                      <a>{group.groupName}</a>
                     </li>
+					<hr className="dashboard-info__section-info__content-group__item__hr"></hr>
                   </section>
                 ))}
             <button

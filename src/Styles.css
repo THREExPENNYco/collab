@@ -217,7 +217,8 @@ body {
 }
 
 .dashboard-info__section-info__button {
-  margin-left: auto;
+	margin-top: 15px;
+	margin-left: auto;
   margin-right: auto;
   color: white;
   background-color: black;
@@ -229,5 +230,12 @@ body {
 }
 
 .dashboard-info__section-info__content-groups__item {
-  margin-bottom: 10px;
+	margin-bottom: 10px;
+	font-family: "Roboto", sans-serif;
+  font-size: calc(0.8vw + 1.45vh + 0.2vmin);
+}
+
+.dashboard-info__section-info__content-group__item__hr { 
+	width: 50%;
+	opacity: 25%;
 }
