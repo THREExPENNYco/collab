@@ -46,6 +46,14 @@ router.route("/login").post((req, res) => {
     res.status(200).json(user);
   });
 });
+router.route("/group_dashboard/:dashboard_id").get((req, res) => { 
+	Group.findOne({ groupName: req.params.dashboard_id }), (err, group) => { 
+		if (group.groupName != req.params.groupName) { 
+			res.status(401).json(err)
+		}
+		res.status(200).json(group)
+	}
+})
 //dashboard route
 router.route("/dashboard/:userName").get((req, res) => {
   User.findOne({ userName: req.params.userName }, (err, user) => {
@@ -96,7 +104,7 @@ router
         err ? res.status(404).json(err) : res.status(200).json(model);
       }
     );
-  });
+	});
 // route to add user to group array
 router
   .route("/user_id=:user_id/group_id=:group_id/add_user_to_group")
