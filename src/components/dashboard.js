@@ -56,7 +56,7 @@ function Dashboard(props) {
                       key={index}
                       className="dashboard-info__section-info__content-groups__item"
                     >
-                      <Link to={`/group_dashboard/${group._id}`} className="dashboard-info__section-info__content-groups__item__link">{group.groupName}</Link>
+                      <Link to={{pathname:`/group_dashboard/${group._id}`, state:{ groupId: group._id } }} className="dashboard-info__section-info__content-groups__item__link">{group.groupName}</Link>
                     </li>
 					<hr className="dashboard-info__section-info__content-group__item__hr"></hr>
                   </section>
