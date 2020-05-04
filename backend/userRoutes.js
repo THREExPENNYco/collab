@@ -48,13 +48,14 @@ router.route("/login").post((req, res) => {
 });
 // route that pulls up group dashboard
 router.route("/group_dashboard/:dashboard_id").get((req, res) => {
-  Group.findOne({ groupName: req.params.dashboard_id }),
+  Group.findOne({ _id: req.params.dashboard_id },
     (err, group) => {
-      if (group.groupName != req.params.groupName) {
+      if (group._id != req.params.dashboard_id) {
         res.status(401).json(err);
+        return;
       }
       res.status(200).json(group);
-    };
+    });
 });
 //dashboard route
 router.route("/dashboard/:userName").get((req, res) => {
