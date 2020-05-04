@@ -5,21 +5,42 @@ import { Redirect } from "react-router-dom";
 function groupDashboard(props) {
   const groupId = props.location.state.groupId;
   const [group, setGroup] = useState("");
+  const [groupNames, setGroupNames] = useState([]); 
+  const [error, setError] = useState("");
   useEffect(() => {
     axios
       .get(`http://localhost:3030/group_dashboard/${groupId}`)
       .then((res) => {
-        console.log(res);
+        if (res.status === 200) {
+          setGroup(res.data);
+          getGroupMemberNames();
+        }
       })
       .catch((err) => {
-        console.log(err);
+        setError(err);
       });
-  });
+  }, []);
+  const getGroupMemberNames = () => {
+    axios
+      .get(`http://localhost:3030/group_dashboard/${groupId}/members`)
+      .then((res) => {
+        if (res.status === 200) {
+          setGroupNames(res.data)
+        }
+      })
+      .catch((err) => {
+        setError(err)
+      });
+  };
   return (
     <section className="dashboard">
       <p className="dashboard-hero__top">GROUP</p>
       <p className="dashboard-hero__bottom">DASHBOARD</p>
-      <section className="dashboard-group__members"></section>
+      <section className="dashboard-group__members">
+        {groupNames.map((member, index) => (
+          <p key={index} className="dashbaord-group__members-member">{member.userName}</p>
+        ))}
+      </section>
     </section>
   );
 }

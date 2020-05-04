@@ -47,15 +47,24 @@ router.route("/login").post((req, res) => {
   });
 });
 // route that pulls up group dashboard
-router.route("/group_dashboard/:dashboard_id").get((req, res) => {
-  Group.findOne({ _id: req.params.dashboard_id },
-    (err, group) => {
-      if (group._id != req.params.dashboard_id) {
-        res.status(401).json(err);
-        return;
-      }
-      res.status(200).json(group);
-    });
+router.route("/group_dashboard/:group_id").get((req, res) => {
+  Group.findOne({ _id: req.params.group_id}, (err, group) => {
+    if (group._id != req.params.group_id) {
+      res.status(401).json(err);
+      return;
+    }
+    res.status(200).json(group);
+  });
+});
+// route to grab members in the group
+router.route("/group_dashboard/:group_id/members").get((req, res) => {
+  User.find({ groups: req.params.group_id }, { userName: 1 })
+  .then((users) => { 
+    res.status(200).json(users); 
+  })
+  .catch((err) => { 
+    res.status(400).json(err);
+  })
 });
 //dashboard route
 router.route("/dashboard/:userName").get((req, res) => {
