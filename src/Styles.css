@@ -211,7 +211,8 @@ body {
 }
 
 .dashboard-info__section a { 
-	text-decoration: none;
+  text-decoration: none;
+  color: black;
 }
 
 .dashboard-info__section-info {
@@ -251,7 +252,7 @@ body {
 
 .dashboard-hero__top, 
 .dashboard-hero__bottom { 
-   margin-top: 0;
+  margin-top: 0;
   margin-left: 0;
   margin-right: 0;
   color: black;

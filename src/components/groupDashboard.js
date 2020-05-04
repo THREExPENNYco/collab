@@ -7,6 +7,8 @@ function groupDashboard(props) {
     <section className="dashboard">
       <p className="dashboard-hero__top">GROUP</p>
       <p className="dashboard-hero__bottom">DASHBOARD</p>
+      <section className="dashboard-group__members"> 
+      </section>
     </section>
     )
 }
