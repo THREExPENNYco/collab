@@ -261,3 +261,42 @@ body {
   font-size: calc(3vw + 15.45vh + 0.2vmin);
   margin-bottom: -3%;
 }
+
+.dashboard-group { 
+  display: grid; 
+  grid-template-columns: 20% 25% auto 25% 15%; 
+  grid-template-rows: 25% 25% 25% 25%; 
+  height: 1000px;
+  width: 85%;
+  margin-top: 50px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.dasboard-group__peers-section { 
+  border-color: black;
+  border: 1px solid;
+  width: 85%;
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 1;
+  grid-row-end: 3;
+}
+
+.dashbaord-group__members-peers { 
+  border-color: 1px black; 
+  font-family: "Roboto", sans-serif;
+  font-size: calc(0.01vw + 2.45vh + 0.2vmin);
+  text-align: center;
+  margin-top: 0px;
+
+}
+
+.dashboard-group_members-header { 
+  margin-top: 0;
+  margin-bottom: 1px;
+  justify-self: center;
+  text-align: center;
+  font-size: calc(0.01vw + 5.45vh + 0.2vmin);
+  font-family: 'Roboto', sans-serif;
+}

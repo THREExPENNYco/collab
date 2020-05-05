@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 function groupDashboard(props) {
   const groupId = props.location.state.groupId;
   const [group, setGroup] = useState("");
-  const [groupNames, setGroupNames] = useState([]); 
+  const [groupNames, setGroupNames] = useState([]);
   const [error, setError] = useState("");
   useEffect(() => {
     axios
@@ -25,24 +25,30 @@ function groupDashboard(props) {
       .get(`http://localhost:3030/group_dashboard/${groupId}/members`)
       .then((res) => {
         if (res.status === 200) {
-          setGroupNames(res.data)
+          setGroupNames(res.data);
         }
       })
       .catch((err) => {
-        setError(err)
+        setError(err);
       });
   };
   return (
-    <section className="dashboard">
+    <section> 
       <p className="dashboard-hero__top">GROUP</p>
       <p className="dashboard-hero__bottom">DASHBOARD</p>
-      <section className="dashboard-group__members">
-      <h1 className="dashboard-group_members-header">PEERS</h1>
-        {groupNames.map((member, index) => (
-          <p key={index} className="dashbaord-group__members-member">{member.userName}</p>
-        ))}
+    <section className="dashboard-group">
+      <section className="dasboard-group__peers-section">
+        <section className="dashboard-group__members">
+          <h1 className="dashboard-group_members-header">PEERS</h1>
+          {groupNames.map((member, index) => (
+            <p key={index} className="dashbaord-group__members-peers">
+              {member.userName}
+            </p>
+          ))}
+        </section>
       </section>
     </section>
+        </section>
   );
 }
 
