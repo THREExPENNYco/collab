@@ -37,6 +37,7 @@ function groupDashboard(props) {
       <p className="dashboard-hero__top">GROUP</p>
       <p className="dashboard-hero__bottom">DASHBOARD</p>
       <section className="dashboard-group__members">
+      <h1 className="dashboard-group_members-header">PEERS</h1>
         {groupNames.map((member, index) => (
           <p key={index} className="dashbaord-group__members-member">{member.userName}</p>
         ))}
