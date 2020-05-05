@@ -5,7 +5,8 @@ import { Redirect } from "react-router-dom";
 function groupDashboard(props) {
   const groupId = props.location.state.groupId;
   const [group, setGroup] = useState("");
-  const [groupNames, setGroupNames] = useState([]);
+  const [groupPeers, setGroupNames] = useState([]);
+  const [groupName, setGroupName] = useState("");
   const [error, setError] = useState("");
   useEffect(() => {
     axios
@@ -13,14 +14,15 @@ function groupDashboard(props) {
       .then((res) => {
         if (res.status === 200) {
           setGroup(res.data);
-          getGroupMemberNames();
+          setGroupName(res.data.groupName)
+          getPeerMemberNames();
         }
       })
       .catch((err) => {
         setError(err);
       });
   }, []);
-  const getGroupMemberNames = () => {
+  const getPeerMemberNames = () => {
     axios
       .get(`http://localhost:3030/group_dashboard/${groupId}/members`)
       .then((res) => {
@@ -34,14 +36,14 @@ function groupDashboard(props) {
   };
   return (
     <section> 
-      <p className="dashboard-hero__top">{group.groupName}</p>
+      <p className="dashboard-hero__top">{groupName.toUpperCase()}</p>
       <p className="dashboard-hero__bottom">DASHBOARD</p>
     <section className="dashboard-group">
       <section className="dasboard-group__peers-section">
         <section className="dashboard-group__members">
           <h1 className="dashboard-group__members-header">PEERS</h1>
           <hr className="dashboard-group__members-header__hr"></hr>
-          {groupNames.map((member, index) => (
+          {groupPeers.map((member, index) => (
             <p key={index} className="dashbaord-group__members-peers">
               {member.userName}
             </p>
