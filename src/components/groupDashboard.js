@@ -34,12 +34,13 @@ function groupDashboard(props) {
   };
   return (
     <section> 
-      <p className="dashboard-hero__top">GROUP</p>
+      <p className="dashboard-hero__top">{group.groupName}</p>
       <p className="dashboard-hero__bottom">DASHBOARD</p>
     <section className="dashboard-group">
       <section className="dasboard-group__peers-section">
         <section className="dashboard-group__members">
-          <h1 className="dashboard-group_members-header">PEERS</h1>
+          <h1 className="dashboard-group__members-header">PEERS</h1>
+          <hr className="dashboard-group__members-header__hr"></hr>
           {groupNames.map((member, index) => (
             <p key={index} className="dashbaord-group__members-peers">
               {member.userName}
