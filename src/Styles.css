@@ -304,3 +304,21 @@ body {
 .dashboard-info__section-header__hr { 
   width: 100%; 
 }
+
+.form-input:focus { 
+  color: black;
+  background: white;
+  outline-color: red;
+}
+
+::selection { 
+  background: red;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active  {
+    background-color:red;
+
+}

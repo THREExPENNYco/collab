@@ -47,7 +47,7 @@ function signUpForm() {
         <label className="form-label">PASSWORD</label>
         <input
           className="form-input"
-          type="text"
+          type="password"
           name="password"
           onChange={(e) => setPassWord(e.target.value)}
         />
