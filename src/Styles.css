@@ -262,10 +262,16 @@ body {
   margin-bottom: -3%;
 }
 
+.dashboard-hero__hr { 
+  margin-top: 50px;
+  width: 85%;
+}
+
 .dashboard-group { 
   display: grid; 
-  grid-template-columns: 20% 25% auto 25% 15%; 
+  grid-template-columns: 25% 25% 25% 25%; 
   grid-template-rows: 25% 25% 25% 25%; 
+  grid-gap: 10px;
   height: 1000px;
   width: 85%;
   margin-top: 50px;
@@ -280,7 +286,7 @@ body {
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 1;
-  grid-row-end: 3;
+  grid-row-end: 2;
 }
 
 .dashbaord-group__members-peers { 
@@ -303,6 +309,16 @@ body {
 
 .dashboard-info__section-header__hr { 
   width: 100%; 
+}
+
+.dashboard-group__members-goalsteps { 
+  grid-column-start: 2;
+  grid-column-end: 4; 
+  grid-row-start: 1; 
+  grid-row-end: 3;
+  border-color: black;
+  border: 0.05px solid;
+
 }
 
 .form-input:focus { 
