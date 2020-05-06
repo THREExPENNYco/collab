@@ -280,9 +280,8 @@ body {
 }
 
 .dasboard-group__peers-section {
-  padding: 30px; 
-  border-color: black;
-  border: 0.05px solid;
+  padding: 15px; 
+  border: 0.05px solid rgb(167, 167, 167, 0.5);
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 1;
@@ -290,9 +289,8 @@ body {
 }
 
 .dashbaord-group__members-peers { 
-  border-color: .05px black; 
   font-family: "Roboto", sans-serif;
-  font-size: calc(0.01vw + 1.75vh + 0.2vmin);
+  font-size: calc(0.01vw + 1.7vh + 0.2vmin);
   text-align: center;
   margin-top: 0px;
 
@@ -303,7 +301,7 @@ body {
   margin-bottom: 1px;
   justify-self: center;
   text-align: center;
-  font-size: calc(0.01vw + 2.45vh + 0.2vmin);
+  font-size: calc(0.01vw + 2vh + 0.2vmin);
   font-family: 'Roboto', sans-serif;
 }
 
@@ -311,14 +309,19 @@ body {
   width: 100%; 
 }
 
-.dashboard-group__members-goalsteps { 
+.dashboard-group__members-feed {
+  padding: 15px; 
   grid-column-start: 2;
   grid-column-end: 4; 
   grid-row-start: 1; 
   grid-row-end: 3;
-  border-color: black;
-  border: 0.05px solid;
+  border: 0.05px solid rgb(167, 167, 167, 0.5);
+}
 
+.group-dashboard__form-input { 
+  height: 30px;
+  margin-top: 10px;
+  width: 100%;
 }
 
 .form-input:focus { 
@@ -327,8 +330,35 @@ body {
   outline-color: red;
 }
 
+.group-dashboard__form-submit-button { 
+  display: inherit;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  background-color: black;
+  border-style: none;
+  width: 40%;
+  height: 30px;
+  font-family: "Roboto", sans-serif;
+  font-size: calc(1vw + 0.45vh + 0.2vmin);
+}
+
 ::selection { 
   background: red;
+}
+
+::placeholder {
+  font-size: 0.85em;
+  color: black;
+  opacity: 1;
+  font-family: "Roboto", sans-serif;
+  padding: 5px;
+  text-align: center;
+}
+
+::placeholder::selection { 
+  outline-color: red;
 }
 
 input:-webkit-autofill,

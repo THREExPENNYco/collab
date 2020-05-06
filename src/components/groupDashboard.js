@@ -51,8 +51,11 @@ function groupDashboard(props) {
             ))}
           </section>
         </section>
-        <section className="dashboard-group__members-goalsteps">
-          <h1 className="dashbaord-hero_top">FEED</h1>
+        <section className="dashboard-group__members-feed">
+          <h1 className="dashboard-group__members-header">FEED</h1>
+          <hr className="dashboard-group__members-header__hr"></hr>
+          <input type="text" className="group-dashboard__form-input" placeholder="You Work On Your Goal Today?"/>
+          <input className="group-dashboard__form-submit-button" type="submit" value="POST GOALSTEP" />
         </section>
       </section>
     </section>
