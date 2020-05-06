@@ -277,6 +277,7 @@ body {
   margin-top: 50px;
   margin-right: auto;
   margin-left: auto;
+  font-family: "Roboto", sans-serif;
 }
 
 .dasboard-group__peers-section {
@@ -286,14 +287,8 @@ body {
   grid-column-end: 2;
   grid-row-start: 1;
   grid-row-end: 2;
-}
-
-.dashbaord-group__members-peers { 
-  font-family: "Roboto", sans-serif;
-  font-size: calc(0.01vw + 1.7vh + 0.2vmin);
-  text-align: center;
+  font-size: calc(0.01vw + 1.5vh + 0.2vmin);
   margin-top: 0px;
-
 }
 
 .dashboard-group__members-header { 
@@ -302,7 +297,7 @@ body {
   justify-self: center;
   text-align: center;
   font-size: calc(0.01vw + 2vh + 0.2vmin);
-  font-family: 'Roboto', sans-serif;
+
 }
 
 .dashboard-info__section-header__hr { 
@@ -318,7 +313,7 @@ body {
   border: 0.05px solid rgb(167, 167, 167, 0.5);
 }
 
-.group-dashboard__form-input { 
+.dashboard-group__form-input { 
   height: 30px;
   margin-top: 10px;
   width: 100%;
@@ -330,7 +325,7 @@ body {
   outline-color: red;
 }
 
-.group-dashboard__form-submit-button { 
+.dashboard-group__form-submit-button { 
   display: inherit;
   margin-top: 15px;
   margin-left: auto;
@@ -342,6 +337,59 @@ body {
   height: 30px;
   font-family: "Roboto", sans-serif;
   font-size: calc(1vw + 0.45vh + 0.2vmin);
+}
+
+.dashboard-group__check-in { 
+  padding: 15px;
+  grid-column-start: 4;
+  grid-column-end: 5; 
+  grid-row-start: 1; 
+  grid-row-end: 2;
+   border: 0.05px solid rgb(167, 167, 167, 0.5);
+}
+
+.dashboard-group__check-in__header { 
+  margin-top: 0;
+  margin-bottom: 1px;
+  justify-self: center;
+  text-align: center;
+  font-size: calc(0.01vw + 2vh + 0.2vmin);
+  font-family: 'Roboto', sans-serif;
+}
+
+.dasboard-group__goals-section { 
+  padding: 15px; 
+  border: 0.05px solid rgb(167, 167, 167, 0.5);
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  font-family: "Roboto", sans-serif;
+  font-size: calc(0.01vw + 1.5vh + 0.2vmin);
+  margin-top: 0px;
+}
+
+.dashboard-group__goals-header { 
+  margin-top: 0;
+  margin-bottom: 1px;
+  justify-self: center;
+  text-align: center;
+  font-size: calc(0.01vw + 2vh + 0.2vmin);
+  font-family: 'Roboto', sans-serif;
+}
+
+.dashboard-group__goal-submit-button { 
+  display: inherit;
+  margin-top: 15px;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  background-color: black;
+  border-style: none;
+  width: 50%;
+  height: 10%;
+  font-family: "Roboto", sans-serif;
+  font-size: calc(0.65vw + 0.65vh + 0.2vmin);
 }
 
 ::selection { 
