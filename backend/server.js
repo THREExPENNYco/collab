@@ -31,6 +31,7 @@ app.use(
     duration: 24 * 60 * 60 * 1000,
     activeDuration: 1000 * 60 * 5,
     cookie: {
+      domain: ".app.127.0.0.1:8080",
       maxAge: 60000,
       sameSite: "None",
       secure: false,
