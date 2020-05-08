@@ -229,7 +229,7 @@ body {
   background-color: black;
   border-style: none;
   width: 40%;
-  height: 30px;
+  height: 40px;
   font-family: "Roboto", sans-serif;
   font-size: calc(1vw + 1.45vh + 0.2vmin);
 }
