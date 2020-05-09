@@ -26,10 +26,7 @@ app.use(
     store: new FileStore(),
     name: "session",
     secret: process.env.ACCESS_TOKEN,
-    resave: true,
-    saveUninitialized: false,
     duration: 24 * 60 * 60 * 1000,
-    activeDuration: 1000 * 60 * 5,
     cookie: {
       domain: "localhost.com",
       path: "/",
