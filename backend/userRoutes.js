@@ -41,15 +41,13 @@ router.route("/login").post((req, res) => {
       return;
     }
     req.session.userId = user._id;
-    console.log(req.session);
     res.status(200).json(user);
   });
 });
 // route that pulls up group dashboard
 router.route("/group_dashboard/:group_id").get((req, res) => {
-  console.log(req.session)
   Group.findOne({ _id: req.params.group_id}, (err, group) => {
-    if (group._id != req.params.group_id) {
+    if (!req.session || !req.session.userId) {
       res.status(401).json(err);
       return;
     }
