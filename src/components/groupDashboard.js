@@ -10,7 +10,9 @@ function groupDashboard(props) {
   const [error, setError] = useState("");
   useEffect(() => {
     axios
-      .get(`https://salty-basin-04868.herokuapp.com/group_dashboard/${groupId}`)
+      .get(`https://salty-basin-04868.herokuapp.com/group_dashboard/${groupId}`, { 
+        withCredentials: true,
+      })
       .then((res) => {
         if (res.status === 200) {
           setGroup(res.data);
