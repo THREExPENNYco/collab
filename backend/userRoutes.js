@@ -47,7 +47,7 @@ router.route("/login").post((req, res) => {
 // route that pulls up group dashboard
 router.route("/group_dashboard/:group_id").get((req, res) => {
   Group.findOne({ _id: req.params.group_id}, (err, group) => {
-    if (!(req.session && !req.session.userId)) {
+    if (!(req.session && req.session.userId)) {
       res.status(401).json(err);
       return;
     }
