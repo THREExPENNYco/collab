@@ -41,11 +41,6 @@ app.use(
   })
 );
 
-app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Credentials", true);
-  next();
-});
-
 const newUserRoute = require("./userRoutes.js");
 app.use("/", newUserRoute);
 if (process.env.NODE_ENV === 'production') {
