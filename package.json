@@ -5,7 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev:test": "webpack-dev-server --entry ./src/index.js --output nofussSite/dist/bundle.js --mode development",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev:build": "webpack",
+    "start": "node backend/server.js",
+    "heroku-postbuild": "cd dist && npm install"
   },
   "repository": {
     "type": "git",

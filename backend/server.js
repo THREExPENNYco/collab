@@ -50,14 +50,16 @@ app.use(function (req, res, next) {
 });
 const newUserRoute = require("./userRoutes.js");
 app.use("/", newUserRoute);
-app.get("/*", function (req, res) {
+if (process.env.NODE_ENV === "production") { 
+  app.use(express.static('dist'));
+  app.get("/*", function (req, res) {
   res.sendFile(path.resolve("../public/index.html"), function (err) {
     if (err) {
       res.status(500).send(err);
     }
   });
 });
-
+}
 const hostname = "localhost"
 const server = app.listen(port, hostname, () => {
   const host = server.address().address;
