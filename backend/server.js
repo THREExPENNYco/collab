@@ -60,7 +60,7 @@ if (process.env.NODE_ENV === 'production') {
     res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
   });
 }
-const hostname = "localhost"
-const server = app.listen(port, hostname, () => {
+
+app.listen(port, () => {
   console.log(`You\'re listening on: ${port} and host: ${host}`);
 });
