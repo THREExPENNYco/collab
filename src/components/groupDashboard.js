@@ -6,6 +6,7 @@ function groupDashboard(props) {
   const groupIdFromProps = props.location.state.groupId;
   localStorage.setItem("groupId", groupIdFromProps); 
   const groupId = localStorage.getItem("groupId");
+  console.log(groupId);
   const [groupPeers, setGroupNames] = useState([]);
   const [groupName, setGroupName] = useState("");
   const [error, setError] = useState("");
