@@ -42,7 +42,6 @@ router.route("/login").post((req, res) => {
     }
     req.session.userId = user._id;
     console.log(req.session);
-    req.session.save();
     res.status(200).json(user);
   });
 });

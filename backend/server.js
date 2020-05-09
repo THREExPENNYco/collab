@@ -31,9 +31,9 @@ app.use(
     duration: 24 * 60 * 60 * 1000,
     activeDuration: 1000 * 60 * 5,
     cookie: {
-      domain: ".app.127.0.0.1:8080",
+      domain: "localhost.com",
+      path: "/",
       maxAge: 60000,
-      sameSite: "None",
       secure: false,
     },
   })
@@ -57,6 +57,9 @@ app.get("/*", function (req, res) {
     }
   });
 });
-app.listen(port, () => {
-  console.log(`You\'re listening on: ${port}`);
+
+const hostname = "localhost"
+const server = app.listen(port, hostname, () => {
+  const host = server.address().address;
+  console.log(`You\'re listening on: ${port} and host: ${host}`);
 });
