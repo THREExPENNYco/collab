@@ -6,19 +6,16 @@ function groupDashboard(props) {
   const groupIdFromProps = props.location.state.groupId;
   localStorage.setItem("groupId", groupIdFromProps); 
   const groupId = localStorage.getItem("groupId");
-  const [group, setGroup] = useState("");
   const [groupPeers, setGroupNames] = useState([]);
   const [groupName, setGroupName] = useState("");
   const [error, setError] = useState("");
   useEffect(() => {
     axios
-      .get(`https://salty-basin-04868.herokuapp.com/group_dashboard/${groupId}`, { 
+      .get(`https://salty-basin-04868.herokuapp.com/group_dashboard/${groupId || groupIdFromProps}`, { 
         withCredentials: true,
       })
       .then((res) => {
         if (res.status === 200) {
-          setGroup(res.data);
-          setGroupId(res.data._id)
           setGroupName(res.data.groupName);
           getPeerMemberNames();
         }
