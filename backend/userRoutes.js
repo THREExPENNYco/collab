@@ -9,7 +9,7 @@ const path = require("path");
 
 // Root route for users
 router.route("/").get((req, res) => {
-  res.sendFile(path.resolve("../public/index.html"));
+  res.sendFile(path.resolve("dist/index.html"));
 });
 // Route for user filtered by id
 router.route("/user_id=:id").get((req, res) => {
