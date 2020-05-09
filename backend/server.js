@@ -15,6 +15,7 @@ app.use(express.json());
 
 mongoose.set("useFindAndModify", false);
 const mongoUri = process.env.MONGODB_URI;
+console.log(mongoUri)
 mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
   .catch((err) => console.log(err));
 
