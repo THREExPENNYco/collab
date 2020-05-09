@@ -16,7 +16,7 @@ function groupDashboard(props) {
         withCredentials: true,
       })
       .then((res) => {
-        if (res.status === 200) {
+        if (res.status === 200 || res.status === 304) {
           setGroupName(res.data.groupName);
           getPeerMemberNames();
         }
