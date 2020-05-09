@@ -57,11 +57,10 @@ app.use("/", newUserRoute);
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('dist'));
   app.get('*', (res, req) => {
-    res.sendFile(path.resolve('dist/index.html'));
+    res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
   });
 }
 const hostname = "localhost"
 const server = app.listen(port, hostname, () => {
-  const host = server.address().address;
   console.log(`You\'re listening on: ${port} and host: ${host}`);
 });
