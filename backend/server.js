@@ -14,7 +14,7 @@ app.use(cors());
 app.use(express.json());
 
 mongoose.set("useFindAndModify", false);
-const mongoUri = process.env.MONGO_URI;
+const mongoUri = process.env.MONGODB_URI;
 mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });
 const { connection } = mongoose;
 connection.once("open", () => {
