@@ -15,7 +15,7 @@ app.use(express.json());
 
 mongoose.set("useFindAndModify", false);
 const mongoUri = process.env.MONGODB_URI;
-console.log(mongoUri)
+console.log(mongoUri);
 mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
   .catch((err) => console.log(err));
 
@@ -52,6 +52,8 @@ app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Credentials", true);
   next();
 });
+
+console.log(path.join(__dirname, 'dist', 'index.html'));
 const newUserRoute = require("./userRoutes.js");
 app.use("/", newUserRoute);
 if (process.env.NODE_ENV === 'production') {
