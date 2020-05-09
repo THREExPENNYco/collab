@@ -33,7 +33,7 @@ app.use(
     cookie: {
       resave: true,
       saveUninitialized: true,
-      domain: "localhost.com",
+      domain: ".salty-basin-04868.herokuapp.com",
       path: "/",
       maxAge: 60000,
       secure: false,

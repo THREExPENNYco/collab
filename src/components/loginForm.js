@@ -11,7 +11,7 @@ function LoginForm() {
   const login = (e) => {
     e.preventDefault();
     axios
-      .post("https://salty-basin-04868.herokuapp.com//login", {
+      .post("https://salty-basin-04868.herokuapp.com/login", {
         userName: user,
         passWord: userPassWord,
       })
