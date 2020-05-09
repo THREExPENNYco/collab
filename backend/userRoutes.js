@@ -67,7 +67,7 @@ router.route("/group_dashboard/:group_id/members").get((req, res) => {
 //dashboard route
 router.route("/dashboard/:userName").get((req, res) => {
   User.findOne({ userName: req.params.userName }, (err, user) => {
-    if (user.userName !== req.params.userName) {
+    if (!(req.session && req.session.userId)) {
       res.status(401).json(err);
       return;
     }
