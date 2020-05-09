@@ -12,7 +12,7 @@ function Dashboard(props) {
   const [createGroup, setCreateGroup] = useState(false);
   useEffect(() => {
     axios
-      .get(`http://localhost:3030/dashboard/${currUser}`, {
+      .get(`https://salty-basin-04868.herokuapp.com/dashboard/${currUser}`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -31,7 +31,7 @@ function Dashboard(props) {
   };
   const getGroups = (data) => {
     axios
-      .get(`http://localhost:3030/user_id=${data}/find_group`)
+      .get(`https://salty-basin-04868.herokuapp.com/user_id=${data}/find_group`)
       .then((res) => {
         setGroups(res.data);
       })

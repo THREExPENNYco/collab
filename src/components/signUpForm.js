@@ -11,7 +11,7 @@ function signUpForm() {
   const signup = (e) => {
     e.preventDefault();
     axios
-      .post("http://localhost:3030/newUser", {
+      .post("https://salty-basin-04868.herokuapp.com/newUser", {
         userName: userName,
         passWord: passWord,
         email: email,
