@@ -13,7 +13,7 @@ function NewGroupForm(props) {
   const handleCreateGroup = (e) => {
     e.preventDefault();
     axios
-      .post(`https://salty-basin-04868.herokuapp.com//user_id=${userId}/create_group`, {
+      .post(`https://salty-basin-04868.herokuapp.com/user_id=${userId}/create_group`, {
         createdBy: userName,
         groupName: groupName,
       })
