@@ -41,7 +41,6 @@ app.use(
   })
 );
 
-console.log("This is the ACESS_TOKEN:", process.env.ACCESS_TOKEN);
 app.use(function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "http://127.0.0.1:8080");
   res.header("Access-Control-Request-Method", "POST, GET, OPTIONS");
@@ -53,13 +52,13 @@ app.use(function (req, res, next) {
   next();
 });
 
-console.log(path.join(__dirname, 'dist', 'index.html'));
+console.log(path.join('dist', 'index.html'));
 const newUserRoute = require("./userRoutes.js");
 app.use("/", newUserRoute);
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('dist'));
   app.get('*', (res, req) => {
-    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+    res.sendFile(path.join('index.html'));
   });
 }
 const hostname = "localhost"
