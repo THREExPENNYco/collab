@@ -34,7 +34,7 @@ app.use(
       resave: true,
       saveUninitialized: true,
       domain: ".salty-basin-04868.herokuapp.com",
-      path: "/login",
+      path: "/",
       maxAge: 60000,
       secure: false,
     },
