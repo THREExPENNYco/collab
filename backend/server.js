@@ -28,6 +28,8 @@ app.use(
     secret: process.env.ACCESS_TOKEN,
     duration: 24 * 60 * 60 * 1000,
     cookie: {
+      resave: true,
+      saveUninitialized: true,
       domain: "localhost.com",
       path: "/",
       maxAge: 60000,
