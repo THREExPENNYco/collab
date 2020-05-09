@@ -58,7 +58,7 @@ app.use("/", newUserRoute);
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('dist'));
   app.get('*', (res, req) => {
-    res.sendFile(path.join('index.html'));
+    res.sendFile(path.join('dist', 'index.html'));
   });
 }
 const hostname = "localhost"
