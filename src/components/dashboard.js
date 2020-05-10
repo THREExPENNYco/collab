@@ -4,11 +4,7 @@ import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
 
 function Dashboard(props) {
-  console.log(props)
-  const passedState = props.location.state === 'true';
-  console.log(props.location.state);
-  passedState ? localStorage.setItem('currUser', props.location.state.currUser) : null;
-  const currUser = passedState ? props.location.state.currUser : localStorage.getItem('currUser');
+  const currUser = props.location.state.currUser;
   const [currUserData, setCurrUserData] = useState("");
   const [groups, setGroups] = useState([]);
   const [userId, setUserId] = useState("");
@@ -76,7 +72,7 @@ function Dashboard(props) {
         <section className="dashboard-info__section">
           <h1 className="dashboard-info__section-header">GOALS</h1>
           <section className="dashboard-info__section-info">
-            {/* {currUser.goals === null ? (
+            {currUser.goals === null ? (
           currUser.goals.map((index, goal) => {
                 <li
                   key={index}
@@ -90,7 +86,7 @@ function Dashboard(props) {
                 Peer Pressure is meant to be enjoyed with peers. Create a group
                 to create a goal.
               </p>
-            )} */}
+            )}
           </section>
         </section>
       </section>
