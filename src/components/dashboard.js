@@ -4,23 +4,21 @@ import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
 
 function Dashboard(props) {
-  console.log(props.history)
-  const currUser = props.location.state.currUser;
+  const passedState = props.location.state === 'true';
+  passedState ? localStorage.setItem('currUser', props.location.state.currUser) : null;
+  const currUserLocal = passedState ? props.location.state.currUser : localStorage.getItem('currUser');
   const [currUserData, setCurrUserData] = useState("");
   const [groups, setGroups] = useState([]);
-  const [userId, setUserId] = useState("");
-  const [error, setError] = useState("");
   const [createGroup, setCreateGroup] = useState(false);
   useEffect(() => {
     axios
-      .get(`https://salty-basin-04868.herokuapp.com/dashboard/${currUser}`, {
+      .get(`https://salty-basin-04868.herokuapp.com/dashboard/${currUserLocal}`, {
         withCredentials: true,
       })
       .then((res) => {
         if (res.status === 200) {
           setCurrUserData(res.data);
           getGroups(res.data._id);
-          setUserId(res.data._id);
         }
       })
       .catch((err) => {
@@ -91,7 +89,6 @@ function Dashboard(props) {
           </section>
         </section>
       </section>
-      {console.log(createGroup)}
       {currUser ? null : <Redirect to="/login" />}
       {createGroup ? (
         <Redirect
