@@ -4,7 +4,10 @@ import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
 
 function Dashboard(props) {
-  const currUser = props.location.state.currUser;
+  const passedState = props.location.state === 'true'; 
+  passedState ? localStorage.setItem('currUser', props.location.state.currUser) : null;
+  const currUser = passedState ? props.location.state.currUser : localStorage.getItem('currUser');
+  console.log(currUser)
   const [currUserData, setCurrUserData] = useState("");
   const [groups, setGroups] = useState([]);
   const [userId, setUserId] = useState("");
