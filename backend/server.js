@@ -16,7 +16,8 @@ app.use(express.json());
 mongoose.set("useFindAndModify", false);
 const mongoUri = process.env.MONGODB_URI;
 console.log(mongoUri);
-mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
+mongoose
+  .connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true })
   .catch((err) => console.log(err));
 
 const { connection } = mongoose;
@@ -43,10 +44,11 @@ app.use(
 
 const newUserRoute = require("./userRoutes.js");
 app.use("/", newUserRoute);
-if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('dist'));
-  app.get('*', (res, req) => {
-    res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
+app.set('etag', false);
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("dist"));
+  app.get("*", (res, req) => {
+    res.sendFile(path.resolve(__dirname, "dist", "index.html"));
   });
 }
 
