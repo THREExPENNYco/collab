@@ -3,17 +3,22 @@ import axios from "axios";
 import { Redirect } from "react-router-dom";
 
 function groupDashboard(props) {
-  const groupId = props.location.state.groupId || locationStorage.getItem("groupId");
-  localStorage.setItem("groupId", groupId); 
+  props.location.state.groupId
+    ? (groupId = props.location.state.groupId)
+    : (groupId = localStorage.getItem("groupId"));
+  localStorage.setItem("groupId", groupId);
   const groupIdStorage = localStorage.getItem("groupId");
   const [groupPeers, setGroupNames] = useState([]);
   const [groupName, setGroupName] = useState("");
   const [error, setError] = useState("");
   useEffect(() => {
     axios
-      .get(`https://salty-basin-04868.herokuapp.com/group_dashboard/${groupIdStorage}`, { 
-        withCredentials: true,
-      })
+      .get(
+        `https://salty-basin-04868.herokuapp.com/group_dashboard/${groupIdStorage}`,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         if (res.status === 200) {
           setGroupName(res.data.groupName);
@@ -26,7 +31,9 @@ function groupDashboard(props) {
   }, []);
   const getPeerMemberNames = () => {
     axios
-      .get(`https://salty-basin-04868.herokuapp.com/group_dashboard/${groupIdStorage}/members`)
+      .get(
+        `https://salty-basin-04868.herokuapp.com/group_dashboard/${groupIdStorage}/members`
+      )
       .then((res) => {
         if (res.status === 200) {
           setGroupNames(res.data);
@@ -48,35 +55,51 @@ function groupDashboard(props) {
             <hr className="dashboard-group__members-header__hr"></hr>
             {groupPeers.map((member, index) => (
               <ul key={index}>
-              <li key={index} className="dashboard-group__members-peers">
-                {member.userName.toUpperCase()}
-              </li>
+                <li key={index} className="dashboard-group__members-peers">
+                  {member.userName.toUpperCase()}
+                </li>
               </ul>
             ))}
-            <input className="dashboard-group__goal-submit-button" type="submit" value="ADD PEER" />
+            <input
+              className="dashboard-group__goal-submit-button"
+              type="submit"
+              value="ADD PEER"
+            />
           </section>
         </section>
-          <section className="dasboard-group__goals-section">
+        <section className="dasboard-group__goals-section">
           <section className="dashboard-group__goals">
             <h1 className="dashboard-group__goals-header">GOALS</h1>
             <hr className="dashboard-group__goals-header__hr"></hr>
             {groupPeers.map((member, index) => (
               <ul key={index}>
-              <li key={index} className="dashboard-group__members-peers">
-                {member.userName.toUpperCase()}
-              </li>
+                <li key={index} className="dashboard-group__members-peers">
+                  {member.userName.toUpperCase()}
+                </li>
               </ul>
             ))}
-            <input className="dashboard-group__goal-submit-button" type="submit" value="CREATE GOAL" />
+            <input
+              className="dashboard-group__goal-submit-button"
+              type="submit"
+              value="CREATE GOAL"
+            />
           </section>
         </section>
         <section className="dashboard-group__members-feed">
           <h1 className="dashboard-group__members-header">FEED</h1>
           <hr className="dashboard-group__members-header__hr"></hr>
-          <input type="text" className="dashboard-group__form-input" placeholder="You Work On Your Goal Today?"/>
-          <input className="dashboard-group__form-submit-button" type="submit" value="POST GOALSTEP" />
+          <input
+            type="text"
+            className="dashboard-group__form-input"
+            placeholder="You Work On Your Goal Today?"
+          />
+          <input
+            className="dashboard-group__form-submit-button"
+            type="submit"
+            value="POST GOALSTEP"
+          />
         </section>
-         <section className="dashboard-group__check-in"> 
+        <section className="dashboard-group__check-in">
           <h1 className="dashboard-group__check-in__header">CHECK-IN</h1>
           <hr className="dashboard-group__members-header__hr"></hr>
         </section>
