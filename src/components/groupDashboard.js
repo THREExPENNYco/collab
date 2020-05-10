@@ -3,8 +3,8 @@ import axios from "axios";
 import { Redirect } from "react-router-dom";
 
 function groupDashboard(props) {
-  const groupIdFromProps = props.location.state.groupId || null;
-  localStorage.setItem("groupId", groupIdFromProps); 
+  const groupId = props.location.state.groupId || locationStorage.getItem("groupId");
+  localStorage.setItem("groupId", groupId); 
   const groupIdStorage = localStorage.getItem("groupId");
   const [groupPeers, setGroupNames] = useState([]);
   const [groupName, setGroupName] = useState("");
