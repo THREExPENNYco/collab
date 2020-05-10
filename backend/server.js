@@ -43,12 +43,12 @@ app.use(
 
 const newUserRoute = require("./userRoutes.js");
 app.use("/", newUserRoute);
-// if (process.env.NODE_ENV === 'production') {
-//   app.use(express.static('dist'));
-//   app.get('*', (res, req) => {
-//     res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
-//   });
-// }
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('dist'));
+  app.get('*', (res, req) => {
+    res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
+  });
+}
 
 app.listen(port, () => {
   console.log(`You\'re listening on: ${port}`);
