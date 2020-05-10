@@ -13,7 +13,7 @@ function groupDashboard(props) {
   const [error, setError] = useState("");
   useEffect(() => {
     axios
-      .get(`https://salty-basin-04868.herokuapp.com/group_dashboard/${groupIdFromProps}`, { 
+      .get(`https://salty-basin-04868.herokuapp.com/group_dashboard/${groupId}`, { 
         withCredentials: true,
       })
       .then((res) => {
@@ -28,7 +28,7 @@ function groupDashboard(props) {
   }, []);
   const getPeerMemberNames = () => {
     axios
-      .get(`https://salty-basin-04868.herokuapp.com/group_dashboard/${groupIdFromProps}/members`)
+      .get(`https://salty-basin-04868.herokuapp.com/group_dashboard/${groupId}/members`)
       .then((res) => {
         if (res.status === 200) {
           setGroupNames(res.data);
