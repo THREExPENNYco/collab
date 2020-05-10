@@ -3,16 +3,16 @@ import axios from "axios";
 import { Redirect } from "react-router-dom";
 
 function groupDashboard(props) {
-  localStorage.setItem('groupId', props.location.state.groupId)
   const passedState = props.location.state == "true";
-  const groupId = passedState ? props.location.state.groupId : localStorage.getItem('groupId')
+  passedState ? localStorage.setItem('groupId', props.location.state.groupId) : null;
+  const groupIdLocal = passedState ? props.location.state.groupId : localStorage.getItem('groupId')
   const [groupPeers, setGroupNames] = useState([]);
   const [groupName, setGroupName] = useState("");
   const [error, setError] = useState("");
   useEffect(() => {
     axios
       .get(
-        `https://salty-basin-04868.herokuapp.com/group_dashboard/${groupId}`,
+        `https://salty-basin-04868.herokuapp.com/group_dashboard/${groupIdLocal}`,
         {
           withCredentials: true,
         }
@@ -30,7 +30,7 @@ function groupDashboard(props) {
   const getPeerMemberNames = () => {
     axios
       .get(
-        `https://salty-basin-04868.herokuapp.com/group_dashboard/${groupId}/members`
+        `https://salty-basin-04868.herokuapp.com/group_dashboard/${groupIdLocal}/members`
       )
       .then((res) => {
         if (res.status === 200) {
