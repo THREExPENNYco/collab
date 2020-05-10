@@ -44,13 +44,11 @@ app.use(
 
 const newUserRoute = require("./userRoutes.js");
 app.use("/", newUserRoute);
-app.set('etag', false);
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("dist"));
-  app.get("/*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "dist", "index.html"));
-  });
-}
+app.set("etag", false);
+app.use(express.static("dist"));
+app.get("/*", (req, res) => {
+  res.sendFile(path.resolve(__dirname, "dist", "index.html"));
+});
 
 app.listen(port, () => {
   console.log(`You\'re listening on: ${port}`);
