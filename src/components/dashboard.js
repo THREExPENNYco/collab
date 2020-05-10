@@ -6,19 +6,22 @@ import axios from "axios";
 function Dashboard(props) {
   const passedState = props.location.state === 'true';
   passedState ? localStorage.setItem('currUser', props.location.state.currUser) : null;
-  const currUserLocal = passedState ? props.location.state.currUser : localStorage.getItem('currUser');
+  const currUser = passedState ? props.location.state.currUser : localStorage.getItem('currUser');
   const [currUserData, setCurrUserData] = useState("");
   const [groups, setGroups] = useState([]);
+  const [userId, setUserId] = useState("");
+  const [error, setError] = useState("");
   const [createGroup, setCreateGroup] = useState(false);
   useEffect(() => {
     axios
-      .get(`https://salty-basin-04868.herokuapp.com/dashboard/${currUserLocal}`, {
+      .get(`https://salty-basin-04868.herokuapp.com/dashboard/${currUser}`, {
         withCredentials: true,
       })
       .then((res) => {
         if (res.status === 200) {
           setCurrUserData(res.data);
           getGroups(res.data._id);
+          setUserId(res.data._id);
         }
       })
       .catch((err) => {
@@ -71,8 +74,8 @@ function Dashboard(props) {
         <section className="dashboard-info__section">
           <h1 className="dashboard-info__section-header">GOALS</h1>
           <section className="dashboard-info__section-info">
-            {currUserLocal.goals === null ? (
-          currUserLocal.goals.map((index, goal) => {
+            {currUser.goals === null ? (
+          currUser.goals.map((index, goal) => {
                 <li
                   key={index}
                   className="dashboard-info__section-info__content"
