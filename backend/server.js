@@ -32,7 +32,7 @@ app.use(
     secret: process.env.ACCESS_TOKEN,
     duration: 24 * 60 * 60 * 1000,
     cookie: {
-      resave: true,
+      resave: false,
       saveUninitialized: true,
       domain: ".salty-basin-04868.herokuapp.com",
       path: "/",
