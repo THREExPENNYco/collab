@@ -5,14 +5,14 @@ import Dashboard from "./components/dashboard.js";
 import SignUpForm from "./components/signUpForm.js";
 import NewGroupForm from "./components/newGroupForm.js"
 import GroupDashboard from "./components/groupDashboard.js"
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, useHistory } from "react-router-dom";
 import Styles from "./Styles.css";
-
+const history = useHistory();
 // Main component for the app
 class App extends Component {
   render() {
     return (
-      <Router>
+      <Router history={history}>
         <div className="nav-bar">
           <p className="logo">
             <Link to="/">PEER PRESSURE</Link>
