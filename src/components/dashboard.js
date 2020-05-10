@@ -4,10 +4,9 @@ import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
 
 function Dashboard(props) {
-  const passedState = props.location.state === 'true'; 
+  const passedState = props.location.state === 'true';
   passedState ? localStorage.setItem('currUser', props.location.state.currUser) : null;
-  const currUser = passedState ? props.location.state.currUser : localStorage.getItem('currUser');
-  console.log(currUser)
+  const currUserLocal = passedState ? props.location.state.currUser : localStorage.getItem('currUser');
   const [currUserData, setCurrUserData] = useState("");
   const [groups, setGroups] = useState([]);
   const [userId, setUserId] = useState("");
@@ -15,12 +14,13 @@ function Dashboard(props) {
   const [createGroup, setCreateGroup] = useState(false);
   useEffect(() => {
     axios
-      .get(`https://salty-basin-04868.herokuapp.com/dashboard/${currUser}`, {
+      .get(`https://salty-basin-04868.herokuapp.com/dashboard/${currUserLocal}`, {
         withCredentials: true,
       })
       .then((res) => {
         if (res.status === 200) {
           setCurrUserData(res.data);
+          console.log(currUserData);
           getGroups(res.data._id);
           setUserId(res.data._id);
         }
@@ -75,8 +75,8 @@ function Dashboard(props) {
         <section className="dashboard-info__section">
           <h1 className="dashboard-info__section-header">GOALS</h1>
           <section className="dashboard-info__section-info">
-            {currUser.goals === null ? (
-          currUser.goals.map((index, goal) => {
+            {currUserData.goals === null ? (
+          currUserData.goals.map((index, goal) => {
                 <li
                   key={index}
                   className="dashboard-info__section-info__content"
@@ -94,7 +94,7 @@ function Dashboard(props) {
         </section>
       </section>
       {console.log(createGroup)}
-      {currUser ? null : <Redirect to="/login" />}
+      {currUserLocal ? null : <Redirect to="/login" />}
       {createGroup ? (
         <Redirect
           to={{
