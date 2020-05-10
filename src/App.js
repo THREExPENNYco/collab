@@ -5,7 +5,7 @@ import Dashboard from "./components/dashboard.js";
 import SignUpForm from "./components/signUpForm.js";
 import NewGroupForm from "./components/newGroupForm.js"
 import GroupDashboard from "./components/groupDashboard.js"
-import { BrowserRouter as Router, Route, Link, useHistory } from "react-router-dom";
+import { HashRouter as Router, Route, Link, useHistory } from "react-router-dom";
 import Styles from "./Styles.css";
 // Main component for the app
 class App extends Component {
