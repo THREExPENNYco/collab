@@ -7,6 +7,10 @@ const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const path = require("path");
 
+// Root route for users
+router.route("/").get((req, res) => {
+  res.sendFile(path.resolve("dist/index.html"));
+});
 // Route for user filtered by id
 router.route("/user_id=:id").get((req, res) => {
   User.findById(req.params.id)
