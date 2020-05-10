@@ -71,8 +71,8 @@ function Dashboard(props) {
         <section className="dashboard-info__section">
           <h1 className="dashboard-info__section-header">GOALS</h1>
           <section className="dashboard-info__section-info">
-            {currUser.goals === null ? (
-          currUser.goals.map((index, goal) => {
+            {currUserLocal.goals === null ? (
+          currUserLocal.goals.map((index, goal) => {
                 <li
                   key={index}
                   className="dashboard-info__section-info__content"
