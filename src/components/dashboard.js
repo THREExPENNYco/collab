@@ -4,7 +4,9 @@ import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
 
 function Dashboard(props) {
-  const currUser = props.location.state.currUser;
+  const passedProps = props.location.state.currUser;
+  passedProps ? localStorage.setItem('currUser', props.location.state.currUser) : null; 
+  const currUser = passedProps ? props.location.state.curUser : localStorage.getItem('currUser');
   const [currUserData, setCurrUserData] = useState("");
   const [groups, setGroups] = useState([]);
   const [userId, setUserId] = useState("");
@@ -17,7 +19,7 @@ function Dashboard(props) {
       })
       .then((res) => {
         if (res.status === 200) {
-          console.log(res.data);
+          console.log(res.data); 
           setCurrUserData(res.data);
           getGroups(res.data._id);
           setUserId(res.data._id);
@@ -73,8 +75,8 @@ function Dashboard(props) {
         <section className="dashboard-info__section">
           <h1 className="dashboard-info__section-header">GOALS</h1>
           <section className="dashboard-info__section-info">
-            {currUser.goals === null ? (
-          currUser.goals.map((index, goal) => {
+            {currUserData.goals === null ? (
+          currUserData.goals.map((index, goal) => {
                 <li
                   key={index}
                   className="dashboard-info__section-info__content"
