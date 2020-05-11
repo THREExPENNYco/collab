@@ -75,7 +75,7 @@ function Dashboard(props) {
         <section className="dashboard-info__section">
           <h1 className="dashboard-info__section-header">GOALS</h1>
           <section className="dashboard-info__section-info">
-            {currUserLocal.goals === null ? (
+            {/* {currUserLocal.goals === null ? (
           currUserLocal.goals.map((index, goal) => {
                 <li
                   key={index}
@@ -89,7 +89,7 @@ function Dashboard(props) {
                 Peer Pressure is meant to be enjoyed with peers. Create a group
                 to create a goal.
               </p>
-            )}
+            )} */}
           </section>
         </section>
       </section>
