@@ -4,9 +4,9 @@ import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
 
 function Dashboard(props) {
-  const passedState = props.location.state === 'true';
-  passedState ? localStorage.setItem('currUser', props.location.state.currUser) : null;
-  const currUserLocal = passedState ? props.location.state.currUser : localStorage.getItem('currUser');
+  const passedProps = props.location.state === 'true';
+  passedProps ? localStorage.setItem('currUser', props.location.state.currUser) : null;
+  const currUserLocal = passedProps ? props.location.state.currUser : localStorage.getItem('currUser');
   const [currUserData, setCurrUserData] = useState("");
   const [groups, setGroups] = useState([]);
   const [userId, setUserId] = useState("");
@@ -20,7 +20,6 @@ function Dashboard(props) {
       .then((res) => {
         if (res.status === 200) {
           setCurrUserData(res.data);
-          console.log(currUserData);
           getGroups(res.data._id);
           setUserId(res.data._id);
         }
@@ -75,8 +74,8 @@ function Dashboard(props) {
         <section className="dashboard-info__section">
           <h1 className="dashboard-info__section-header">GOALS</h1>
           <section className="dashboard-info__section-info">
-            {currUserData.goals === null ? (
-          currUserData.goals.map((index, goal) => {
+            {currUserLocal.goals === null ? (
+          currUserLocal.goals.map((index, goal) => {
                 <li
                   key={index}
                   className="dashboard-info__section-info__content"
@@ -93,7 +92,6 @@ function Dashboard(props) {
           </section>
         </section>
       </section>
-      {console.log(createGroup)}
       {currUserLocal ? null : <Redirect to="/login" />}
       {createGroup ? (
         <Redirect
