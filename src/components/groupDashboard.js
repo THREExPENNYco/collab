@@ -82,20 +82,21 @@ function groupDashboard(props) {
           <section className="dashboard-group__goals">
             <h1 className="dashboard-group__goals-header">GOALS</h1>
             <hr className="dashboard-group__goals-header__hr"></hr>
-            {!createGoalClicked ? groupPeers.map((member, index) => (
-              <ul key={index}>
-                <li key={index} className="dashboard-group__members-peers">
-                  {member.userName.toUpperCase()}
-                </li>
-              </ul>
-            )) : 
+            {createGoalClicked ? 
             <form className="dashboard-group__goal-form">
               <input 
                 className="dashboard-group__goal-form__input" 
                 value="NAME OF GOAL"
                 type="text"
               /> 
-            </form> 
+            </form> : 
+            groupPeers.map((member, index) => (
+              <ul key={index}>
+                <li key={index} className="dashboard-group__members-peers">
+                  {member.userName.toUpperCase()}
+                </li>
+              </ul>
+            )) 
             }
             <input
               className="dashboard-group__goal-submit-button"
