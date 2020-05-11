@@ -139,13 +139,13 @@ router.route("/user_id=:user_id/find_group").get((req, res) => {
 });
 // create goal and add to group
 router
-  .route("/user_id=:user_id/group_id=:group_id/create_goal")
+  .route("/group_id=:group_id/create_goal")
   .post((req, res) => {
     const goalName = req.body.goalName;
     const goal = req.body.goal;
     const goalStep = req.body.goalStep;
     const newGoal = new Goal({
-      createdBy: req.params.user_id,
+      createdBy: req.session.userId,
       goal: goal,
       goalName: goalName,
       goalStep: goalStep,
@@ -154,21 +154,21 @@ router
       .save()
       .then((newGoal) => res.status(200).json(newGoal))
       .catch((err) => res.status(404).json(err));
-    Goal.findByIdAndUpdate(
-      newGoal._id,
-      { $push: { goalStep: goalStep } },
-      function (err, model) {
-        err ? res.status(404).json(err) : res.status(200).json(model);
-      }
-    );
-    Group.findByIdAndUpdate(
-      req.params.group_id,
-      { $push: { goals: newGoal._id } },
-      { useFindAndModify: false },
-      function (err, model) {
-        err ? res.status(404).json(err) : res.status(200).json(model);
-      }
-    );
+    // Goal.findByIdAndUpdate(
+    //   newGoal._id,
+    //   { $push: { goalStep: goalStep } },
+    //   function (err, model) {
+    //     err ? res.status(404).json(err) : res.status(200).json(model);
+    //   }
+    // );
+    // Group.findByIdAndUpdate(
+    //   req.params.group_id,
+    //   { $push: { goals: newGoal._id } },
+    //   { useFindAndModify: false },
+    //   function (err, model) {
+    //     err ? res.status(404).json(err) : res.status(200).json(model);
+    //   }
+    // );
   });
 // route to add goalstep
 router.route("/goal_id=:goal_id/create_goalstep").post((req, res) => {
