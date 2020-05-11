@@ -4,9 +4,7 @@ import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
 
 function Dashboard(props) {
-  const passedProps = props.location.state === 'true';
-  passedProps ? localStorage.setItem('currUser', props.location.state.currUser) : null;
-  const currUserLocal = passedProps ? props.location.state.currUser : localStorage.getItem('currUser');
+  const currUser = props.location.state.currUser
   const [currUserData, setCurrUserData] = useState("");
   const [groups, setGroups] = useState([]);
   const [userId, setUserId] = useState("");
@@ -14,12 +12,11 @@ function Dashboard(props) {
   const [createGroup, setCreateGroup] = useState(false);
   useEffect(() => {
     axios
-      .get(`https://salty-basin-04868.herokuapp.com/dashboard/${currUserLocal}`, {
+      .get(`https://salty-basin-04868.herokuapp.com/dashboard/${currUser}`, {
         withCredentials: true,
       })
       .then((res) => {
         if (res.status === 200) {
-          console.log(res.data)
           setCurrUserData(res.data);
           getGroups(res.data._id);
           setUserId(res.data._id);
@@ -75,8 +72,8 @@ function Dashboard(props) {
         <section className="dashboard-info__section">
           <h1 className="dashboard-info__section-header">GOALS</h1>
           <section className="dashboard-info__section-info">
-            {/* {currUserLocal.goals === null ? (
-          currUserLocal.goals.map((index, goal) => {
+            {currUser.goals === null ? (
+          currUser.goals.map((index, goal) => {
                 <li
                   key={index}
                   className="dashboard-info__section-info__content"
@@ -89,11 +86,11 @@ function Dashboard(props) {
                 Peer Pressure is meant to be enjoyed with peers. Create a group
                 to create a goal.
               </p>
-            )} */}
+            )}
           </section>
         </section>
       </section>
-      {currUserLocal ? null : <Redirect to="/login" />}
+      {currUser ? null : <Redirect to="/login" />}
       {createGroup ? (
         <Redirect
           to={{
