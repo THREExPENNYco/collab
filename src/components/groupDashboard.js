@@ -14,6 +14,9 @@ function groupDashboard(props) {
   const [groupName, setGroupName] = useState("");
   const [goalStep, setGoalStep] = useState("");
   const [createGoalClicked, setCreateGoalClick] = useState(false);
+  const [goalName, setGoalName] = useState("");
+  const [goal, setGoal] = useState(""); 
+  const [goalDuration, setGoalDuration] = useState("");
   const [error, setError] = useState("");
   useEffect(() => {
     axios
@@ -50,6 +53,23 @@ function groupDashboard(props) {
   const handleCreateGoalBtn = () => {
     createGoalClicked ? setCreateGoalClick(false) : setCreateGoalClick(true);
   };
+  const handleCreateGoalPost = (e) => {
+    e.preventDefault() 
+    axios 
+      .post(`/group_id=${groupId}/create_goal`, { 
+        withCredentials: true
+      }, { 
+        goalName: goalName, 
+        goal: goal, 
+        goalDuration: goalDuration
+      })
+      .then((res) => { 
+        if (res.status === 200) { 
+
+        }
+      })
+
+  }
   // const createGoal = () => {
   //   axios
   //     .post(`/group_id=${groupIdLocal}/create_goal`)
@@ -95,16 +115,19 @@ function groupDashboard(props) {
                   className="dashboard-group__goal-form__input"
                   value="NAME OF GOAL"
                   type="text"
+                  onChange={(e) => setGoalName(e.target.value)}
                 />
                 <input
                   className="dashboard-group__goal-form__input"
                   value="WHAT IS THE GOAL?"
                   type="text"
+                  onChange={(e) => setGoal(e.target.value)}
                 />
                 <input
                   className="dashboard-group__goal-form__input"
                   value="WHEN DO YOU WANT TO FINISH"
-                  type="text"
+                  type="date"
+                  onChange={(e) => setGoalDuration(e.target.value)}
                 />
               </form>
             ) : (
@@ -116,20 +139,28 @@ function groupDashboard(props) {
                 </ul>
               ))
             )}
-            {createGoalClicked ? 
-            <input
-              className="dashboard-group__goal-submit-button"
-              type="submit"
-              value="CANCEL"
-              onClick={() => handleCreateGoalBtn()}
-            />
-            :
-            <input
-              className="dashboard-group__goal-submit-button"
-              type="submit"
-              value="CREATE GOAL"
-              onClick={() => handleCreateGoalBtn()}
-            />}
+            {createGoalClicked ? (
+              <section>
+                <input
+                  className="dashboard-group__goal-submit-button"
+                  type="submit"
+                  value="CANCEL"
+                  onClick={() => handleCreateGoalBtn()}
+                />
+                <input
+                  className="dasboard-group__goal-submit-button"
+                  type="submit"
+                  value="submit"
+                />
+              </section>
+            ) : (
+              <input
+                className="dashboard-group__goal-submit-button"
+                type="submit"
+                value="CREATE GOAL"
+                onClick={() => handleCreateGoalBtn()}
+              />
+            )}
           </section>
         </section>
         <section className="dashboard-group__members-feed">

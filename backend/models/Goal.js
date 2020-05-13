@@ -23,6 +23,12 @@ const goalSchema = new Schema(
       required: [true, 'Required to create a goal']
     },
     goalStep: [String]
+  }, { 
+    goalDurtion: { 
+      type: Date, 
+      min: new Date(),
+      max: '2050-01-01'
+    }
   },
   {
     timstamps: true
