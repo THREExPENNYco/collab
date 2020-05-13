@@ -80,7 +80,7 @@ function groupDashboard(props) {
     e.preventDefault(); 
     axios
       .get(`https://salty-basin-04868.herokuapp.com/group_id=${groupIdLocal}/invite_user`, { 
-        email: newPeerEmail
+        newPeerEmail: newPeerEmail
       })
       .then((res) => { 
         if (res.status === 200) { 
