@@ -58,7 +58,7 @@ function groupDashboard(props) {
   const getPeerMemberNames = () => {
     axios
       .get(
-        `https://salty-basin-04868.herokuapp.com/group_dashboard/${groupIdLocal}/members`
+        `https://salty-basin-064868.herokuapp.com/group_dashboard/${groupIdLocal}/members`
       )
       .then((res) => {
         if (res.status === 200) {
