@@ -438,3 +438,7 @@ input:-webkit-autofill:active {
   margin-right: auto;
   text-align: center;
 }
+
+.dashboard-group__advisory { 
+  font-size: 5px;
+}

@@ -16,7 +16,7 @@ function groupDashboard(props) {
   const [createGoalClicked, setCreateGoalClick] = useState(false);
   const [addPeerClicked, setAddPeerClick] = useState(false);
   const [goalName, setGoalName] = useState("");
-  const [goal, setGoal] = useState(""); 
+  const [goal, setGoal] = useState("");
   const [goalDuration, setGoalDuration] = useState("");
   const [error, setError] = useState("");
   useEffect(() => {
@@ -54,26 +54,28 @@ function groupDashboard(props) {
   const handleCreateGoalBtn = () => {
     createGoalClicked ? setCreateGoalClick(false) : setCreateGoalClick(true);
   };
-  const handleAddPeerBtn = () => { 
-    addPeerClicked ? setAddPeerClick(false) : setAddPeerClick(true)
-  }
+  const handleAddPeerBtn = () => {
+    addPeerClicked ? setAddPeerClick(false) : setAddPeerClick(true);
+  };
   const handleCreateGoalPost = (e) => {
-    e.preventDefault() 
-    axios 
-      .post(`/group_id=${groupId}/create_goal`, { 
-        withCredentials: true
-      }, { 
-        goalName: goalName, 
-        goal: goal, 
-        goalDuration: goalDuration
-      })
-      .then((res) => { 
-        if (res.status === 200) { 
-
+    e.preventDefault();
+    axios
+      .post(
+        `/group_id=${groupId}/create_goal`,
+        {
+          withCredentials: true,
+        },
+        {
+          goalName: goalName,
+          goal: goal,
+          goalDuration: goalDuration,
         }
-      })
-
-  }
+      )
+      .then((res) => {
+        if (res.status === 200) {
+        }
+      });
+  };
   // const createGoal = () => {
   //   axios
   //     .post(`/group_id=${groupIdLocal}/create_goal`)
@@ -95,7 +97,8 @@ function groupDashboard(props) {
           <section className="dashboard-group__members">
             <h1 className="dashboard-group__members-header">PEERS</h1>
             <hr className="dashboard-group__members-header__hr"></hr>
-            { addPeerClicked ? <form className="dashboard-group__goal-form">
+            {addPeerClicked ? (
+              <form className="dashboard-group__goal-form">
                 <input
                   className="dashboard-group__goal-form__input"
                   placeholder="NAME OF PEER?"
@@ -103,14 +106,16 @@ function groupDashboard(props) {
                   onChange={(e) => setPeerName(e.target.value)}
                 />
               </form>
-            : groupPeers.map((member, index) => (
-              <ul key={index}>
-                <li key={index} className="dashboard-group__members-peers">
-                  {member.userName.toUpperCase()}
-                </li>
-              </ul>
-            ))}
-            { addPeerClicked ? (
+            ) : (
+              groupPeers.map((member, index) => (
+                <ul key={index}>
+                  <li key={index} className="dashboard-group__members-peers">
+                    {member.userName.toUpperCase()}
+                  </li>
+                </ul>
+              ))
+            )}
+            {addPeerClicked ? (
               <section>
                 <input
                   className="dashboard-group__goal-submit-button"
@@ -152,12 +157,18 @@ function groupDashboard(props) {
                   type="text"
                   onChange={(e) => setGoal(e.target.value)}
                 />
-                <label className="dashboard-group__goal-form__input">COMPLETION DATE</label>
+                <label className="dashboard-group__goal-form__input">
+                  COMPLETION DATE
+                </label>
                 <input
                   className="dashboard-group__goal-form__input"
                   type="date"
                   onChange={(e) => setGoalDuration(e.target.value)}
                 />
+                <p className="dashboard-group__advisory">
+                  only you will see your GOAL everyone else will see your GOAL
+                  NAME
+                </p>
               </form>
             ) : (
               groupPeers.map((member, index) => (
