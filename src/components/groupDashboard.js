@@ -180,8 +180,9 @@ function groupDashboard(props) {
               groupGoals.map((goal, index) => (
                 <ul key={index}>
                   <li key={index} className="dashboard-group__members-peers">
-                    <p className="dashboard-group__goals-goal">{goal.goalName}</p>
-                    <li className="dashboard-group__goals-username">CREATED BY: {goal.createdBy.userName.toUpperCase()}</li>
+                    <p className="dashboard-group__goals-goal">{goal.goalName.toUpperCase()}</p>
+                    <p className="dashboard-group__goals-username">CREATED BY: {goal.createdBy.userName.toUpperCase()}</p>
+                    <hr className="dashboard__hero-hr"></hr>
                   </li>
                 </ul>
               ))
