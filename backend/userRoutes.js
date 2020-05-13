@@ -137,7 +137,7 @@ router.route("/group_id=:group_id/invite_user").get((req, res) => {
       return;
     }
     res.status(200).json(user);
-    sendInviteEmail(email);
+    sendInviteEmail(newEmail);
   });
 });
 // route to add user to group array
