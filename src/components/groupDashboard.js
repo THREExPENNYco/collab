@@ -148,9 +148,9 @@ function groupDashboard(props) {
                   onClick={() => handleCreateGoalBtn()}
                 />
                 <input
-                  className="dasboard-group__goal-submit-button"
+                  className="dashboard-group__goal-submit-button"
                   type="submit"
-                  value="submit"
+                  value="SUBMIT"
                 />
               </section>
             ) : (
