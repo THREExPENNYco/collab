@@ -84,6 +84,7 @@ function groupDashboard(props) {
           goalName: newGoalName,
           goal: newGoal,
           goalDuration: newGoalDuration,
+          group_Id: groupIdLocal
         },
         {
          withCredentials: true

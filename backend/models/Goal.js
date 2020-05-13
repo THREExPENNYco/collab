@@ -8,6 +8,10 @@ const goalSchema = new Schema(
       type: mongoose.Types.ObjectId,
       ref: 'User'
     }, 
+    group_Id: { 
+      type: mongoose.Types.ObjectId, 
+      ref: 'Group'
+    },
     goalName: {
       type: String,
       min: 5,

@@ -66,7 +66,7 @@ router.route("/group_dashboard/:group_id/members").get((req, res) => {
 });
 //route to grab goals in the group
 router.route("/group_dashboard/:group_id/goals").get((req, res) => { 
-  Group.find({ _id: req.params.group_id }, { goals: 1 })
+  Goals.find({ group_Id: req.params.group_id }, { goalName: 1 })
     .then((goals) => { 
       res.status(200).json(goals)
     })
@@ -154,9 +154,11 @@ router
     const goalName = req.body.goalName;
     const goal = req.body.goal;
     const goalStep = req.body.goalStep;
+    const group_Id = req.params.group_id;
     const goalDuration = new Date(req.body.goalDuration);
     const newGoal = new Goal({
       createdBy: req.session.userId,
+      group_Id: group_Id,
       goal: goal,
       goalName: goalName,
       goalStep: goalStep,
