@@ -154,21 +154,14 @@ router
       .save()
       .then((newGoal) => res.status(200).json(newGoal))
       .catch((err) => res.status(404).json(err));
-    // Goal.findByIdAndUpdate(
-    //   newGoal._id,
-    //   { $push: { goalStep: goalStep } },
-    //   function (err, model) {
-    //     err ? res.status(404).json(err) : res.status(200).json(model);
-    //   }
-    // );
-    // Group.findByIdAndUpdate(
-    //   req.params.group_id,
-    //   { $push: { goals: newGoal._id } },
-    //   { useFindAndModify: false },
-    //   function (err, model) {
-    //     err ? res.status(404).json(err) : res.status(200).json(model);
-    //   }
-    // );
+    Group.findByIdAndUpdate(
+      req.params.group_id,
+      { $push: { goals: newGoal._id } },
+      { useFindAndModify: false },
+      function (err, model) {
+        err ? res.status(404).json(err) : res.status(200).json(model);
+      }
+    );
   });
 // route to add goalstep
 router.route("/goal_id=:goal_id/create_goalstep").post((req, res) => {
