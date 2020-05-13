@@ -19,10 +19,10 @@ const emailSettings = {
 }; 
 account.sendMail(emailSettings, (err, info) => { 
     if (err) { 
-        return JSON.stringify(err)
+        console.log(err)
     }
     else { 
-        return JSON.stringify(info)
+        console.log(info)
     }
 }); 
 }
