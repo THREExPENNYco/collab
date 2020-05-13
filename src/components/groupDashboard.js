@@ -116,20 +116,20 @@ function groupDashboard(props) {
                 </ul>
               ))
             )}
-            createGoalClicked ?{" "}
+            {createGoalClicked ? 
             <input
               className="dashboard-group__goal-submit-button"
               type="submit"
               value="CANCEL"
               onClick={() => handleCreateGoalBtn()}
-            />{" "}
+            />
             :
             <input
               className="dashboard-group__goal-submit-button"
               type="submit"
               value="CREATE GOAL"
               onClick={() => handleCreateGoalBtn()}
-            />
+            />}
           </section>
         </section>
         <section className="dashboard-group__members-feed">
