@@ -453,3 +453,7 @@ input:-webkit-autofill:active {
   margin-right: auto;
   text-align: center;
 }
+
+.dashboard-group__goals-username { 
+  text-align: center;
+}

@@ -181,7 +181,7 @@ function groupDashboard(props) {
                 <ul key={index}>
                   <li key={index} className="dashboard-group__members-peers">
                     <p className="dashboard-group__goals-goal">{goal.goalName}</p>
-                    <p className="dashboard-group__goals-username">{goal.createdBy.userName}</p>
+                    <li className="dashboard-group__goals-username">CREATED BY: {goal.createdBy.userName.toUpperCase()}</li>
                   </li>
                 </ul>
               ))
