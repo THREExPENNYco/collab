@@ -5,10 +5,18 @@ const { Schema } = mongoose
 const goalSchema = new Schema(
   {
     createdBy:  { 
-      type: mongoose.Types.ObjectId,
-      ref: 'User'
+       userId: { 
+         type: mongoose.Types.ObjectId,
+         ref: 'User'
+       }, 
+       userName: { 
+         type: String, 
+         required: true, 
+         min: 5, 
+         max: 12
+       }
     }, 
-    group_Id: { 
+    groupId: { 
       type: mongoose.Types.ObjectId, 
       ref: 'Group'
     },

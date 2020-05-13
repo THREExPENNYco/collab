@@ -41,6 +41,7 @@ router.route("/login").post((req, res) => {
       return;
     }
     req.session.userId = user._id;
+    req.session.userName = user.userName;
     res.status(200).json(user);
   });
 });
@@ -154,11 +155,14 @@ router
     const goalName = req.body.goalName;
     const goal = req.body.goal;
     const goalStep = req.body.goalStep;
-    const group_Id = req.params.group_id;
+    const groupId = req.params.group_id;
     const goalDuration = new Date(req.body.goalDuration);
     const newGoal = new Goal({
-      createdBy: req.session.userId,
-      group_Id: group_Id,
+      createdBy: { 
+        userId: req.session.userId,
+        userName: req.session.userName,
+      },
+      groupId: groupId,
       goal: goal,
       goalName: goalName,
       goalStep: goalStep,
