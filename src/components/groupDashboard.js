@@ -57,9 +57,6 @@ function groupDashboard(props) {
   const handleAddPeerBtn = () => {
     addPeerClicked ? setAddPeerClick(false) : setAddPeerClick(true);
   };
-  const convertDate = () => { 
-    
-  }
   const handleCreateGoalPost = (e) => {
     e.preventDefault();
     axios
@@ -193,7 +190,7 @@ function groupDashboard(props) {
                   className="dashboard-group__goal-submit-button"
                   type="submit"
                   value="SUBMIT"
-                  onSubmit={(e) => handleCreateGoalPost(e)}
+                  onClick={(e) => handleCreateGoalPost(e)}
                 />
                 <p className="dashboard-group__advisory">
                 Only you will see your goal. Everyone else will see the goal name. 
