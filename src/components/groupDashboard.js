@@ -63,12 +63,12 @@ function groupDashboard(props) {
       .post(
         `https://salty-basin-04868.herokuapp.com/group_id=${groupIdLocal}/create_goal`,
         {
-          withCredentials: true,
-        },
-        {
           goalName: newGoalName,
           goal: newGoal,
           goalDuration: newGoalDuration,
+        },
+        {
+         withCredentials: true
         }
       )
       .then((res) => {
