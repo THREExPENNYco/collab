@@ -142,13 +142,13 @@ function groupDashboard(props) {
               <form className="dashboard-group__goal-form">
                 <input
                   className="dashboard-group__goal-form__input"
-                  value="NAME OF GOAL"
+                  placeholder="NAME OF GOAL"
                   type="text"
                   onChange={(e) => setGoalName(e.target.value)}
                 />
                 <input
                   className="dashboard-group__goal-form__input"
-                  value="WHAT IS THE GOAL?"
+                  placeholder="WHAT IS THE GOAL?"
                   type="text"
                   onChange={(e) => setGoal(e.target.value)}
                 />
