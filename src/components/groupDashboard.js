@@ -48,7 +48,7 @@ function groupDashboard(props) {
       });
   };
   const handleCreateGoalBtn = () => { 
-    createGoalClicked ? setCreateGoalClick(false) : setCreateGoalClicked(true)
+    createGoalClicked ? setCreateGoalClick(false) : setCreateGoalClick(true)
   }
   // const createGoal = () => {
   //   axios
