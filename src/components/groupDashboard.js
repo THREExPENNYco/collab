@@ -188,6 +188,9 @@ function groupDashboard(props) {
                   type="submit"
                   value="SUBMIT"
                 />
+                <p className="dashboard-group__advisory">
+                Only you will see your goal. Everyone else will see the goal name. 
+                </p>
               </section>
             ) : (
               <input

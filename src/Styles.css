@@ -441,7 +441,8 @@ input:-webkit-autofill:active {
 
 .dashboard-group__advisory { 
   text-align: center; 
-  font-size: calc(0.09vw + 0.9vh + 0.5vmin)
+  font-size: calc(0.09vw + 0.9vh + 0.5vmin);
+  color: red;
 }
 
 .dashboard-group__goal-form__input-goal { 
