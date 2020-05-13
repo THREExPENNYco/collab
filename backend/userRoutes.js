@@ -127,6 +127,18 @@ router
       }
     );
   });
+//
+router.route("/group_id=:group_id/invite_user").get((req, res) => {
+  User.findOne({ email: req.body.peer }, (err, user) => {
+    let email;
+    user ? (email = user.email) : (email = req.body.peer);
+    if (err) {
+      res.status(404).json(err);
+    }
+    res.status(200).json(sendInviteEmail(email));
+  });
+});
+
 // route to add user to group array
 router
   .route("/user_id=:user_id/group_id=:group_id/add_user_to_group")

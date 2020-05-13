@@ -16,6 +16,7 @@ function groupDashboard(props) {
   const [newGoalStep, setGoalStep] = useState("");
   const [createGoalClicked, setCreateGoalClick] = useState(false);
   const [addPeerClicked, setAddPeerClick] = useState(false);
+  const [newPeer, setNewPeer] = useState("");
   const [newGoalName, setGoalName] = useState("");
   const [newGoal, setGoal] = useState("");
   const [newGoalDuration, setGoalDuration] = useState("");
@@ -75,6 +76,21 @@ function groupDashboard(props) {
   const handleAddPeerBtn = () => {
     addPeerClicked ? setAddPeerClick(false) : setAddPeerClick(true);
   };
+  const handleInvitePeerGet = (e) => { 
+    e.preventDefault(); 
+    axios
+      .get(`https://salty-basin-04868.herokuapp.com/group_id=${groupIdLocal}/invite_user`, { 
+        peer: newPeer
+      })
+      .then((res) => { 
+        if (res.status === 200) { 
+           handleAddPeerBtn();
+        }
+      })
+      .catch((err) => { 
+        setError(err);
+      })
+  }
   const handleCreateGoalPost = (e) => {
     e.preventDefault();
     axios
@@ -114,7 +130,7 @@ function groupDashboard(props) {
                   className="dashboard-group__goal-form__input"
                   placeholder="NAME OF PEER?"
                   type="text"
-                  onChange={(e) => setPeerName(e.target.value)}
+                  onChange={(e) => setNewPeer(e.target.value)}
                 />
               </form>
             ) : (
@@ -138,6 +154,7 @@ function groupDashboard(props) {
                   className="dashboard-group__goal-submit-button"
                   type="submit"
                   value="SUBMIT"
+                  onClick={(e) => handleInvitePeerGet(e)}
                 />
               </section>
             ) : (
