@@ -1,7 +1,6 @@
 const mongoose = require('mongoose')
 const { Schema } = mongoose
 
-const userSchema = require('./User.js')
 
 const goalSchema = new Schema(
   {
