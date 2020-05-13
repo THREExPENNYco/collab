@@ -440,5 +440,6 @@ input:-webkit-autofill:active {
 }
 
 .dashboard-group__advisory { 
-  font-size: 5px;
+  text-align: center; 
+  font-size: calc(0.05vw + 0.05vh + 0.05vmin);
 }
