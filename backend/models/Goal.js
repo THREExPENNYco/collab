@@ -27,7 +27,8 @@ const goalSchema = new Schema(
     goalDurtion: { 
       type: Date, 
       min: new Date(),
-      max: '2050-01-01'
+      max: new Date('2050-01-01'), 
+      required: true
     }
   },
   {

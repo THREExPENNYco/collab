@@ -57,6 +57,9 @@ function groupDashboard(props) {
   const handleAddPeerBtn = () => {
     addPeerClicked ? setAddPeerClick(false) : setAddPeerClick(true);
   };
+  const convertDate = () => { 
+    
+  }
   const handleCreateGoalPost = (e) => {
     e.preventDefault();
     axios
@@ -73,7 +76,11 @@ function groupDashboard(props) {
       )
       .then((res) => {
         if (res.status === 200) {
+          handleCreateGoalBtn()
         }
+      })
+      .catch((err) => { 
+        setError(err)
       });
   };
   // const createGoal = () => {
@@ -162,7 +169,7 @@ function groupDashboard(props) {
                 <input
                   className="dashboard-group__goal-form__input"
                   type="date"
-                  onChange={(e) => setGoalDuration(e.target.value)}
+                  onChange={(e) => setGoalDuration(new Date(e.target.value))}
                 />
               </form>
             ) : (
@@ -186,6 +193,7 @@ function groupDashboard(props) {
                   className="dashboard-group__goal-submit-button"
                   type="submit"
                   value="SUBMIT"
+                  onClick={() => handleCreateGoalPost()}
                 />
                 <p className="dashboard-group__advisory">
                 Only you will see your goal. Everyone else will see the goal name. 

@@ -144,11 +144,13 @@ router
     const goalName = req.body.goalName;
     const goal = req.body.goal;
     const goalStep = req.body.goalStep;
+    const goalDuration = new Date(req.body.goalDuration);
     const newGoal = new Goal({
       createdBy: req.session.userId,
       goal: goal,
       goalName: goalName,
       goalStep: goalStep,
+      goalDuration: goalDuration,
     });
     newGoal
       .save()
