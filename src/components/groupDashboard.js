@@ -61,7 +61,7 @@ function groupDashboard(props) {
     e.preventDefault();
     axios
       .post(
-        `https://salty-basin-04868.herokuapp.com/group_id=${groupId}/create_goal`,
+        `https://salty-basin-04868.herokuapp.com/group_id=${groupIdLocal}/create_goal`,
         {
           withCredentials: true,
         },
