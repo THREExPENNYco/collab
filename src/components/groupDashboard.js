@@ -41,7 +41,7 @@ function groupDashboard(props) {
   }, []);
   const getPeerGoals = () => { 
     axios
-      .get(`https://salty-basin-064868.herokuapp.com/group_dashboard/${groupIdLocal}/goals`, 
+      .get(`https://salty-basin-04868.herokuapp.com/group_dashboard/${groupIdLocal}/goals`, 
       { 
         withCredentials: true
       }
@@ -58,7 +58,7 @@ function groupDashboard(props) {
   const getPeerMemberNames = () => {
     axios
       .get(
-        `https://salty-basin-064868.herokuapp.com/group_dashboard/${groupIdLocal}/members`
+        `https://salty-basin-04868.herokuapp.com/group_dashboard/${groupIdLocal}/members`
       )
       .then((res) => {
         if (res.status === 200) {
