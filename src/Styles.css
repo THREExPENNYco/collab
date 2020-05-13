@@ -428,3 +428,8 @@ input:-webkit-autofill:active {
   margin-right: auto;
   text-align: center;
 }
+
+.form-lablel__add-peer-form { 
+  text-align: center;
+  
+}

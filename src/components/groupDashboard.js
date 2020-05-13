@@ -110,7 +110,7 @@ function groupDashboard(props) {
                 </li>
               </ul>
             ))}
-            {createGoalClicked ? (
+            { addPeerClicked ? (
               <section>
                 <input
                   className="dashboard-group__goal-submit-button"
@@ -152,7 +152,7 @@ function groupDashboard(props) {
                   type="text"
                   onChange={(e) => setGoal(e.target.value)}
                 />
-                <label className="form-label">COMPLETION DATE</label>
+                <label className="form-lablel__add-peer-form">COMPLETION DATE</label>
                 <input
                   className="dashboard-group__goal-form__input"
                   value="WHEN DO YOU WANT TO FINISH"
