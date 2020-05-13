@@ -419,3 +419,11 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active {
   background-color: red;
 }
+
+.dashboard-group__goal-form__input { 
+  margin-top: 10px;
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
