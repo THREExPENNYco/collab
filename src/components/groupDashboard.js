@@ -98,7 +98,7 @@ function groupDashboard(props) {
             { addPeerClicked ? <form className="dashboard-group__goal-form">
                 <input
                   className="dashboard-group__goal-form__input"
-                  value="NAME OF PEER?"
+                  placeholder="NAME OF PEER?"
                   type="text"
                   onChange={(e) => setPeerName(e.target.value)}
                 />
