@@ -11,8 +11,9 @@ function groupDashboard(props) {
     ? props.location.state.groupId
     : localStorage.getItem("groupId");
   const [groupPeers, setGroupNames] = useState([]);
+  const [groupGoals, setGroupGoals] = useState([]);
   const [groupName, setGroupName] = useState("");
-  const [goalStep, setGoalStep] = useState("");
+  const [newGoalStep, setGoalStep] = useState("");
   const [createGoalClicked, setCreateGoalClick] = useState(false);
   const [addPeerClicked, setAddPeerClick] = useState(false);
   const [newGoalName, setGoalName] = useState("");
@@ -31,12 +32,29 @@ function groupDashboard(props) {
         if (res.status === 200) {
           setGroupName(res.data.groupName);
           getPeerMemberNames();
+          getPeerGoals();
         }
       })
       .catch((err) => {
         setError(err);
       });
   }, []);
+  const getPeerGoals = () => { 
+    axios
+      .get(`https://salty-basin-064868.herokuapp.com/group_dashboard/${groupIdLocal}/goals`, 
+      { 
+        withCredentials: true
+      }
+      )
+      .then((res) => { 
+        if (res.status === 200) { 
+          setGroupGoals(res.data)
+        }
+      })
+      .catch((err) => { 
+        setError(err);
+      })
+  }
   const getPeerMemberNames = () => {
     axios
       .get(
@@ -159,10 +177,10 @@ function groupDashboard(props) {
                 />
               </form>
             ) : (
-              groupPeers.map((member, index) => (
+              groupGoals.map((goal, index) => (
                 <ul key={index}>
                   <li key={index} className="dashboard-group__members-peers">
-                    {member.userName.toUpperCase()}
+                    {goal}
                   </li>
                 </ul>
               ))

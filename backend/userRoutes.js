@@ -64,6 +64,16 @@ router.route("/group_dashboard/:group_id/members").get((req, res) => {
     res.status(400).json(err);
   })
 });
+//route to grab goals in the group
+router.route("/group_dashboard/:group_id/goals").get((req, res) => { 
+  Goals.find({_id: req.params.group_id }, { goals: 1 })
+    .then((goals) => { 
+      res.status(200).json(goals)
+    })
+    .catch((err) => { 
+      res.status(400).json(err)
+    })
+})
 //dashboard route
 router.route("/dashboard/:userName").get((req, res) => {
   User.findOne({ userName: req.params.userName }, (err, user) => {
