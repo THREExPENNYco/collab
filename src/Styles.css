@@ -367,7 +367,7 @@ body {
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 2;
-  grid-row-end: 3;
+  grid-row-end: 4;
   font-family: "Roboto", sans-serif;
   font-size: calc(0.01vw + 1.5vh + 0.2vmin);
   margin-top: 0px;
@@ -441,5 +441,5 @@ input:-webkit-autofill:active {
 
 .dashboard-group__advisory { 
   text-align: center; 
-  font-size: calc(0.05vw + 0.05vh + 0.05vmin);
+  font-size: calc(0.09vw + 0.9vh + 0.5vmin)
 }
