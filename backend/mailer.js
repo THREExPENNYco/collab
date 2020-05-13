@@ -26,4 +26,4 @@ account.sendMail(emailSettings, (err, info) => {
     }
 }); 
 }
-export default sendInviteEmail;
+module.exports = { sendInviteEmail }
