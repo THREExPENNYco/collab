@@ -443,3 +443,13 @@ input:-webkit-autofill:active {
   text-align: center; 
   font-size: calc(0.09vw + 0.9vh + 0.5vmin)
 }
+
+.dashboard-group__goal-form__input-goal { 
+  height: 60px;
+  margin-top: 10px;
+  width: 75%;
+  display: inherit;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
