@@ -80,7 +80,7 @@ function groupDashboard(props) {
     e.preventDefault(); 
     axios
       .get(`https://salty-basin-04868.herokuapp.com/group_id=${groupIdLocal}/invite_user`, { 
-        peer: newPeer
+        email: newPeerEmail
       })
       .then((res) => { 
         if (res.status === 200) { 
@@ -130,7 +130,7 @@ function groupDashboard(props) {
                   className="dashboard-group__goal-form__input"
                   placeholder="NAME OF PEER?"
                   type="text"
-                  onChange={(e) => setNewPeer(e.target.value)}
+                  onChange={(e) => setNewPeerEmail(e.target.value)}
                 />
               </form>
             ) : (

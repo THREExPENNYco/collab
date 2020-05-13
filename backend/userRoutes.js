@@ -129,13 +129,14 @@ router
   });
 //
 router.route("/group_id=:group_id/invite_user").get((req, res) => {
-  User.findOne({ email: req.body.peer }, (err, user) => {
+  User.findOne({ email: req.body.email }, (err, user) => {
     let email;
-    user ? (email = user.email) : (email = req.body.peer);
+    user ? (email = user.email) : (email = req.body.email);
     if (err) {
       res.status(404).json(err);
     }
-    res.status(200).json(sendInviteEmail(email));
+    res.status(200).json(user);
+    sendInviteEmail(email)
   });
 });
 
