@@ -155,7 +155,6 @@ function groupDashboard(props) {
                 <label className="dashboard-group__goal-form__input">COMPLETION DATE</label>
                 <input
                   className="dashboard-group__goal-form__input"
-                  value="WHEN DO YOU WANT TO FINISH"
                   type="date"
                   onChange={(e) => setGoalDuration(e.target.value)}
                 />
