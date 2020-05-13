@@ -14,6 +14,7 @@ function groupDashboard(props) {
   const [groupName, setGroupName] = useState("");
   const [goalStep, setGoalStep] = useState("");
   const [createGoalClicked, setCreateGoalClick] = useState(false);
+  const [addPeerClicked, setAddPeerClick] = useState(false);
   const [goalName, setGoalName] = useState("");
   const [goal, setGoal] = useState(""); 
   const [goalDuration, setGoalDuration] = useState("");
@@ -53,6 +54,9 @@ function groupDashboard(props) {
   const handleCreateGoalBtn = () => {
     createGoalClicked ? setCreateGoalClick(false) : setCreateGoalClick(true);
   };
+  const handleAddPeerBtn = () => { 
+    addPeerClicked ? setAddPeerClick(false) : setAddPeerClick(true)
+  }
   const handleCreateGoalPost = (e) => {
     e.preventDefault() 
     axios 
@@ -91,18 +95,43 @@ function groupDashboard(props) {
           <section className="dashboard-group__members">
             <h1 className="dashboard-group__members-header">PEERS</h1>
             <hr className="dashboard-group__members-header__hr"></hr>
-            {groupPeers.map((member, index) => (
+            { addPeerClicked ? <form className="dashboard-group__goal-form">
+                <input
+                  className="dashboard-group__goal-form__input"
+                  value="NAME OF PEER?"
+                  type="text"
+                  onChange={(e) => setPeerName(e.target.value)}
+                />
+              </form>
+            : groupPeers.map((member, index) => (
               <ul key={index}>
                 <li key={index} className="dashboard-group__members-peers">
                   {member.userName.toUpperCase()}
                 </li>
               </ul>
             ))}
-            <input
-              className="dashboard-group__goal-submit-button"
-              type="submit"
-              value="ADD PEER"
-            />
+            {createGoalClicked ? (
+              <section>
+                <input
+                  className="dashboard-group__goal-submit-button"
+                  type="submit"
+                  value="CANCEL"
+                  onClick={() => handleAddPeerBtn()}
+                />
+                <input
+                  className="dashboard-group__goal-submit-button"
+                  type="submit"
+                  value="SUBMIT"
+                />
+              </section>
+            ) : (
+              <input
+                className="dashboard-group__goal-submit-button"
+                type="submit"
+                value="ADD PEER"
+                onClick={() => handleAddPeerBtn()}
+              />
+            )}
           </section>
         </section>
         <section className="dasboard-group__goals-section">
@@ -123,6 +152,7 @@ function groupDashboard(props) {
                   type="text"
                   onChange={(e) => setGoal(e.target.value)}
                 />
+                <label className="form-label">COMPLETION DATE</label>
                 <input
                   className="dashboard-group__goal-form__input"
                   value="WHEN DO YOU WANT TO FINISH"
