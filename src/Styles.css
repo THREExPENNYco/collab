@@ -446,7 +446,6 @@ input:-webkit-autofill:active {
 }
 
 .dashboard-group__goal-form__input-goal { 
-  height: 60px;
   margin-top: 10px;
   width: 75%;
   display: inherit;

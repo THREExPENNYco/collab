@@ -151,10 +151,9 @@ function groupDashboard(props) {
                   type="text"
                   onChange={(e) => setGoalName(e.target.value)}
                 />
-                <input
+                <textarea
                   className="dashboard-group__goal-form__input-goal"
                   placeholder="WHAT IS THE GOAL?"
-                  type="text"
                   onChange={(e) => setGoal(e.target.value)}
                 />
                 <label className="dashboard-group__goal-form__input">
