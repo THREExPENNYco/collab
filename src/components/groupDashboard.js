@@ -152,7 +152,7 @@ function groupDashboard(props) {
                   onChange={(e) => setGoalName(e.target.value)}
                 />
                 <input
-                  className="dashboard-group__goal-form__input"
+                  className="dashboard-group__goal-form__input-goal"
                   placeholder="WHAT IS THE GOAL?"
                   type="text"
                   onChange={(e) => setGoal(e.target.value)}
@@ -165,10 +165,6 @@ function groupDashboard(props) {
                   type="date"
                   onChange={(e) => setGoalDuration(e.target.value)}
                 />
-                <p className="dashboard-group__advisory">
-                  only you will see your GOAL everyone else will see your GOAL
-                  NAME
-                </p>
               </form>
             ) : (
               groupPeers.map((member, index) => (
