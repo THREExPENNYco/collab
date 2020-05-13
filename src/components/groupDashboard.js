@@ -47,9 +47,9 @@ function groupDashboard(props) {
         setError(err);
       });
   };
-  const handleCreateGoalBtn = () => { 
-    createGoalClicked ? setCreateGoalClick(false) : setCreateGoalClick(true)
-  }
+  const handleCreateGoalBtn = () => {
+    createGoalClicked ? setCreateGoalClick(false) : setCreateGoalClick(true);
+  };
   // const createGoal = () => {
   //   axios
   //     .post(`/group_id=${groupIdLocal}/create_goal`)
@@ -96,12 +96,12 @@ function groupDashboard(props) {
                   value="NAME OF GOAL"
                   type="text"
                 />
-                <input 
-                  className="dashboard-group__goal-form__input" 
+                <input
+                  className="dashboard-group__goal-form__input"
                   value="WHAT IS THE GOAL?"
                   type="text"
                 />
-                <input 
+                <input
                   className="dashboard-group__goal-form__input"
                   value="WHEN DO YOU WANT TO FINISH"
                   type="text"
@@ -116,6 +116,14 @@ function groupDashboard(props) {
                 </ul>
               ))
             )}
+            createGoalClicked ?{" "}
+            <input
+              className="dashboard-group__goal-submit-button"
+              type="submit"
+              value="CANCEL"
+              onClick={() => handleCreateGoalBtn()}
+            />{" "}
+            :
             <input
               className="dashboard-group__goal-submit-button"
               type="submit"
