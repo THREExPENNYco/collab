@@ -15,9 +15,9 @@ function groupDashboard(props) {
   const [goalStep, setGoalStep] = useState("");
   const [createGoalClicked, setCreateGoalClick] = useState(false);
   const [addPeerClicked, setAddPeerClick] = useState(false);
-  const [goalName, setGoalName] = useState("");
-  const [goal, setGoal] = useState("");
-  const [goalDuration, setGoalDuration] = useState("");
+  const [newGoalName, setGoalName] = useState("");
+  const [newGoal, setGoal] = useState("");
+  const [newGoalDuration, setGoalDuration] = useState("");
   const [error, setError] = useState("");
   useEffect(() => {
     axios
@@ -66,9 +66,9 @@ function groupDashboard(props) {
           withCredentials: true,
         },
         {
-          goalName: goalName,
-          goal: goal,
-          goalDuration: goalDuration,
+          goalName: newGoalName,
+          goal: newGoal,
+          goalDuration: newGoalDuration,
         }
       )
       .then((res) => {
