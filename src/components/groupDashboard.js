@@ -16,7 +16,7 @@ function groupDashboard(props) {
   const [newGoalStep, setGoalStep] = useState("");
   const [createGoalClicked, setCreateGoalClick] = useState(false);
   const [addPeerClicked, setAddPeerClick] = useState(false);
-  const [newPeer, setNewPeer] = useState("");
+  const [newPeerEmail, setNewPeerEmail] = useState("");
   const [newGoalName, setGoalName] = useState("");
   const [newGoal, setGoal] = useState("");
   const [newGoalDuration, setGoalDuration] = useState("");
