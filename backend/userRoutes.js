@@ -6,7 +6,7 @@ const { Goal } = require("./models/Goal.js");
 const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const path = require("path");
-const {sendInviteEmail } = require("./mailer.js");
+const { sendInviteEmail } = require("./mailer.js");
 
 // Root route for users
 router.route("/").get((req, res) => {
