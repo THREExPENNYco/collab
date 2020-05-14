@@ -3,11 +3,10 @@ const nodeMailer = require("nodemailer");
 const sgTransport = require("nodemailer-sendgrid-transport");
 
 const options = {
-  service: "SendGrid",
   auth: {
     user: "peerPressureApiKey", //peerPressureApiKey <-- API key name
     pass: process.env.MAILER_PASSWORD,
-  },
+  }
 };
 
 const account = nodeMailer.createTransport(sgTransport(options));
