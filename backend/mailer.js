@@ -2,16 +2,18 @@ require("dotenv").config({ path: "../.env" });
 const nodeMailer = require('nodemailer') 
 
 const account = nodeMailer.createTransport({ 
-    service: 'yahoo', 
+    host: "smtp.sendgrid.net", 
+    port: 25587, 
+    secure: false,
     auth: { 
-        user: 'peerpressureappinfo@yahoo.com', 
+        user: 'peerPressureApiKey', 
         pass: process.env.MAILER_PASSWORD 
     }
 }); 
 
 const sendInviteEmail = (user) => {
 const emailSettings = { 
-    from: 'peerpressureappinfo@yahoo.com', 
+    from: 'peerpressureappinfo@gmail.com', 
     to: user, 
     subject: 'You\'ve Been Invited', 
     html: 
