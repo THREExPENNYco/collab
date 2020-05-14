@@ -4,7 +4,7 @@ const sgTransport = require("nodemailer-sendgrid-transport");
 
 const options = {
   auth: {
-    api_user: "peerPressureApiKey", //peerPressureApiKey <-- API key name
+    api_user: "apikey", //peerPressureApiKey <-- API key name
     api_key: process.env.MAILER_PASSWORD,
   }
 };
