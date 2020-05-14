@@ -6,7 +6,7 @@ const account = nodeMailer.createTransport({
     port: 25587, 
     secure: false,
     auth: { 
-        user: 'peerPressureApiKey', 
+        user: 'apikey', 
         pass: process.env.MAILER_PASSWORD 
     }
 }); 
