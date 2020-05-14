@@ -2,11 +2,9 @@ require("dotenv").config({ path: "../.env" });
 const nodeMailer = require('nodemailer') 
 
 const account = nodeMailer.createTransport({ 
-    host: "smtp.sendgrid.net", 
-    port: 25587, 
-    secure: false,
+    service: "SendGrid",
     auth: { 
-        user: 'apikey', 
+        user: "mukco", 
         pass: process.env.MAILER_PASSWORD 
     }
 }); 
