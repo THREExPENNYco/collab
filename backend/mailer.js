@@ -1,29 +1,16 @@
 require("dotenv").config({ path: "../.env" });
-const nodeMailer = require("nodemailer");
-const sgTransport = require("nodemailer-sendgrid-transport");
+sgMail = require("@sendgrid/mail");
 
-const options = {
-  auth: {
-    api_user: "mukco", //peerPressureApiKey <-- API key name
-    api_key: process.env.MAILER_PASSWORD
-  }
-};
-
-const account = nodeMailer.createTransport(sgTransport(options));
+sgMail.setApiKey(process.env.MAILER_PASSWORD);
 
 const sendInviteEmail = (user) => {
-  const email = {
-    from: "peerpressureappinfo@foo.com",
+  const msg = {
     to: user,
-    subject: "You've Been Invited",
-    html: "<h1>You Have Been Invited</h1>",
+    from: "test@example.com",
+    subject: "Sending with Twilio SendGrid is Fun",
+    text: "and easy to do anywhere, even with Node.js",
+    html: "<strong>and easy to do anywhere, even with Node.js</strong>",
   };
-  account.sendMail(email, (err, info) => {
-    if (err) {
-      console.log(err);
-    } else {
-      console.log(info);
-    }
-  });
+  sgMail.send(msg);
 };
 module.exports = { sendInviteEmail };
