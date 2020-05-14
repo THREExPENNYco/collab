@@ -1,6 +1,6 @@
 require("dotenv").config({ path: "../.env" });
 const nodeMailer = require("nodemailer");
-const sgTransport = require("nodemailer-sengrid-transport");
+const sgTransport = require("nodemailer-sendgrid-transport");
 
 const options = {
   service: "SendGrid",
