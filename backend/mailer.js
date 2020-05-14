@@ -5,7 +5,7 @@ sgMail.setApiKey(process.env.MAILER_PASSWORD);
 
 const sendInviteEmail = (user) => {
   const msg = {
-    to: user,
+    to: "THREExPENNYco@gmail.com",
     from: "test@example.com",
     subject: "Sending with Twilio SendGrid is Fun",
     text: "and easy to do anywhere, even with Node.js",
