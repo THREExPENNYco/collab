@@ -271,9 +271,9 @@ function groupDashboard(props) {
             onClick={(e) => handleCreateComment(e)}
           />
           <section className="dashboard-group__members-feed__comments"> 
-              { comments.length !== 0 ? comments.map((comment, index) => (
+              { comments.map((comment, index) => (
                 <p>comment.text</p>
-              )) : null }
+              )) }
           </section>
         </section>
         <section className="dashboard-group__check-in">
