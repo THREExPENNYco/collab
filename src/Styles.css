@@ -457,3 +457,12 @@ input:-webkit-autofill:active {
 .dashboard-group__goals-username { 
   text-align: center;
 }
+
+.dashboard-group__members-feed__input { 
+  display: inline;
+}
+
+.dashboard-group__members__form-input__camera { 
+  height: 25px; 
+  width: 25px;
+}

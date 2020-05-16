@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import input_camera_img from './componentAssets/input_camera_img.png';
+import input_camera_img from "./componentAssets/input_camera_img.png";
 import { Redirect } from "react-router-dom";
 
 function groupDashboard(props) {
@@ -285,13 +285,18 @@ function groupDashboard(props) {
         <section className="dashboard-group__members-feed">
           <h1 className="dashboard-group__members-header">FEED</h1>
           <hr className="dashboard-group__members-header__hr"></hr>
-          <input
-            type="text"
-            className="dashboard-group__form-input"
-            placeholder="You Work On Your Goal Today?"
-            onChange={(e) => setNewComment(e.target.value)}
-          />
-          <img src={input_camera_img} className="dashboard-group__members__form-input__camera" />
+          <section className="dashboard-group__members-feed__input">
+            <input
+              type="text"
+              className="dashboard-group__form-input"
+              placeholder="You Work On Your Goal Today?"
+              onChange={(e) => setNewComment(e.target.value)}
+            />
+            <img
+              src={input_camera_img}
+              className="dashboard-group__members__form-input__camera"
+            />
+          </section>
           <input
             className="dashboard-group__form-submit-button"
             type="submit"
@@ -301,7 +306,7 @@ function groupDashboard(props) {
           <section className="dashboard-group__members-feed__comments">
             {comments.map((comment, index) => (
               <section key={index} className="dashboard-group__members-peers">
-               <p key={index} className="dashboard-group__members-peers">
+                <p key={index} className="dashboard-group__members-peers">
                   {comment.createdBy.userName}
                 </p>
                 <p key={index} className="dashgroup-group__members-peers">
@@ -320,4 +325,4 @@ function groupDashboard(props) {
   );
 }
 
-export default groupDashboard; 
+export default groupDashboard;
