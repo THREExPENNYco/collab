@@ -88,12 +88,11 @@ router.route("/dashboard/:userName").get((req, res) => {
 });
 // route to create the comments
 router.route("/group_dashboard/group_id=:group_id/create_comment").post((req, res) => {
-  const group = req.params.groupId;
   const text = req.body.text;
   const image = req.body.image;
   const newComment = new Comment({
     createdBy: req.session.userID,
-    group: group,
+    group: req.params.group_id,
     image: image,
     text: text,
   });
