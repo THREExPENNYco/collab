@@ -272,7 +272,7 @@ function groupDashboard(props) {
           />
           <section className="dashboard-group__members-feed__comments"> 
               { comments.map((comment, index) => (
-                <p>comment.text</p>
+                <p className="dashgroup-group__members-peers">comment.text</p>
               )) }
           </section>
         </section>
