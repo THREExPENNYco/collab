@@ -127,7 +127,7 @@ function groupDashboard(props) {
       })
       .then((res) => { 
         if(res.status === 200) { 
-           setComments(res.data);
+           setComments(comments.concat(res.data));
         }
       })
       .catch((err) => { 
