@@ -1,12 +1,12 @@
 require("dotenv").config({ path: "../.env" });
 sgMail = require("@sendgrid/mail");
 
-sgMail.setApiKey(process.env.MAILER_PASSWORD);
+sgMail.setApiKey(process.env.MAILER_PASSWORD.trim());
 
 const sendInviteEmail = (user) => {
   const msg = {
     to: "THREExPENNYco@gmail.com",
-    from: "test@example.com",
+    from: "info@peerpressure.me",
     subject: "Sending with Twilio SendGrid is Fun",
     text: "and easy to do anywhere, even with Node.js",
     html: "<strong>and easy to do anywhere, even with Node.js</strong>",
