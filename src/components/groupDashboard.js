@@ -44,22 +44,23 @@ function groupDashboard(props) {
         setError(err);
       });
   }, []);
-  const getPeerGoals = () => { 
+  const getPeerGoals = () => {
     axios
-      .get(`https://salty-basin-04868.herokuapp.com/group_dashboard/${groupIdLocal}/goals`, 
-      { 
-        withCredentials: true
-      }
+      .get(
+        `https://salty-basin-04868.herokuapp.com/group_dashboard/${groupIdLocal}/goals`,
+        {
+          withCredentials: true,
+        }
       )
-      .then((res) => { 
-        if (res.status === 200) { 
-          setGroupGoals(res.data)
+      .then((res) => {
+        if (res.status === 200) {
+          setGroupGoals(res.data);
         }
       })
-      .catch((err) => { 
+      .catch((err) => {
         setError(err);
-      })
-  }
+      });
+  };
   const getPeerMemberNames = () => {
     axios
       .get(
@@ -80,21 +81,24 @@ function groupDashboard(props) {
   const handleAddPeerBtn = () => {
     addPeerClicked ? setAddPeerClick(false) : setAddPeerClick(true);
   };
-  const handleInvitePeerGet = (e) => { 
-    e.preventDefault(); 
+  const handleInvitePeerGet = (e) => {
+    e.preventDefault();
     axios
-      .get(`https://salty-basin-04868.herokuapp.com/group_id=${groupIdLocal}/invite_user`, { 
-        newPeerEmail: newPeerEmail
-      })
-      .then((res) => { 
-        if (res.status === 200) { 
-           handleAddPeerBtn();
+      .get(
+        `https://salty-basin-04868.herokuapp.com/group_id=${groupIdLocal}/invite_user`,
+        {
+          newPeerEmail: newPeerEmail,
+        }
+      )
+      .then((res) => {
+        if (res.status === 200) {
+          handleAddPeerBtn();
         }
       })
-      .catch((err) => { 
+      .catch((err) => {
         setError(err);
-      })
-  }
+      });
+  };
   const handleCreateGoalPost = (e) => {
     e.preventDefault();
     axios
@@ -103,51 +107,55 @@ function groupDashboard(props) {
         {
           goalName: newGoalName,
           goal: newGoal,
-          goalDuration: newGoalDuration
+          goalDuration: newGoalDuration,
         },
         {
-         withCredentials: true
+          withCredentials: true,
         }
       )
       .then((res) => {
         if (res.status === 200) {
-          handleCreateGoalBtn()
+          handleCreateGoalBtn();
         }
       })
-      .catch((err) => { 
-        setError(err)
-      });
-  };
-  const handleCreateComment = (e) => { 
-    e.preventDefault();
-    axios
-      .post(`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${groupIdLocal}/create_comment`, 
-      { 
-        text: newComment, 
-        image: newImage,
-      })
-      .then((res) => { 
-        if(res.status === 200) { 
-           setComments(comments.concat(res.data));
-        }
-      })
-      .catch((err) => { 
+      .catch((err) => {
         setError(err);
       });
-  }; 
-  const getGroupComments = () => { 
+  };
+  const handleCreateComment = (e) => {
+    e.preventDefault();
     axios
-      .get(`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${groupIdLocal}/get_comments`)
-      .then((res) => { 
-        if (res.status === 200) { 
+      .post(
+        `https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${groupIdLocal}/create_comment`,
+        {
+          text: newComment,
+          image: newImage,
+        }
+      )
+      .then((res) => {
+        if (res.status === 200) {
           setComments(comments.concat(res.data));
         }
       })
-      .catch((err) => { 
-        setError(err)
+      .catch((err) => {
+        setError(err);
       });
   };
-  console.log(comments)
+  const getGroupComments = () => {
+    axios
+      .get(
+        `https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${groupIdLocal}/get_comments`
+      )
+      .then((res) => {
+        if (res.status === 200) {
+          setComments(comments.concat(res.data));
+        }
+      })
+      .catch((err) => {
+        setError(err);
+      });
+  };
+  console.log(comments);
   return (
     <section>
       <p className="dashboard-hero__top">{groupName.toUpperCase()}</p>
@@ -230,13 +238,17 @@ function groupDashboard(props) {
             ) : (
               groupGoals.map((goal, index) => (
                 <section>
-                <ul key={index}>
-                  <li key={index} className="dashboard-group__members-peers">
-                    <p className="dashboard-group__goals-goal">{goal.goalName.toUpperCase()}</p>
-                    <p className="dashboard-group__goals-username">CREATED BY: {goal.createdBy.userName.toUpperCase()}</p>
-                  </li>
-                </ul>
-                <hr className="dashboard-group__goals-header__hr"></hr>
+                  <ul key={index}>
+                    <li key={index} className="dashboard-group__members-peers">
+                      <p className="dashboard-group__goals-goal">
+                        {goal.goalName.toUpperCase()}
+                      </p>
+                      <p className="dashboard-group__goals-username">
+                        CREATED BY: {goal.createdBy.userName.toUpperCase()}
+                      </p>
+                    </li>
+                  </ul>
+                  <hr className="dashboard-group__goals-header__hr"></hr>
                 </section>
               ))
             )}
@@ -255,7 +267,8 @@ function groupDashboard(props) {
                   onClick={(e) => handleCreateGoalPost(e)}
                 />
                 <p className="dashboard-group__advisory">
-                Only you will see your goal. Everyone else will see the goal name. 
+                  Only you will see your goal. Everyone else will see the goal
+                  name.
                 </p>
               </section>
             ) : (
@@ -276,20 +289,26 @@ function groupDashboard(props) {
             className="dashboard-group__form-input"
             placeholder="You Work On Your Goal Today?"
             onChange={(e) => setNewComment(e.target.value)}
-          />
+          >
+          {'\U+1F4F7'}
+          </input>
           <input
             className="dashboard-group__form-submit-button"
             type="submit"
             value="POST GOALSTEP"
             onClick={(e) => handleCreateComment(e)}
           />
-          <section className="dashboard-group__members-feed__comments"> 
-              { comments.map((comment, index) => (
-                <section>
-                <p key={index} className="dashgroup-group__members-peers">{comment.text}</p>
-                <p key={index} className="dashboard-group__members-peers">{comment.createdBy.userName}</p>
-                </section>
-              )) }
+          <section className="dashboard-group__members-feed__comments">
+            {comments.map((comment, index) => (
+              <section key={index} className="dashboard-group__members-peers">
+               <p key={index} className="dashboard-group__members-peers">
+                  {comment.createdBy.userName}
+                </p>
+                <p key={index} className="dashgroup-group__members-peers">
+                  {comment.text}
+                </p>
+              </section>
+            ))}
           </section>
         </section>
         <section className="dashboard-group__check-in">
@@ -301,4 +320,4 @@ function groupDashboard(props) {
   );
 }
 
-export default groupDashboard;
+export default groupDashboard; 
