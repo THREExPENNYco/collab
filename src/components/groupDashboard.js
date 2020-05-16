@@ -120,7 +120,7 @@ function groupDashboard(props) {
   const handleCreateComment = (e) => { 
     e.preventDefault();
     axios
-      .post(`https://salty-basin-04868.herokuapp.com/group_dashboard/groupId=${groupIdLocal}/create_comment`, 
+      .post(`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${groupIdLocal}/create_comment`, 
       { 
         text: newComment, 
         image: newImage,

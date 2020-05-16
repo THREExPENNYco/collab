@@ -87,17 +87,15 @@ router.route("/dashboard/:userName").get((req, res) => {
   });
 });
 // route to create the comments
-router.route("/group_dashboard/groupId=:group_id/create_comment").post((req, res) => {
+router.route("/group_dashboard/group_id=:group_id/create_comment").post((req, res) => {
   const group = req.params.groupId;
   const text = req.body.text;
   const image = req.body.image;
-  const likes = req.body.likes;
   const newComment = new Comment({
-    createdBy: req.params.id,
+    createdBy: req.session.userID,
     group: group,
     image: image,
     text: text,
-    likes: likes,
   });
   newComment
     .save()
