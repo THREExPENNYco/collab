@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import input_camera_img from './componentAssets/input_camera_img.png';
 import { Redirect } from "react-router-dom";
 
 function groupDashboard(props) {
@@ -290,7 +291,7 @@ function groupDashboard(props) {
             placeholder="You Work On Your Goal Today?"
             onChange={(e) => setNewComment(e.target.value)}
           >
-          {'\U+1F4F7'}
+          <img src={input_camera_img} className="dashboard-group__members__form-input__camera"></img> 
           </input>
           <input
             className="dashboard-group__form-submit-button"
