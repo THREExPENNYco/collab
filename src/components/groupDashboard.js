@@ -14,6 +14,9 @@ function groupDashboard(props) {
   const [groupGoals, setGroupGoals] = useState([]);
   const [groupName, setGroupName] = useState("");
   const [newGoalStep, setGoalStep] = useState("");
+  const [newComment, setNewComment] = useState([]);
+  const [newImage, setNewImage] = useState("");
+  const [comments, setComments] = useState("");
   const [createGoalClicked, setCreateGoalClick] = useState(false);
   const [addPeerClicked, setAddPeerClick] = useState(false);
   const [newPeerEmail, setNewPeerEmail] = useState("");
@@ -114,6 +117,23 @@ function groupDashboard(props) {
         setError(err)
       });
   };
+  const handleCreateComment = (e) => { 
+    e.preventDefault();
+    axios
+      .post(`https://salty-basin-04868.herokuapp.com/group_dashboard/groupId=${groupIdLocal}/create_comment`, 
+      { 
+        text: newComment, 
+        image: newImage,
+      })
+      .then((res) => { 
+        if(res.status === 200) { 
+           setComments(res.data);
+        }
+      })
+      .catch((err) => { 
+        setError(err);
+      })
+  }
   return (
     <section>
       <p className="dashboard-hero__top">{groupName.toUpperCase()}</p>
@@ -241,12 +261,13 @@ function groupDashboard(props) {
             type="text"
             className="dashboard-group__form-input"
             placeholder="You Work On Your Goal Today?"
-            onChange={(e) => setGoalStep(e.target.value)}
+            onChange={(e) => setNewComment(e.target.value)}
           />
           <input
             className="dashboard-group__form-submit-button"
             type="submit"
             value="POST GOALSTEP"
+            onClick={(e) => handleCreateComment(e)}
           />
         </section>
         <section className="dashboard-group__check-in">
