@@ -287,7 +287,7 @@ function groupDashboard(props) {
               { comments.map((comment, index) => (
                 <section>
                 <p key={index} className="dashgroup-group__members-peers">{comment.text}</p>
-                <p key={index} className="dashboard-group__members-peers">{comment.createdBy}</p>
+                <p key={index} className="dashboard-group__members-peers">{comment.createdBy.userName}</p>
                 </section>
               )) }
           </section>
