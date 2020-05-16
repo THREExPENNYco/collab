@@ -290,9 +290,8 @@ function groupDashboard(props) {
             className="dashboard-group__form-input"
             placeholder="You Work On Your Goal Today?"
             onChange={(e) => setNewComment(e.target.value)}
-          >
-          <img src={input_camera_img} className="dashboard-group__members__form-input__camera"></img> 
-          </input>
+          />
+          <img src={input_camera_img} className="dashboard-group__members__form-input__camera" />
           <input
             className="dashboard-group__form-submit-button"
             type="submit"
