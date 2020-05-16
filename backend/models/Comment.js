@@ -4,11 +4,18 @@ const { User } = require('./User.js')
 
 const commentSchema = new Schema(
   {
-    createdBy: {
-      type: mongoose.Types.ObjectId,
-      ref: 'User',
-      required: true
-    },
+    createdBy:  { 
+      userId: { 
+        type: mongoose.Types.ObjectId,
+        ref: 'User'
+      }, 
+      userName: { 
+        type: String, 
+        required: true, 
+        min: 5, 
+        max: 12
+      }
+   },
     group: { 
       type: mongoose.Types.ObjectId, 
       ref: 'Group', 

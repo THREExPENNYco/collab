@@ -91,7 +91,10 @@ router.route("/group_dashboard/group_id=:group_id/create_comment").post((req, re
   const text = req.body.text;
   const image = req.body.image;
   const newComment = new Comment({
-    createdBy: req.session.userId,
+    createdBy: { 
+      userId: req.session.userId,
+      userName: req.session.userName
+    },
     group: req.params.group_id,
     image: image,
     text: text,
