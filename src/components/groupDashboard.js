@@ -37,6 +37,7 @@ function groupDashboard(props) {
           setGroupName(res.data.groupName);
           getPeerMemberNames();
           getPeerGoals();
+          getGroupComments();
         }
       })
       .catch((err) => {
@@ -132,8 +133,20 @@ function groupDashboard(props) {
       })
       .catch((err) => { 
         setError(err);
+      });
+  }; 
+  const getGroupComments = () => { 
+    axios
+      .get(`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${groupIdLocal}/get_comments`)
+      .then((res) => { 
+        if (res.status === 200) { 
+          setComments(comments.concat(res.data));
+        }
       })
-  }
+      .catch((err) => { 
+        setError(err)
+      });
+  };
   console.log(comments)
   return (
     <section>
@@ -272,7 +285,7 @@ function groupDashboard(props) {
           />
           <section className="dashboard-group__members-feed__comments"> 
               { comments.map((comment, index) => (
-                <p className="dashgroup-group__members-peers">comment.text</p>
+                <p key={index} className="dashgroup-group__members-peers">{comment.text}</p>
               )) }
           </section>
         </section>
