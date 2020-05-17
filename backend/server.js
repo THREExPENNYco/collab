@@ -5,7 +5,7 @@ const path = require("path");
 const sessions = require("express-session");
 const FileStore = require("session-file-store")(sessions);
 
-require("dotenv").config({ path: "../.env" });
+require("dotenv").config({ path: "../../.env" });
 
 const cors = require("cors");
 const port = process.env.PORT || 3030;

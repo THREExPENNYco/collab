@@ -1,7 +1,18 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import input_camera_img from "./componentAssets/input_camera_img.png";
+import input_camera_img from "./componentAssets/input_camera_img.png"; 
+import S3 from 'react-aws-s3';
 import { Redirect } from "react-router-dom";
+
+const s3Config = { 
+  bucketname: 'peerpressurebucket', 
+  dirName: 'commentPics', 
+  region: 'us-east-1', 
+  accessKeyId: process.env.AMAZON_ACCESS_KEY, 
+  secretAccessKey: process.env.AMAZON_SECRET_KEY,
+}; 
+
+const s3client = new S3(s3Config);
 
 function groupDashboard(props) {
   const passedState = props.location.state === "true";
@@ -156,7 +167,19 @@ function groupDashboard(props) {
         setError(err);
       });
   };
-  console.log(comments);
+  const uploadImageS3 = (e) => { 
+    const ranNum = Math.random();
+    const fileName = `group_id=${groupName}/${ranNum}`
+    s3client
+      .uploadFIle(newImage, fileName)
+      .then((data) => { 
+        setNewImage(data.response.location);
+      })
+      .catch((err) => { 
+        setError(err);
+        console.log(err);
+      });
+  };
   return (
     <section>
       <p className="dashboard-hero__top">{groupName.toUpperCase()}</p>
@@ -293,9 +316,11 @@ function groupDashboard(props) {
                 placeholder="You Work On Your Goal Today?"
                 onChange={(e) => setNewComment(e.target.value)}
               />
-              <img
+              <input
                 src={input_camera_img}
                 className="dashboard-group__members__form-input__camera"
+                type="file"
+                onclick={(e) => uploadImageS3(e)}
               />
             </section>
           </section>
