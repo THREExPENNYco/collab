@@ -473,3 +473,15 @@ input:-webkit-autofill:active {
   align-items: center;
   display: flex;
 }
+
+.dashboard-group__members-peers__container { 
+  border: 0.05px solid rgb(167, 167, 167, 0.5);
+}
+
+.dashboard-group__members-peers__comments-containe__comment { 
+  text-align: center;
+}
+
+.dashboard-group__members-peers__comments-container__username { 
+  text-align: left;
+}
