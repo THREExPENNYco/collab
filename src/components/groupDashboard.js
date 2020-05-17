@@ -28,7 +28,7 @@ function groupDashboard(props) {
   const [groupName, setGroupName] = useState("");
   const [newGoalStep, setGoalStep] = useState("");
   const [newComment, setNewComment] = useState("");
-  const [newImage, setNewImage] = useState("");
+  const [newImage, setNewImage] = useState({});
   const [comments, setComments] = useState([]);
   const [createGoalClicked, setCreateGoalClick] = useState(false);
   const [addPeerClicked, setAddPeerClick] = useState(false);
