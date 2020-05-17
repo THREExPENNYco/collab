@@ -169,6 +169,7 @@ function groupDashboard(props) {
   };
   const uploadImageS3 = (e) => { 
     const image = e.target.file[0];
+    console.log(e.target.file[0]);
     const ranNum = Math.random();
     const fileName = `group_id=${groupName}/${ranNum}`
     s3client
@@ -321,7 +322,7 @@ function groupDashboard(props) {
                 src={input_camera_img}
                 className="dashboard-group__members__form-input__camera"
                 type="file"
-                onclick={(e) => uploadImageS3(e)}
+                onChange={(e) => uploadImageS3(e)}
               />
             </section>
           </section>
