@@ -8,8 +8,8 @@ const s3Config = {
   bucketname: 'peerpressurebucket', 
   dirName: 'commentPics', 
   region: 'us-east-1', 
-  accessKeyId: process.env.AMAZON_ACCESS_KEY, 
-  secretAccessKey: process.env.AMAZON_SECRET_KEY,
+  accessKeyId: process.env.REACT_APP_AMAZON_ACCESS_KEY, 
+  secretAccessKey: process.env.REACT_APP_AMAZON_SECRET_KEY,
 }; 
 
 const s3client = new S3(s3Config);
