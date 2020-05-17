@@ -170,20 +170,22 @@ function groupDashboard(props) {
   };
   const uploadImageS3 = (e) => { 
     const reader = new FileReader();
-    const image = reader.readAsArrayBuffer(e.target.files[0]);
-    console.log(image); 
-    console.log(e.target.files[0]);
-    const ranNum = Math.random();
-    const fileName = `group_id=${groupName}/${ranNum}`
-    s3client
-      .uploadFile(image, fileName)
-      .then((data) => { 
-        setNewImage(data);
-      })
-      .catch((err) => { 
-        setError(err);
-        console.log(err);
-      });
+    reader.readAsArrayBuffer(e.target.files[0]);
+    reader.onload = function () { 
+      console.log(image); 
+      console.log(e.target.files[0]);
+      const ranNum = Math.random();
+      const fileName = `group_id=${groupName}/${ranNum}`
+      s3client
+        .uploadFile(image, fileName)
+        .then((data) => { 
+          setNewImage(data);
+        })
+        .catch((err) => { 
+          setError(err);
+          console.log(err);
+        });
+    }
   };
   return (
     <section>
