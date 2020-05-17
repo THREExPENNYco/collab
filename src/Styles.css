@@ -474,14 +474,16 @@ input:-webkit-autofill:active {
   display: flex;
 }
 
-.dashboard-group__members-peers__container { 
+.dashboard-group__members-feed__container { 
   border: 0.05px solid rgb(167, 167, 167, 0.5);
 }
 
-.dashboard-group__members-peers__comments-containe__comment { 
+.dashboard-group__members-feed__comments-container__comment { 
   text-align: center;
+  font-size: calc(0.01vw + 2vh + 0.2vmin);
 }
 
-.dashboard-group__members-peers__comments-container__username { 
+.dashboard-group__members-feed__comments-container__username { 
   text-align: left;
+  font-size: calc(0.01vw + 1.5vh + 0.2vmin);
 }
