@@ -307,11 +307,11 @@ function groupDashboard(props) {
           />
           <section className="dashboard-group__members-feed__comments">
             {comments.map((comment, index) => (
-              <section key={index} className="dashboard-group__members-peers__comments-container">
-                <p key={index} className="dashboard-group__members-peers_comments-container__username">
+              <section key={index} className="dashboard-group__members-feed__comments-container">
+                <p key={index} className="dashboard-group__members-feed_comments-container__username">
                   {comment.createdBy.userName}
                 </p>
-                <p key={index} className="dashgroup-group__members-peers__comments-container__comment">
+                <p key={index} className="dashgroup-group__members-feed__comments-container__comment">
                   {comment.text}
                 </p>
               </section>
