@@ -467,3 +467,7 @@ input:-webkit-autofill:active {
   width: 35px;
   padding: 10px;
 }
+
+.dasboard-group__members-feed__input-section { 
+  align-items: center;
+}

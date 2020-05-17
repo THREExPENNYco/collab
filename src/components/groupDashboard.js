@@ -286,7 +286,7 @@ function groupDashboard(props) {
           <h1 className="dashboard-group__members-header">FEED</h1>
           <hr className="dashboard-group__members-header__hr"></hr>
           <section className="dashboard-group__members-feed__input">
-            <section>
+            <section className="dasboard-group__members-feed__input-section">
               <input
                 type="text"
                 className="dashboard-group__form-input"
