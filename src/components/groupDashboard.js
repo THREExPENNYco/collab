@@ -5,11 +5,12 @@ import S3 from 'react-aws-s3';
 import { Redirect } from "react-router-dom";
 
 const s3Config = { 
-  bucketname: 'peerpressurebucket', 
-  dirName: 'commentPics', 
-  region: 'us-east-1', 
+  bucketname: "peerpressurebucket", 
+  dirName: "commentPics", 
+  region: "us-east-1", 
   accessKeyId: process.env.REACT_APP_AMAZON_ACCESS_KEY, 
   secretAccessKey: process.env.REACT_APP_AMAZON_SECRET_KEY,
+  s3Url: "http://peerpressurebucket.s3-website-us-east-1.amazonaws.com"
 }; 
 
 const s3client = new S3(s3Config);
@@ -170,12 +171,13 @@ function groupDashboard(props) {
   const uploadImageS3 = (e) => { 
     const image = e.target.files[0];
     console.log(e.target.files[0]);
+    setNewImage(e.target.files[0]);
     const ranNum = Math.random();
     const fileName = `group_id=${groupName}/${ranNum}`
     s3client
       .uploadFile(image, fileName)
       .then((data) => { 
-        setNewImage(data.response.location);
+        setNewImage(data);
       })
       .catch((err) => { 
         setError(err);
