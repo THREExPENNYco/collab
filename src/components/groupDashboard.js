@@ -10,7 +10,7 @@ const s3Config = {
   region: "us-east-1", 
   accessKeyId: process.env.REACT_APP_AMAZON_ACCESS_KEY, 
   secretAccessKey: process.env.REACT_APP_AMAZON_SECRET_KEY,
-  s3Url: "http://peerpressurebucket.s3-website-us-east-1.amazonaws.com"
+  s3Url: "https://peerpressurebucket.s3-website-us-east-1.amazonaws.com"
 }; 
 
 const s3client = new S3(s3Config);
