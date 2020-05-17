@@ -168,10 +168,11 @@ function groupDashboard(props) {
       });
   };
   const uploadImageS3 = (e) => { 
+    const image = e.target.file[0];
     const ranNum = Math.random();
     const fileName = `group_id=${groupName}/${ranNum}`
     s3client
-      .uploadFIle(newImage, fileName)
+      .uploadFIle(image, fileName)
       .then((data) => { 
         setNewImage(data.response.location);
       })
