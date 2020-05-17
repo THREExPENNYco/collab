@@ -286,16 +286,18 @@ function groupDashboard(props) {
           <h1 className="dashboard-group__members-header">FEED</h1>
           <hr className="dashboard-group__members-header__hr"></hr>
           <section className="dashboard-group__members-feed__input">
-            <input
-              type="text"
-              className="dashboard-group__form-input"
-              placeholder="You Work On Your Goal Today?"
-              onChange={(e) => setNewComment(e.target.value)}
-            />
-            <img
-              src={input_camera_img}
-              className="dashboard-group__members__form-input__camera"
-            />
+            <section>
+              <input
+                type="text"
+                className="dashboard-group__form-input"
+                placeholder="You Work On Your Goal Today?"
+                onChange={(e) => setNewComment(e.target.value)}
+              />
+              <img
+                src={input_camera_img}
+                className="dashboard-group__members__form-input__camera"
+              />
+            </section>
           </section>
           <input
             className="dashboard-group__form-submit-button"

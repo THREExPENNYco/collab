@@ -320,7 +320,7 @@ body {
 .dashboard-group__form-input {
   height: 30px;
   margin-top: 10px;
-  width: 100%;
+  width: 85%;
 }
 
 .form-input:focus {
@@ -465,4 +465,5 @@ input:-webkit-autofill:active {
 .dashboard-group__members__form-input__camera { 
   height: 35px; 
   width: 35px;
+  padding: 10px;
 }
