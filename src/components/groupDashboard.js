@@ -169,9 +169,10 @@ function groupDashboard(props) {
       });
   };
   const uploadImageS3 = (e) => { 
-    const image = e.target.files[0];
+    const reader = new FileReader();
+    const image = reader.readAsArrayBuffer(e.target.files[0]);
+    console.log(image); 
     console.log(e.target.files[0]);
-    setNewImage(e.target.files[0]);
     const ranNum = Math.random();
     const fileName = `group_id=${groupName}/${ranNum}`
     s3client
