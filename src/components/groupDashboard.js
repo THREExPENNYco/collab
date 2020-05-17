@@ -168,25 +168,6 @@ function groupDashboard(props) {
         setError(err);
       });
   };
-  const uploadImageS3 = (e) => { 
-    const reader = new FileReader();
-    reader.readAsArrayBuffer(e.target.files[0]);
-    reader.onload = function () { 
-      console.log(image); 
-      console.log(e.target.files[0]);
-      const ranNum = Math.random();
-      const fileName = `group_id=${groupName}/${ranNum}`
-      s3client
-        .uploadFile(image, fileName)
-        .then((data) => { 
-          setNewImage(data);
-        })
-        .catch((err) => { 
-          setError(err);
-          console.log(err);
-        });
-    }
-  };
   return (
     <section>
       <p className="dashboard-hero__top">{groupName.toUpperCase()}</p>
@@ -327,7 +308,7 @@ function groupDashboard(props) {
                 src={input_camera_img}
                 className="dashboard-group__members__form-input__camera"
                 type="file"
-                onChange={(e) => uploadImageS3(e)}
+                onChange={(e) => setNewImage(e)}
               />
             </section>
           </section>
@@ -355,6 +336,7 @@ function groupDashboard(props) {
           <hr className="dashboard-group__members-header__hr"></hr>
         </section>
       </section>
+      {console.log(newImage)}
     </section>
   );
 }
