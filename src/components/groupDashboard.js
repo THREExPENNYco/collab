@@ -128,17 +128,12 @@ function groupDashboard(props) {
     e.preventDefault();
   const form = new FormData(); 
   form.append("text", newComment); 
-  form.append("image", newImage)
+  form.append("image", newImage);
     axios
       .post(
         `https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${groupIdLocal}/create_comment`,
         {
           form: form
-        }, 
-        { 
-          headers: { 
-            "content-type": "multipart/form-data"
-          }
         }
       )
       .then((res) => {
