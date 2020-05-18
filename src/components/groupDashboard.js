@@ -127,7 +127,7 @@ function groupDashboard(props) {
   const handleCreateComment = (e) => {
     e.preventDefault();
   const form = new FormData(); 
-  form.append("text", fenewComment); 
+  form.append("text", newComment); 
   form.append("image", newImage);
   console.log(form);
     axios
