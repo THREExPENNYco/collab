@@ -173,12 +173,6 @@ function groupDashboard(props) {
         setError(err);
       });
   };
-  const readCommentImageData = (e) => { 
-    const file = new FileReader(); 
-    const image = file.readAsBinaryString(e.target.files[0]);
-    console.log(image);
-    setNewImage(image);
-  }
   return (
     <section>
       <p className="dashboard-hero__top">{groupName.toUpperCase()}</p>
@@ -319,7 +313,7 @@ function groupDashboard(props) {
                 src={input_camera_img}
                 className="dashboard-group__members__form-input__camera"
                 type="file"
-                onChange={(e) => readCommentImageData(e)}
+                onChange={(e) =>setNewImage(e.target.files[0])}
               />
             </section>
           </section>
