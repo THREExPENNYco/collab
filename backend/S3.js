@@ -25,7 +25,9 @@ const upLoadCommentImage = (file) => {
     Body: fs.createReadStream(image),
   };
   s3.upload(config, function (err, data) {
-    if (err) throw new err();
+    if (err) { 
+      console.log(err)
+    }
     return data.Location;
   });
 };

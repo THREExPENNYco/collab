@@ -168,6 +168,11 @@ function groupDashboard(props) {
         setError(err);
       });
   };
+  const readCommentImageData = (e) => { 
+    const file = new FileReader(); 
+    const image = file.readAsBinaryString(e.target.files[0]);
+    setNewImage(image);
+  }
   return (
     <section>
       <p className="dashboard-hero__top">{groupName.toUpperCase()}</p>
