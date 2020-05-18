@@ -171,6 +171,7 @@ function groupDashboard(props) {
   const readCommentImageData = (e) => { 
     const file = new FileReader(); 
     const image = file.readAsBinaryString(e.target.files[0]);
+    console.log(image);
     setNewImage(image);
   }
   return (
