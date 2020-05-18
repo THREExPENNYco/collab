@@ -4,17 +4,6 @@ import input_camera_img from "./componentAssets/input_camera_img.png";
 import S3 from 'react-aws-s3';
 import { Redirect } from "react-router-dom";
 
-const s3Config = { 
-  bucketname: "peerpressurebucket", 
-  dirName: "commentPics", 
-  region: "us-east-1", 
-  accessKeyId: process.env.REACT_APP_AMAZON_ACCESS_KEY, 
-  secretAccessKey: process.env.REACT_APP_AMAZON_SECRET_KEY,
-  s3Url: "https://peerpressurebucket.s3-website-us-east-1.amazonaws.com"
-}; 
-
-const s3client = new S3(s3Config);
-
 function groupDashboard(props) {
   const passedState = props.location.state === "true";
   passedState
@@ -146,7 +135,7 @@ function groupDashboard(props) {
         }, 
         { 
           headers: { 
-            "content-type": "multipart/form"
+            "content-type": "multipart/form-data"
           }
         }
       )
@@ -313,7 +302,7 @@ function groupDashboard(props) {
                 src={input_camera_img}
                 className="dashboard-group__members__form-input__camera"
                 type="file"
-                onChange={(e) =>setNewImage(e.target.files[0])}
+                onChange={(e) => setNewImage(e.target.files[0])}
               />
             </section>
           </section>
