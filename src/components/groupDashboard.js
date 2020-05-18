@@ -143,6 +143,11 @@ function groupDashboard(props) {
         {
           text: newComment,
           image: newImage,
+        }, 
+        { 
+          headers: { 
+            "content-type": "multipart/form"
+          }
         }
       )
       .then((res) => {
