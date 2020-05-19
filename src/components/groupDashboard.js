@@ -168,7 +168,7 @@ function groupDashboard(props) {
       })
       setNewImage(newBlob);
     } 
-    reader.readAsArrayBuffer()(file);
+    reader.readAsArrayBuffer(file);
   }
   return (
     <section>
