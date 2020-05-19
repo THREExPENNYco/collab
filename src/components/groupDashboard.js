@@ -156,6 +156,7 @@ function groupDashboard(props) {
       })
       .catch((err) => {
         setError(err);
+        console.log(err)
       });
   };
   const convertHtmlFile = (file) => { 
@@ -333,7 +334,6 @@ function groupDashboard(props) {
           <hr className="dashboard-group__members-header__hr"></hr>
         </section>
       </section>
-      {console.log(newImage)}
     </section>
   );
 }
