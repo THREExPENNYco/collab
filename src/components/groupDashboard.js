@@ -163,9 +163,12 @@ function groupDashboard(props) {
   const convertHtmlFile = (file) => { 
     const reader = new FileReader();
     reader.onload = function () { 
-      setNewImage(reader.result)
+      const newBlob = new Blob(reader.result, { 
+        type: "application/json"
+      })
+      setNewImage(newBlob);
     } 
-    reader.readAsBinaryString(file);
+    reader.readAsArrayBuffer()(file);
   }
   return (
     <section>
@@ -335,6 +338,7 @@ function groupDashboard(props) {
           <hr className="dashboard-group__members-header__hr"></hr>
         </section>
       </section>
+      {console.log(newBlob)}
     </section>
   );
 }
