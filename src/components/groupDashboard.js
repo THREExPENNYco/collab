@@ -19,7 +19,7 @@ function groupDashboard(props) {
   const [newComment, setNewComment] = useState("");
   const [newImage, setNewImage] = useState({
     newImageUploaded: false, 
-    newImageData: { }
+    newImageData: ""
   });
   const [comments, setComments] = useState([]);
   const [createGoalClicked, setCreateGoalClick] = useState(false);
