@@ -129,7 +129,7 @@ function groupDashboard(props) {
   };
   const handleCreateComment = (e) => {
     e.preventDefault();
-   newImage ? convertHtmlFile(newImage) : null;
+   newImage.newImageUploaded ? convertHtmlFile(newImage) : null;
     axios
       .post(
         `https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${groupIdLocal}/create_comment`,
@@ -172,7 +172,7 @@ function groupDashboard(props) {
       const newBlob = new Blob([reader.result], { 
         type: "	image/png"
       })
-      setNewImage(newBlob);
+      setNewImage({newImageData: newBlob});
     } 
     reader.readAsArrayBuffer(file);
   }
@@ -316,7 +316,7 @@ function groupDashboard(props) {
                 src={input_camera_img}
                 className="dashboard-group__members__form-input__camera"
                 type="file"
-                onChange={(e) => setNewImage(e.target.files[0])}
+                onChange={(e) => setNewImage({newImageData: e.target.files[0], newImageUploaded: true })}
               />
             </section>
           </section>
