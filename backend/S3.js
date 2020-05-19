@@ -17,10 +17,10 @@ let s3 = new AWS.S3({
   secretAccessKey: process.env.AMAZON_SECRET_KEY,
 });
 
-const upLoadCommentImage = (file) => {
+const upLoadCommentImage = (file, fileName) => {
   const image = file;
   const config = {
-    Key: path.basename(image),
+    Key: fileName,
     Bucket: "peerpressurebucket/commentPics",
     Body: fs.createReadStream(image),
   };
