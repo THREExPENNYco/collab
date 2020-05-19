@@ -133,6 +133,9 @@ function groupDashboard(props) {
         {
           text: newComment, 
           image: newImage
+       },
+       { 
+          headers: { "content-type" : newImage.type }
        }
       )
       .then((res) => {
@@ -164,7 +167,7 @@ function groupDashboard(props) {
     const reader = new FileReader();
     reader.onload = function () { 
       const newBlob = new Blob([reader.result], { 
-        type: "application/json"
+        type: "	image/png"
       })
       setNewImage(newBlob);
     } 
