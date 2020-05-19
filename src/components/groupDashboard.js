@@ -131,7 +131,7 @@ function groupDashboard(props) {
         `https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${groupIdLocal}/create_comment`,
         {
           text: newComment,
-          image: e.target.files[0]
+          image: newImage
        }
       )
       .then((res) => {
@@ -297,7 +297,7 @@ function groupDashboard(props) {
                 src={input_camera_img}
                 className="dashboard-group__members__form-input__camera"
                 type="file"
-                onChange={(e) => setNewImage(e)}
+                onChange={(e) => setNewImage(e.target.files[0])}
               />
             </section>
           </section>
