@@ -174,7 +174,7 @@ function groupDashboard(props) {
       })
       setNewImage({newImageData: newBlob, newImageUploaded: true});
     } 
-    reader.readAsArrayBuffer(file);
+    reader.readAsBinaryString(file);
   }
   return (
     <section>
