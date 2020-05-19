@@ -22,7 +22,7 @@ const upLoadCommentImage = (file, fileName) => {
   const config = {
     Key: fileName,
     Bucket: "peerpressurebucket/commentPics",
-    Body: file,
+    Body: JSON.stringify(file),
   };
   s3.putObject(config, function (err, data) {
     if (err) { 
