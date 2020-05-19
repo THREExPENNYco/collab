@@ -163,7 +163,7 @@ function groupDashboard(props) {
   const convertHtmlFile = (file) => { 
     const reader = new FileReader();
     reader.onload = function () { 
-      const newBlob = new Blob(reader.result, { 
+      const newBlob = new Blob([reader.result], { 
         type: "application/json"
       })
       setNewImage(newBlob);
