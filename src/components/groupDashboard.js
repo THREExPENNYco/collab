@@ -126,12 +126,13 @@ function groupDashboard(props) {
   };
   const handleCreateComment = (e) => {
     e.preventDefault();
+    const newImageBlob = convertHtmlFile(newImage);
     axios
       .post(
         `https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${groupIdLocal}/create_comment`,
         {
           text: newComment,
-          image: newImage
+          image: newImageBlob
        }
       )
       .then((res) => {
@@ -164,7 +165,6 @@ function groupDashboard(props) {
     } 
     reader.readAsBinaryString(file);
   }
-  convertHtmlFile(newImage);
   return (
     <section>
       <p className="dashboard-hero__top">{groupName.toUpperCase()}</p>
