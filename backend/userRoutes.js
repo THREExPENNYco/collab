@@ -91,7 +91,7 @@ router.route("/dashboard/:userName").get((req, res) => {
 router.route("/group_dashboard/group_id=:group_id/create_comment").post((req, res) => {
   const text = req.body.text;
   console.log("This is the image", req.body.image);
-  const image = upLoadCommentImage(req.body.image, `${req.session.userId}/${Math.random()}`);
+  const image = upLoadCommentImage(req.body.image, `${req.session.userId}-${Math.random()}`);
   const newComment = new Comment({
     createdBy: { 
       userId: req.session.userId,

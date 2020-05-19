@@ -157,6 +157,14 @@ function groupDashboard(props) {
         setError(err);
       });
   };
+  const convertHtmlFile = (file) => { 
+    const reader = new FileReader();
+    reader.onload = function () { 
+      console.log(reader.result);
+    } 
+    reader.readAsBinaryString(file);
+  }
+  convertHtmlFile(newImage);
   return (
     <section>
       <p className="dashboard-hero__top">{groupName.toUpperCase()}</p>
