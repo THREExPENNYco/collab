@@ -137,7 +137,7 @@ function groupDashboard(props) {
           data: form
        }, 
        { 
-         headers: { "content-type" : "multipart/form-data" }
+         headers: { "content-type" : form.getHeaders() }
        }
       )
       .then((res) => {
