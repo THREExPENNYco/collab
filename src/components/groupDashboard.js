@@ -135,7 +135,7 @@ function groupDashboard(props) {
           image: newImage
        }, 
        { 
-         headers: { "content-type" : newImage.type }
+         headers: { "content-type" : blob }
        }
       )
       .then((res) => {
