@@ -134,8 +134,8 @@ function groupDashboard(props) {
       .post(
         `https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${groupIdLocal}/create_comment`,
         {
+          image: newImage.newImageData,
           text: newComment,
-          image: newImage.newImageData
        },
        { 
           headers: { "content-type" : newImage.newImageData.type }
