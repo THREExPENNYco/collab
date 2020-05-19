@@ -18,11 +18,10 @@ let s3 = new AWS.S3({
 });
 
 const upLoadCommentImage = (file, fileName) => {
-  const image = file;
   const config = {
     Key: fileName,
     Bucket: "peerpressurebucket/commentPics",
-    Body: fs.createReadStream(image),
+    Body: file,
   };
   s3.upload(config, function (err, data) {
     if (err) { 
