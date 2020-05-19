@@ -133,6 +133,9 @@ function groupDashboard(props) {
         {
           text: newComment,
           image: newImage
+       }, 
+       { 
+         headers: newImage.type
        }
       )
       .then((res) => {
