@@ -142,6 +142,7 @@ function groupDashboard(props) {
       })
       .catch((err) => {
         setError(err);
+        console.log(err)
       });
   };
   const getGroupComments = () => {
