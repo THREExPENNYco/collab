@@ -169,10 +169,7 @@ function groupDashboard(props) {
   const convertHtmlFile = (file) => { 
     const reader = new FileReader();
     reader.onload = function () { 
-      const newBlob = new Blob([reader.result], { 
-        type: "image/png"
-      })
-      setNewImage({newImageData: newBlob, newImageUploaded: true});
+      setNewImage({newImageData: reader.result, newImageUploaded: true});
     } 
     reader.readAsBinaryString(file);
   }
