@@ -338,7 +338,7 @@ function groupDashboard(props) {
           <hr className="dashboard-group__members-header__hr"></hr>
         </section>
       </section>
-      {console.log(newBlob)}
+      {console.log(newImage)}
     </section>
   );
 }
