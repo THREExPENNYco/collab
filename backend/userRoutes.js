@@ -92,11 +92,12 @@ router.route("/group_dashboard/group_id=:group_id/create_comment").post((req, re
   const text = req.body.text;
   const reader = new FileReader();
   const imageBlob = []; 
+  const image = "";
   reader.onload = function () { 
     imageBlob = reader.result;
+    image = upLoadCommentImage(imageBlob, `${req.session.userId}-${Math.random()}`);
   }
-  reader.readAsArrayBuffer(req.body.image)
-  const image = upLoadCommentImage(imageBlob, `${req.session.userId}-${Math.random()}`);
+  reader.readAsArrayBuffer(req.body.image);
   const newComment = new Comment({
     createdBy: { 
       userId: req.session.userId,
