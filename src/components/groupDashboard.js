@@ -170,9 +170,9 @@ function groupDashboard(props) {
     const reader = new FileReader();
     reader.onload = function () { 
       const newBlob = new Blob([reader.result], { 
-        type: "	image/png"
+        type: "image/png"
       })
-      setNewImage({newImageData: newBlob});
+      setNewImage({newImageData: newBlob, newImageUploaded: true});
     } 
     reader.readAsArrayBuffer(file);
   }
