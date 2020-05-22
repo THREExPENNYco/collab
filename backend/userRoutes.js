@@ -106,7 +106,7 @@ router.route("/group_dashboard/group_id=:group_id/create_comment").post((req, re
 //     .save()
 //     .then((newComment) => res.status(200).json(newComment))
 //     .catch((err) => res.status(404).json(err));
-// })
+})
 //route to get group comments
 router.route("/group_dashboard/group_id=:group_id/get_comments").get((req, res) => { 
   Comment.find({ group: req.params.group_id })
