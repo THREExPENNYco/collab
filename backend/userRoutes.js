@@ -89,23 +89,22 @@ router.route("/dashboard/:userName").get((req, res) => {
 });
 // route to create the comments
 router.route("/group_dashboard/group_id=:group_id/create_comment").post((req, res) => {
-  res.status(200).send(req.body);
-//   const text = req.body.text;
-//   const buffer = Buffer.from(req.body.image);
-//   const image = upLoadCommentImage(buffer, `${req.session.userId}-${Math.random()}`);
-//   const newComment = new Comment({
-//     createdBy: { 
-//       userId: req.session.userId,
-//       userName: req.session.userName
-//     },
-//     group: req.params.group_id,
-//     image: image,
-//     text: text,
-//   });
-//   newComment
-//     .save()
-//     .then((newComment) => res.status(200).json(newComment))
-//     .catch((err) => res.status(404).json(err));
+  const text = req.body.text;
+  const buffer = Buffer.from(req.body.image);
+  const image = upLoadCommentImage(buffer, `${req.session.userId}-${Math.random()}`);
+  const newComment = new Comment({
+    createdBy: { 
+      userId: req.session.userId,
+      userName: req.session.userName
+    },
+    group: req.params.group_id,
+    image: image,
+    text: text,
+  });
+  newComment
+    .save()
+    .then((newComment) => res.status(200).json(newComment))
+    .catch((err) => res.status(404).json(err));
 })
 //route to get group comments
 router.route("/group_dashboard/group_id=:group_id/get_comments").get((req, res) => { 

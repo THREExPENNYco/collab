@@ -132,8 +132,6 @@ function groupDashboard(props) {
     const formData = new FormData();
     formData.append("image", newImage); 
     formData.append("text", newComment);
-    console.log("this is the form image", formData.get("image")); 
-    console.log("this is the form text", formData.get("text")); 
     newImage.newImageUploaded ? convertHtmlFile(newImage.newImageData) : null;
     axios({ 
       method: "post", 
