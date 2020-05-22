@@ -130,7 +130,7 @@ function groupDashboard(props) {
   const handleCreateComment = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("image", newImage); 
+    formData.append("image", newImage.newImageData); 
     formData.append("text", newComment);
     console.log("this is the form image", formData.get("image")); 
     console.log("this is the form text", formData.get("text")); 
