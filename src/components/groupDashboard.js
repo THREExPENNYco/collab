@@ -19,7 +19,7 @@ function groupDashboard(props) {
   const [newComment, setNewComment] = useState("");
   const [newImage, setNewImage] = useState({
     newImageUploaded: false, 
-    newImageData: ""
+    newImageData: []
   });
   const [comments, setComments] = useState([]);
   const [createGoalClicked, setCreateGoalClick] = useState(false);
@@ -137,7 +137,7 @@ function groupDashboard(props) {
     for (var value of formData.values()) { 
       console.log(value)
     }
-   newImage.newImageUploaded ? convertHtmlFile(newImage.newImageData) : null;
+  //  newImage.newImageUploaded ? convertHtmlFile(newImage.newImageData) : null;
     axios
       .post(
         `https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${groupIdLocal}/create_comment`,
@@ -179,7 +179,7 @@ function groupDashboard(props) {
     reader.onload = function () { 
       setNewImage({newImageData: reader.result, newImageUploaded: true});
     } 
-    reader.readAsBinaryString(file);
+    reader.readAsArrayBuffer(file);
   }
   return (
     <section>
