@@ -134,19 +134,15 @@ function groupDashboard(props) {
     formData.append("text", newComment);
     console.log("this is the form image", formData.get("image")); 
     console.log("this is the form text", formData.get("text")); 
-   newImage.newImageUploaded ? convertHtmlFile(newImage.newImageData) : null;
-    axios
-      .post(
-        `https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${groupIdLocal}/create_comment`,
-        { 
-          data: { 
-            formData
-          }
-       },
-       { 
-          headers: { "content-type" : `multipart/form-data: boundary=${formData._boundary}` }
-       }
-      )
+    newImage.newImageUploaded ? convertHtmlFile(newImage.newImageData) : null;
+    axios({ 
+      method: "post", 
+      url: "/group_dashboard/group_id=${groupIdLocal}/create_comment", 
+      data: formData, 
+      headers: { 
+        "Content-Type" : "multipart/form-data"
+      }
+    })
       .then((res) => {
         if (res.status === 200) {
           setComments(comments.concat(res.data));
@@ -156,7 +152,7 @@ function groupDashboard(props) {
         setError(err);
         console.log(err)
       });
-  };
+  }
   const getGroupComments = () => {
     axios
       .get(
