@@ -7,8 +7,32 @@ const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const path = require("path");
 const { sendInviteEmail } = require("./mailer.js");
-const { upLoadCommentImage } = require("./S3.js");
-const fs = require("fs");
+const AWS = require("aws-sdk");
+const multer = require("multer"); 
+const multerS3 = require("multer-s3");
+
+AWS.config = new AWS.Config();
+
+AWS.config.update({
+  accessKeyId: process.env.AMAZON_ACCESS_KEY,
+  secretAcesssKey: process.env.AMAZON_ACCESS_KEY,
+  region: "us-east-1",
+});
+
+let s3 = new AWS.S3({
+  accessKeyId: process.env.AMAZON_ACCESS_KEY,
+  secretAccessKey: process.env.AMAZON_SECRET_KEY
+});
+
+const upload = multer({ 
+  storage: multerS3({ 
+    s3: s3, 
+    bucket: "peerpressurebucket/commentPics", 
+    key: function (req, file, cb) { 
+      cb(null, Date.now().toString())
+    }
+  })
+})
 
 // Root route for users
 router.route("/").get((req, res) => {
