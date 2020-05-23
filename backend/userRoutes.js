@@ -8,6 +8,7 @@ const bcrypt = require("bcryptjs");
 const path = require("path");
 const { sendInviteEmail } = require("./mailer.js");
 const { upLoadCommentImage } = require("./S3.js");
+const fs = require("fs");
 
 // Root route for users
 router.route("/").get((req, res) => {
@@ -90,6 +91,7 @@ router.route("/dashboard/:userName").get((req, res) => {
 // route to create the comments
 router.route("/group_dashboard/group_id=:group_id/create_comment").post((req, res) => {
   const text = req.body.text;
+  const image = fs.createReadStream();
   const buffer = Buffer.from(req.body.image);
   const image = upLoadCommentImage(buffer, `${req.session.userId}-${Math.random()}`);
   const newComment = new Comment({
