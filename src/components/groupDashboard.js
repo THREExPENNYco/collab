@@ -303,6 +303,7 @@ function groupDashboard(props) {
           <h1 className="dashboard-group__members-header">FEED</h1>
           <hr className="dashboard-group__members-header__hr"></hr>
           <section className="dashboard-group__members-feed__input">
+            <form encType="multipart/form-data" onSubmit={(e) => handleCreateComment(e)}> 
             <section className="dasboard-group__members-feed__input-section">
               <input
                 type="text"
@@ -317,13 +318,13 @@ function groupDashboard(props) {
                 onChange={(e) => setNewImage({newImageData: e.target.files[0], newImageUploaded: true })}
               />
             </section>
-          </section>
-          <input
+              <input
             className="dashboard-group__form-submit-button"
             type="submit"
             value="POST GOALSTEP"
-            onClick={(e) => handleCreateComment(e)}
           />
+          </form>
+          </section>
           <section className="dashboard-group__members-feed__comments">
             {comments.map((comment, index) => (
               <section key={index} className="dashboard-group__members-feed__comments-container">
