@@ -79,8 +79,7 @@ app.get("*", (req, res) => {
 });
 app.post("/group_dashboard/group_id=:group_id/create_comment", upload.single("image"), function(req, res, next) { 
   const text = req.body.text;
-  console.log(req.file);
-  const image = "";
+  const image = req.file ? req.file.location : null;
   const newComment = new Comment({
     createdBy: { 
       userId: req.session.userId,
