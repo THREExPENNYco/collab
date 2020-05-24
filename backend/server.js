@@ -33,9 +33,10 @@ let s3 = new AWS.S3({
 const upload = multer({ 
   storage: multerS3({ 
     s3: s3, 
-    bucket: "peerpressurebucket/commentPics", 
+    bucket: "peerpressurebucket/commentPics",
+    contentType: multerS3.AUTO_CONTENT_TYPE,
     key: function (req, file, cb) { 
-      cb(null, Date.now().toString())
+      cb(null, file.originalname)
     }
   })
 })
@@ -86,7 +87,7 @@ app.post("/group_dashboard/group_id=:group_id/create_comment", upload.single("im
       userName: req.session.userName
     },
     group: req.params.group_id,
-    image: image,
+    image: req.file.location,
     text: text,
   });
   newComment
