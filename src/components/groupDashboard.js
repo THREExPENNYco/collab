@@ -216,7 +216,8 @@ function groupDashboard(props) {
                 value="ADD PEER"
                 onClick={() => handleAddPeerBtn()}
               />
-            )}
+            )}3
+
           </section>
         </section>
         <section className="dasboard-group__goals-section">
@@ -343,6 +344,10 @@ function groupDashboard(props) {
                 >
                   {comment.text}
                 </p>
+                <img 
+                  src={comment.image}
+                  className="dashboard-group__members-feed__comments-container__comment-pic"
+                />
               </section>
             ))}
           </section>
