@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import input_camera_img from "./componentAssets/input_camera_img.png"; 
-import S3 from 'react-aws-s3';
+import input_camera_img from "./componentAssets/input_camera_img.png";
+import S3 from "react-aws-s3";
 import { Redirect } from "react-router-dom";
 
 function groupDashboard(props) {
@@ -18,8 +18,8 @@ function groupDashboard(props) {
   const [newGoalStep, setGoalStep] = useState("");
   const [newComment, setNewComment] = useState("");
   const [newImage, setNewImage] = useState({
-    newImageUploaded: false, 
-    newImageData: []
+    newImageUploaded: false,
+    newImageData: [],
   });
   const [comments, setComments] = useState([]);
   const [createGoalClicked, setCreateGoalClick] = useState(false);
@@ -130,16 +130,16 @@ function groupDashboard(props) {
   const handleCreateComment = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("image", newImage); 
+    formData.append("image", newImage);
     formData.append("text", newComment);
     newImage.newImageUploaded ? convertHtmlFile(newImage.newImageData) : null;
-    axios({ 
-      method: "post", 
-      url: "/group_dashboard/group_id=${groupIdLocal}/create_comment", 
-      data: formData, 
-      headers: { 
-        "Content-Type" : "multipart/form-data"
-      }
+    axios({
+      method: "post",
+      url: "/group_dashboard/group_id=${groupIdLocal}/create_comment",
+      data: formData,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
     })
       .then((res) => {
         if (res.status === 200) {
@@ -148,9 +148,9 @@ function groupDashboard(props) {
       })
       .catch((err) => {
         setError(err);
-        console.log(err)
+        console.log(err);
       });
-  }
+  };
   const getGroupComments = () => {
     axios
       .get(
@@ -163,17 +163,17 @@ function groupDashboard(props) {
       })
       .catch((err) => {
         setError(err);
-        console.log(err)
+        console.log(err);
       });
   };
   const convertHtmlFile = (file) => {
     const reader = new FileReader();
     reader.onload = function () {
       const image = new Blob([reader.result], { type: "image/*" });
-      setNewImage({newImageData: image, newImageUploaded: true});
-    } 
+      setNewImage({ newImageData: image, newImageUploaded: true });
+    };
     reader.readAsArrayBuffer(file);
-  }
+  };
   return (
     <section>
       <p className="dashboard-hero__top">{groupName.toUpperCase()}</p>
@@ -303,35 +303,52 @@ function groupDashboard(props) {
           <h1 className="dashboard-group__members-header">FEED</h1>
           <hr className="dashboard-group__members-header__hr"></hr>
           <section className="dashboard-group__members-feed__input">
-            <form encType="multipart/form-data" onSubmit={(e) => handleCreateComment(e)}> 
-            <section className="dasboard-group__members-feed__input-section">
+            <form
+              encType="multipart/form-data"
+              onSubmit={(e) => handleCreateComment(e)}
+            >
+              <section className="dasboard-group__members-feed__input-section">
+                <input
+                  type="text"
+                  className="dashboard-group__form-input"
+                  placeholder="You Work On Your Goal Today?"
+                  onChange={(e) => setNewComment(e.target.value)}
+                />
+                <input
+                  src={input_camera_img}
+                  className="dashboard-group__members__form-input__camera"
+                  type="file"
+                  onChange={(e) =>
+                    setNewImage({
+                      newImageData: e.target.files[0],
+                      newImageUploaded: true,
+                    })
+                  }
+                />
+              </section>
               <input
-                type="text"
-                className="dashboard-group__form-input"
-                placeholder="You Work On Your Goal Today?"
-                onChange={(e) => setNewComment(e.target.value)}
+                className="dashboard-group__form-submit-button"
+                type="submit"
+                value="POST GOALSTEP"
               />
-              <input
-                src={input_camera_img}
-                className="dashboard-group__members__form-input__camera"
-                type="file"
-                onChange={(e) => setNewImage({newImageData: e.target.files[0], newImageUploaded: true })}
-              />
-            </section>
-              <input
-            className="dashboard-group__form-submit-button"
-            type="submit"
-            value="POST GOALSTEP"
-          />
-          </form>
+            </form>
           </section>
           <section className="dashboard-group__members-feed__comments">
             {comments.map((comment, index) => (
-              <section key={index} className="dashboard-group__members-feed__comments-container">
-                <p key={index} className="dashboard-group__members-feed__comments-container__username">
+              <section
+                key={index}
+                className="dashboard-group__members-feed__comments-container"
+              >
+                <p
+                  key={index}
+                  className="dashboard-group__members-feed__comments-container__username"
+                >
                   {comment.createdBy.userName}
                 </p>
-                <p key={index} className="dashboard-group__members-feed__comments-container__comment">
+                <p
+                  key={index}
+                  className="dashboard-group__members-feed__comments-container__comment"
+                >
                   {comment.text}
                 </p>
               </section>
