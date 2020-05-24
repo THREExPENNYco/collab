@@ -89,7 +89,7 @@ router.route("/dashboard/:userName").get((req, res) => {
 // route to create the comments
 router.route("/group_dashboard/group_id=:group_id/create_comment").post((req, res) => {
   const text = req.body.text;
-  console.log(req.body.image);
+  console.log(req.file)
   const image = upLoadCommentImage(req.body.image, `${req.session.userId}-${Math.random()}`);
   const newComment = new Comment({
     createdBy: { 
