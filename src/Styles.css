@@ -510,6 +510,7 @@ input:-webkit-autofill:active {
   max-height: 50px; 
   max-width: 50px; 
   border-radius: 15px; 
+  overflow: hidden;
 }
 
 .dashboard-group__members-feed__comments-container__avatar-container img { 
