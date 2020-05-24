@@ -76,7 +76,7 @@ app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "dist", "index.html"));
 });
 app.post("/group_dashboard/group_id=:group_id/create_comment", upload.single("image"), function(req, res, next) { 
-  next();
+  console.log(req.file)
 })
 app.listen(port, () => {
   console.log(`You\'re listening on: ${port}`);
