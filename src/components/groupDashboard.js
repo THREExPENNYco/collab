@@ -347,6 +347,12 @@ function groupDashboard(props) {
                 >
                   {comment.createdBy.userName}
                 </p>
+              <p 
+                key={index}
+                className="dashboard-group__members-feed__comments-container__createdat"
+              > 
+                {comment.createdAt}
+              </p>
               </section>
                 <p
                   key={index}

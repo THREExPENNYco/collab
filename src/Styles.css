@@ -519,3 +519,10 @@ input:-webkit-autofill:active {
   width: 100%; 
   justify-content: left;
 }
+
+.dashboard-group__members-feed__comments-container__createdat { 
+  font-size: calc(0.01vw + 1.5vh + 0.2vmin);
+  padding-left: 5px; 
+  color: gray;
+  opacity: 80%;
+}
