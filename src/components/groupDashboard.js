@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import input_camera_img from "./componentAssets/input_camera_img.png";
+import default_avatar_img from "./componentAssets/default_avatar_image.png";
 import S3 from "react-aws-s3";
 import { Redirect } from "react-router-dom";
 
@@ -327,10 +328,20 @@ function groupDashboard(props) {
           </section>
           <section className="dashboard-group__members-feed__comments">
             {comments.map((comment, index) => (
-              <section
+              <section 
                 key={index}
                 className="dashboard-group__members-feed__comments-container"
               >
+              <section 
+                key={index}
+                className="dashboard-group__members-feed__comments-continer__avatar-container" 
+              > 
+              <img 
+                className="dashboard-group__members-feed__comments-container__avatar"
+                key={index} 
+                src={default_avatar_img}
+              />
+              </section>
                 <p
                   key={index}
                   className="dashboard-group__members-feed__comments-container__username"
@@ -345,7 +356,8 @@ function groupDashboard(props) {
                 </p>
                 { comment.image ? 
                 <section className="dashboard-group__members-feed__comments-container__comment-pic__container">
-                <img    
+                <img  
+                  key={index} 
                   src={comment.image.toString()}
                   className="dashboard-group__members-feed__comments-container__comment-pic"
                 />

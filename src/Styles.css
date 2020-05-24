@@ -502,3 +502,9 @@ input:-webkit-autofill:active {
   margin-right: auto; 
   margin-left: auto;
 }
+
+.dashboard-group__members-feed__comments-container__avatar { 
+  max-height: 50px; 
+  max-width: 550px; 
+  border-radius: 15px; 
+}
