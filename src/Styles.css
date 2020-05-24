@@ -483,13 +483,13 @@ input:-webkit-autofill:active {
 
 .dashboard-group__members-feed__comments-container__comment { 
   text-align: left;
+  margin-top: 0px;
+  padding-left: 20px;
   font-size: calc(0.01vw + 1.3vh + 0.2vmin);
 }
 
 .dashboard-group__members-feed__comments-container__username { 
   text-align: left;
-  margin-top: 0px;
-  padding-left: 20px;
   font-size: calc(0.01vw + 1.5vh + 0.2vmin);
 }
 .dashboard-group__members-feed__comments-container__comment-pic__container { 
@@ -512,7 +512,7 @@ input:-webkit-autofill:active {
   border-radius: 15px; 
 }
 
-.dashboard-group__members-feed__comments-container__avatar img { 
+.dashboard-group__members-feed__comments-container__avatar-container img { 
   border-radius: 5px;
 }
 
