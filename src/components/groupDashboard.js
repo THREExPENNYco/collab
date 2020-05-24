@@ -327,7 +327,7 @@ function groupDashboard(props) {
             </form>
           </section>
           <section className="dashboard-group__members-feed__comments">
-            {comments.map((comment, index) => (
+            {comments.reverse().map((comment, index) => (
               <section 
                 key={index}
                 className="dashboard-group__members-feed__comments-container"
