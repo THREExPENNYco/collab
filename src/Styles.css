@@ -511,7 +511,8 @@ input:-webkit-autofill:active {
 }
 
 .dashboard-group__members-feed__comments-continer__avatar-container{ 
-  display: inline;
-  max-height: 10%; 
-  max-width: 10%; 
+  display: inline-flex;
+  height: 100%; 
+  width: 100%; 
+  justify-content: left;
 }
