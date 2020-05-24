@@ -341,13 +341,13 @@ function groupDashboard(props) {
                 key={index} 
                 src={default_avatar_img}
               />
-              </section>
-                <p
+               <p
                   key={index}
                   className="dashboard-group__members-feed__comments-container__username"
                 >
                   {comment.createdBy.userName}
                 </p>
+              </section>
                 <p
                   key={index}
                   className="dashboard-group__members-feed__comments-container__comment"
