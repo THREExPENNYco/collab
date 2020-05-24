@@ -345,7 +345,7 @@ function groupDashboard(props) {
                   key={index}
                   className="dashboard-group__members-feed__comments-container__username"
                 >
-                  {comment.createdBy.userName}
+                  {new Date(comment.createdBy.userName).toLocaleDateString()}
                 </p>
               <p 
                 key={index}
