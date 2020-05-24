@@ -513,10 +513,6 @@ input:-webkit-autofill:active {
   overflow: hidden;
 }
 
-.dashboard-group__members-feed__comments-container__avatar-container img { 
-  border-radius: 5px;
-}
-
 .dashboard-group__members-feed__comments-continer__avatar-container{ 
   display: inline-flex;
   height: 100%; 
