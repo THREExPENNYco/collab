@@ -216,8 +216,7 @@ function groupDashboard(props) {
                 value="ADD PEER"
                 onClick={() => handleAddPeerBtn()}
               />
-            )}3
-
+            )}
           </section>
         </section>
         <section className="dasboard-group__goals-section">
