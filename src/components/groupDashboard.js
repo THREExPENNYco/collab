@@ -344,8 +344,8 @@ function groupDashboard(props) {
                 >
                   {comment.text}
                 </p>
-                <img 
-                  src={comment.image}
+                <img    
+                  src={comment.image.toString()}
                   className="dashboard-group__members-feed__comments-container__comment-pic"
                 />
               </section>
