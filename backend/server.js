@@ -7,6 +7,7 @@ const FileStore = require("session-file-store")(sessions);
 const AWS = require("aws-sdk");
 const multer = require("multer"); 
 const multerS3 = require("multer-s3");
+const { Comment } = require("./models/Comment.js");
 
 require("dotenv").config({ path: "../.env" });
 
@@ -78,6 +79,7 @@ app.get("*", (req, res) => {
 app.post("/group_dashboard/group_id=:group_id/create_comment", upload.single("image"), function(req, res, next) { 
   const text = req.body.text;
   console.log(req.file);
+  const image = ""; 
   const newComment = new Comment({
     createdBy: { 
       userId: req.session.userId,

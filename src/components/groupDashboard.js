@@ -135,7 +135,7 @@ function groupDashboard(props) {
     newImage.newImageUploaded ? convertHtmlFile(newImage.newImageData) : null;
     axios({
       method: "post",
-      url: "/group_dashboard/group_id=${groupIdLocal}/create_comment",
+      url: `/group_dashboard/group_id=${groupIdLocal}/create_comment`,
       data: formData,
       headers: {
         "Content-Type": "multipart/form-data",
