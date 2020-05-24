@@ -132,7 +132,7 @@ function groupDashboard(props) {
     const formData = new FormData();
     formData.append("image", newImage);
     formData.append("text", newComment);
-    newImage.newImageUploaded ? convertHtmlFile(newImage.newImageData) : null;
+    // newImage.newImageUploaded ? convertHtmlFile(newImage.newImageData) : null;
     axios({
       method: "post",
       url: `/group_dashboard/group_id=${groupIdLocal}/create_comment`,
