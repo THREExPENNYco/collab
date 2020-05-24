@@ -76,7 +76,21 @@ app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "dist", "index.html"));
 });
 app.post("/group_dashboard/group_id=:group_id/create_comment", upload.single("image"), function(req, res, next) { 
-  console.log(req.file)
+  const text = req.body.text;
+  console.log(req.file);
+  const newComment = new Comment({
+    createdBy: { 
+      userId: req.session.userId,
+      userName: req.session.userName
+    },
+    group: req.params.group_id,
+    image: image,
+    text: text,
+  });
+  newComment
+    .save()
+    .then((newComment) => res.status(200).json(newComment))
+    .catch((err) => res.status(404).json(err));
 })
 app.listen(port, () => {
   console.log(`You\'re listening on: ${port}`);
