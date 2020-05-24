@@ -37,6 +37,11 @@ const userSchema = new Schema(
         message: 'Please use a valid email address'
       }
     },
+    image: { 
+      type: String, 
+      required: false, 
+      trim: true
+    },
     groups: {
       type: [mongoose.Types.ObjectId],
       ref: 'Groups',

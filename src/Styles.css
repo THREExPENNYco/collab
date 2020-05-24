@@ -491,8 +491,10 @@ input:-webkit-autofill:active {
   font-size: calc(0.01vw + 1.5vh + 0.2vmin);
 }
 .dashboard-group__members-feed__comments-container__comment-pic__container { 
-  max-width: 75%; 
-  max-height: 75%;
+  max-width: 85%; 
+  max-height: 85%;
+  margin-left: auto; 
+  margin-right: auto;
 }
 .dashboard-group__members-feed__comments-container__comment-pic {
   max-width: 100%; 
