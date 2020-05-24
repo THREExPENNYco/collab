@@ -345,10 +345,13 @@ function groupDashboard(props) {
                   {comment.text}
                 </p>
                 { comment.image ? 
+                <section className="dashboard-group__members-feed__comments-container__comment-pic__container">
                 <img    
                   src={comment.image.toString()}
                   className="dashboard-group__members-feed__comments-container__comment-pic"
-                /> : null
+                />
+                  </section>
+                 : null
                 } 
               </section>
             ))}

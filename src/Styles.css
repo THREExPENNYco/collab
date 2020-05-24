@@ -490,3 +490,11 @@ input:-webkit-autofill:active {
   text-align: left;
   font-size: calc(0.01vw + 1.5vh + 0.2vmin);
 }
+.dashboard-group__members-feed__comments-container__comment-pic__container { 
+  max-width: 75%; 
+  max-height: 75%;
+}
+.dashboard-group__members-feed__comments-container__comment-pic {
+  max-width: 100%; 
+  max-height: 100%;
+}
