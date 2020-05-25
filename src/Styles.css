@@ -467,7 +467,11 @@ input:-webkit-autofill:active {
   width: 25px;
   padding-left: 5px;
   padding-top: 10px;
-  background: url(https://peerpressurebucket.s3.amazonaws.com/input_camera_img.png);
+}
+
+.dashboard-group__members__form-input__choose-file { 
+  z-index: 2;
+  opacity: 0;
 }
 
 .dasboard-group__members-feed__input-section { 
