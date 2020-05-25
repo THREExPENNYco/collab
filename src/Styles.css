@@ -465,13 +465,15 @@ input:-webkit-autofill:active {
 .dashboard-group__members__form-input__camera { 
   height: 23px;
   width: 25px;
-  padding-left: 5px;
+  padding-left: 8px;
   padding-top: 10px;
 }
 
 .dashboard-group__members__form-input__choose-file { 
   z-index: 2;
-  opacity: 0;
+  opacity: 1;
+  height: 25px; 
+  width: 5px;
 }
 
 .dasboard-group__members-feed__input-section { 
