@@ -471,7 +471,7 @@ input:-webkit-autofill:active {
 
 .dashboard-group__members__form-input__choose-file { 
   z-index: 2;
-  opacity: 2;
+  opacity: 0;
   height: 19px;
   width: 0px;
   padding-top: 15px;
