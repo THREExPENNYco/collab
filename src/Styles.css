@@ -469,11 +469,6 @@ input:-webkit-autofill:active {
   padding-top: 10px;
 }
 
-.dashboard-group__members__form-input__camera img:hover { 
-  opacity: 50%; 
-  cursor: pointer;
-}
-
 .dashboard-group__members__form-input__choose-file { 
   z-index: 2;
   opacity: 0;
@@ -487,6 +482,11 @@ input:-webkit-autofill:active {
   align-items: center;
   display: inline-flex;
   width: 100%; 
+}
+
+.dasboard-group__members-feed__input-section img:hover { 
+  opacity: 50%; 
+  cursor: pointer;
 }
 
 .dashboard-group__members-feed__comments-container { 
