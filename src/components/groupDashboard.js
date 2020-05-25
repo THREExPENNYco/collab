@@ -311,7 +311,6 @@ function groupDashboard(props) {
                   src={input_camera_img}
                   className="dashboard-group__members__form-input__camera"
                   type="file"
-                  value=""
                   onChange={(e) =>
                     setNewImage({
                       newImageData: e.target.files[0],
