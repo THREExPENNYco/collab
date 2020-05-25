@@ -311,8 +311,7 @@ function groupDashboard(props) {
                   src={input_camera_img}
                   className="dashboard-group__members__form-input__camera" 
                 > 
-                </button> 
-                <input
+                 <input
                   src={input_camera_img}
                   className="dashboard-group__members__form-input__camera"
                   type="file"
@@ -323,6 +322,7 @@ function groupDashboard(props) {
                     })
                   }
                 />
+                </button> 
               </section>
               <input
                 className="dashboard-group__form-submit-button"
