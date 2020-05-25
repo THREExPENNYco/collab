@@ -489,6 +489,11 @@ input:-webkit-autofill:active {
   cursor: pointer;
 }
 
+.dashboard-group__members-feed__input__buttons { 
+  height: 32px; 
+  width: 32px;
+}
+
 .dashboard-group__members-feed__comments-container { 
     border: 0.05px solid rgb(167, 167, 167, 0.5);
     margin-top: 25px;
