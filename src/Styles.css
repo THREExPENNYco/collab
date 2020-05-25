@@ -462,12 +462,12 @@ input:-webkit-autofill:active {
   display: inline;
 }
 
-.dashboard-group__members__form-input__camera [type=file] { 
+.dashboard-group__members__form-input__camera { 
   height: 23px;
   width: 25px;
   padding-left: 5px;
   padding-top: 10px;
-  background-image: url(https://peerpressurebucket.s3.amazonaws.com/input_camera_img.png);
+  background: url(https://peerpressurebucket.s3.amazonaws.com/input_camera_img.png);
 }
 
 .dasboard-group__members-feed__input-section { 
