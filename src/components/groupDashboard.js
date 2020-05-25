@@ -301,18 +301,17 @@ function groupDashboard(props) {
               onSubmit={(e) => handleCreateComment(e)}
             >
               <section className="dasboard-group__members-feed__input-section">
-              <section className="dashboard-group__members-feed__input__buttons">
                 <input
                   type="text"
                   className="dashboard-group__form-input"
                   placeholder="You Work On Your Goal Today?"
                   onChange={(e) => setNewComment(e.target.value)}
                 />
+                <section className="dashboard-group__members-feed__input__buttons">
                 <img  
                   src={input_camera_img}
                   className="dashboard-group__members__form-input__camera" 
                 />
-              </section>
                 <input
                   src={input_camera_img}
                   className="dashboard-group__members__form-input__choose-file"
@@ -324,6 +323,7 @@ function groupDashboard(props) {
                     })
                   }
                 />
+                </section>
               </section>
               <input
                 className="dashboard-group__form-submit-button"
