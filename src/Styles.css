@@ -471,11 +471,13 @@ input:-webkit-autofill:active {
 
 .dashboard-group__members__form-input__choose-file { 
   z-index: 2;
-  opacity: 0;
-  height: 33px;
+  opacity: 2;
+  height: 19px;
   width: 0px;
-  margin-left: -27px;
-  padding-right: 27px;
+  padding-top: 15px;
+  padding-bottom: -15px;
+  margin-left: -30px;
+  padding-right: 28px;
 }
 
 .dasboard-group__members-feed__input-section { 
