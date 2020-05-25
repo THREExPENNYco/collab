@@ -313,7 +313,7 @@ body {
   grid-column-start: 2;
   grid-column-end: 4;
   grid-row-start: 1;
-  grid-row-end: 3;
+  grid-row-end: fit-content;
   border: 0.05px solid rgb(167, 167, 167, 0.5);
 }
 
