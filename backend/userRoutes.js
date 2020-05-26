@@ -106,7 +106,7 @@ router.route("/dashboard/:userName").get((req, res) => {
 // })
 //route to get group comments
 router.route("/group_dashboard/group_id=:group_id/get_comments").get((req, res) => { 
-  Comment.find({ group: req.params.group_id })
+  Comment.find({ group: req.params.group_id }).sort({ createdAt: "asc"})
     .then((comment) => { 
       res.status(200).json(comment);
     })

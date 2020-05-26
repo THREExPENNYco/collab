@@ -420,7 +420,7 @@ input:-webkit-autofill:active {
   background-color: red;
 }
 
-.dashboard-group__goal-form__input { 
+.dashboard-group__goal-form__input {
   margin-top: 10px;
   width: 75%;
   display: inherit;
@@ -429,9 +429,9 @@ input:-webkit-autofill:active {
   text-align: center;
 }
 
-.form-lablel__add-peer-form { 
-  margin-right: auto; 
-  margin-left: auto;  
+.form-lablel__add-peer-form {
+  margin-right: auto;
+  margin-left: auto;
   margin-top: 10px;
   width: 50%;
   margin-left: auto;
@@ -439,13 +439,13 @@ input:-webkit-autofill:active {
   text-align: center;
 }
 
-.dashboard-group__advisory { 
-  text-align: center; 
+.dashboard-group__advisory {
+  text-align: center;
   font-size: calc(0.09vw + 0.9vh + 0.5vmin);
   color: red;
 }
 
-.dashboard-group__goal-form__input-goal { 
+.dashboard-group__goal-form__input-goal {
   margin-top: 10px;
   width: 75%;
   display: inherit;
@@ -454,22 +454,22 @@ input:-webkit-autofill:active {
   text-align: center;
 }
 
-.dashboard-group__goals-username { 
+.dashboard-group__goals-username {
   text-align: center;
 }
 
-.dashboard-group__members-feed__input { 
+.dashboard-group__members-feed__input {
   display: inline;
 }
 
-.dashboard-group__members__form-input__camera { 
+.dashboard-group__members__form-input__camera {
   height: 23px;
   width: 25px;
   padding-left: 8px;
   padding-top: 10px;
 }
 
-.dashboard-group__members__form-input__choose-file { 
+.dashboard-group__members__form-input__choose-file {
   z-index: 2;
   opacity: 0;
   height: 19px;
@@ -480,72 +480,72 @@ input:-webkit-autofill:active {
   padding-right: 28px;
 }
 
-.dasboard-group__members-feed__input-section { 
+.dasboard-group__members-feed__input-section {
   align-items: center;
   display: inline-flex;
-  width: 100%; 
+  width: 100%;
 }
 
-.dasboard-group__members-feed__input-section section:hover { 
-  opacity: 50%; 
+.dasboard-group__members-feed__input-section section:hover {
+  opacity: 50%;
   cursor: pointer;
 }
 
-.dashboard-group__members-feed__input__buttons { 
-  height: 32px; 
+.dashboard-group__members-feed__input__buttons {
+  height: 32px;
   width: 32px;
 }
 
-.dashboard-group__members-feed__comments-container { 
-    border: 0.05px solid rgb(167, 167, 167, 0.5);
-    margin-top: 25px;
-    padding: 10px;
-    text-align: center;
+.dashboard-group__members-feed__comments-container {
+  border: 0.05px solid rgb(167, 167, 167, 0.5);
+  margin-top: 25px;
+  padding: 10px;
+  text-align: center;
 }
 
-.dashboard-group__members-feed__comments-container__comment { 
+.dashboard-group__members-feed__comments-container__comment {
   text-align: left;
   margin-top: 0px;
   padding-left: 20px;
   font-size: calc(0.01vw + 1.3vh + 0.2vmin);
 }
 
-.dashboard-group__members-feed__comments-container__username { 
+.dashboard-group__members-feed__comments-container__username {
   text-align: left;
   font-size: calc(0.01vw + 1.5vh + 0.2vmin);
 }
-.dashboard-group__members-feed__comments-container__comment-pic__container { 
-  max-width: 85%; 
+.dashboard-group__members-feed__comments-container__comment-pic__container {
+  max-width: 85%;
   max-height: 85%;
-  margin-left: auto; 
+  margin-left: auto;
   margin-right: auto;
 }
 .dashboard-group__members-feed__comments-container__comment-pic {
-  max-width: 100%; 
-  max-height: 100%; 
-  margin-right: auto; 
+  max-width: 100%;
+  max-height: 100%;
+  margin-right: auto;
   margin-left: auto;
   border-radius: 8px;
 }
 
-.dashboard-group__members-feed__comments-container__avatar { 
-  max-height: 50px; 
-  max-width: 50px; 
-  border-radius: 15px; 
+.dashboard-group__members-feed__comments-container__avatar {
+  max-height: 50px;
+  max-width: 50px;
+  border-radius: 15px;
   overflow: hidden;
 }
 
-.dashboard-group__members-feed__comments-continer__avatar-container{ 
+.dashboard-group__members-feed__comments-continer__avatar-container {
   display: inline-flex;
-  height: 100%; 
-  width: 100%; 
+  height: 100%;
+  width: 100%;
   justify-content: left;
 }
 
-.dashboard-group__members-feed__comments-container__createdat { 
+.dashboard-group__members-feed__comments-container__createdat {
   font-size: calc(0.01vw + 1vh + 0.2vmin);
   padding-left: 5px;
-  padding-top: 8.1px; 
+  padding-top: 8.1px;
   color: gray;
   opacity: 80%;
 }
