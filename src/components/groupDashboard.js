@@ -328,7 +328,7 @@ function groupDashboard(props) {
               <input
                 className="dashboard-group__form-submit-button"
                 type="submit"
-                value="POST GOALSTEP"
+                value="POST"
               />
             </form>
           </section>
