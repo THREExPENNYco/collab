@@ -6,7 +6,7 @@ import axios from "axios";
 function Dashboard(props) {
   const passedProps = props.location.state === 'true';
   passedProps ? localStorage.setItem('currUser', props.location.state.currUser) : null; 
-  const currUser = passedProps ? props.location.state.curUser : localStorage.getItem('currUser');
+  const currUser = passedProps ? props.location.state.currUser : localStorage.getItem('currUser');
   const [currUserData, setCurrUserData] = useState("");
   const [groups, setGroups] = useState([]);
   const [userId, setUserId] = useState("");
