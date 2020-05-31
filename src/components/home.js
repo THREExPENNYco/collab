@@ -4,11 +4,13 @@ import Info from "./info.js";
 import { Redirect } from "react-router-dom";
 
 function Home() {
-  {
+  { 
+    const currUser = "";
     localStorage.getItem("currUser") ? (
+      currUser = localStorage.getItem("currUser"),
       <Redirect
         to={{
-          pathname: `/dashboard/${localStorage.getItem("currUser")}`,
+          pathname: `/dashboard/${curruser}`,
         }}
       />
     ) : null;
