@@ -10,7 +10,7 @@ function Home() {
       currUser = localStorage.getItem("currUser"),
       <Redirect
         to={{
-          pathname: `/dashboard/${curruser}`,
+          pathname: `/dashboard/${currUser}`,
         }}
       />
     ) : null;
