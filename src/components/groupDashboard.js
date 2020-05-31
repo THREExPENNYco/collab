@@ -7,7 +7,6 @@ import { Redirect } from "react-router-dom";
 
 function groupDashboard(props) {
   const passedState = props.location.state ? true : false;
-  console.log(props);
   passedState
     ? localStorage.setItem("groupId", props.location.state.groupId)
     : null;
@@ -150,7 +149,6 @@ function groupDashboard(props) {
       })
       .catch((err) => {
         setError(err);
-        console.log(err);
       });
   };
   const getGroupComments = () => {
@@ -165,7 +163,6 @@ function groupDashboard(props) {
       })
       .catch((err) => {
         setError(err);
-        console.log(err);
       });
   };
   return (

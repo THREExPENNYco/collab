@@ -19,7 +19,6 @@ function Dashboard(props) {
       })
       .then((res) => {
         if (res.status === 200) {
-          console.log(res.data); 
           setCurrUserData(res.data);
           getGroups(res.data._id);
           setUserId(res.data._id);
@@ -93,7 +92,6 @@ function Dashboard(props) {
           </section>
         </section>
       </section>
-      {console.log(currUser)}
       {currUser ? null : <Redirect to="/login" />}
       {createGroup ? (
         <Redirect
