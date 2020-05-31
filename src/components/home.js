@@ -1,6 +1,7 @@
 import React from "react";
 import Hero from "./hero.js";
 import Info from "./info.js";
+import { Redirect } from "react-router-dom";
 
 function Home() {
   {
