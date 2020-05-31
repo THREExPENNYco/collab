@@ -5,9 +5,7 @@ import { Redirect } from "react-router-dom";
 
 function Home() {
   { 
-    const currUser = "";
-    localStorage.getItem("currUser") ? (
-      currUser = localStorage.getItem("currUser"),
+    localStorage.getItem("currUser")  ? (
       <Redirect
         to={{
           pathname: `/dashboard/${currUser}`,
