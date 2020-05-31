@@ -93,6 +93,7 @@ function Dashboard(props) {
           </section>
         </section>
       </section>
+      {console.log(currUser)}
       {currUser ? null : <Redirect to="/login" />}
       {createGroup ? (
         <Redirect
