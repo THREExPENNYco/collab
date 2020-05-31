@@ -5,9 +5,6 @@ import axios from "axios";
 
 function Dashboard(props) {
   const passedProps = props.location.state ? true : false;
-  console.log("this is props on load", props)
-  console.log("this is props currUser on load", props.location.state.currUser)
-  console.log("This is passsed props", passedProps)
   passedProps ? localStorage.setItem('currUser', props.location.state.currUser) : null; 
   const currUser = passedProps ? props.location.state.currUser : localStorage.getItem('currUser');
   const [currUserData, setCurrUserData] = useState("");
