@@ -4,7 +4,7 @@ import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
 
 function Dashboard(props) {
-  const passedProps = props.location.state === true ? true : false;
+  const passedProps = props.location.state ? true : false;
   console.log("this is props on load", props)
   console.log("this is props currUser on load", props.location.state.currUser)
   console.log("This is passsed props", passedProps)
