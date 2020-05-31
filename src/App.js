@@ -16,15 +16,6 @@ import Styles from "./Styles.css";
 // Main component for the app
 class App extends Component {
   render() {
-    {
-      localStorage.getItem("currUser") ? (
-        <Redirect
-          to={{
-            pathname: `/dashboard/${localStorage.getItem("currUser")}`
-          }}
-        />
-      ) : null;
-    }
     return (
       <Router>
         <div className="nav-bar">

@@ -1,14 +1,23 @@
-import React from 'react'
-import Hero from './hero.js'
-import Info from './info.js'
+import React from "react";
+import Hero from "./hero.js";
+import Info from "./info.js";
 
-function Home () {
+function Home() {
+  {
+    localStorage.getItem("currUser") ? (
+      <Redirect
+        to={{
+          pathname: `/dashboard/${localStorage.getItem("currUser")}`,
+        }}
+      />
+    ) : null;
+  }
   return (
     <section className="main">
       <Hero />
       <Info />
     </section>
-  )
+  );
 }
 
-export default Home
+export default Home;
