@@ -11,6 +11,7 @@ import {
   Link,
   useHistory,
 } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 import Styles from "./Styles.css";
 // Main component for the app
 class App extends Component {
