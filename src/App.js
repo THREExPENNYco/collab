@@ -3,13 +3,27 @@ import Home from "./components/home.js";
 import LoginForm from "./components/loginForm.js";
 import Dashboard from "./components/dashboard.js";
 import SignUpForm from "./components/signUpForm.js";
-import NewGroupForm from "./components/newGroupForm.js"
-import GroupDashboard from "./components/groupDashboard.js"
-import { HashRouter as Router, Route, Link, useHistory } from "react-router-dom";
+import NewGroupForm from "./components/newGroupForm.js";
+import GroupDashboard from "./components/groupDashboard.js";
+import {
+  HashRouter as Router,
+  Route,
+  Link,
+  useHistory,
+} from "react-router-dom";
 import Styles from "./Styles.css";
 // Main component for the app
 class App extends Component {
   render() {
+    {
+      localStorage.getItem("currUser") ? (
+        <Redirect
+          to={{
+            pathname: `/dashboard/${localStorage.getItem("currUser")}`
+          }}
+        />
+      ) : null;
+    }
     return (
       <Router>
         <div className="nav-bar">
@@ -30,7 +44,7 @@ class App extends Component {
         <Route path="/signup" component={SignUpForm} />
         <Route path="/dashboard/:userName" component={Dashboard} />
         <Route path="/user_id=:user_id/create_group" component={NewGroupForm} />
-        <Route path="/group_dashboard/:group_id" component={GroupDashboard} /> 
+        <Route path="/group_dashboard/:group_id" component={GroupDashboard} />
       </Router>
     );
   }
