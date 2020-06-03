@@ -19,6 +19,7 @@ function App() {
   const handleLogout = () => {
     localStorage.removeItem("currUser");
     localStorage.removeItem("groupId");
+    setLoginSwitch(false)
   };
   const handleLogin = () => {
     localStorage.getItem("currUser") ? setLoginSwitch(true) : setLoginSwitch(false);
