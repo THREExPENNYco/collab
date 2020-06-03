@@ -5,7 +5,7 @@ import { Redirect } from "react-router-dom";
 
 function Home() {
   const [currUser, setCurrUser] = useState(null);
-  localStorage.getItem("currUser") ? currUser = setCurrUser(localStorage.getItem("currUser")) : setCurrUser(false);
+  localStorage.getItem("currUser") ? setCurrUser(localStorage.getItem("currUser")) : setCurrUser(false);
   console.log(localStorage.getItem("currUser"));
   return (
     <section className="main">
