@@ -15,14 +15,14 @@ import Styles from "./Styles.css";
 // Main component for the app
 function App() {
   const { loggedIn } = LoginForm();
-  const [ loginSwitch, setLoginSwitch ] = useState(false);
+  const [loginSwitch, setLoginSwitch] = useState(false);
   const handleLogout = () => {
     localStorage.removeItem("currUser");
     localStorage.removeItem("groupId");
   };
-  const handleLogin = () => { 
+  const handleLogin = () => {
     loggedIn ? setLoginSwitch(true) : setLoginSwitch(false);
-  }
+  };
   return (
     <Router>
       <div className="nav-bar">
@@ -30,14 +30,20 @@ function App() {
           <Link to="/">PEER PRESSURE</Link>
         </p>
         <div className="login-signup">
-          { loginSwitch ? (
-            <p className="login">
-              <Link to="/login" onClick={() => handleLogin()}>LOGIN</Link>
-            </p>
-          ) : (
+          {loginSwitch ? (
             <p className="login" onClick={() => handleLogout()}>
               <Link to="/">LOGOUT</Link>
             </p>
+          ) : (
+            (<p className="login">
+              <Link to="/login" onClick={() => handleLogin()}>
+                LOGIN
+              </Link>
+            </p>)(
+              <p className="login" onClick={() => handleLogout()}>
+                <Link to="/">LOGOUT</Link>
+              </p>
+            )
           )}
           <p className="signup">
             <Link to="/signup">SIGN UP</Link>
