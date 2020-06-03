@@ -5,10 +5,11 @@ import { Redirect } from "react-router-dom";
 
 function Home() {
   {
-    localStorage.getItem("currUser") ? (
+    const currUser = localStorage.getItem("currUser");
+    currUser ? (
       <Redirect
         to={{
-          pathname: `/dashboard/${localStorage.getItem("currUser")}`,
+          pathname: `/dashboard/${currUser}`,
         }}
       />
     ) : null;
