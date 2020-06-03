@@ -14,7 +14,7 @@ import {
 import Styles from "./Styles.css";
 // Main component for the app
 function App() {
-  handleLogout = () => {
+  const handleLogout = () => {
     localStorage.removeItem("currUser");
     localStorage.removeItem("groupId");
   };
@@ -30,7 +30,7 @@ function App() {
               <Link to="/login">LOGIN</Link>
             </p>
           ) : (
-            <p className="login" onClick={() => this.handleLogout()}>
+            <p className="login" onClick={() => handleLogout()}>
               <Link to="/">LOGOUT</Link>
             </p>
           )}
