@@ -549,3 +549,11 @@ input:-webkit-autofill:active {
   color: gray;
   opacity: 80%;
 }
+.dashboard-hero__text {   /* margin-top: 0; */
+    margin-left: 0;
+    margin-right: 0;
+    color: black;
+    text-align: center;
+    font-family: "Roboto", sans-serif;
+    font-size: calc(3vw + 10.45vh + 0.2vmin);
+}
