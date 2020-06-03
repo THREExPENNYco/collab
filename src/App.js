@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import Home from "./components/home.js";
 import LoginForm from "./components/loginForm.js";
 import Dashboard from "./components/dashboard.js";
@@ -14,10 +14,15 @@ import {
 import Styles from "./Styles.css";
 // Main component for the app
 function App() {
+  const { loggedIn } = LoginForm();
+  const [ loginSwitch, setLoginSwitch ] = useState(false);
   const handleLogout = () => {
     localStorage.removeItem("currUser");
     localStorage.removeItem("groupId");
   };
+  const handleLogin = () => { 
+    loggedIn ? setLoginSwitch(true) : setLoginSwitch(false);
+  }
   return (
     <Router>
       <div className="nav-bar">
@@ -25,9 +30,9 @@ function App() {
           <Link to="/">PEER PRESSURE</Link>
         </p>
         <div className="login-signup">
-          {window.localStorage.length === 0 ? (
+          { loginSwitch ? (
             <p className="login">
-              <Link to="/login">LOGIN</Link>
+              <Link to="/login" onClick={() => handleLogin()}>LOGIN</Link>
             </p>
           ) : (
             <p className="login" onClick={() => handleLogout()}>
