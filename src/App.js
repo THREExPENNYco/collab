@@ -34,17 +34,12 @@ function App() {
             <p className="login" onClick={() => handleLogout()}>
               <Link to="/">LOGOUT</Link>
             </p>
-          ) : (
+          ) :
             (<p className="login">
               <Link to="/login" onClick={() => handleLogin()}>
                 LOGIN
               </Link>
-            </p>)(
-              <p className="login" onClick={() => handleLogout()}>
-                <Link to="/">LOGOUT</Link>
-              </p>
-            )
-          )}
+            </p>)}
           <p className="signup">
             <Link to="/signup">SIGN UP</Link>
           </p>
