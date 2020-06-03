@@ -14,6 +14,9 @@ import {
 import Styles from "./Styles.css";
 // Main component for the app
 class App extends Component {
+  state = { 
+    storage: false,
+  }
   handleLogout = () => { 
     localStorage.removeItem("currUser"); 
     localStorage.removeItem("groupId");
@@ -21,8 +24,11 @@ class App extends Component {
   checkLocalStorage = () => { 
     localStorage.length === 0 ? true : false;
   }
+  componentDidMount = () => { 
+    localStorage.length === 0 ? this.setState({storage: false}) : this.setState({storage: true})
+  }
   componentWillMount() { 
-    this.checkLocalStorage();
+    this.checkLocalStorage() ? this.setState({storage: false}) : this.setState({storage: true});
   }
   render() {
     return (
@@ -33,7 +39,7 @@ class App extends Component {
           </p>
           <div className="login-signup">
           {console.log(localStorage)}
-          {  checkLocalStorage() ? 
+          {  this.state.storage ? 
             <p className="login">
               <Link to="/login">LOGIN</Link>
             </p>
