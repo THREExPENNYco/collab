@@ -26,12 +26,13 @@ class App extends Component {
             <Link to="/">PEER PRESSURE</Link>
           </p>
           <div className="login-signup">
-          {  localStorage.length === "0" ? 
+          {console.log(localStorage)}
+          {  localStorage.length === 0 ? 
             <p className="login">
               <Link to="/login">LOGIN</Link>
             </p>
             :
-             <p className="login" onClick={() => this.handleLogout()}>
+            <p className="login" onClick={() => this.handleLogout()}>
               <Link to="/">LOGOUT</Link>
             </p>
           }
