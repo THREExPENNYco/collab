@@ -26,7 +26,7 @@ class App extends Component {
             <Link to="/">PEER PRESSURE</Link>
           </p>
           <div className="login-signup">
-          {  localStorage.getItem("currUser") !== null ? 
+          {  localStorage.hasOwnProperty("currUser") ? 
             <p className="login" onClick={() => this.handleLogout()}>
               <Link to="/">LOGOUT</Link>
             </p>
