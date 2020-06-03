@@ -14,6 +14,10 @@ import {
 import Styles from "./Styles.css";
 // Main component for the app
 class App extends Component {
+  handleLogout = () => { 
+    localStorage.removeItem("currUser"); 
+    localStorage.removeItem("groupId");
+  }
   render() {
     return (
       <Router>
@@ -23,8 +27,8 @@ class App extends Component {
           </p>
           <div className="login-signup">
           {  localStorage.getItem("currUser") ? 
-            <p className="login">
-              <p>LOGOUT</p>
+            <p className="login" onClick={() => this.handleLogout()}>
+              <Link to="/">LOGOUT</Link>
             </p>
             :
             <p className="login">
