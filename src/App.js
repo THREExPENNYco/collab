@@ -26,13 +26,13 @@ class App extends Component {
             <Link to="/">PEER PRESSURE</Link>
           </p>
           <div className="login-signup">
-          {  localStorage.hasOwnProperty("currUser") ? 
-            <p className="login" onClick={() => this.handleLogout()}>
-              <Link to="/">LOGOUT</Link>
-            </p>
-            :
+          {  localStorage.getItem("currUser") === null ? 
             <p className="login">
               <Link to="/login">LOGIN</Link>
+            </p>
+            :
+             <p className="login" onClick={() => this.handleLogout()}>
+              <Link to="/">LOGOUT</Link>
             </p>
           }
             <p className="signup">
