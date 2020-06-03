@@ -22,9 +22,15 @@ class App extends Component {
             <Link to="/">PEER PRESSURE</Link>
           </p>
           <div className="login-signup">
+          {  localStorage.getItem("currUser") ? 
+            <p className="login">
+              <p>LOGOUT</p>
+            </p>
+            :
             <p className="login">
               <Link to="/login">LOGIN</Link>
             </p>
+          }
             <p className="signup">
               <Link to="/signup">SIGN UP</Link>
             </p>
