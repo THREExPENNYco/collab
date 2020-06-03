@@ -21,11 +21,8 @@ function App() {
     localStorage.removeItem("groupId");
   };
   const handleLogin = () => {
-    loggedIn ? setLoginSwitch(true) : setLoginSwitch(false);
+    localStorage.getItem("currUser") ? setLoginSwitch(true) : setLoginSwitch(false);
   };
-  useEffect(() => { 
-    handleLogin()
-  })
   return (
     <Router>
       <div className="nav-bar">
