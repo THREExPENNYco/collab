@@ -4,8 +4,8 @@ import Info from "./info.js";
 import { Redirect } from "react-router-dom";
 
 function Home() {
-  const currUser = null;
-  localStorage.getItem("currUser") ? currUser = localStorage.getItem("currUser") : currUser = false;
+  const [currUser, setCurrUser] = useState(null);
+  localStorage.getItem("currUser") ? currUser = setCurrUser(localStorage.getItem("currUser")) : setCurrUser(false);
   console.log(localStorage.getItem("currUser"));
   return (
     <section className="main">
