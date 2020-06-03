@@ -13,55 +13,40 @@ import {
 } from "react-router-dom";
 import Styles from "./Styles.css";
 // Main component for the app
-class App extends Component {
-  state = { 
-    storage: false,
-  }
-  handleLogout = () => { 
-    localStorage.removeItem("currUser"); 
+function App() {
+  handleLogout = () => {
+    localStorage.removeItem("currUser");
     localStorage.removeItem("groupId");
-  }
-  checkLocalStorage = () => { 
-    localStorage.length === 0 ? true : false;
-  }
-  componentDidMount = () => { 
-    localStorage.length === 0 ? this.setState({storage: false}) : this.setState({storage: true})
-  }
-  componentWillMount() { 
-    this.checkLocalStorage() ? this.setState({storage: false}) : this.setState({storage: true});
-  }
-  render() {
-    return (
-      <Router>
-        <div className="nav-bar">
-          <p className="logo">
-            <Link to="/">PEER PRESSURE</Link>
-          </p>
-          <div className="login-signup">
-          {console.log(localStorage)}
-          {  this.state.storage ? 
+  };
+  return (
+    <Router>
+      <div className="nav-bar">
+        <p className="logo">
+          <Link to="/">PEER PRESSURE</Link>
+        </p>
+        <div className="login-signup">
+          {window.localStorage.length === 0 ? (
             <p className="login">
               <Link to="/login">LOGIN</Link>
             </p>
-            :
+          ) : (
             <p className="login" onClick={() => this.handleLogout()}>
               <Link to="/">LOGOUT</Link>
             </p>
-          }
-            <p className="signup">
-              <Link to="/signup">SIGN UP</Link>
-            </p>
-          </div>
+          )}
+          <p className="signup">
+            <Link to="/signup">SIGN UP</Link>
+          </p>
         </div>
-        <Route exact path="/" component={Home} />
-        <Route path="/login" component={LoginForm} />
-        <Route path="/signup" component={SignUpForm} />
-        <Route path="/dashboard/:userName" component={Dashboard} />
-        <Route path="/user_id=:user_id/create_group" component={NewGroupForm} />
-        <Route path="/group_dashboard/:group_id" component={GroupDashboard} />
-      </Router>
-    );
-  }
+      </div>
+      <Route exact path="/" component={Home} />
+      <Route path="/login" component={LoginForm} />
+      <Route path="/signup" component={SignUpForm} />
+      <Route path="/dashboard/:userName" component={Dashboard} />
+      <Route path="/user_id=:user_id/create_group" component={NewGroupForm} />
+      <Route path="/group_dashboard/:group_id" component={GroupDashboard} />
+    </Router>
+  );
 }
 
 export default App;
