@@ -23,6 +23,9 @@ function App() {
   const handleLogin = () => {
     loggedIn ? setLoginSwitch(true) : setLoginSwitch(false);
   };
+  useEffect(() => { 
+    handleLogin()
+  })
   return (
     <Router>
       <div className="nav-bar">
