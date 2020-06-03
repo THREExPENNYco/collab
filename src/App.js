@@ -14,7 +14,7 @@ import {
 import Styles from "./Styles.css";
 // Main component for the app
 function App() {
-  const { loggedIn } = LoginForm();
+  const { currUser } = Dashboard();
   const [loginSwitch, setLoginSwitch] = useState(false);
   const handleLogout = () => {
     localStorage.removeItem("currUser");
@@ -22,7 +22,7 @@ function App() {
     setLoginSwitch(false)
   };
   const handleLogin = () => {
-    localStorage.getItem("currUser") ? setLoginSwitch(true) : setLoginSwitch(false);
+    localStorage.getItem("currUser") === currUser ? setLoginSwitch(true) : setLoginSwitch(false);
   };
   return (
     <Router>
