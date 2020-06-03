@@ -18,6 +18,12 @@ class App extends Component {
     localStorage.removeItem("currUser"); 
     localStorage.removeItem("groupId");
   }
+  checkLocalStorage = () => { 
+    localStorage.length === 0 ? true : false;
+  }
+  componentWillMount() { 
+    this.checkLocalStorage();
+  }
   render() {
     return (
       <Router>
@@ -27,7 +33,7 @@ class App extends Component {
           </p>
           <div className="login-signup">
           {console.log(localStorage)}
-          {  localStorage.length === 0 ? 
+          {  checkLocalStorage() ? 
             <p className="login">
               <Link to="/login">LOGIN</Link>
             </p>
