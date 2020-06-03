@@ -21,6 +21,8 @@ function App() {
     setLoginSwitch(false)
   };
   const handleLogin = () => {
+    console.log(localStorage.length); 
+    console.log(typeof localStorage.length);
     localStorage.length !== 0 ? setLoginSwitch(true) : setLoginSwitch(false);
   };
   return (
