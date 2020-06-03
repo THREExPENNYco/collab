@@ -44,7 +44,7 @@ function Dashboard(props) {
   return (
     <section className="dashboard">
       <section className="dashboard-hero">
-        <h1 className="dashboard-hero__top">DASHBOARD</h1>
+        <h1>DASHBOARD</h1>
       </section>
       <section className="dashboard-info">
         <section className="dashboard-info__section">
