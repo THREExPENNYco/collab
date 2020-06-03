@@ -26,7 +26,7 @@ class App extends Component {
             <Link to="/">PEER PRESSURE</Link>
           </p>
           <div className="login-signup">
-          {  localStorage.getItem("currUser") === null ? 
+          {  localStorage.length === 0 ? 
             <p className="login">
               <Link to="/login">LOGIN</Link>
             </p>
