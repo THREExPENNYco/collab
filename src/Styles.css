@@ -549,7 +549,7 @@ input:-webkit-autofill:active {
   color: gray;
   opacity: 80%;
 }
-.dashboard-hero__text {   /* margin-top: 0; */
+.dashboard-hero__text { 
     margin-left: 0;
     margin-right: 0;
     color: black;
