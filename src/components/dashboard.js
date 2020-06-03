@@ -43,9 +43,8 @@ function Dashboard(props) {
   };
   return (
     <section className="dashboard">
-      <section className="dashboard-hero">
-        <h1 classame="dashboard-hero__text">DASHBOARD</h1>
-      </section>
+      <p className="dashboard-hero__top">{currUser.toUpperCase()}</p>
+      <p className="dashboard-hero__bottom">DASHBOARD</p>
       <section className="dashboard-info">
         <section className="dashboard-info__section">
           <h1 className="dashboard-info__section-header">GROUPS</h1>
