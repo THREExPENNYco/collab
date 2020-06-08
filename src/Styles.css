@@ -470,8 +470,6 @@ input:-webkit-autofill:active {
   padding-top: 10px;
 }
 
-
-
 .dashboard-group__members__form-input__choose-file {
   z-index: 2;
   opacity: 0;
@@ -553,7 +551,7 @@ input:-webkit-autofill:active {
   opacity: 80%;
 }
 
-.dashboard-hero__text { 
+.dashboard-hero__text {
   margin-left: 0;
   margin-right: 0;
   color: black;
@@ -562,36 +560,38 @@ input:-webkit-autofill:active {
   font-size: calc(3vw + 10.45vh + 0.2vmin);
 }
 
-.dashboard-bio__image{ 
+.dashboard-bio__image {
   display: flex;
   margin-top: 25px;
-  margin-left: auto; 
-  margin-right: auto; 
-  width: 185px; 
-  height: 185px; 
+  margin-left: auto;
+  margin-right: auto;
+  width: 185px;
+  height: 185px;
   border: 1px black;
   border-radius: 10px;
 }
 
-.dashboard__members__form-input__camera { 
+.dashboard__members__form-input__camera {
   height: 23px;
   width: 25px;
 }
 
-.dashboard__members__form-input__avatar-form__button { 
+.dashboard__members__form-input__avatar-form__button {
   margin-top: 5px;
+  display: flex;
+  text-align: center;
   margin-left: auto;
   margin-right: auto;
   color: white;
   background-color: black;
   border-style: none;
-  width: 40%;
-  height: 40px;
+  /* width: 15%; */
+  height: 25px;
   font-family: "Roboto", sans-serif;
-  font-size: calc(1vw + 1.45vh + 0.2vmin);
+  font-size: calc(1vw + 0.45vh + 0.2vmin);
 }
 
-.dashboard__members__form-input__choose-file { 
+.dashboard__members__form-input__choose-file {
   z-index: 2;
   opacity: 0;
   height: 19px;
@@ -602,7 +602,7 @@ input:-webkit-autofill:active {
   padding-right: 28px;
 }
 
-.dashboard__members-feed__input__buttons { 
+.dashboard__members-feed__input__buttons {
   height: 100%;
   margin-top: -10px;
   width: 100%;
@@ -611,7 +611,7 @@ input:-webkit-autofill:active {
   margin-right: auto;
 }
 
-.dashboard__members-feed__input__button-container { 
+.dashboard__members-feed__input__button-container {
   margin-left: auto;
   margin-right: auto;
 }
