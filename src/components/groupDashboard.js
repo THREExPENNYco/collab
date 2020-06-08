@@ -6,7 +6,7 @@ import S3 from "react-aws-s3";
 import { Redirect } from "react-router-dom";
 
 function groupDashboard(props) {
-  console.log(props.locaton.state);
+  console.log(props.location.state);
   const passedState = props.location.state ? true : false;
   passedState
     ? localStorage.setItem("groupId", props.location.state.groupId)
