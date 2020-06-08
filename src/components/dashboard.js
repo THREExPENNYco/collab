@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
+import input_camera_img from "./componentAssets/input_camera_img.png";
 import default_avatar_img from "./componentAssets/default_avatar_image.png";
 
 function Dashboard(props) {
