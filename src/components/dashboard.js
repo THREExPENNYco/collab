@@ -47,7 +47,7 @@ function Dashboard(props) {
       <p className="dashboard-hero__top">{currUser.toUpperCase()}</p>
       <p className="dashboard-hero__bottom">DASHBOARD</p>
       <section classname="dashboard-bio__image-container">
-        <img classname="dashboard-bio__image" src={input_camera_img}>
+        <img classname="dashboard-bio__image" src={default_avatar_img}>
         </img>
       </section>
       <section className="dashboard-info">
