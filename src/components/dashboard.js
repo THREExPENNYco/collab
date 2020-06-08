@@ -105,7 +105,7 @@ function Dashboard(props) {
       </section>
       { newImage.newImageUploaded ?  
         <input
-          className="dashboard__members__form-input__camera"
+          className="dashboard__members__form-input__avatar-form__button"
           type="submit"
           value="POST"
         /> : null}

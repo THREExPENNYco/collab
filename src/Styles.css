@@ -578,10 +578,17 @@ input:-webkit-autofill:active {
   width: 25px;
 }
 
-.dashboard__members__form-input__avatar-form { 
-  height: 24px; 
-  width: 48px; 
+.dashboard__members__form-input__avatar-form__button { 
   margin-top: 5px;
+  margin-left: auto;
+  margin-right: auto;
+  color: white;
+  background-color: black;
+  border-style: none;
+  width: 40%;
+  height: 40px;
+  font-family: "Roboto", sans-serif;
+  font-size: calc(1vw + 1.45vh + 0.2vmin);
 }
 
 .dashboard__members__form-input__choose-file { 
