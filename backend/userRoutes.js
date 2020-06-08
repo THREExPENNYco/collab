@@ -157,7 +157,7 @@ router.route("/user_id=:user_id/find_group").get((req, res) => {
     });
 });
 // create goal and add to group
-router.route("/group_id=:group_id/create_goal").post((req, res) => {
+router.route("/group_id=:group_id/create_goal/user_id=:user_id").post((req, res) => {
   const goalName = req.body.goalName;
   const goal = req.body.goal;
   const goalStep = req.body.goalStep;
@@ -179,6 +179,14 @@ router.route("/group_id=:group_id/create_goal").post((req, res) => {
     .then((newGoal) => res.status(200).json(newGoal))
     .catch((err) => res.status(404).json(err));
   Group.findByIdAndUpdate(
+    req.params.group_id,
+    { $push: { goals: newGoal._id } },
+    { useFindAndModify: false },
+    function (err, model) {
+      err ? res.status(404).json(err) : res.status(200).json(model);
+    }
+  );
+  User.findByIdAndUpdate(
     req.params.group_id,
     { $push: { goals: newGoal._id } },
     { useFindAndModify: false },
