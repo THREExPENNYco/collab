@@ -182,16 +182,15 @@ router.route("/group_id=:group_id/create_goal/user_id=:user_id").post((req, res)
     req.params.group_id,
     { $push: { goals: newGoal._id } },
     { useFindAndModify: false },
-    function (err, model) {
-      err ? res.status(404).json(err) : res.status(200).json(model);
-    }
-  );
-  User.findByIdAndUpdate(
-    req.params.group_id,
-    { $push: { goals: newGoal._id } },
-    { useFindAndModify: false },
-    function (err, model) {
-      err ? res.status(404).json(err) : res.status(200).json(model);
+    function (groupErr, model) {
+      User.findByIdAndUpdate(
+        req.params.group_id,
+        { $push: { goals: newGoal._id } },
+        { useFindAndModify: false },
+        function (err, model) {
+          err ? res.status(404).json(groupErr, err) : res.status(200).json(model);
+        }
+      );
     }
   );
 });
