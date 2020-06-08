@@ -188,7 +188,7 @@ router.route("/group_id=:group_id/create_goal/user_id=:user_id").post((req, res)
         { $push: { goals: newGoal._id } },
         { useFindAndModify: false },
         function (err, model) {
-          err ? res.status(404).json(groupErr, err) : res.status(200).json(model);
+          // err ? res.status(404).json(groupErr, err) : res.status(200).json(model);
         }
       );
     }
