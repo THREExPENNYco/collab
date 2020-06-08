@@ -45,6 +45,7 @@ function groupDashboard(props) {
           getPeerMemberNames();
           getPeerGoals();
           getGroupComments();
+          getUserData();
         }
       })
       .catch((err) => {
