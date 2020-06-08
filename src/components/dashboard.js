@@ -6,12 +6,18 @@ import default_avatar_img from "./componentAssets/default_avatar_image.png";
 
 function Dashboard(props) {
   const passedProps = props.location.state ? true : false;
-  passedProps ? localStorage.setItem('currUser', props.location.state.currUser) : null; 
-  const currUser = passedProps ? props.location.state.currUser : localStorage.getItem('currUser');
+  passedProps
+    ? localStorage.setItem("currUser", props.location.state.currUser)
+    : null;
+  const currUser = passedProps
+    ? props.location.state.currUser
+    : localStorage.getItem("currUser");
   const [currUserData, setCurrUserData] = useState("");
+  const [userImage, setUserImage] = useState("");
   const [groups, setGroups] = useState([]);
   const [userId, setUserId] = useState("");
   const [error, setError] = useState("");
+  const [newImageData, setNEwImage] = useState("");
   const [createGroup, setCreateGroup] = useState(false);
   useEffect(() => {
     axios
@@ -42,13 +48,55 @@ function Dashboard(props) {
         setError(err);
       });
   };
+  const uploadUserImage = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("image", newImageData);
+    axios({
+      method: "post",
+      url: `/dashboard/upload_image/${userId}`,
+      data: formData,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
+      .then((res) => {
+        if (res.status === 200) {
+          setUserImage(res);
+        }
+      })
+      .catch((err) => {
+        setError(err);
+      });
+  };
   return (
     <section className="dashboard">
       <p className="dashboard-hero__top">{currUser.toUpperCase()}</p>
       <p className="dashboard-hero__bottom">DASHBOARD</p>
       <section className="dashboard-bio__image-container">
-        <img className="dashboard-bio__image" src={default_avatar_img}>
-        </img>
+        <img className="dashboard-bio__image" src={default_avatar_img}></img>
+      </section>
+      <section className="dashboard__members-feed__input__buttons">
+        <img
+          src={input_camera_img}
+          className="dashboard__members__form-input__camera"
+        />
+        <input
+          src={input_camera_img}
+          className="dashboard__members__form-input__choose-file"
+          type="file"
+          onChange={(e) =>
+            setNewImage({
+              newImageData: e.target.files[0],
+              newImageUploaded: true,
+            })
+          }
+        />
+        <input
+          className="dashboard__members__form-input__camera"
+          type="submit"
+          value="POST"
+        />
       </section>
       <section className="dashboard-info">
         <section className="dashboard-info__section">
@@ -62,9 +110,17 @@ function Dashboard(props) {
                       key={index}
                       className="dashboard-info__section-info__content-groups__item"
                     >
-                      <Link to={{pathname:`/group_dashboard/${group._id}`, state:{ groupId: group._id } }} className="dashboard-info__section-info__content-groups__item__link">{group.groupName}</Link>
+                      <Link
+                        to={{
+                          pathname: `/group_dashboard/${group._id}`,
+                          state: { groupId: group._id },
+                        }}
+                        className="dashboard-info__section-info__content-groups__item__link"
+                      >
+                        {group.groupName}
+                      </Link>
                     </li>
-					<hr className="dashboard-info__section-info__content-group__item__hr"></hr>
+                    <hr className="dashboard-info__section-info__content-group__item__hr"></hr>
                   </section>
                 ))}
             <button
@@ -79,7 +135,7 @@ function Dashboard(props) {
           <h1 className="dashboard-info__section-header">GOALS</h1>
           <section className="dashboard-info__section-info">
             {currUserData.goals === null ? (
-          currUserData.goals.map((index, goal) => {
+              currUserData.goals.map((index, goal) => {
                 <li
                   key={index}
                   className="dashboard-info__section-info__content"

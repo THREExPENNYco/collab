@@ -30,12 +30,23 @@ let s3 = new AWS.S3({
   secretAccessKey: process.env.AMAZON_SECRET_KEY
 });
 
-const upload = multer({ 
+const commentImageUpload = multer({ 
   storage: multerS3({ 
     s3: s3, 
     bucket: "peerpressurebucket/commentPics",
     contentType: multerS3.AUTO_CONTENT_TYPE,
     key: function (req, file, cb) { 
+      cb(null, file.originalname)
+    }
+  })
+})
+
+const dashboardImageUpload = multer({ 
+  storage: multerS3({ 
+    s3: s3, 
+    bucket: "peerpressurebucket/profilePics", 
+    contentType: multerS3.AUTO_CONTENT_TYPE, 
+    key: function(req, file, cb) { 
       cb(null, file.originalname)
     }
   })
@@ -77,7 +88,7 @@ app.use(express.static("dist"));
 app.get("*", (req, res) => {
   res.sendFile(path.resolve(__dirname, "dist", "index.html"));
 });
-app.post("/group_dashboard/group_id=:group_id/create_comment", upload.single("image"), function(req, res, next) { 
+app.post("/group_dashboard/group_id=:group_id/create_comment", commentImageUpload.single("image"), function(req, res, next) { 
   const text = req.body.text;
   const image = req.file ? req.file.location : "";
   const newComment = new Comment({
@@ -94,6 +105,15 @@ app.post("/group_dashboard/group_id=:group_id/create_comment", upload.single("im
     .then((newComment) => res.status(200).json(newComment))
     .catch((err) => res.status(404).json(err));
 })
+
+app.post("/dashboard/upload_image/:user_id", dashboardImageUpload.single("image"), function(res, req, next) { 
+  Group.findById(id, function(err, doc) { 
+    err ? res.status(400).json(err) : null; 
+    doc.image = req.file.location;
+    res.status(200).json(doc.image);
+  })
+})
+
 app.listen(port, () => {
   console.log(`You\'re listening on: ${port}`);
 });

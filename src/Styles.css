@@ -470,6 +470,8 @@ input:-webkit-autofill:active {
   padding-top: 10px;
 }
 
+
+
 .dashboard-group__members__form-input__choose-file {
   z-index: 2;
   opacity: 0;
@@ -552,12 +554,12 @@ input:-webkit-autofill:active {
 }
 
 .dashboard-hero__text { 
-    margin-left: 0;
-    margin-right: 0;
-    color: black;
-    text-align: center;
-    font-family: "Roboto", sans-serif;
-    font-size: calc(3vw + 10.45vh + 0.2vmin);
+  margin-left: 0;
+  margin-right: 0;
+  color: black;
+  text-align: center;
+  font-family: "Roboto", sans-serif;
+  font-size: calc(3vw + 10.45vh + 0.2vmin);
 }
 
 .dashboard-bio__image{ 
@@ -569,4 +571,25 @@ input:-webkit-autofill:active {
   height: 185px; 
   border: 1px black;
   border-radius: 10px;
+}
+
+.dashboard__members__form-input__camera { 
+  height: 23px;
+  width: 25px;
+}
+
+.dashboard__members__form-input__choose-file { 
+  z-index: 2;
+  opacity: 0;
+  height: 19px;
+  width: 0px;
+  padding-top: 15px;
+  padding-bottom: -15px;
+  margin-left: -30px;
+  padding-right: 28px;
+}
+
+.dashboard__members-feed__input__buttons { 
+  height: 32px;
+  width: 32px;
 }
