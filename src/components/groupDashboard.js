@@ -6,6 +6,7 @@ import S3 from "react-aws-s3";
 import { Redirect } from "react-router-dom";
 
 function groupDashboard(props) {
+  console.log(props.locaton.state);
   const passedState = props.location.state ? true : false;
   passedState
     ? localStorage.setItem("groupId", props.location.state.groupId)
@@ -167,11 +168,16 @@ function groupDashboard(props) {
         setError(err);
       });
   };
-  const getUserData = () => { 
-  axios
-      .get(`https://salty-basin-04868.herokuapp.com/dashboard/${locationStorage.getItem("currUser")}`, {
-        withCredentials: true,
-      })
+  const getUserData = () => {
+    axios
+      .get(
+        `https://salty-basin-04868.herokuapp.com/dashboard/${locationStorage.getItem(
+          "currUser"
+        )}`,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         if (res.status === 200) {
           setCurrUserData(res.data);
@@ -180,7 +186,7 @@ function groupDashboard(props) {
       .catch((err) => {
         setError(err);
       });
-    }
+  };
   return (
     <section>
       <p className="dashboard-hero__top">{groupName.toUpperCase()}</p>
@@ -322,21 +328,21 @@ function groupDashboard(props) {
                   onChange={(e) => setNewComment(e.target.value)}
                 />
                 <section className="dashboard-group__members-feed__input__buttons">
-                <img  
-                  src={input_camera_img}
-                  className="dashboard-group__members__form-input__camera" 
-                />
-                <input
-                  src={input_camera_img}
-                  className="dashboard-group__members__form-input__choose-file"
-                  type="file"
-                  onChange={(e) =>
-                    setNewImage({
-                      newImageData: e.target.files[0],
-                      newImageUploaded: true,
-                    })
-                  }
-                />
+                  <img
+                    src={input_camera_img}
+                    className="dashboard-group__members__form-input__camera"
+                  />
+                  <input
+                    src={input_camera_img}
+                    className="dashboard-group__members__form-input__choose-file"
+                    type="file"
+                    onChange={(e) =>
+                      setNewImage({
+                        newImageData: e.target.files[0],
+                        newImageUploaded: true,
+                      })
+                    }
+                  />
                 </section>
               </section>
               <input
@@ -348,57 +354,57 @@ function groupDashboard(props) {
           </section>
           <section className="dashboard-group__members-feed__comments">
             {comments.map((comment, index) => (
-              <section 
+              <section
                 key={index}
                 className="dashboard-group__members-feed__comments-container"
               >
-              <section 
-                key={index}
-                className="dashboard-group__members-feed__comments-continer__avatar-container" 
-              > 
-              { passedState ? 
-                <img 
-                className="dashboard-group__members-feed__comments-container__avatar"
-                key={index} 
-                src={currUserData.image}
-                
-              />
-              :
-              <img 
-                className="dashboard-group__members-feed__comments-container__avatar"
-                key={index} 
-                src={default_avatar_img}
-              />
-              }
-               <p
+                <section
                   key={index}
-                  className="dashboard-group__members-feed__comments-container__username"
+                  className="dashboard-group__members-feed__comments-continer__avatar-container"
                 >
-                  {comment.createdBy.userName}
-                </p>
-              <p 
-                key={index}
-                className="dashboard-group__members-feed__comments-container__createdat"
-              > 
-                {new Date(comment.createdAt.toString()).toLocaleDateString()}
-              </p>
-              </section>
+                  {passedState ? (
+                    <img
+                      className="dashboard-group__members-feed__comments-container__avatar"
+                      key={index}
+                      src={currUserData.image}
+                    />
+                  ) : (
+                    <img
+                      className="dashboard-group__members-feed__comments-container__avatar"
+                      key={index}
+                      src={default_avatar_img}
+                    />
+                  )}
+                  <p
+                    key={index}
+                    className="dashboard-group__members-feed__comments-container__username"
+                  >
+                    {comment.createdBy.userName}
+                  </p>
+                  <p
+                    key={index}
+                    className="dashboard-group__members-feed__comments-container__createdat"
+                  >
+                    {new Date(
+                      comment.createdAt.toString()
+                    ).toLocaleDateString()}
+                  </p>
+                </section>
                 <p
                   key={index}
                   className="dashboard-group__members-feed__comments-container__comment"
                 >
                   {comment.text}
                 </p>
-                { comment.image ? 
-                <section className="dashboard-group__members-feed__comments-container__comment-pic__container">
-                <img  
-                  key={index} 
-                  src={comment.image.toString()}
-                  className="dashboard-group__members-feed__comments-container__comment-pic"
-                />
+                {comment.image ? (
+                  <section className="dashboard-group__members-feed__comments-container__comment-pic__container">
+                    <img
+                      key={index}
+                      src={comment.image.toString()}
+                      className="dashboard-group__members-feed__comments-container__comment-pic"
+                    />
                   </section>
-                 : null
-                } 
+                ) : null}
               </section>
             ))}
           </section>
