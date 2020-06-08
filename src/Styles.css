@@ -561,10 +561,11 @@ input:-webkit-autofill:active {
 
 .dashboard-bio__image{ 
   display: flex;
+  margin-top: 25px;
   margin-left: auto; 
   margin-right: auto; 
-  width: 85px; 
-  height: 85px; 
+  width: 185px; 
+  height: 185px; 
   border: 1px black;
   border-radius: 10px;
 }
