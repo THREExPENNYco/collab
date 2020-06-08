@@ -81,6 +81,7 @@ function Dashboard(props) {
         <img className="dashboard-bio__image" src={default_avatar_img}></img>
       </section>
       <section className="dashboard__members-feed__input__buttons">
+        <section> 
         <img
           src={input_camera_img}
           className="dashboard__members__form-input__camera"
@@ -96,6 +97,7 @@ function Dashboard(props) {
             })
           }
         />
+        </section>
       </section>
       { newImage.newImageUploaded ?  
         <input
