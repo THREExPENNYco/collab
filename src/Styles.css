@@ -563,8 +563,8 @@ input:-webkit-autofill:active {
   display: flex;
   margin-left: auto; 
   margin-right: auto; 
-  width: 200; 
-  height: 200; 
+  width: 85px; 
+  height: 85px; 
   border: 1px black;
   border-radius: 10px;
 }

@@ -46,8 +46,8 @@ function Dashboard(props) {
     <section className="dashboard">
       <p className="dashboard-hero__top">{currUser.toUpperCase()}</p>
       <p className="dashboard-hero__bottom">DASHBOARD</p>
-      <section classname="dashboard-bio__image-container">
-        <img classname="dashboard-bio__image" src={default_avatar_img}>
+      <section className="dashboard-bio__image-container">
+        <img className="dashboard-bio__image" src={default_avatar_img}>
         </img>
       </section>
       <section className="dashboard-info">
