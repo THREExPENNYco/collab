@@ -107,7 +107,7 @@ app.post("/group_dashboard/group_id=:group_id/create_comment", commentImageUploa
     .catch((err) => res.status(404).json(err));
 })
 
-app.post("/dashboard/upload_image/:userId", dashboardImageUpload.single("image"), function(res, req, next) { 
+app.post("/dashboard/upload_image/:userId", dashboardImageUpload.single("image"), function(req, res, next) { 
   User.findById(req.params.userId, function(err, doc) { 
     err ? res.status(400).json(err) : null; 
     doc.image = req.file.location;
