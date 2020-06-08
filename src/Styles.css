@@ -559,7 +559,7 @@ input:-webkit-autofill:active {
     font-size: calc(3vw + 10.45vh + 0.2vmin);
 }
 
-.dashboard-bio__image-container { 
+.dashboard-bio__image{ 
   margin-left: auto; 
   margin-right: auto; 
   width: 200; 

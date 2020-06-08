@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { Redirect, Link } from "react-router-dom";
 import axios from "axios";
-import input_camera_img from "./componentAssets/input_camera_img.png";
+import default_avatar_img from "./componentAssets/default_avatar_image.png";
 
 function Dashboard(props) {
   const passedProps = props.location.state ? true : false;
@@ -47,7 +47,7 @@ function Dashboard(props) {
       <p className="dashboard-hero__top">{currUser.toUpperCase()}</p>
       <p className="dashboard-hero__bottom">DASHBOARD</p>
       <section classname="dashboard-bio__image-container">
-        <img src={input_camera_img}>
+        <img classname="dashboard-bio__image" src={input_camera_img}>
         </img>
       </section>
       <section className="dashboard-info">
