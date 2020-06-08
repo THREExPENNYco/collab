@@ -17,7 +17,10 @@ function Dashboard(props) {
   const [groups, setGroups] = useState([]);
   const [userId, setUserId] = useState("");
   const [error, setError] = useState("");
-  const [newImageData, setNEwImage] = useState("");
+  const [newImage, setNewImage] = useState({ 
+    newImageData: "", 
+    newImageUploaded: false
+  });
   const [createGroup, setCreateGroup] = useState(false);
   useEffect(() => {
     axios
@@ -51,7 +54,7 @@ function Dashboard(props) {
   const uploadUserImage = (e) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append("image", newImageData);
+    formData.append("image", newImage.newImageData);
     axios({
       method: "post",
       url: `/dashboard/upload_image/${userId}`,
@@ -92,11 +95,12 @@ function Dashboard(props) {
             })
           }
         />
+        { newImage.newImageUploaded ?  
         <input
           className="dashboard__members__form-input__camera"
           type="submit"
           value="POST"
-        />
+        /> : null}
       </section>
       <section className="dashboard-info">
         <section className="dashboard-info__section">
