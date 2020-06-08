@@ -345,7 +345,6 @@ function groupDashboard(props) {
                     <img
                       className="dashboard-group__members-feed__comments-container__avatar"
                       key={index}
-                      src={currUser.image.toString()}
                     />
                   ) : (
                     <img
@@ -393,7 +392,6 @@ function groupDashboard(props) {
           <hr className="dashboard-group__members-header__hr"></hr>
         </section>
       </section>
-      {console.log(currUserData)}
     </section>
   );
 }
