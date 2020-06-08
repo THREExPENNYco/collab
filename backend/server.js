@@ -8,7 +8,7 @@ const AWS = require("aws-sdk");
 const multer = require("multer"); 
 const multerS3 = require("multer-s3");
 const { Comment } = require("./models/Comment.js");
-const { Group } = require("./models/Group.js");
+const { User } = require("./models/User.js");
 
 require("dotenv").config({ path: "../.env" });
 
@@ -108,7 +108,7 @@ app.post("/group_dashboard/group_id=:group_id/create_comment", commentImageUploa
 })
 
 app.post("/dashboard/upload_image/:user_id", dashboardImageUpload.single("image"), function(res, req, next) { 
-  Group.findById(req.params.userId, function(err, doc) { 
+  User.findById(req.params.userId, function(err, doc) { 
     err ? res.status(400).json(err) : null; 
     doc.image = req.file.location;
     res.status(200).json(doc.image);
