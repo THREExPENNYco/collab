@@ -14,8 +14,7 @@ function groupDashboard(props) {
   const groupIdLocal = passedState
     ? props.location.state.groupId
     : localStorage.getItem("groupId");
-  const [groupPeers, setGroupNames] = useState([]);
-  const [currUserData, setCurrUserData] = useState("");
+  const [groupPeers, setGroupNames] = useState([]);;
   const [groupGoals, setGroupGoals] = useState([]);
   const [groupName, setGroupName] = useState("");
   const [newGoalStep, setGoalStep] = useState("");
@@ -46,7 +45,6 @@ function groupDashboard(props) {
           getPeerMemberNames();
           getPeerGoals();
           getGroupComments();
-          getUserData();
         }
       })
       .catch((err) => {
@@ -162,25 +160,6 @@ function groupDashboard(props) {
       .then((res) => {
         if (res.status === 200) {
           setComments(comments.concat(res.data));
-        }
-      })
-      .catch((err) => {
-        setError(err);
-      });
-  };
-  const getUserData = () => {
-    axios
-      .get(
-        `https://salty-basin-04868.herokuapp.com/dashboard/${locationStorage.getItem(
-          "currUser"
-        )}`,
-        {
-          withCredentials: true,
-        }
-      )
-      .then((res) => {
-        if (res.status === 200) {
-          setCurrUserData(res.data);
         }
       })
       .catch((err) => {
@@ -366,7 +345,7 @@ function groupDashboard(props) {
                     <img
                       className="dashboard-group__members-feed__comments-container__avatar"
                       key={index}
-                      src={currUserData.currUser.image.toString()}
+                      src={currUser.image.toString()}
                     />
                   ) : (
                     <img
