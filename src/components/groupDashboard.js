@@ -14,6 +14,7 @@ function groupDashboard(props) {
   const groupIdLocal = passedState
     ? props.location.state.groupId
     : localStorage.getItem("groupId");
+  const currUser = props.location.state.currUser;
   const [groupPeers, setGroupNames] = useState([]);;
   const [groupGoals, setGroupGoals] = useState([]);
   const [groupName, setGroupName] = useState("");
@@ -345,6 +346,7 @@ function groupDashboard(props) {
                     <img
                       className="dashboard-group__members-feed__comments-container__avatar"
                       key={index}
+                      src={currUser.image.toString()}
                     />
                   ) : (
                     <img
