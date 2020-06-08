@@ -80,8 +80,12 @@ function Dashboard(props) {
       <section className="dashboard-bio__image-container">
         <img className="dashboard-bio__image" src={default_avatar_img}></img>
       </section>
+      <form 
+        encType="multipart/form-data"
+        onSubmit={(e) => uploadUserImage(e)}
+      >
       <section className="dashboard__members-feed__input__buttons">
-        <section> 
+        <section className="dashboard__members-feed__input__button-container"> 
         <img
           src={input_camera_img}
           className="dashboard__members__form-input__camera"
@@ -105,6 +109,7 @@ function Dashboard(props) {
           type="submit"
           value="POST"
         /> : null}
+        </form> 
       <section className="dashboard-info">
         <section className="dashboard-info__section">
           <h1 className="dashboard-info__section-header">GROUPS</h1>

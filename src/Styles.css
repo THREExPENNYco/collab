@@ -578,6 +578,12 @@ input:-webkit-autofill:active {
   width: 25px;
 }
 
+.dashboard__members__form-input__avatar-form { 
+  height: 24px; 
+  width: 48px; 
+  margin-top: 5px;
+}
+
 .dashboard__members__form-input__choose-file { 
   z-index: 2;
   opacity: 0;
@@ -594,6 +600,11 @@ input:-webkit-autofill:active {
   margin-top: -10px;
   width: 100%;
   display: flex;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dashboard__members-feed__input__button-container { 
   margin-left: auto;
   margin-right: auto;
 }
