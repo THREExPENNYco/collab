@@ -15,6 +15,7 @@ function groupDashboard(props) {
     ? props.location.state.groupId
     : localStorage.getItem("groupId");
   const currUser = props.location.state.currUser;
+  const userId = props.location.steate.currUser._id;
   const [groupPeers, setGroupNames] = useState([]);;
   const [groupGoals, setGroupGoals] = useState([]);
   const [groupName, setGroupName] = useState("");
@@ -111,7 +112,7 @@ function groupDashboard(props) {
     e.preventDefault();
     axios
       .post(
-        `https://salty-basin-04868.herokuapp.com/group_id=${groupIdLocal}/create_goal`,
+        `https://salty-basin-04868.herokuapp.com/group_id=${groupIdLocal}/create_goal/user_id=${userId}`,
         {
           goalName: newGoalName,
           goal: newGoal,
