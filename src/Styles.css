@@ -558,3 +558,12 @@ input:-webkit-autofill:active {
     font-family: "Roboto", sans-serif;
     font-size: calc(3vw + 10.45vh + 0.2vmin);
 }
+
+.dashboard-bio__image-container { 
+  margin-left: auto; 
+  margin-right: auto; 
+  width: 200; 
+  height: 200; 
+  border: 1px black;
+  border-radius: 10px;
+}
