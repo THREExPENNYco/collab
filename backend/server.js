@@ -8,6 +8,7 @@ const AWS = require("aws-sdk");
 const multer = require("multer"); 
 const multerS3 = require("multer-s3");
 const { Comment } = require("./models/Comment.js");
+const { Group } = require("./models/Group.js");
 
 require("dotenv").config({ path: "../.env" });
 

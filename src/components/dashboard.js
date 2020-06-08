@@ -14,7 +14,6 @@ function Dashboard(props) {
     ? props.location.state.currUser
     : localStorage.getItem("currUser");
   const [currUserData, setCurrUserData] = useState("");
-  const [userImage, setUserImage] = useState("");
   const [groups, setGroups] = useState([]);
   const [userId, setUserId] = useState("");
   const [error, setError] = useState("");
@@ -64,11 +63,7 @@ function Dashboard(props) {
         "Content-Type": "multipart/form-data",
       },
     })
-      .then((res) => {
-        if (res.status === 200) {
-          setUserImage(res);
-        }
-      })
+      .then()
       .catch((err) => {
         setError(err);
       });
@@ -78,7 +73,10 @@ function Dashboard(props) {
       <p className="dashboard-hero__top">{currUser.toUpperCase()}</p>
       <p className="dashboard-hero__bottom">DASHBOARD</p>
       <section className="dashboard-bio__image-container">
+      { currUserData.image ?
+        <img className="dashboard-bio__image" src={currUserData.image.toString()}></img> : 
         <img className="dashboard-bio__image" src={default_avatar_img}></img>
+      }
       </section>
       <form 
         encType="multipart/form-data"
