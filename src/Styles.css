@@ -239,7 +239,7 @@ body {
 .dashboard-info__section-info__content-groups__item {
   margin-bottom: 10px;
   font-family: "Roboto", sans-serif;
-  font-size: calc(0.8vw + 1.45vh + 0.2vmin);
+  font-size: calc(0.8vw + 1.00vh + 0.2vmin);
 }
 
 .dashboard-info__section-info__content-groups__item a:hover {
@@ -302,7 +302,7 @@ body {
   margin-bottom: 1px;
   justify-self: center;
   text-align: center;
-  font-size: calc(0.01vw + 2vh + 0.2vmin);
+  font-size: calc(0.01vw + 0.45vh + 0.2vmin);
 }
 
 .dashboard-info__section-header__hr {
@@ -576,6 +576,11 @@ input:-webkit-autofill:active {
 .dashboard__members__form-input__camera {
   height: 23px;
   width: 25px;
+}
+
+.dashboard__members__form-input__camera section:hover { 
+    opacity: 50%;
+    cursor: pointer;
 }
 
 .dashboard__members__form-input__avatar-form__button {
