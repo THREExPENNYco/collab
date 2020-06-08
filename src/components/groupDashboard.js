@@ -15,7 +15,7 @@ function groupDashboard(props) {
     ? props.location.state.groupId
     : localStorage.getItem("groupId");
   const currUser = props.location.state.currUser;
-  const userId = props.location.steate.currUser._id;
+  const userId = props.location.state.currUser._id;
   const [groupPeers, setGroupNames] = useState([]);;
   const [groupGoals, setGroupGoals] = useState([]);
   const [groupName, setGroupName] = useState("");
