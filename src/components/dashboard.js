@@ -96,13 +96,13 @@ function Dashboard(props) {
             })
           }
         />
-        { newImage.newImageUploaded ?  
+      </section>
+      { newImage.newImageUploaded ?  
         <input
           className="dashboard__members__form-input__camera"
           type="submit"
           value="POST"
         /> : null}
-      </section>
       <section className="dashboard-info">
         <section className="dashboard-info__section">
           <h1 className="dashboard-info__section-header">GROUPS</h1>
