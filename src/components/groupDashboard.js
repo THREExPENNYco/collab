@@ -169,7 +169,7 @@ function groupDashboard(props) {
   };
   const getUserData = () => { 
   axios
-      .get(`https://salty-basin-04868.herokuapp.com/dashboard/${currUser}`, {
+      .get(`https://salty-basin-04868.herokuapp.com/dashboard/${locationStorage.getItem("currUser")}`, {
         withCredentials: true,
       })
       .then((res) => {
@@ -360,7 +360,7 @@ function groupDashboard(props) {
                 <img 
                 className="dashboard-group__members-feed__comments-container__avatar"
                 key={index} 
-                src={currUserData.image.toString()}
+                src={currUserData.image}
               />
               :
               <img 
