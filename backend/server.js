@@ -108,7 +108,7 @@ app.post("/group_dashboard/group_id=:group_id/create_comment", commentImageUploa
 })
 
 app.post("/dashboard/upload_image/:user_id", dashboardImageUpload.single("image"), function(res, req, next) { 
-  Group.findById(id, function(err, doc) { 
+  Group.findById(req.params.userId, function(err, doc) { 
     err ? res.status(400).json(err) : null; 
     doc.image = req.file.location;
     res.status(200).json(doc.image);
