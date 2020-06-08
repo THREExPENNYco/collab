@@ -340,11 +340,19 @@ function groupDashboard(props) {
                 key={index}
                 className="dashboard-group__members-feed__comments-continer__avatar-container" 
               > 
+              { passedState ? 
+                <img 
+                className="dashboard-group__members-feed__comments-container__avatar"
+                key={index} 
+                src={props.location.state.image.toString()}
+              />
+              :
               <img 
                 className="dashboard-group__members-feed__comments-container__avatar"
                 key={index} 
                 src={default_avatar_img}
               />
+              }
                <p
                   key={index}
                   className="dashboard-group__members-feed__comments-container__username"
