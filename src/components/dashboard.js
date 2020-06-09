@@ -22,6 +22,7 @@ function Dashboard(props) {
     newImageUploaded: false
   });
   const [createGroup, setCreateGroup] = useState(false);
+  const [currUserGoals, setCurrUserGoals] = useState([]);
   useEffect(() => {
     axios
       .get(`https://salty-basin-04868.herokuapp.com/dashboard/${currUser}`, {
@@ -32,6 +33,7 @@ function Dashboard(props) {
           setCurrUserData(res.data);
           getGroups(res.data._id);
           setUserId(res.data._id);
+          getCurrUserGoals(); 
         }
       })
       .catch((err) => {
@@ -68,6 +70,18 @@ function Dashboard(props) {
         setError(err);
       });
   };
+  const getCurrUserGoals = (e) => { 
+    axios
+      .get(`https://salty-basin-04868.herokuapp.com/group_dashboard/:group_id/goals/currUser=${currUser}`)
+      .then((res) => {
+        if (res.status === 200) { 
+          setCurrUserGoals(currUser.concat(res.goals));
+        }
+      })
+      .catch((err) => { 
+        setError(err);
+      })
+  }
   return (
     <section className="dashboard">
       <p className="dashboard-hero__top">{currUser.toUpperCase()}</p>
@@ -144,8 +158,8 @@ function Dashboard(props) {
         <section className="dashboard-info__section">
           <h1 className="dashboard-info__section-header">GOALS</h1>
           <section className="dashboard-info__section-info">
-            {currUserData.goals === null ? (
-              currUserData.goals.map((index, goal) => {
+            {currUserGoals ? (
+              currUserGoals.map((index, goal) => {
                 <li
                   key={index}
                   className="dashboard-info__section-info__content"

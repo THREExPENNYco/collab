@@ -76,6 +76,16 @@ router.route("/group_dashboard/:group_id/goals").get((req, res) => {
       res.status(400).json(err);
     });
 });
+// find goals for specific member
+router.route("/group_dashboard/:group_id/goals/currUser=:currUser").get((req, res) => {
+  Goal.find({ createdBy: req.params.currUser })
+    .then((goals) => {
+      res.status(200).json(goals);
+    })
+    .catch((err) => {
+      res.status(400).json(err);
+    });
+});
 //dashboard route
 router.route("/dashboard/:userName").get((req, res) => {
   User.findOne({ userName: req.params.userName }, (err, user) => {
@@ -157,7 +167,7 @@ router.route("/user_id=:user_id/find_group").get((req, res) => {
     });
 });
 // create goal and add to group
-router.route("/group_id=:group_id/create_goal/user_id=:user_id").post((req, res) => {
+router.route("/group_id=:group_id/create_goal").post((req, res) => {
   const goalName = req.body.goalName;
   const goal = req.body.goal;
   const goalStep = req.body.goalStep;
@@ -182,15 +192,8 @@ router.route("/group_id=:group_id/create_goal/user_id=:user_id").post((req, res)
     req.params.group_id,
     { $push: { goals: newGoal._id } },
     { useFindAndModify: false },
-    function (groupErr, model) {
-      User.findByIdAndUpdate(
-        req.params.group_id,
-        { $push: { goals: newGoal._id } },
-        { useFindAndModify: false },
-        function (err, model) {
-          // err ? res.status(404).json(groupErr, err) : res.status(200).json(model);
-        }
-      );
+    function (err, model) {
+      err ? res.status(200).json(model) : res.status(400).json(model);
     }
   );
 });
