@@ -72,7 +72,7 @@ function Dashboard(props) {
   };
   const getCurrUserGoals = (e) => { 
     axios
-      .get(`https://salty-basin-04868.herokuapp.com/group_dashboard/:group_id/goals/currUser=${currUser}`)
+      .get(`https://salty-basin-04868.herokuapp.com/goals/currUser=${currUser}`)
       .then((res) => {
         if (res.status === 200) { 
           setCurrUserGoals(currUserGoals.concat(res.goals));
