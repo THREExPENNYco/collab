@@ -75,7 +75,7 @@ function Dashboard(props) {
       .get(`https://salty-basin-04868.herokuapp.com/group_dashboard/:group_id/goals/currUser=${currUser}`)
       .then((res) => {
         if (res.status === 200) { 
-          setCurrUserGoals(currUser.concat(res.goals));
+          setCurrUserGoals(currUserGoals.concat(res.goals));
         }
       })
       .catch((err) => { 
