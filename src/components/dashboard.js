@@ -160,7 +160,7 @@ function Dashboard(props) {
           <section className="dashboard-info__section-info">
           {console.log(currUserGoals)}
             {currUserGoals ? (
-              currUserGoals.map((index, goal) => {
+              currUserGoals.map((goal, index) => {
                 <li
                   key={index}
                   className="dashboard-info__section-info__content"
