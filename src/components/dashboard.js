@@ -161,12 +161,15 @@ function Dashboard(props) {
           {console.log(currUserGoals)}
             {currUserGoals ? (
               currUserGoals.map((goal, index) => (
+                <section className="dashboard-info__section_info__content-groups">
                 <li
                   key={index}
                   className="dashboard-info__section-info__content"
                 >
                   {goal.goalName}
                 </li>
+                <hr className="dashboard-info__section-info__content-group__item__hr"></hr>
+                </section>
               ))
             ) : (
               <p className="dashboard-info__section-info__content">
