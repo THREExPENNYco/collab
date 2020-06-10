@@ -158,7 +158,6 @@ function Dashboard(props) {
         <section className="dashboard-info__section">
           <h1 className="dashboard-info__section-header">GOALS</h1>
           <section className="dashboard-info__section-info">
-          {console.log(currUserGoals)}
             {currUserGoals ? (
               currUserGoals.map((goal, index) => (
                 <section className="dashboard-info__section_info__content-groups">
@@ -166,7 +165,15 @@ function Dashboard(props) {
                   key={index}
                   className="dashboard-info__section-info__content"
                 >
-                  {goal.goalName}
+                    <Link
+                        to={{
+                          pathname: `/group_dashboard/${goal.groupId}`,
+                          state: { groupId: group._id, currUser: currUserData },
+                        }}
+                        className="dashboard-info__section-info__content-groups__item__link"
+                      >
+                        {goal.goalName}
+                      </Link>
                 </li>
                 <hr className="dashboard-info__section-info__content-group__item__hr"></hr>
                 </section>
