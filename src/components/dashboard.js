@@ -160,14 +160,14 @@ function Dashboard(props) {
           <section className="dashboard-info__section-info">
           {console.log(currUserGoals)}
             {currUserGoals ? (
-              currUserGoals.map((goal, index) => {
+              currUserGoals.map((goal, index) => (
                 <li
                   key={index}
                   className="dashboard-info__section-info__content"
                 >
                   {goal.goalName}
-                </li>;
-              })
+                </li>
+              ))
             ) : (
               <p className="dashboard-info__section-info__content">
                 Peer Pressure is meant to be enjoyed with peers. Create a group
