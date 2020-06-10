@@ -79,7 +79,7 @@ router.route("/group_dashboard/:group_id/goals").get((req, res) => {
 // find goals for specific member
 router.route("/goals/currUser=:currUser").get((req, res) => {
   console.log(req.params.currUser); 
-  Goal.find({ createdBy: { userName: req.params.currUser.toString() } })
+  Goal.find({ "createdBy.userName": req.params.currUser } )
     .then((goals) => {
       res.status(200).json(goals);
     })
