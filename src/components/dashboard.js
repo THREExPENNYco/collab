@@ -158,6 +158,7 @@ function Dashboard(props) {
         <section className="dashboard-info__section">
           <h1 className="dashboard-info__section-header">GOALS</h1>
           <section className="dashboard-info__section-info">
+          {console.log(currUserGoals)}
             {currUserGoals ? (
               currUserGoals.map((index, goal) => {
                 <li
