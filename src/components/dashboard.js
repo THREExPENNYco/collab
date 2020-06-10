@@ -164,7 +164,7 @@ function Dashboard(props) {
                   key={index}
                   className="dashboard-info__section-info__content"
                 >
-                  {goal}
+                  {goal.goalName}
                 </li>;
               })
             ) : (
