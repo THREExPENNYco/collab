@@ -163,7 +163,7 @@ function Dashboard(props) {
                 <section className="dashboard-info__section_info__content-groups">
                 <li
                   key={index}
-                  className="dashboard-info__section-info__content"
+                  className="dashboard-info__section-info__content-groups__item"
                 >
                     <Link
                         to={{
