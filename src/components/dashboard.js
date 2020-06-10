@@ -13,7 +13,7 @@ function Dashboard(props) {
   const currUser = passedProps
     ? props.location.state.currUser
     : localStorage.getItem("currUser");
-  const [currUserData, setCurrUserData] = useState("");
+  const [currUserData, setCurrUserData] = useState([]);
   const [groups, setGroups] = useState([]);
   const [userId, setUserId] = useState("");
   const [error, setError] = useState("");
