@@ -133,7 +133,7 @@ router
     );
   });
 // invite user to the group
-router.route("/group_id=:group_id/invite_user").get((req, res) => {
+router.route("/group_id=:group_id/invite_user").post((req, res) => {
   User.findOne({ email: req.body.email }, (err, user) => {
     let newEmail;
     user ? (newEmail = user.email) : (newEmail = req.body.email);
@@ -143,7 +143,7 @@ router.route("/group_id=:group_id/invite_user").get((req, res) => {
     }
     res.status(200).json(user);
     sendInviteEmail(newEmail);
-  });
+    });
 });
 // route to add user to group array
 router

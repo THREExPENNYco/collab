@@ -93,9 +93,9 @@ function groupDashboard(props) {
   const handleInvitePeerGet = (e) => {
     e.preventDefault();
     axios
-      .get(
+      .post(
         `https://salty-basin-04868.herokuapp.com/group_id=${groupIdLocal}/invite_user`,
-        {
+        { 
           email: newPeerEmail,
         }
       )
