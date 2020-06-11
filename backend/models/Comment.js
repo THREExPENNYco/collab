@@ -1,50 +1,50 @@
-const mongoose = require('mongoose')
-const { Schema } = mongoose
-const { User } = require('./User.js')
+const mongoose = require("mongoose");
+const { Schema } = mongoose;
+const { User } = require("./User.js");
 
 const commentSchema = new Schema(
   {
-    createdBy:  { 
-      userId: { 
+    createdBy: {
+      userId: {
         type: mongoose.Types.ObjectId,
-        ref: 'User'
-      }, 
-      userName: { 
-        type: String, 
-        required: true, 
-        min: 5, 
-        max: 12
-      }
-   },
-    group: { 
-      type: mongoose.Types.ObjectId, 
-      ref: 'Group', 
-      required: true
+        ref: "User",
+      },
+      userName: {
+        type: String,
+        required: true,
+        min: 5,
+        max: 12,
+      },
+    },
+    group: {
+      type: mongoose.Types.ObjectId,
+      ref: "Group",
+      required: true,
     },
     likes: {
       type: Number,
-      required: false
+      required: false,
     },
     image: {
       type: String,
       required: false,
-      trim: true
+      trim: true,
     },
     text: {
       type: String,
       min: 0,
       max: 120,
       trim: true,
-      required: false
-    }
+      required: false,
+    },
   },
   {
-    timestamps: true
+    timestamps: true,
   }
-)
+);
 
-const Comment = mongoose.model('Comment', commentSchema)
+const Comment = mongoose.model("Comment", commentSchema);
 module.exports = {
   Comment,
-  commentSchema
-}
+  commentSchema,
+};
