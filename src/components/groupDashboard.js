@@ -186,6 +186,7 @@ function groupDashboard(props) {
                   type="text"
                   onChange={(e) => setNewPeerEmail(e.target.value)}
                 />
+                {console.log(newPeerEmail)}
               </form>
             ) : (
               groupPeers.map((member, index) => (
