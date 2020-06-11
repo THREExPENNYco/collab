@@ -136,7 +136,7 @@ router
 router.route("/group_id=:group_id/invite_user").get((req, res) => {
   User.findOne({ email: req.body.email }, (err, user) => {
     let newEmail;
-    user ? (newEmail = user.email) : (newEmail = req.body.newPeerEmail);
+    user ? (newEmail = user.email) : (newEmail = req.body.email);
     if (err) {
       res.status(404).json(err);
       return;

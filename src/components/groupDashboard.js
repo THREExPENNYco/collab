@@ -96,7 +96,7 @@ function groupDashboard(props) {
       .get(
         `https://salty-basin-04868.herokuapp.com/group_id=${groupIdLocal}/invite_user`,
         {
-          newPeerEmail: newPeerEmail,
+          email: newPeerEmail,
         }
       )
       .then((res) => {
