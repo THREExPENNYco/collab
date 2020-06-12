@@ -9,7 +9,7 @@ function Home() {
 			<Hero />
 			<Info />
 			{localStorage.getItem('currUser') ? (
-				<Redirect to={{ pathname: `/dashboard/${localStorage.getItem('currUser')}` }} />
+				<Redirect to={{ pathname: `/dashboard/currUser?=${localStorage.getItem('currUser')}` }} />
 			) : null}
 		</section>
 	);
