@@ -6,7 +6,6 @@ import S3 from 'react-aws-s3';
 import { Redirect } from 'react-router-dom';
 
 function groupDashboard(props) {
-	console.log(props.location.state);
 	const passedState = props.location.state ? true : false;
 	passedState ? localStorage.setItem('groupId', props.location.state.groupId) : null;
 	const groupIdLocal = passedState ? props.location.state.groupId : localStorage.getItem('groupId');
@@ -48,9 +47,12 @@ function groupDashboard(props) {
 	}, []);
 	const getPeerGoals = () => {
 		axios
-			.get(`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${groupIdLocal}/goals`, {
-				withCredentials: true,
-			})
+			.get(
+				`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${groupIdLocal}/goals`,
+				{
+					withCredentials: true,
+				}
+			)
 			.then((res) => {
 				if (res.status === 200) {
 					setGroupGoals(res.data);
@@ -62,7 +64,9 @@ function groupDashboard(props) {
 	};
 	const getPeerMemberNames = () => {
 		axios
-			.get(`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${groupIdLocal}/members`)
+			.get(
+				`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${groupIdLocal}/members`
+			)
 			.then((res) => {
 				if (res.status === 200) {
 					setGroupNames(res.data);
@@ -171,7 +175,6 @@ function groupDashboard(props) {
 									type='text'
 									onChange={(e) => setNewPeerEmail(e.target.value)}
 								/>
-								{console.log(newPeerEmail)}
 							</form>
 						) : (
 							groupPeers.map((member, index) => (

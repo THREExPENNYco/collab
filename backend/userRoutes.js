@@ -156,8 +156,6 @@ router.route('/group_id=:group_id/invite_user').post((req, res) => {
 		sendInviteEmail(newEmail);
 	});
 });
-// a route that the user can click on through email to get to signup or login
-
 // route to add user to group array
 router.route('/user_id=:user_id/group_id=:group_id/add_user_to_group').post((req, res) => {
 	checkSesssionAndSessionId(req.session, req.session.userId) ? res.status(401) : null;
