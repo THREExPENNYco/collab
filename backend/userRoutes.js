@@ -8,8 +8,8 @@ const bcrypt = require('bcryptjs');
 const path = require('path');
 const { sendInviteEmail } = require('./mailer.js');
 
-const checkSesssionAndSessionId = () => { 
-	!(req.session && req.session.userId) ? false : true;
+const checkSesssionAndSessionId = (session, sessionUserId) => { 
+	!(session && sessionUserId) ? false : true;
 }
 // Root route for users
 router.route('/').get((req, res) => {
@@ -105,7 +105,7 @@ router.route('/goals/curr_user?=:curr_user').get((req, res) => {
 router.route('/dashboard/curr_user?:curr_user').get((req, res) => {
 	User.findOne({ userName: req.params.curr_user })
 		.then((user) => { 
-			if (checkSesssionAndSessionId()) {
+			if (checkSesssionAndSessionId(req.session, req.session.userId)) {
 				res.status(401).json(err);
 				return;
 			} 
