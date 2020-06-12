@@ -103,7 +103,7 @@ router.route('/goals/curr_user?=:curr_user').get((req, res) => {
 });
 //dashboard route
 router.route('/dashboard/curr_user?=:curr_user').get((req, res) => {
-	User.findOne({ userName: req.params.user_name }, (err, user) => {
+	User.findOne({ userName: req.params.curr_user }, (err, user) => {
 		if (!(req.session && req.session.userId)) {
 			res.status(401).json(err);
 			return;
