@@ -102,11 +102,11 @@ router.route('/goals/curr_user?=:curr_user').get((req, res) => {
 		});
 });
 //dashboard route
-router.route('/dashboard/curr_user/=:curr_user').get((req, res) => {
+router.route('/dashboard/curr_user?=:curr_user').get((req, res) => {
 	User.findOne({ userName: req.params.curr_user })
-		.then((user) => { 
+		.then((user) => { \
 			if (checkSesssionAndSessionId()) {
-				res.status(401).json(user);
+				res.status(401).json(err);
 				return;
 			} 
 			res.status(200).json(user);
