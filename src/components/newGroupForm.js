@@ -68,7 +68,7 @@ function NewGroupForm(props) {
 			{createGroup ? (
 				<Redirect
 					to={{
-						pathname: `/dashboard/${userName}`,
+						pathname: `/dashboard/curr_user?=${userName}`,
 						state: { currUser: userName },
 					}}
 				/>
