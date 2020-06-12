@@ -50,7 +50,7 @@ function LoginForm() {
 			{loggedIn === true ? (
 				<Redirect
 					to={{
-						pathname: `/dashboard/curr_user?=${currUser}`,
+						pathname: `/dashboard/curr_user?${currUser}`,
 						state: { currUser: currUser },
 					}}
 				/>
