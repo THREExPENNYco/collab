@@ -11,13 +11,13 @@ function signUpForm() {
 	const signup = (e) => {
 		e.preventDefault();
 		axios
-			.post('https://salty-basin-04868.herokuapp.com/newUser', {
+			.post('https://salty-basin-04868.herokuapp.com/new_user', {
 				userName: userName,
 				passWord: passWord,
 				email: email,
 			})
 			.then((res) => {
-				if (res.status === 200) {
+				if (res.status === 201) {
 					setSignUpSuccess(true);
 				}
 			})

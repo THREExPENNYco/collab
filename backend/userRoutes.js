@@ -8,18 +8,21 @@ const bcrypt = require('bcryptjs');
 const path = require('path');
 const { sendInviteEmail } = require('./mailer.js');
 
+const checkSesssionAndSessionId = () => { 
+	!(req.session && req.session.userId) ? false : true;
+}
 // Root route for users
 router.route('/').get((req, res) => {
 	res.sendFile(path.resolve('dist/index.html'));
 });
 // Route for user filtered by id
-router.route('/user_id=:id').get((req, res) => {
-	User.findById(req.params.id)
+router.route('/user_id?=:user_id').get((req, res) => {
+	User.findById(req.params.user_id)
 		.then((user) => res.status(200).json(user))
-		.catch((err) => res.status(404).json(err));
+		.catch((err) => res.status(403).json(err));
 });
 // New user route
-router.route('/newUser').post((req, res) => {
+router.route('/new_user').post((req, res) => {
 	const userName = req.body.userName;
 	const passWord = req.body.passWord;
 	const hash = bcrypt.hashSync(passWord, 8);
@@ -31,14 +34,14 @@ router.route('/newUser').post((req, res) => {
 	});
 	newUser
 		.save()
-		.then((newUser) => res.status(200).json(newUser))
-		.catch((err) => res.status(404).json(err));
+		.then((newUser) => res.status(201).json(newUser))
+		.catch((err) => res.status(403).json(err));
 });
-// login route
+// Login route
 router.route('/login').post((req, res) => {
 	User.findOne({ userName: req.body.userName }, (err, user) => {
 		if (!user || !bcrypt.compareSync(req.body.passWord, user.passWord)) {
-			res.status(404).json(err);
+			res.status(401).json(err);
 			return;
 		}
 		req.session.userId = user._id;
@@ -47,19 +50,27 @@ router.route('/login').post((req, res) => {
 	});
 });
 // route that pulls up group dashboard
-router.route('/group_dashboard/:group_id').get((req, res) => {
-	Group.findOne({ _id: req.params.group_id }, (err, group) => {
-		if (!(req.session && req.session.userId)) {
-			res.status(401).json(err);
-			return;
-		}
-		res.status(200).json(group);
-	});
+router.route('/group_dashboard/group_id?=:group_id').get((req, res) => {
+	Group.findOne({ _id: req.params.group_id })
+		.then((dashboard) => {
+			if (checkSesssionAndSessionId()) {
+				res.status(401);
+				return;
+			}
+			res.status(200).json(dashboard);
+		})
+		.catch((err) => {
+			res.status(400).json(err);
+		});
 });
 // route to grab members in the group
-router.route('/group_dashboard/:group_id/members').get((req, res) => {
+router.route('/group_dashboard/group_id?=:group_id/members').get((req, res) => {
 	User.find({ groups: req.params.group_id }, { userName: 1 })
 		.then((users) => {
+			if (checkSesssionAndSessionId()) {
+				res.status(401);
+				return;
+			}
 			res.status(200).json(users);
 		})
 		.catch((err) => {
@@ -67,19 +78,22 @@ router.route('/group_dashboard/:group_id/members').get((req, res) => {
 		});
 });
 //route to grab goals in the group
-router.route('/group_dashboard/:group_id/goals').get((req, res) => {
+router.route('/group_dashboard/group_id?=:group_id/goals').get((req, res) => {
 	Goal.find({ groupId: req.params.group_id })
 		.then((goals) => {
+			if (checkSesssionAndSessionId()) {
+				res.status(401);
+				return;
+			}
 			res.status(200).json(goals);
 		})
 		.catch((err) => {
-			res.status(400).json(err);
+			res.status(401).json(err);
 		});
 });
 // find goals for specific member
-router.route('/goals/currUser=:currUser').get((req, res) => {
-	console.log(req.params.currUser);
-	Goal.find({ 'createdBy.userName': req.params.currUser })
+router.route('/goals/curr_user?=:curr_user').get((req, res) => {
+	Goal.find({ 'createdBy.userName': req.params.curr_user })
 		.then((goals) => {
 			res.status(200).json(goals);
 		})
@@ -88,8 +102,8 @@ router.route('/goals/currUser=:currUser').get((req, res) => {
 		});
 });
 //dashboard route
-router.route('/dashboard/:userName').get((req, res) => {
-	User.findOne({ userName: req.params.userName }, (err, user) => {
+router.route('/dashboard/curr_user?=:curr_user').get((req, res) => {
+	User.findOne({ userName: req.params.user_name }, (err, user) => {
 		if (!(req.session && req.session.userId)) {
 			res.status(401).json(err);
 			return;
@@ -98,7 +112,7 @@ router.route('/dashboard/:userName').get((req, res) => {
 	});
 });
 //route to get group comments
-router.route('/group_dashboard/group_id=:group_id/get_comments').get((req, res) => {
+router.route('/group_dashboard/group_id?=:group_id/get_comments').get((req, res) => {
 	Comment.find({ group: req.params.group_id })
 		.sort({ createdAt: 'desc' })
 		.then((comment) => {
@@ -109,8 +123,8 @@ router.route('/group_dashboard/group_id=:group_id/get_comments').get((req, res) 
 		});
 });
 // route to create group and add user that created group to group
-router.route('/user_id=:id/create_group').post((req, res) => {
-	const createdBy = req.params.id;
+router.route('/user_id?=:user_id/create_group').post((req, res) => {
+	const createdBy = req.params.user_id;
 	const groupName = req.body.groupName;
 	const newGroup = new Group({
 		createdBy: createdBy,
@@ -122,7 +136,7 @@ router.route('/user_id=:id/create_group').post((req, res) => {
 		.catch((err) => res.status(404).json(err));
 });
 // add group to user array
-router.route('/user_id=:user_id/group_id=:group_id/group_to_user').post((req, res) => {
+router.route('/user_id?=:user_id/group_id?=:group_id/group_to_user').post((req, res) => {
 	User.findByIdAndUpdate(req.params.user_id, { $push: { groups: req.params.group_id } }, function (
 		err,
 		model
@@ -131,7 +145,7 @@ router.route('/user_id=:user_id/group_id=:group_id/group_to_user').post((req, re
 	});
 });
 // invite user to the group
-router.route('/group_id=:group_id/invite_user').post((req, res) => {
+router.route('/group_id?=:group_id/invite_user').post((req, res) => {
 	User.findOne({ email: req.body.email }, (err, user) => {
 		let newEmail;
 		user ? (newEmail = user.email) : (newEmail = req.body.email);
@@ -143,8 +157,10 @@ router.route('/group_id=:group_id/invite_user').post((req, res) => {
 		sendInviteEmail(newEmail);
 	});
 });
+// a route that the user can click on through email to get to signup or login
+
 // route to add user to group array
-router.route('/user_id=:user_id/group_id=:group_id/add_user_to_group').post((req, res) => {
+router.route('/user_id?=:user_id/group_id?=:group_id/add_user_to_group').post((req, res) => {
 	Group.findByIdAndUpdate(
 		req.params.group_id,
 		{ $push: { members: req.params.user_id } },
@@ -154,7 +170,7 @@ router.route('/user_id=:user_id/group_id=:group_id/add_user_to_group').post((req
 	);
 });
 // find group
-router.route('/user_id=:user_id/find_group').get((req, res) => {
+router.route('/user_id?=:user_id/find_group').get((req, res) => {
 	Group.find({ members: req.params.user_id })
 		.then((groups) => {
 			res.status(200).json(groups);
@@ -164,7 +180,7 @@ router.route('/user_id=:user_id/find_group').get((req, res) => {
 		});
 });
 // create goal and add to group
-router.route('/group_id=:group_id/create_goal').post((req, res) => {
+router.route('/group_id?=:group_id/create_goal').post((req, res) => {
 	const goalName = req.body.goalName;
 	const goal = req.body.goal;
 	const goalStep = req.body.goalStep;

@@ -31,7 +31,7 @@ function groupDashboard(props) {
 	const [error, setError] = useState('');
 	useEffect(() => {
 		axios
-			.get(`https://salty-basin-04868.herokuapp.com/group_dashboard/${groupIdLocal}`, {
+			.get(`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id?=${groupIdLocal}`, {
 				withCredentials: true,
 			})
 			.then((res) => {
@@ -48,7 +48,7 @@ function groupDashboard(props) {
 	}, []);
 	const getPeerGoals = () => {
 		axios
-			.get(`https://salty-basin-04868.herokuapp.com/group_dashboard/${groupIdLocal}/goals`, {
+			.get(`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id?=${groupIdLocal}/goals`, {
 				withCredentials: true,
 			})
 			.then((res) => {
@@ -62,7 +62,7 @@ function groupDashboard(props) {
 	};
 	const getPeerMemberNames = () => {
 		axios
-			.get(`https://salty-basin-04868.herokuapp.com/group_dashboard/${groupIdLocal}/members`)
+			.get(`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id?=${groupIdLocal}/members`)
 			.then((res) => {
 				if (res.status === 200) {
 					setGroupNames(res.data);
@@ -81,7 +81,7 @@ function groupDashboard(props) {
 	const handleInvitePeerGet = (e) => {
 		e.preventDefault();
 		axios
-			.post(`https://salty-basin-04868.herokuapp.com/group_id=${groupIdLocal}/invite_user`, {
+			.post(`https://salty-basin-04868.herokuapp.com/group_id?=${groupIdLocal}/invite_user`, {
 				email: newPeerEmail,
 			})
 			.then((res) => {
@@ -97,7 +97,7 @@ function groupDashboard(props) {
 		e.preventDefault();
 		axios
 			.post(
-				`https://salty-basin-04868.herokuapp.com/group_id=${groupIdLocal}/create_goal/user_id=${userId}`,
+				`https://salty-basin-04868.herokuapp.com/group_id?=${groupIdLocal}/create_goal/user_id?=${userId}`,
 				{
 					goalName: newGoalName,
 					goal: newGoal,
@@ -124,7 +124,7 @@ function groupDashboard(props) {
 		// newImage.newImageUploaded ? convertHtmlFile(newImage.newImageData) : null;
 		axios({
 			method: 'post',
-			url: `/group_dashboard/group_id=${groupIdLocal}/create_comment`,
+			url: `/group_dashboard/group_id?=${groupIdLocal}/create_comment`,
 			data: formData,
 			headers: {
 				'Content-Type': 'multipart/form-data',
@@ -142,7 +142,7 @@ function groupDashboard(props) {
 	const getGroupComments = () => {
 		axios
 			.get(
-				`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${groupIdLocal}/get_comments`
+				`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id?=${groupIdLocal}/get_comments`
 			)
 			.then((res) => {
 				if (res.status === 200) {

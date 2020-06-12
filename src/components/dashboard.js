@@ -21,7 +21,7 @@ function Dashboard(props) {
 	const [currUserGoals, setCurrUserGoals] = useState([]);
 	useEffect(() => {
 		axios
-			.get(`https://salty-basin-04868.herokuapp.com/dashboard/${currUser}`, {
+			.get(`https://salty-basin-04868.herokuapp.com/dashboard/curr_user?=${currUser}`, {
 				withCredentials: true,
 			})
 			.then((res) => {
@@ -39,9 +39,9 @@ function Dashboard(props) {
 	const handleCreateGroup = () => {
 		setCreateGroup(true);
 	};
-	const getGroups = (data) => {
+	const getGroups = (groupId) => {
 		axios
-			.get(`https://salty-basin-04868.herokuapp.com/user_id=${data}/find_group`)
+			.get(`https://salty-basin-04868.herokuapp.com/user_id?=${groupId}/find_group`)
 			.then((res) => {
 				setGroups(res.data);
 			})
@@ -68,7 +68,7 @@ function Dashboard(props) {
 	};
 	const getCurrUserGoals = (e) => {
 		axios
-			.get(`https://salty-basin-04868.herokuapp.com/goals/currUser=${currUser}`)
+			.get(`https://salty-basin-04868.herokuapp.com/goals/currUser?=${currUser}`)
 			.then((res) => {
 				if (res.status === 200) {
 					setCurrUserGoals(res.data);
@@ -171,7 +171,7 @@ function Dashboard(props) {
 			{createGroup ? (
 				<Redirect
 					to={{
-						pathname: `/user_id=${currUserData._id}/create_group`,
+						pathname: `/user_id?=${currUserData._id}/create_group`,
 						state: { currUser: currUserData },
 					}}
 				/>
