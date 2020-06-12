@@ -21,7 +21,7 @@ function Dashboard(props) {
 	const [currUserGoals, setCurrUserGoals] = useState([]);
 	useEffect(() => {
 		axios
-			.get(`https://salty-basin-04868.herokuapp.com/dashboard/curr_user?${currUser}`, {
+			.get(`https://salty-basin-04868.herokuapp.com/dashboard/curr_user=${currUser}`, {
 				withCredentials: true,
 			})
 			.then((res) => {
@@ -41,7 +41,7 @@ function Dashboard(props) {
 	};
 	const getGroups = (groupId) => {
 		axios
-			.get(`https://salty-basin-04868.herokuapp.com/user_id?=${groupId}/find_group`)
+			.get(`https://salty-basin-04868.herokuapp.com/user_id=${groupId}/find_group`)
 			.then((res) => {
 				setGroups(res.data);
 			})
@@ -68,7 +68,7 @@ function Dashboard(props) {
 	};
 	const getCurrUserGoals = (e) => {
 		axios
-			.get(`https://salty-basin-04868.herokuapp.com/goals/currUser?=${currUser}`)
+			.get(`https://salty-basin-04868.herokuapp.com/goals/curr_user=${currUser}`)
 			.then((res) => {
 				if (res.status === 200) {
 					setCurrUserGoals(res.data);
@@ -125,7 +125,7 @@ function Dashboard(props) {
 										<li key={index} className='dashboard-info__section-info__content-groups__item'>
 											<Link
 												to={{
-													pathname: `/group_dashboard/${group._id}`,
+													pathname: `/group_dashboard/group_id=${group._id}`,
 													state: { groupId: group._id, currUser: currUserData },
 												}}
 												className='dashboard-info__section-info__content-groups__item__link'>
@@ -171,7 +171,7 @@ function Dashboard(props) {
 			{createGroup ? (
 				<Redirect
 					to={{
-						pathname: `/user_id?=${currUserData._id}/create_group`,
+						pathname: `/user_id=${currUserData._id}/create_group`,
 						state: { currUser: currUserData },
 					}}
 				/>
