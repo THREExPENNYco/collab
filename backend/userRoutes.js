@@ -8,9 +8,9 @@ const bcrypt = require('bcryptjs');
 const path = require('path');
 const { sendInviteEmail } = require('./mailer.js');
 
-const checkSesssionAndSessionId = (session, sessionUserId) => { 
+const checkSesssionAndSessionId = (session, sessionUserId) => {
 	!(session && sessionUserId) ? false : true;
-}
+};
 // Root route for users
 router.route('/').get((req, res) => {
 	res.sendFile(path.resolve('dist/index.html'));
@@ -51,83 +51,74 @@ router.route('/login').post((req, res) => {
 });
 // route that pulls up group dashboard
 router.route('/group_dashboard/group_id=:group_id').get((req, res) => {
+	checkSesssionAndSessionId(req.session, req.session.userId) ? res.status(401) : null;
 	Group.findOne({ _id: req.params.group_id })
 		.then((dashboard) => {
-			if (checkSesssionAndSessionId()) {
-				res.status(401);
-				return;
-			}
 			res.status(200).json(dashboard);
 		})
 		.catch((err) => {
-			res.status(400).json(err);
+			res.status(404).json(err);
 		});
 });
 // route to grab members in the group
 router.route('/group_dashboard/group_id=:group_id/members').get((req, res) => {
+	checkSesssionAndSessionId(req.session, req.session.userId) ? res.status(401) : null;
 	User.find({ groups: req.params.group_id }, { userName: 1 })
 		.then((users) => {
-			if (checkSesssionAndSessionId()) {
-				res.status(401);
-				return;
-			}
 			res.status(200).json(users);
 		})
 		.catch((err) => {
-			res.status(400).json(err);
+			res.status(404).json(err);
 		});
 });
 //route to grab goals in the group
 router.route('/group_dashboard/group_id=:group_id/goals').get((req, res) => {
+	checkSesssionAndSessionId(req.session, req.session.userId) ? res.status(401) : null;
 	Goal.find({ groupId: req.params.group_id })
 		.then((goals) => {
-			if (checkSesssionAndSessionId()) {
-				res.status(401);
-				return;
-			}
 			res.status(200).json(goals);
 		})
 		.catch((err) => {
-			res.status(401).json(err);
+			res.status(404).json(err);
 		});
 });
 // find goals for specific member
 router.route('/goals/curr_user=:curr_user').get((req, res) => {
+	checkSesssionAndSessionId(req.session, req.session.userId) ? res.status(401) : null;
 	Goal.find({ 'createdBy.userName': req.params.curr_user })
 		.then((goals) => {
 			res.status(200).json(goals);
 		})
 		.catch((err) => {
-			res.status(400).json(err);
+			res.status(404).json(err);
 		});
 });
 //dashboard route
 router.route('/dashboard/curr_user=:curr_user').get((req, res) => {
+	checkSesssionAndSessionId(req.session, req.session.userId) ? res.status(401) : null;
 	User.findOne({ userName: req.params.curr_user })
-		.then((user) => { 
-			if (checkSesssionAndSessionId(req.session, req.session.userId)) {
-				res.status(401);
-				return;
-			} 
+		.then((user) => {
 			res.status(200).json(user);
 		})
-		.catch((err) => { 
-			res.status(401).json(err);
-		})
+		.catch((err) => {
+			res.status(404).json(err);
+		});
 });
 //route to get group comments
 router.route('/group_dashboard/group_id=:group_id/get_comments').get((req, res) => {
+	checkSesssionAndSessionId(req.session, req.session.userId) ? res.status(401) : null;
 	Comment.find({ group: req.params.group_id })
-		.sort({ createdAt: 'desc' })
+		.sort({ createdAt: 'desc' }) // sorts list with createdAt descending
 		.then((comment) => {
 			res.status(200).json(comment);
 		})
 		.catch((err) => {
-			res.status(401).json(err);
+			res.status(404).json(err);
 		});
 });
 // route to create group and add user that created group to group
 router.route('/user_id=:user_id/create_group').post((req, res) => {
+	checkSesssionAndSessionId(req.session, req.session.userId) ? res.status(401) : null;
 	const createdBy = req.params.user_id;
 	const groupName = req.body.groupName;
 	const newGroup = new Group({
@@ -136,11 +127,14 @@ router.route('/user_id=:user_id/create_group').post((req, res) => {
 	});
 	newGroup
 		.save()
-		.then((newGroup) => res.status(200).json(newGroup._id))
+		.then((newGroup) => {
+			res.status(200).json(newGroup._id);
+		})
 		.catch((err) => res.status(404).json(err));
 });
 // add group to user array
 router.route('/user_id=:user_id/group_id=:group_id/group_to_user').post((req, res) => {
+	checkSesssionAndSessionId(req.session, req.session.userId) ? res.status(401) : null;
 	User.findByIdAndUpdate(req.params.user_id, { $push: { groups: req.params.group_id } }, function (
 		err,
 		model
@@ -150,6 +144,7 @@ router.route('/user_id=:user_id/group_id=:group_id/group_to_user').post((req, re
 });
 // invite user to the group
 router.route('/group_id=:group_id/invite_user').post((req, res) => {
+	checkSesssionAndSessionId(req.session, req.session.userId) ? res.status(401) : null;
 	User.findOne({ email: req.body.email }, (err, user) => {
 		let newEmail;
 		user ? (newEmail = user.email) : (newEmail = req.body.email);
@@ -165,6 +160,7 @@ router.route('/group_id=:group_id/invite_user').post((req, res) => {
 
 // route to add user to group array
 router.route('/user_id=:user_id/group_id=:group_id/add_user_to_group').post((req, res) => {
+	checkSesssionAndSessionId(req.session, req.session.userId) ? res.status(401) : null;
 	Group.findByIdAndUpdate(
 		req.params.group_id,
 		{ $push: { members: req.params.user_id } },
@@ -175,6 +171,7 @@ router.route('/user_id=:user_id/group_id=:group_id/add_user_to_group').post((req
 });
 // find group
 router.route('/user_id=:user_id/find_group').get((req, res) => {
+	checkSesssionAndSessionId(req.session, req.session.userId) ? res.status(401) : null;
 	Group.find({ members: req.params.user_id })
 		.then((groups) => {
 			res.status(200).json(groups);
@@ -185,6 +182,7 @@ router.route('/user_id=:user_id/find_group').get((req, res) => {
 });
 // create goal and add to group
 router.route('/group_id=:group_id/create_goal').post((req, res) => {
+	checkSesssionAndSessionId(req.session, req.session.userId) ? res.status(401) : null;
 	const goalName = req.body.goalName;
 	const goal = req.body.goal;
 	const goalStep = req.body.goalStep;
@@ -216,6 +214,7 @@ router.route('/group_id=:group_id/create_goal').post((req, res) => {
 });
 // route to add goalstep
 router.route('/goal_id=:goal_id/create_goalstep').post((req, res) => {
+	checkSesssionAndSessionId(req.session, req.session.userId) ? res.status(401) : null;
 	const newGoalStep = req.body.newGoalStep;
 	Goal.findByIdAndUpdate(
 		// refactor so code isn't so dry but works for now
