@@ -152,8 +152,8 @@ router.route('/group_id=:group_id/invite_user').post((req, res) => {
 			res.status(404).json(err);
 			return;
 		}
-		res.status(200).json(user, req.params.group_id);
-		sendInviteEmail(newEmail);
+		res.status(200).json(user);
+		sendInviteEmail(newEmail, req.params.group_id);
 	});
 });
 // route to add user to group array
