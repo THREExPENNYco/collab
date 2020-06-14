@@ -9,7 +9,7 @@ const sendInviteEmail = (user) => {
 		from: 'info@peerpressure.me',
 		subject: "You've been invited to a Peer Pressure group!",
 		text: 'and easy to do anywhere, even with Node.js',
-		html: '<strong>and easy to do anywhere, even with Node.js</strong>',
+		html: '<strong>and easy to do anywhere, even with Node.js</strong><button type="button" style="display: inherit; margin-top: 15px; margin-left: auto; margin-right: auto; color: white; background-color: black; border-style: none; width: 50%; height: 10%;"><a href=#></a></button>',
 	};
 	sgMail
 		.send(msg)
