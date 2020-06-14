@@ -152,12 +152,12 @@ router.route('/group_id=:group_id/invite_user').post((req, res) => {
 			res.status(404).json(err);
 			return;
 		}
-		res.status(200).json(user);
+		res.status(200).json(user, req.params.group_id);
 		sendInviteEmail(newEmail);
 	});
 });
 // route to add user to group array
-router.route('/user_id=:user_id/group_id=:group_id/add_user_to_group').post((req, res) => {
+router.route('/group_id=:group_id/add_user_to_group').post((req, res) => {
 	checkSesssionAndSessionId(req.session, req.session.userId) ? res.status(401) : null;
 	Group.findByIdAndUpdate(
 		req.params.group_id,
