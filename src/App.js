@@ -44,7 +44,7 @@ function App() {
 			<Route exact path='/' component={Home} />
 			<Route path='/login' component={LoginForm} />
 			<Route path='/signup' component={SignUpForm} />
-			<Route path='/group_id=:group_id/add_user_to_group' component={login} />
+			<Route path='/group_id=:group_id/add_user_to_group' component={LoginForm} />
 			<Route path='/dashboard/curr_user=:curr_user' component={Dashboard} />
 			<Route path='/user_id=:user_id/create_group' component={NewGroupForm} />
 			<Route path='/group_dashboard/group_id=:group_id' component={GroupDashboard} />
