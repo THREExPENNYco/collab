@@ -12,8 +12,8 @@ const sendInviteEmail = (user, groupId) => {
 		text: 'You have been invited to the a Peer Pressure Group! Get ready to',
 		html:
 			`<strong>and easy to do anywhere, even with Node.js</strong> +  
-			<button type="button" style="${emailButtonStyles}"> + 
-			<a style="decoration: none; color: white;" href="${emailHref}>JOIN</a> +
+			<button type="button" style="${emailButtonStyles}">
+			<a style="decoration: none; color: white;" href="${emailHref}>JOIN</a>
 			</button>`,
 	};
 	sgMail
