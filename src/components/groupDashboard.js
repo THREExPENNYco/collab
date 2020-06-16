@@ -33,7 +33,7 @@ function groupDashboard(props) {
 			.then((res) => {
 				if (res.status === 200) {
 					getCurrUserData();
-					setCurrGroupName(res.data.currGroupName);
+					setCurrGroupName(res.data.groupName);
 					getPeerMemberNames();
 					getPeerGoals();
 					getGroupComments();

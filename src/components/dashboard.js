@@ -117,8 +117,8 @@ function Dashboard(props) {
 				<section className='dashboard-info__section'>
 					<h1 className='dashboard-info__section-header'>GROUPS</h1>
 					<section className='dashboard-info__section-info'>
-						{currUserGroups ?
-							 currUserGroups.map((group, index) => (
+						{currUserGroups
+							? currUserGroups.map((group, index) => (
 									<section className='dashboard-info__section_info__content-groups'>
 										<li key={index} className='dashboard-info__section-info__content-groups__item'>
 											<Link
@@ -132,7 +132,8 @@ function Dashboard(props) {
 										</li>
 										<hr className='dashboard-info__section-info__content-group__item__hr'></hr>
 									</section>
-							  )) : null }
+							  ))
+							: null}
 						<button className='dashboard-info__section-info__button' onClick={handleCreateGroup}>
 							CREATE GROUP
 						</button>
