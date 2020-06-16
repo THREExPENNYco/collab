@@ -11,6 +11,7 @@ import Styles from './Styles.css';
 function App() {
 	const [logBool, setLogBool] = useState(false);
 	const handleLogOut = () => {
+		e.preventDefault();
 		localStorage.removeItem('currUser');
 		localStorage.removeItem('groupId');
 		setLogBool(true);
@@ -23,7 +24,7 @@ function App() {
 				</p>
 				<div className='login-signup'>
 					{logBool ? (
-						<p className='login' onClick={handleLogOut()}>
+						<p className='login' onClick={(e) => handleLogOut(e)}>
 							<Link to='/'>LOGOUT</Link>
 						</p>
 					) : (
