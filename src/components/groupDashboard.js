@@ -30,13 +30,11 @@ function groupDashboard(props) {
 	const [newGoalDuration, setGoalDuration] = useState('');
 	const [error, setError] = useState('');
 	useEffect(() => {
-		getCurrUserData();
 		axios
-			.get(`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${groupIdLocal}`, {
-				withCredentials: true,
-			})
+			.get(`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${groupIdLocal}`)
 			.then((res) => {
 				if (res.status === 200) {
+					getCurrUserData();
 					setGroupName(res.data.groupName);
 					getPeerMemberNames();
 					getPeerGoals();
@@ -50,11 +48,7 @@ function groupDashboard(props) {
 	const getPeerGoals = () => {
 		axios
 			.get(
-				`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${groupIdLocal}/goals`,
-				{
-					withCredentials: true,
-				}
-			)
+				`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${groupIdLocal}/goals`)
 			.then((res) => {
 				if (res.status === 200) {
 					setGroupGoals(res.data);
@@ -108,9 +102,6 @@ function groupDashboard(props) {
 					goalName: newGoalName,
 					goal: newGoal,
 					goalDuration: newGoalDuration,
-				},
-				{
-					withCredentials: true,
 				}
 			)
 			.then((res) => {
@@ -127,7 +118,6 @@ function groupDashboard(props) {
 		const formData = new FormData();
 		formData.append('image', newImage.newImageData);
 		formData.append('text', newComment);
-		// newImage.newImageUploaded ? convertHtmlFile(newImage.newImageData) : null;
 		axios({
 			method: 'post',
 			url: `/group_dashboard/group_id=${groupIdLocal}/create_comment`,
@@ -172,9 +162,6 @@ function groupDashboard(props) {
 				setError(err);
 			});
 	};
-	const getAvatarString = () => { 
-		currUserData ? currUserData.image.toString() : null;
-	}
 	return (
 		<section>
 			<p className='dashboard-hero__top'>{groupName.toUpperCase()}</p>
@@ -338,7 +325,7 @@ function groupDashboard(props) {
 										<img
 											className='dashboard-group__members-feed__comments-container__avatar'
 											key={index}
-											src={getAvatarString}
+											src={passedState ? currUser.image.toString() : currUserData.image.toString()}
 										/>
 									) : (
 										<img
