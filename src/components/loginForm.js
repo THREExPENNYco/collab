@@ -6,7 +6,7 @@ function LoginForm() {
 	const [user, setUserName] = useState('');
 	const [userPassWord, setPassWord] = useState('');
 	const [loggedIn, setLogin] = useState(false);
-	const [currUser, setCurrUser] = useState('');
+	const [currUserName, setCurrUserData] = useState('');
 	const [error, setError] = useState('');
 	const login = (e) => {
 		e.preventDefault();
@@ -17,7 +17,7 @@ function LoginForm() {
 			})
 			.then((res) => {
 				if (res.status === 200) {
-					setCurrUser(res.data.userName);
+					setCurrUserName(res.data.userName);
 					setLogin(true);
 				}
 			})
@@ -50,8 +50,8 @@ function LoginForm() {
 			{loggedIn === true ? (
 				<Redirect
 					to={{
-						pathname: `/dashboard/curr_user=${currUser}`,
-						state: { currUser: currUser },
+						pathname: `/dashboard/curr_user=${currUseName}`,
+						state: { currUserName: currUserName },
 					}}
 				/>
 			) : (

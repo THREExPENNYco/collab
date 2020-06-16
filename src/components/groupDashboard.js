@@ -2,14 +2,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import input_camera_img from './componentAssets/input_camera_img.png';
 import default_avatar_img from './componentAssets/default_avatar_image.png';
-import S3 from 'react-aws-s3';
-import { Redirect } from 'react-router-dom';
 
 function groupDashboard(props) {
 	const passedState = props.location.state ? true : false;
 	passedState ? localStorage.setItem('groupId', props.location.state.groupId) : null;
 	const groupIdLocal = passedState ? props.location.state.groupId : localStorage.getItem('groupId');
-	const currUserProps = passedState ? props.location.state.currUser : localStorage.getItem('currUser');
+	const passedCurrUserData = passedState ? props.location.state.currUserData : localStorage.getItem('currUser');
 	const [currUserData, setCurrUserData] = useState({});
 	const [userDataBool, setUserDataBool] = useState(false);
 	const [groupPeers, setGroupNames] = useState([]);
@@ -151,7 +149,7 @@ function groupDashboard(props) {
 	};
 	const getCurrUserData = () => {
 		axios
-			.get(`https://salty-basin-04868.herokuapp.com/user_name=${currUserProps}`)
+			.get(`https://salty-basin-04868.herokuapp.com/user_name=${passedCurrUserData}`)
 			.then((res) => {
 				if (res.status === 200) {
 					setCurrUserData(res.data);
@@ -368,7 +366,6 @@ function groupDashboard(props) {
 					<hr className='dashboard-group__members-header__hr'></hr>
 				</section>
 			</section>
-			{console.log(currUserData)}
 		</section>
 	);
 }

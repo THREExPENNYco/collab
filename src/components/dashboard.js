@@ -8,20 +8,20 @@ import default_avatar_img from './componentAssets/default_avatar_image.png';
 function Dashboard(props) {
 	const passedProps = props.location.state ? true : false;
 	passedProps ? localStorage.setItem('currUser', props.location.state.currUser) : null;
-	const currUser = passedProps ? props.location.state.currUser : localStorage.getItem('currUser');
+	const currUserName = passedProps ? props.location.state.currUserName : localStorage.getItem('currUser');
 	const [currUserData, setCurrUserData] = useState([]);
 	const [groups, setGroups] = useState([]);
 	const [userId, setUserId] = useState('');
 	const [error, setError] = useState('');
 	const [newImage, setNewImage] = useState({
 		newImageData: '',
-		newImageUploaded: false,
+		newImageUploadedBool: false,
 	});
 	const [createGroup, setCreateGroup] = useState(false);
 	const [currUserGoals, setCurrUserGoals] = useState([]);
 	useEffect(() => {
 		axios
-			.get(`https://salty-basin-04868.herokuapp.com/dashboard/curr_user=${currUser}`)
+			.get(`https://salty-basin-04868.herokuapp.com/dashboard/curr_user=${currUserName}`)
 			.then((res) => {
 				if (res.status === 200) {
 					setCurrUserData(res.data);
@@ -66,7 +66,7 @@ function Dashboard(props) {
 	};
 	const getCurrUserGoals = (e) => {
 		axios
-			.get(`https://salty-basin-04868.herokuapp.com/goals/curr_user=${currUser}`)
+			.get(`https://salty-basin-04868.herokuapp.com/goals/curr_user=${currUserName}`)
 			.then((res) => {
 				if (res.status === 200) {
 					setCurrUserGoals(res.data);
@@ -78,7 +78,7 @@ function Dashboard(props) {
 	};
 	return (
 		<section className='dashboard'>
-			<p className='dashboard-hero__top'>{currUser.toUpperCase()}</p>
+			<p className='dashboard-hero__top'>{currUserName.toUpperCase()}</p>
 			<p className='dashboard-hero__bottom'>DASHBOARD</p>
 			<section className='dashboard-bio__image-container'>
 				{currUserData.image ? (
@@ -98,13 +98,13 @@ function Dashboard(props) {
 							onChange={(e) =>
 								setNewImage({
 									newImageData: e.target.files[0],
-									newImageUploaded: true,
+									newImageUploadedBool: true,
 								})
 							}
 						/>
 					</section>
 				</section>
-				{newImage.newImageUploaded ? (
+				{newImage.newImageUploadedBool ? (
 					<input
 						className='dashboard__members__form-input__avatar-form__button'
 						type='submit'
@@ -148,7 +148,7 @@ function Dashboard(props) {
 										<Link
 											to={{
 												pathname: `/group_dashboard/group_id=${goal.groupId}`,
-												state: { groupId: goal.groupId, currUser: currUserData },
+												state: { groupId: goal.groupId, currUseData: currUserData },
 											}}
 											className='dashboard-info__section-info__content-groups__item__link'>
 											{goal.goalName}
@@ -165,7 +165,7 @@ function Dashboard(props) {
 					</section>
 				</section>
 			</section>
-			{currUser ? null : <Redirect to='/login' />}
+			{currUserName ? null : <Redirect to='/login' />}
 			{createGroup ? (
 				<Redirect
 					to={{
