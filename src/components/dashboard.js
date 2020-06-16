@@ -21,9 +21,7 @@ function Dashboard(props) {
 	const [currUserGoals, setCurrUserGoals] = useState([]);
 	useEffect(() => {
 		axios
-			.get(`https://salty-basin-04868.herokuapp.com/dashboard/curr_user=${currUser}`, {
-				withCredentials: true,
-			})
+			.get(`https://salty-basin-04868.herokuapp.com/dashboard/curr_user=${currUser}`)
 			.then((res) => {
 				if (res.status === 200) {
 					setCurrUserData(res.data);
