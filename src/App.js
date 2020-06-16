@@ -1,20 +1,20 @@
-import React, { useState, Component, useEffect } from 'react';
+import React, { useState } from 'react';
 import Home from './components/home.js';
 import LoginForm from './components/loginForm.js';
 import Dashboard from './components/dashboard.js';
 import SignUpForm from './components/signUpForm.js';
 import NewGroupForm from './components/newGroupForm.js';
 import GroupDashboard from './components/groupDashboard.js';
-import { HashRouter as Router, Route, Link, useHistory } from 'react-router-dom';
+import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import Styles from './Styles.css';
 // Main component for the app
 function App() {
-	const [logBool, setLogBool] = useState(false);
+	const [loggedIn, setLoggedIn] = useState(false);
 	const handleLogOut = () => {
 		e.preventDefault();
 		localStorage.removeItem('currUser');
 		localStorage.removeItem('groupId');
-		setLogBool(true);
+		setLoggedIn(true);
 	};
 	return (
 		<Router>
@@ -23,13 +23,13 @@ function App() {
 					<Link to='/'>PEER PRESSURE</Link>
 				</p>
 				<div className='login-signup'>
-					{logBool ? (
+					{loggedIn ? (
 						<p className='login' onClick={(e) => handleLogOut(e)}>
 							<Link to='/'>LOGOUT</Link>
 						</p>
 					) : (
 						<p className='login'>
-							<Link to='/login' onClick={setLogBool}>
+							<Link to='/login' onClick={setLoggedIn}>
 								LOGIN
 							</Link>
 						</p>

@@ -20,8 +20,8 @@ function groupDashboard(props) {
 		newImageData: [],
 	});
 	const [currGroupComments, setCurrGroupComments] = useState([]);
-	const [createGoalClicked, setCreateGoalClickBool] = useState(false);
-	const [addPeerClickedBool, setAddPeerClickBool] = useState(false);
+	const [createGoalClicked, setCreateGoalClick] = useState(false);
+	const [addPeerClicked, setAddPeerClick] = useState(false);
 	const [newPeerEmail, setNewPeerEmail] = useState('');
 	const [newGoalName, setGoalName] = useState('');
 	const [newGoal, setNewGoal] = useState('');
@@ -71,10 +71,10 @@ function groupDashboard(props) {
 			});
 	};
 	const handleCreateGoalBtn = () => {
-		createGoalClicked ? setCreateGoalClickBool(false) : setCreateGoalClickBool(true);
+		createGoalClicked ? setCreateGoalClick(false) : setCreateGoalClick(true);
 	};
 	const handleAddPeerBtn = () => {
-		addPeerClickedBool ? setAddPeerClickBool(false) : setAddPeerClickBool(true);
+		addPeerClickedBool ? setAddPeerClick(false) : setAddPeerClick(true);
 	};
 	const handleInvitePeerGet = (e) => {
 		e.preventDefault();
@@ -170,7 +170,7 @@ function groupDashboard(props) {
 					<section className='dashboard-group__members'>
 						<h1 className='dashboard-group__members-header'>PEERS</h1>
 						<hr className='dashboard-group__members-header__hr'></hr>
-						{addPeerClickedBool ? (
+						{addPeerClicked ? (
 							<form className='dashboard-group__goal-form'>
 								<input
 									className='dashboard-group__goal-form__input'
@@ -188,7 +188,7 @@ function groupDashboard(props) {
 								</ul>
 							))
 						)}
-						{addPeerClickedBool ? (
+						{addPeerClicked ? (
 							<section>
 								<input
 									className='dashboard-group__goal-submit-button'

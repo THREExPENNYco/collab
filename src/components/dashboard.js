@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import React, { useState, useEffect } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
@@ -8,7 +7,9 @@ import default_avatar_img from './componentAssets/default_avatar_image.png';
 function Dashboard(props) {
 	const passedProps = props.location.state ? true : false;
 	passedProps ? localStorage.setItem('currUser', props.location.state.currUser) : null;
-	const currUserName = passedProps ? props.location.state.currUserName : localStorage.getItem('currUser');
+	const passedCurrUserName = passedProps
+		? props.location.state.currUserName
+		: localStorage.getItem('currUser');
 	const [currUserData, setCurrUserData] = useState([]);
 	const [currUserGroups, setCurrUserGroups] = useState([]);
 	const [currUserId, setCurrUserId] = useState('');
@@ -17,11 +18,11 @@ function Dashboard(props) {
 		newImageData: '',
 		newImageUploadedBool: false,
 	});
-	const [createGroup, setCreateGroup] = useState(false);
+	const [createGroupClicked, setCreateGroupClick] = useState(false);
 	const [currUserGoals, setCurrUserGoals] = useState([]);
 	useEffect(() => {
 		axios
-			.get(`https://salty-basin-04868.herokuapp.com/dashboard/curr_user=${currUserName}`)
+			.get(`https://salty-basin-04868.herokuapp.com/dashboard/curr_user=${passedCurrUserName}`)
 			.then((res) => {
 				if (res.status === 200) {
 					setCurrUserData(res.data);
@@ -35,7 +36,7 @@ function Dashboard(props) {
 			});
 	}, []);
 	const handleCreateGroup = () => {
-		setCreateGroup(true);
+		setCreateGroupClick(true);
 	};
 	const getGroups = (groupId) => {
 		axios
@@ -66,7 +67,7 @@ function Dashboard(props) {
 	};
 	const getCurrUserGoals = (e) => {
 		axios
-			.get(`https://salty-basin-04868.herokuapp.com/goals/curr_user=${currUserName}`)
+			.get(`https://salty-basin-04868.herokuapp.com/goals/curr_user=${passsedCurrUserName}`)
 			.then((res) => {
 				if (res.status === 200) {
 					setCurrUserGoals(res.data);
@@ -78,7 +79,7 @@ function Dashboard(props) {
 	};
 	return (
 		<section className='dashboard'>
-			<p className='dashboard-hero__top'>{currUserName.toUpperCase()}</p>
+			<p className='dashboard-hero__top'>{passedCurrUserName.toUpperCase()}</p>
 			<p className='dashboard-hero__bottom'>DASHBOARD</p>
 			<section className='dashboard-bio__image-container'>
 				{currUserData.image ? (
@@ -116,9 +117,8 @@ function Dashboard(props) {
 				<section className='dashboard-info__section'>
 					<h1 className='dashboard-info__section-header'>GROUPS</h1>
 					<section className='dashboard-info__section-info'>
-						{currUserGroups
-							? null
-							: currUserGroups.map((group, index) => (
+						{currUserGroups ?
+							 currUserGroups.map((group, index) => (
 									<section className='dashboard-info__section_info__content-groups'>
 										<li key={index} className='dashboard-info__section-info__content-groups__item'>
 											<Link
@@ -132,7 +132,7 @@ function Dashboard(props) {
 										</li>
 										<hr className='dashboard-info__section-info__content-group__item__hr'></hr>
 									</section>
-							  ))}
+							  )) : null }
 						<button className='dashboard-info__section-info__button' onClick={handleCreateGroup}>
 							CREATE GROUP
 						</button>
@@ -165,12 +165,12 @@ function Dashboard(props) {
 					</section>
 				</section>
 			</section>
-			{currUserName ? null : <Redirect to='/login' />}
-			{createGroup ? (
+			{passedCurrUserName ? null : <Redirect to='/login' />}
+			{createGroupClicked ? (
 				<Redirect
 					to={{
 						pathname: `/user_id=${currUserData._id}/create_group`,
-						state: { currUser: currUserData },
+						state: { currUserData: currUserData },
 					}}
 				/>
 			) : null}

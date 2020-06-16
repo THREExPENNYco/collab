@@ -3,24 +3,22 @@ import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 function NewGroupForm(props) {
-	const userId = props.location.state.currUser._id;
-	const userName = props.location.state.currUser.userName;
-	const [groupName, setGroupName] = useState('');
-	const [groupId, setGroupId] = useState('');
+	const passedCurrUserId = props.location.state.currUserData._id;
+	const passedCurrUserName = props.location.state.currUserData.userName;
+	const [newGroupName, setNewGroupName] = useState('');
 	const [error, setError] = useState(null);
-	const [createGroup, setGroupSuccess] = useState(false);
+	const [createdGroup, setCreateGroupSuccess] = useState(false);
 
 	const handleCreateGroup = (e) => {
 		e.preventDefault();
 		axios
-			.post(`https://salty-basin-04868.herokuapp.com/user_id?=${userId}/create_group`, {
-				createdBy: userName,
-				groupName: groupName,
+			.post(`https://salty-basin-04868.herokuapp.com/user_id?=${passedCurrUserId}/create_group`, {
+				createdBy: passedCurrUserName,
+				groupName: newGroupName,
 			})
 			.then((res) => {
 				if (res.status === 200) {
-					setGroupId(res.data);
-					setGroupSuccess(true);
+					setCreateGroupSuccess(true);
 					addGroupToUser(res.data);
 					addUserToGroup(res.data);
 				}
@@ -33,7 +31,7 @@ function NewGroupForm(props) {
 	const addUserToGroup = (data) => {
 		axios
 			.post(
-				`https://salty-basin-04868.herokuapp.com/user_id?=${userId}/group_id?=${data}/add_user_to_group`
+				`https://salty-basin-04868.herokuapp.com/user_id?=${passedCurrUserId}/group_id?=${data}/add_user_to_group`
 			)
 			.then(() => {})
 			.catch((err) => {
@@ -44,7 +42,7 @@ function NewGroupForm(props) {
 	const addGroupToUser = (data) => {
 		axios
 			.post(
-				`https://salty-basin-04868.herokuapp.com/user_id?=${userId}/group_id?=${data}/group_to_user`
+				`https://salty-basin-04868.herokuapp.com/user_id?=${passedCurrUserId}/group_id?=${data}/group_to_user`
 			)
 			.then(() => {})
 			.catch((err) => {
@@ -61,15 +59,15 @@ function NewGroupForm(props) {
 					className='form-input'
 					type='text'
 					name='username'
-					onChange={(e) => setGroupName(e.target.value)}
+					onChange={(e) => setNewGroupName(e.target.value)}
 				/>
 				<input className='form-submit-button' type='submit' value='SUBMIT' />
 			</form>
-			{createGroup ? (
+			{createdGroup ? (
 				<Redirect
 					to={{
-						pathname: `/dashboard/curr_user=${userName}`,
-						state: { currUser: userName },
+						pathname: `/dashboard/curr_user=${passedCurrUserName}`,
+						state: { currUser: passedCurrUserName },
 					}}
 				/>
 			) : null}

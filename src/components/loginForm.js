@@ -5,24 +5,24 @@ import axios from 'axios';
 function LoginForm() {
 	const [currUserName, setCurrUserName] = useState('');
 	const [currUserPassWord, setCurrUserPassWord] = useState('');
-	const [loggedInBool, setLoginBool] = useState(false);
+	const [loggedIn, setLoggedIn] = useState(false);
 	const [error, setError] = useState('');
 	const login = (e) => {
 		e.preventDefault();
 		axios
 			.post('https://salty-basin-04868.herokuapp.com/login', {
-				userName: currUsernNme,
+				userName: currUsernName,
 				passWord: currUserPassWord,
 			})
 			.then((res) => {
 				if (res.status === 200) {
 					setCurrUserName(res.data.userName);
-					setLoginBool(true);
+					setLoggedIn(true);
 				}
 			})
 			.catch((err) => {
 				setError(err);
-				setLoginBool(false);
+				setLoggedInBool(false);
 			});
 	};
 	return (
@@ -46,7 +46,7 @@ function LoginForm() {
 				/>
 				<input className='form-submit-button' type='submit' value='SUBMIT' />
 			</form>
-			{loggedInBool === true ? (
+			{loggedIn === true ? (
 				<Redirect
 					to={{
 						pathname: `/dashboard/curr_user=${currUseName}`,
