@@ -9,7 +9,7 @@ import { HashRouter as Router, Route, Link, useHistory } from 'react-router-dom'
 import Styles from './Styles.css';
 // Main component for the app
 function App() {
-	const [logBool, setLogBool] = useState(false)
+	const [logBool, setLogBool] = useState(false);
 	return (
 		<Router>
 			<div className='nav-bar'>
@@ -18,12 +18,12 @@ function App() {
 				</p>
 				<div className='login-signup'>
 					{logBool ? (
-						<p className='login' onClick={() => setLogBool()}>
+						<p className='login' onClick={setLogBool}>
 							<Link to='/'>LOGOUT</Link>
 						</p>
 					) : (
 						<p className='login'>
-							<Link to='/login' onClick={() => setLogBool()}>
+							<Link to='/login' onClick={setLogBool}>
 								LOGIN
 							</Link>
 						</p>
