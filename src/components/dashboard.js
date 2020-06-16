@@ -27,6 +27,7 @@ function Dashboard(props) {
 			.then((res) => {
 				if (res.status === 200) {
 					setCurrUserData(res.data);
+					localStorage.setItem("currUserData", res.data)
 					getGroups(res.data._id);
 					setUserId(res.data._id);
 					getCurrUserGoals();

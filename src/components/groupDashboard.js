@@ -9,7 +9,7 @@ function groupDashboard(props) {
 	const passedState = props.location.state ? true : false;
 	passedState ? localStorage.setItem('groupId', props.location.state.groupId) : null;
 	const groupIdLocal = passedState ? props.location.state.groupId : localStorage.getItem('groupId');
-	const currUser = passedState ? props.location.state.currUser : localStorage.getItem('currUser');
+	const currUser = passedState ? props.location.state.currUser : localStorage.getItem('currUserData');
 	const userId = props.location.state.currUser._id;
 	const [groupPeers, setGroupNames] = useState([]);
 	const [groupGoals, setGroupGoals] = useState([]);
