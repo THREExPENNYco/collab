@@ -158,22 +158,20 @@ function groupDashboard(props) {
 				setError(err);
 			});
 	};
-	const getCurrUserData = () => { 
+	const getCurrUserData = () => {
 		axios
-			.get(
-				`https://salty-basin-04688.herokuapp.com/user_name=${currUser}`, { 
-					withCredentials: true
-				}
-			)
-			.then((res) => { 
-				if (res.status === 200) { 
-					setCurrUserData(res.data)
+			.get(`https://salty-basin-04868.herokuapp.com/user_name=${currUser}`, {
+				withCredentials: true,
+			})
+			.then((res) => {
+				if (res.status === 200) {
+					setCurrUserData(res.data);
 				}
 			})
-			.catch((err) => { 
+			.catch((err) => {
 				setError(err);
-			})
-	}
+			});
+	};
 	return (
 		<section>
 			<p className='dashboard-hero__top'>{groupName.toUpperCase()}</p>
