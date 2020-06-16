@@ -10,6 +10,10 @@ import Styles from './Styles.css';
 // Main component for the app
 function App() {
 	const [logBool, setLogBool] = useState(false);
+	const handleLogOut = () => { 
+		localStorage.removeItem("currUser"); 
+		localStorage.removeItem("groupId");
+	}
 	return (
 		<Router>
 			<div className='nav-bar'>
@@ -18,7 +22,7 @@ function App() {
 				</p>
 				<div className='login-signup'>
 					{logBool ? (
-						<p className='login' onClick={setLogBool}>
+						<p className='login' onClick={handleLogOut}>
 							<Link to='/'>LOGOUT</Link>
 						</p>
 					) : (
