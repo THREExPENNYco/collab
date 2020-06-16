@@ -10,8 +10,8 @@ function Dashboard(props) {
 	passedProps ? localStorage.setItem('currUser', props.location.state.currUser) : null;
 	const currUserName = passedProps ? props.location.state.currUserName : localStorage.getItem('currUser');
 	const [currUserData, setCurrUserData] = useState([]);
-	const [groups, setGroups] = useState([]);
-	const [userId, setUserId] = useState('');
+	const [currUserGroups, setCurrUserGroups] = useState([]);
+	const [currUserId, setCurrUserId] = useState('');
 	const [error, setError] = useState('');
 	const [newImage, setNewImage] = useState({
 		newImageData: '',
@@ -26,7 +26,7 @@ function Dashboard(props) {
 				if (res.status === 200) {
 					setCurrUserData(res.data);
 					getGroups(res.data._id);
-					setUserId(res.data._id);
+					setCurrUserId(res.data._id);
 					getCurrUserGoals();
 				}
 			})
@@ -41,7 +41,7 @@ function Dashboard(props) {
 		axios
 			.get(`https://salty-basin-04868.herokuapp.com/user_id=${groupId}/find_group`)
 			.then((res) => {
-				setGroups(res.data);
+				setCurrUserGroups(res.data);
 			})
 			.catch((err) => {
 				setError(err);
@@ -53,7 +53,7 @@ function Dashboard(props) {
 		formData.append('image', newImage.newImageData);
 		axios({
 			method: 'post',
-			url: `/dashboard/upload_image/${userId}`,
+			url: `/dashboard/upload_image/${currUserId}`,
 			data: formData,
 			headers: {
 				'Content-Type': 'multipart/form-data',
@@ -116,9 +116,9 @@ function Dashboard(props) {
 				<section className='dashboard-info__section'>
 					<h1 className='dashboard-info__section-header'>GROUPS</h1>
 					<section className='dashboard-info__section-info'>
-						{groups.length === 0
+						{currUserGroups
 							? null
-							: groups.map((group, index) => (
+							: currUserGroups.map((group, index) => (
 									<section className='dashboard-info__section_info__content-groups'>
 										<li key={index} className='dashboard-info__section-info__content-groups__item'>
 											<Link

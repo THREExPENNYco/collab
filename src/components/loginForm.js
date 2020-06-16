@@ -3,27 +3,26 @@ import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 function LoginForm() {
-	const [user, setUserName] = useState('');
-	const [userPassWord, setPassWord] = useState('');
-	const [loggedIn, setLogin] = useState(false);
-	const [currUserName, setCurrUserData] = useState('');
+	const [currUserName, setCurrUserName] = useState('');
+	const [currUserPassWord, setCurrUserPassWord] = useState('');
+	const [loggedInBool, setLoginBool] = useState(false);
 	const [error, setError] = useState('');
 	const login = (e) => {
 		e.preventDefault();
 		axios
 			.post('https://salty-basin-04868.herokuapp.com/login', {
-				userName: user,
-				passWord: userPassWord,
+				userName: currUsernNme,
+				passWord: currUserPassWord,
 			})
 			.then((res) => {
 				if (res.status === 200) {
 					setCurrUserName(res.data.userName);
-					setLogin(true);
+					setLoginBool(true);
 				}
 			})
 			.catch((err) => {
 				setError(err);
-				setLogin(false);
+				setLoginBool(false);
 			});
 	};
 	return (
@@ -36,18 +35,18 @@ function LoginForm() {
 					className='form-input'
 					type='text'
 					name='username'
-					onChange={(e) => setUserName(e.target.value)}
+					onChange={(e) => setCurrUserName(e.target.value)}
 				/>
 				<label className='form-label'>PASSWORD</label>
 				<input
 					className='form-input'
 					type='password'
 					name='password'
-					onChange={(e) => setPassWord(e.target.value)}
+					onChange={(e) => setCurrUserPassWord(e.target.value)}
 				/>
 				<input className='form-submit-button' type='submit' value='SUBMIT' />
 			</form>
-			{loggedIn === true ? (
+			{loggedInBool === true ? (
 				<Redirect
 					to={{
 						pathname: `/dashboard/curr_user=${currUseName}`,

@@ -6,34 +6,34 @@ import default_avatar_img from './componentAssets/default_avatar_image.png';
 function groupDashboard(props) {
 	const passedState = props.location.state ? true : false;
 	passedState ? localStorage.setItem('groupId', props.location.state.groupId) : null;
-	const groupIdLocal = passedState ? props.location.state.groupId : localStorage.getItem('groupId');
+	const currGroupId = passedState ? props.location.state.groupId : localStorage.getItem('groupId');
 	const passedCurrUserData = passedState ? props.location.state.currUserData : localStorage.getItem('currUser');
 	const [currUserData, setCurrUserData] = useState({});
 	const [userDataBool, setUserDataBool] = useState(false);
-	const [groupPeers, setGroupNames] = useState([]);
-	const [groupGoals, setGroupGoals] = useState([]);
-	const [groupName, setGroupName] = useState('');
-	const [newGoalStep, setGoalStep] = useState('');
+	const [currGroupPeers, setCurrGroupPeers] = useState([]);
+	const [currGroupGoals, setCurrGroupGoals] = useState([]);
+	const [currGroupName, setCurrGroupName] = useState('');
+	const [newGoalStep, setNewGoalStep] = useState('');
 	const [newComment, setNewComment] = useState('');
 	const [newImage, setNewImage] = useState({
 		newImageUploaded: false,
 		newImageData: [],
 	});
-	const [comments, setComments] = useState([]);
-	const [createGoalClicked, setCreateGoalClick] = useState(false);
-	const [addPeerClicked, setAddPeerClick] = useState(false);
+	const [currGroupComments, setCurrGroupComments] = useState([]);
+	const [createGoalClicked, setCreateGoalClickBool] = useState(false);
+	const [addPeerClickedBool, setAddPeerClickBool] = useState(false);
 	const [newPeerEmail, setNewPeerEmail] = useState('');
 	const [newGoalName, setGoalName] = useState('');
-	const [newGoal, setGoal] = useState('');
-	const [newGoalDuration, setGoalDuration] = useState('');
+	const [newGoal, setNewGoal] = useState('');
+	const [newGoalDuration, setNewGoalDuration] = useState('');
 	const [error, setError] = useState('');
 	useEffect(() => {
 		axios
-			.get(`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${groupIdLocal}`)
+			.get(`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${currGroupId}`)
 			.then((res) => {
 				if (res.status === 200) {
 					getCurrUserData();
-					setGroupName(res.data.groupName);
+					setCurrGroupName(res.data.currGroupName);
 					getPeerMemberNames();
 					getPeerGoals();
 					getGroupComments();
@@ -46,10 +46,10 @@ function groupDashboard(props) {
 	const getPeerGoals = () => {
 		axios
 			.get(
-				`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${groupIdLocal}/goals`)
+				`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${currGroupId}/goals`)
 			.then((res) => {
 				if (res.status === 200) {
-					setGroupGoals(res.data);
+					setCurrGroupGoals(res.data);
 				}
 			})
 			.catch((err) => {
@@ -59,11 +59,11 @@ function groupDashboard(props) {
 	const getPeerMemberNames = () => {
 		axios
 			.get(
-				`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${groupIdLocal}/members`
+				`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${currGroupId}/members`
 			)
 			.then((res) => {
 				if (res.status === 200) {
-					setGroupNames(res.data);
+					setCurrGroupPeers(res.data);
 				}
 			})
 			.catch((err) => {
@@ -71,15 +71,15 @@ function groupDashboard(props) {
 			});
 	};
 	const handleCreateGoalBtn = () => {
-		createGoalClicked ? setCreateGoalClick(false) : setCreateGoalClick(true);
+		createGoalClicked ? setCreateGoalClickBool(false) : setCreateGoalClickBool(true);
 	};
 	const handleAddPeerBtn = () => {
-		addPeerClicked ? setAddPeerClick(false) : setAddPeerClick(true);
+		addPeerClickedBool ? setAddPeerClickBool(false) : setAddPeerClickBool(true);
 	};
 	const handleInvitePeerGet = (e) => {
 		e.preventDefault();
 		axios
-			.post(`https://salty-basin-04868.herokuapp.com/group_id=${groupIdLocal}/invite_user`, {
+			.post(`https://salty-basin-04868.herokuapp.com/group_id=${currGroupId}/invite_user`, {
 				email: newPeerEmail,
 			})
 			.then((res) => {
@@ -95,7 +95,7 @@ function groupDashboard(props) {
 		e.preventDefault();
 		axios
 			.post(
-				`https://salty-basin-04868.herokuapp.com/group_id=${groupIdLocal}/create_goal/user_id=${currUserData._id}`,
+				`https://salty-basin-04868.herokuapp.com/group_id=${currGroupId}/create_goal/user_id=${currUserData._id}`,
 				{
 					goalName: newGoalName,
 					goal: newGoal,
@@ -118,7 +118,7 @@ function groupDashboard(props) {
 		formData.append('text', newComment);
 		axios({
 			method: 'post',
-			url: `/group_dashboard/group_id=${groupIdLocal}/create_comment`,
+			url: `/group_dashboard/group_id=${currGroupId}/create_comment`,
 			data: formData,
 			headers: {
 				'Content-Type': 'multipart/form-data',
@@ -126,7 +126,7 @@ function groupDashboard(props) {
 		})
 			.then((res) => {
 				if (res.status === 200) {
-					setComments(comments.concat(res.data));
+					setCurrGroupComments(currGroupComments.concat(res.data));
 				}
 			})
 			.catch((err) => {
@@ -136,11 +136,11 @@ function groupDashboard(props) {
 	const getGroupComments = () => {
 		axios
 			.get(
-				`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${groupIdLocal}/get_comments`
+				`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${currGroupId}/get_comments`
 			)
 			.then((res) => {
 				if (res.status === 200) {
-					setComments(comments.concat(res.data));
+					setCurrGroupComments(currGroupComments.concat(res.data));
 				}
 			})
 			.catch((err) => {
@@ -162,7 +162,7 @@ function groupDashboard(props) {
 	};
 	return (
 		<section>
-			<p className='dashboard-hero__top'>{groupName.toUpperCase()}</p>
+			<p className='dashboard-hero__top'>{currGroupName.toUpperCase()}</p>
 			<p className='dashboard-hero__bottom'>DASHBOARD</p>
 			<hr className='dashboard-hero__hr'></hr>
 			<section className='dashboard-group'>
@@ -170,7 +170,7 @@ function groupDashboard(props) {
 					<section className='dashboard-group__members'>
 						<h1 className='dashboard-group__members-header'>PEERS</h1>
 						<hr className='dashboard-group__members-header__hr'></hr>
-						{addPeerClicked ? (
+						{addPeerClickedBool ? (
 							<form className='dashboard-group__goal-form'>
 								<input
 									className='dashboard-group__goal-form__input'
@@ -180,7 +180,7 @@ function groupDashboard(props) {
 								/>
 							</form>
 						) : (
-							groupPeers.map((member, index) => (
+							currGroupPeers.map((member, index) => (
 								<ul key={index}>
 									<li key={index} className='dashboard-group__members-peers'>
 										{member.userName.toUpperCase()}
@@ -188,7 +188,7 @@ function groupDashboard(props) {
 								</ul>
 							))
 						)}
-						{addPeerClicked ? (
+						{addPeerClickedBool ? (
 							<section>
 								<input
 									className='dashboard-group__goal-submit-button'
@@ -228,17 +228,17 @@ function groupDashboard(props) {
 								<textarea
 									className='dashboard-group__goal-form__input-goal'
 									placeholder='WHAT IS THE GOAL?'
-									onChange={(e) => setGoal(e.target.value)}
+									onChange={(e) => setNewGoal(e.target.value)}
 								/>
 								<label className='dashboard-group__goal-form__input'>COMPLETION DATE</label>
 								<input
 									className='dashboard-group__goal-form__input'
 									type='date'
-									onChange={(e) => setGoalDuration(new Date(e.target.value))}
+									onChange={(e) => setNewGoalDuration(new Date(e.target.value))}
 								/>
 							</form>
 						) : (
-							groupGoals.map((goal, index) => (
+							currGroupGoals.map((goal, index) => (
 								<section>
 									<ul key={index}>
 										<li key={index} className='dashboard-group__members-peers'>
@@ -314,7 +314,7 @@ function groupDashboard(props) {
 						</form>
 					</section>
 					<section className='dashboard-group__members-feed__comments'>
-						{comments.map((comment, index) => (
+						{currGroupComments.map((comment, index) => (
 							<section key={index} className='dashboard-group__members-feed__comments-container'>
 								<section
 									key={index}
