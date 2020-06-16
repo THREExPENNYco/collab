@@ -9,15 +9,7 @@ import { HashRouter as Router, Route, Link, useHistory } from 'react-router-dom'
 import Styles from './Styles.css';
 // Main component for the app
 function App() {
-	const [loginSwitch, setLoginSwitch] = useState(false);
-	const handleLogout = () => {
-		localStorage.removeItem('currUser');
-		localStorage.removeItem('groupId');
-		setLoginSwitch(false);
-	};
-	const handleLogin = () => {
-		localStorage.length !== 0 ? setLoginSwitch(true) : setLoginSwitch(false);
-	};
+	const [logBool, setLogBool] = useState(false)
 	return (
 		<Router>
 			<div className='nav-bar'>
@@ -25,13 +17,13 @@ function App() {
 					<Link to='/'>PEER PRESSURE</Link>
 				</p>
 				<div className='login-signup'>
-					{loginSwitch ? (
-						<p className='login' onClick={() => handleLogout()}>
+					{logBool ? (
+						<p className='login' onClick={() => setLogBool()}>
 							<Link to='/'>LOGOUT</Link>
 						</p>
 					) : (
 						<p className='login'>
-							<Link to='/login' onClick={() => handleLogin()}>
+							<Link to='/login' onClick={() => setLogBool()}>
 								LOGIN
 							</Link>
 						</p>
