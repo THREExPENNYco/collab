@@ -161,7 +161,7 @@ function groupDashboard(props) {
 	const getCurrUserData = () => { 
 		axios
 			.get(
-				`https://salty-basin-04688/herouapp.com/user_name=${currUser}`, { 
+				`https://salty-basin-04688.herouapp.com/user_name=${currUser}`, { 
 					withCredentials: true
 				}
 			)
