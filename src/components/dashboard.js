@@ -148,7 +148,7 @@ function Dashboard(props) {
 										<Link
 											to={{
 												pathname: `/group_dashboard/group_id=${goal.groupId}`,
-												state: { groupId: goal.groupId, currUseData: currUserData },
+												state: { groupId: goal.groupId, currUserData: currUserData },
 											}}
 											className='dashboard-info__section-info__content-groups__item__link'>
 											{goal.goalName}
