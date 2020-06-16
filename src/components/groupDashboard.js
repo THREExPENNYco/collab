@@ -323,7 +323,7 @@ function groupDashboard(props) {
 										<img
 											className='dashboard-group__members-feed__comments-container__avatar'
 											key={index}
-											src={passedState ? currUserProps.image.toString() : currUserData.image.toString()}
+											src={passedState ? passedCurrUserData.image.toString() : currUserData.image.toString()}
 										/>
 									) : (
 										<img
