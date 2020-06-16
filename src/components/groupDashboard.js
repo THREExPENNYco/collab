@@ -30,13 +30,13 @@ function groupDashboard(props) {
 	const [newGoalDuration, setGoalDuration] = useState('');
 	const [error, setError] = useState('');
 	useEffect(() => {
+		getCurrUserData();
 		axios
 			.get(`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${groupIdLocal}`, {
 				withCredentials: true,
 			})
 			.then((res) => {
 				if (res.status === 200) {
-					getCurrUserData();
 					setGroupName(res.data.groupName);
 					getPeerMemberNames();
 					getPeerGoals();
