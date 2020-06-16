@@ -9,8 +9,8 @@ function groupDashboard(props) {
 	const passedState = props.location.state ? true : false;
 	passedState ? localStorage.setItem('groupId', props.location.state.groupId) : null;
 	const groupIdLocal = passedState ? props.location.state.groupId : localStorage.getItem('groupId');
-	const currUser = passedState ? props.location.state.currUser : localStorage.getItem('currUserData');
-	const userId = props.location.state.currUser._id;
+	const currUser = passedState ? props.location.state.currUser : localStorage.getItem('currUser');
+	const [currUserData, setCurrUserData] = useState({});
 	const [groupPeers, setGroupNames] = useState([]);
 	const [groupGoals, setGroupGoals] = useState([]);
 	const [groupName, setGroupName] = useState('');
@@ -35,6 +35,7 @@ function groupDashboard(props) {
 			})
 			.then((res) => {
 				if (res.status === 200) {
+					getCurrUserData();
 					setGroupName(res.data.groupName);
 					getPeerMemberNames();
 					getPeerGoals();
@@ -101,7 +102,7 @@ function groupDashboard(props) {
 		e.preventDefault();
 		axios
 			.post(
-				`https://salty-basin-04868.herokuapp.com/group_id=${groupIdLocal}/create_goal/user_id=${userId}`,
+				`https://salty-basin-04868.herokuapp.com/group_id=${groupIdLocal}/create_goal/user_id=${currUserData._id}`,
 				{
 					goalName: newGoalName,
 					goal: newGoal,
@@ -157,6 +158,22 @@ function groupDashboard(props) {
 				setError(err);
 			});
 	};
+	const getCurrUserData = () => { 
+		axios
+			.get(
+				`https://salty-basin-04688/herouapp.com/user_name=${currUser}`, { 
+					withCredentials: true
+				}
+			)
+			.then((res) => { 
+				if (res.status === 200) { 
+					setCurrUserData(res.data)
+				}
+			})
+			.catch((err) => { 
+				setError(err);
+			})
+	}
 	return (
 		<section>
 			<p className='dashboard-hero__top'>{groupName.toUpperCase()}</p>

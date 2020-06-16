@@ -16,8 +16,9 @@ router.route('/').get((req, res) => {
 	res.sendFile(path.resolve('dist/index.html'));
 });
 // Route for user filtered by id
-router.route('/user_id=:user_id').get((req, res) => {
-	User.findById(req.params.user_id)
+router.route('/user_name=:user_name').get((req, res) => {
+	checkSesssionAndSessionId(req.session, req.session.userId) ? res.status(401) : null;
+	User.find({ userName: req.parmas.user_name }), { passWord: 0 }
 		.then((user) => res.status(200).json(user))
 		.catch((err) => res.status(403).json(err));
 });
