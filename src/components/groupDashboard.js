@@ -11,6 +11,7 @@ function groupDashboard(props) {
 	const groupIdLocal = passedState ? props.location.state.groupId : localStorage.getItem('groupId');
 	const currUser = passedState ? props.location.state.currUser : localStorage.getItem('currUser');
 	const [currUserData, setCurrUserData] = useState({});
+	const [userDataBool, setUserDataBool] = useState(false);
 	const [groupPeers, setGroupNames] = useState([]);
 	const [groupGoals, setGroupGoals] = useState([]);
 	const [groupName, setGroupName] = useState('');
@@ -164,6 +165,7 @@ function groupDashboard(props) {
 			.then((res) => {
 				if (res.status === 200) {
 					setCurrUserData(res.data);
+					setUserDataBool(true);
 				}
 			})
 			.catch((err) => {
@@ -329,7 +331,7 @@ function groupDashboard(props) {
 								<section
 									key={index}
 									className='dashboard-group__members-feed__comments-continer__avatar-container'>
-									{passedState ? (
+									{userDataBool ? (
 										<img
 											className='dashboard-group__members-feed__comments-container__avatar'
 											key={index}
