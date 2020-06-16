@@ -172,6 +172,9 @@ function groupDashboard(props) {
 				setError(err);
 			});
 	};
+	const getAvatarString = () => { 
+		currUserData ? currUserData.image.toString() : null;
+	}
 	return (
 		<section>
 			<p className='dashboard-hero__top'>{groupName.toUpperCase()}</p>
@@ -335,7 +338,7 @@ function groupDashboard(props) {
 										<img
 											className='dashboard-group__members-feed__comments-container__avatar'
 											key={index}
-											src={currUserData.image.toString()}
+											src={getAvatarString}
 										/>
 									) : (
 										<img
