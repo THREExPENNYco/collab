@@ -18,7 +18,7 @@ router.route('/').get((req, res) => {
 // Route for user filtered by id
 router.route('/user_name=:user_name').get((req, res) => {
 	checkSesssionAndSessionId(req.session, req.session.userId) ? res.status(401) : null;
-	User.find({ userName: req.params.user_name })
+	User.findOne({ userName: req.params.user_name })
 		.then((user) => res.status(200).json(user))
 		.catch((err) => res.status(403).json(err));
 });
