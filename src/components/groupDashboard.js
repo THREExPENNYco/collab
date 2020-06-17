@@ -7,7 +7,7 @@ function groupDashboard(props) {
 	const passedState = props.location.state ? true : false;
 	passedState ? localStorage.setItem('currGroupId', props.location.state.groupId) : null;
 	const currGroupId = passedState
-		? props.location.state.groupId
+		? props.location.state.CurrGroupId
 		: localStorage.getItem('currGroupId');
 	const passedCurrUserName = passedState
 		? props.location.state.currUserName
