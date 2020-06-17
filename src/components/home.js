@@ -8,8 +8,8 @@ function Home() {
 		<section className='main'>
 			<Hero />
 			<Info />
-			{localStorage.getItem('currUser') ? (
-				<Redirect to={{ pathname: `/dashboard/curr_user=${localStorage.getItem('currUser')}` }} />
+			{localStorage.getItem('currUserName') ? (
+				<Redirect to={{ pathname: `/dashboard/curr_user=${localStorage.getItem('currUserName')}` }} />
 			) : null}
 		</section>
 	);
