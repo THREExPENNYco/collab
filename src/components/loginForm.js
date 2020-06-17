@@ -22,7 +22,7 @@ function LoginForm() {
 			})
 			.catch((err) => {
 				setError(err);
-				setLoggedInBool(false);
+				setLoggedIn(false);
 			});
 	};
 	return (
@@ -49,7 +49,7 @@ function LoginForm() {
 			{loggedIn === true ? (
 				<Redirect
 					to={{
-						pathname: `/dashboard/curr_user=${currUseName}`,
+						pathname: `/dashboard/curr_user=${currUserName}`,
 						state: { currUserName: currUserName },
 					}}
 				/>
