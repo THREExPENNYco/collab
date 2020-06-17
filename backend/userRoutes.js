@@ -214,22 +214,11 @@ router.route('/goals/group_id=:group_id/create_goal').post((req, res) => {
 			Group.findByIdAndUpdate(
 				req.params.group_id,
 				{ $push: { goals: newGoal._id } },
-				{ useFindAndModify: false },
-				function (err, model) {
-					err ? res.status(200).json(model) : res.status(400).json(model);
-				}
+				{ useFindAndModify: false }
 			)
 		)
 		.then((newGoal) => res.status(200).json(newGoal))
 		.catch((err) => res.status(404).json(err));
-	Group.findByIdAndUpdate(
-		req.params.group_id,
-		{ $push: { goals: newGoal._id } },
-		{ useFindAndModify: false },
-		function (err, model) {
-			err ? res.status(200).json(model) : res.status(400).json(model);
-		}
-	);
 });
 // route to add goalstep
 router.route('/goal_id=:goal_id/create_goalstep').post((req, res) => {
