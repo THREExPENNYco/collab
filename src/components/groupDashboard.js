@@ -153,7 +153,7 @@ function groupDashboard(props) {
 	};
 	const getCurrUserData = () => {
 		axios
-			.get(`https://salty-basin-04868.herokuapp.com/user_name=${passedCurrUserData}`)
+			.get(`https://salty-basin-04868.herokuapp.com/users/user_name=${passedCurrUserData}/get_user`)
 			.then((res) => {
 				if (res.status === 200) {
 					setCurrUserData(res.data);

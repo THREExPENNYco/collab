@@ -95,7 +95,17 @@ router.route('/goals/curr_user=:curr_user/find_goals').get((req, res) => {
 		});
 });
 //dashboard route
-router.route('/dashboard/curr_user=:curr_user/get_user_dashboard').get((req, res) => {
+router.route('/users/curr_user=:curr_user/get_user_dashboard').get((req, res) => {
+	checkSesssionAndSessionId(req.session, req.session.userId) ? res.status(401) : null;
+	User.findOne({ userName: req.params.curr_user })
+		.then((user) => {
+			res.status(200).json(user);
+		})
+		.catch((err) => {
+			res.status(404).json(err);
+		});
+});
+router.route('/users/curr_user=:curr_user/get_user').get((req, res) => {
 	checkSesssionAndSessionId(req.session, req.session.userId) ? res.status(401) : null;
 	User.findOne({ userName: req.params.curr_user })
 		.then((user) => {
