@@ -34,7 +34,9 @@ function groupDashboard(props) {
 	const [error, setError] = useState('');
 	useEffect(() => {
 		axios
-			.get(`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${currGroupId}/get_group_dashboard`)
+			.get(
+				`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${currGroupId}/get_group_dashboard`
+			)
 			.then((res) => {
 				if (res.status === 200) {
 					getCurrUserData();
@@ -50,7 +52,9 @@ function groupDashboard(props) {
 	}, []);
 	const getPeerGoals = () => {
 		axios
-			.get(`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${currGroupId}/get_goals`)
+			.get(
+				`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${currGroupId}/get_goals`
+			)
 			.then((res) => {
 				if (res.status === 200) {
 					setCurrGroupGoals(res.data);
@@ -98,14 +102,11 @@ function groupDashboard(props) {
 	const handleCreateGoalPost = (e) => {
 		e.preventDefault();
 		axios
-			.post(
-				`https://salty-basin-04868.herokuapp.com/goals/group_id=${currGroupId}/create_goal`,
-				{
-					goalName: newGoalName,
-					goal: newGoal,
-					goalDuration: newGoalDuration,
-				}
-			)
+			.post(`https://salty-basin-04868.herokuapp.com/goals/group_id=${currGroupId}/create_goal`, {
+				goalName: newGoalName,
+				goal: newGoal,
+				goalDuration: newGoalDuration,
+			})
 			.then((res) => {
 				if (res.status === 200) {
 					handleCreateGoalBtn();
@@ -328,11 +329,7 @@ function groupDashboard(props) {
 										<img
 											className='dashboard-group__members-feed__comments-container__avatar'
 											key={index}
-											src={
-												passedState
-													? currUserData.image.toString()
-													: currUserData.image.toString()
-											}
+											src={currUserData.image.toString()}
 										/>
 									) : (
 										<img
