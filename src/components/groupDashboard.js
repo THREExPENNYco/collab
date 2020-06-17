@@ -5,7 +5,7 @@ import default_avatar_img from './componentAssets/default_avatar_image.png';
 
 function groupDashboard(props) {
 	const passedState = props.location.state ? true : false;
-	passedState ? localStorage.setItem('currGroupId', props.location.state.CurrGroupId) : null;
+	passedState ? localStorage.setItem('currGroupId', props.location.state.currGroupId) : null;
 	const currGroupId = passedState
 		? props.location.state.CurrGroupId
 		: localStorage.getItem('currGroupId');
