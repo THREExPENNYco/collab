@@ -90,7 +90,7 @@ app.get('*', (req, res) => {
 	res.sendFile(path.resolve(__dirname, 'dist', 'index.html'));
 });
 app.post(
-	'/group_dashboard/group_id=:group_id/create_comment',
+	'/group_dashboard/group_id=:group_id/user_name=:userName/user_id=:userId/create_comment',
 	commentImageUpload.single('image'),
 	function (req, res, next) {
 		const text = req.body.text;

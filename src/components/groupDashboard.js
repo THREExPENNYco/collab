@@ -6,9 +6,14 @@ import default_avatar_img from './componentAssets/default_avatar_image.png';
 function groupDashboard(props) {
 	const passedState = props.location.state ? true : false;
 	passedState ? localStorage.setItem('currGroupId', props.location.state.groupId) : null;
-	const currGroupId = passedState ? props.location.state.groupId : localStorage.getItem('currGroupId');
-	const passedCurrUserData = passedState ? props.location.state.currUserData : localStorage.getItem('currUserName');
+	const currGroupId = passedState
+		? props.location.state.groupId
+		: localStorage.getItem('currGroupId');
+	const passedCurrUserData = passedState
+		? props.location.state.currUserData
+		: localStorage.getItem('currUserName');
 	const [currUserData, setCurrUserData] = useState({});
+	const [currUserId, setCurrUserId] = useState('');
 	const [userDataBool, setUserDataBool] = useState(false);
 	const [currGroupPeers, setCurrGroupPeers] = useState([]);
 	const [currGroupGoals, setCurrGroupGoals] = useState([]);
@@ -45,8 +50,7 @@ function groupDashboard(props) {
 	}, []);
 	const getPeerGoals = () => {
 		axios
-			.get(
-				`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${currGroupId}/goals`)
+			.get(`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${currGroupId}/goals`)
 			.then((res) => {
 				if (res.status === 200) {
 					setCurrGroupGoals(res.data);
@@ -74,7 +78,7 @@ function groupDashboard(props) {
 		createGoalClicked ? setCreateGoalClick(false) : setCreateGoalClick(true);
 	};
 	const handleAddPeerBtn = () => {
-		addPeerClickedBool ? setAddPeerClick(false) : setAddPeerClick(true);
+		addPeerClicked ? setAddPeerClick(false) : setAddPeerClick(true);
 	};
 	const handleInvitePeerGet = (e) => {
 		e.preventDefault();
@@ -95,7 +99,7 @@ function groupDashboard(props) {
 		e.preventDefault();
 		axios
 			.post(
-				`https://salty-basin-04868.herokuapp.com/group_id=${currGroupId}/create_goal/user_id=${currUserData._id}`,
+				`https://salty-basin-04868.herokuapp.com/group_id=${currGroupId}/create_goal/user_id=${currUserId}`,
 				{
 					goalName: newGoalName,
 					goal: newGoal,
@@ -118,7 +122,7 @@ function groupDashboard(props) {
 		formData.append('text', newComment);
 		axios({
 			method: 'post',
-			url: `/group_dashboard/group_id=${currGroupId}/create_comment`,
+			url: `/group_dashboard/group_id=${currGroupId}/user_name=${passedCurrUserName}/user_id=${currUserId}/create_comment`,
 			data: formData,
 			headers: {
 				'Content-Type': 'multipart/form-data',
@@ -153,6 +157,7 @@ function groupDashboard(props) {
 			.then((res) => {
 				if (res.status === 200) {
 					setCurrUserData(res.data);
+					setCurrUserId(res.data._id);
 					setUserDataBool(true);
 				}
 			})
@@ -323,7 +328,11 @@ function groupDashboard(props) {
 										<img
 											className='dashboard-group__members-feed__comments-container__avatar'
 											key={index}
-											src={passedState ? passedCurrUserData.image.toString() : currUserData.image.toString()}
+											src={
+												passedState
+													? passedCurrUserData.image.toString()
+													: currUserData.image.toString()
+											}
 										/>
 									) : (
 										<img
