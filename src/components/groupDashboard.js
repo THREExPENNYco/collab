@@ -50,7 +50,7 @@ function groupDashboard(props) {
 	}, []);
 	const getPeerGoals = () => {
 		axios
-			.get(`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${currGroupId}/goals`)
+			.get(`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${currGroupId}/get_goals`)
 			.then((res) => {
 				if (res.status === 200) {
 					setCurrGroupGoals(res.data);
@@ -63,7 +63,7 @@ function groupDashboard(props) {
 	const getPeerMemberNames = () => {
 		axios
 			.get(
-				`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${currGroupId}/members`
+				`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${currGroupId}/get_members`
 			)
 			.then((res) => {
 				if (res.status === 200) {
@@ -99,7 +99,7 @@ function groupDashboard(props) {
 		e.preventDefault();
 		axios
 			.post(
-				`https://salty-basin-04868.herokuapp.com/group_id=${currGroupId}/create_goal/user_id=${currUserId}`,
+				`https://salty-basin-04868.herokuapp.com/goals/group_id=${currGroupId}/create_goal`,
 				{
 					goalName: newGoalName,
 					goal: newGoal,

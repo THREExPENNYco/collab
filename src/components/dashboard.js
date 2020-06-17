@@ -38,9 +38,9 @@ function Dashboard(props) {
 	const handleCreateGroup = () => {
 		setCreateGroupClick(true);
 	};
-	const getGroups = (groupId) => {
+	const getGroups = (userId) => {
 		axios
-			.get(`https://salty-basin-04868.herokuapp.com/groups/user_id=${groupId}/find_groups`)
+			.get(`https://salty-basin-04868.herokuapp.com/groups/user_id=${userId}/find_groups`)
 			.then((res) => {
 				setCurrUserGroups(res.data);
 			})
@@ -67,7 +67,7 @@ function Dashboard(props) {
 	};
 	const getCurrUserGoals = () => {
 		axios
-			.get(`https://salty-basin-04868.herokuapp.com/goals/curr_user=${passsedCurrUserName}`)
+			.get(`https://salty-basin-04868.herokuapp.com/goals/curr_user=${passedCurrUserName}/find_goals`)
 			.then((res) => {
 				if (res.status === 200) {
 					setCurrUserGoals(res.data);

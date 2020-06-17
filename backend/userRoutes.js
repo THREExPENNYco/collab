@@ -62,7 +62,7 @@ router.route('/group_dashboard/group_id=:group_id').get((req, res) => {
 		});
 });
 // route to grab members in the group
-router.route('/group_dashboard/group_id=:group_id/members').get((req, res) => {
+router.route('/group_dashboard/group_id=:group_id/get_members').get((req, res) => {
 	checkSesssionAndSessionId(req.session, req.session.userId) ? res.status(401) : null;
 	User.find({ groups: req.params.group_id }, { userName: 1 })
 		.then((users) => {
@@ -73,7 +73,7 @@ router.route('/group_dashboard/group_id=:group_id/members').get((req, res) => {
 		});
 });
 //route to grab goals in the group
-router.route('/group_dashboard/group_id=:group_id/goals').get((req, res) => {
+router.route('/group_dashboard/group_id=:group_id/get_goals').get((req, res) => {
 	checkSesssionAndSessionId(req.session, req.session.userId) ? res.status(401) : null;
 	Goal.find({ groupId: req.params.group_id })
 		.then((goals) => {
@@ -84,7 +84,7 @@ router.route('/group_dashboard/group_id=:group_id/goals').get((req, res) => {
 		});
 });
 // find goals for specific member
-router.route('/goals/curr_user=:curr_user').get((req, res) => {
+router.route('/goals/curr_user=:curr_user/find_goals').get((req, res) => {
 	checkSesssionAndSessionId(req.session, req.session.userId) ? res.status(401) : null;
 	Goal.find({ 'createdBy.userName': req.params.curr_user })
 		.then((goals) => {
@@ -180,7 +180,7 @@ router.route('/groups/user_id=:user_id/find_groups').get((req, res) => {
 		});
 });
 // create goal and add to group
-router.route('/group_id=:group_id/create_goal').post((req, res) => {
+router.route('/goals/group_id=:group_id/create_goal').post((req, res) => {
 	checkSesssionAndSessionId(req.session, req.session.userId) ? res.status(401) : null;
 	const goalName = req.body.goalName;
 	const goal = req.body.goal;
