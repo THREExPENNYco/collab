@@ -18,7 +18,7 @@ router.route('/').get((req, res) => {
 // Route for user filtered by id
 router.route('/users/user_name=:user_name/get_user').get((req, res) => {
 	checkSesssionAndSessionId(req.session, req.session.userId) ? res.status(401) : null;
-	User.findOne({ userName: req.params.user_name }, {passWord: 0})
+	User.findOne({ userName: req.params.user_name }, { passWord: 0 })
 		.then((user) => res.status(200).json(user))
 		.catch((err) => res.status(403).json(err));
 });
@@ -210,6 +210,16 @@ router.route('/goals/group_id=:group_id/create_goal').post((req, res) => {
 	});
 	newGoal
 		.save()
+		.then((newGoal) =>
+			Group.findByIdAndUpdate(
+				req.params.group_id,
+				{ $push: { goals: newGoal._id } },
+				{ useFindAndModify: false },
+				function (err, model) {
+					err ? res.status(200).json(model) : res.status(400).json(model);
+				}
+			)
+		)
 		.then((newGoal) => res.status(200).json(newGoal))
 		.catch((err) => res.status(404).json(err));
 	Group.findByIdAndUpdate(
