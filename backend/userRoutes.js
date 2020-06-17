@@ -51,7 +51,7 @@ router.route('/login').post((req, res) => {
 	});
 });
 // route that pulls up group dashboard
-router.route('/group_dashboard/group_id=:group_id/get_group').get((req, res) => {
+router.route('/group_dashboard/group_id=:group_id/get_group_dashboard').get((req, res) => {
 	checkSesssionAndSessionId(req.session, req.session.userId) ? res.status(401) : null;
 	Group.findOne({ _id: req.params.group_id })
 		.then((dashboard) => {

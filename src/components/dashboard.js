@@ -123,7 +123,7 @@ function Dashboard(props) {
 										<li key={index} className='dashboard-info__section-info__content-groups__item'>
 											<Link
 												to={{
-													pathname: `/group_dashboard/group_id=${group._id}`,
+													pathname: `/group_dashboard/group_id=${group._id}/get_group_dashboard`,
 													state: { currGroupId: group._id, currUserName: passedCurrUserName },
 												}}
 												className='dashboard-info__section-info__content-groups__item__link'>
@@ -148,7 +148,7 @@ function Dashboard(props) {
 									<li key={index} className='dashboard-info__section-info__content-groups__item'>
 										<Link
 											to={{
-												pathname: `/group_dashboard/group_id=${goal.groupId}`,
+												pathname: `/group_dashboard/group_id=${goal.groupId}/get_group_dashboard`,
 												state: { currGroupId: goal.groupId, currUserName: passedCurrUserName },
 											}}
 											className='dashboard-info__section-info__content-groups__item__link'>
@@ -170,7 +170,7 @@ function Dashboard(props) {
 			{createGroupClicked ? (
 				<Redirect
 					to={{
-						pathname: `/user_id=${currUserData._id}/create_group`,
+						pathname: `/groups/user_id=${currUserData._id}/create_group`,
 						state: { currUserData: currUserData },
 					}}
 				/>

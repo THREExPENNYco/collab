@@ -34,7 +34,7 @@ function groupDashboard(props) {
 	const [error, setError] = useState('');
 	useEffect(() => {
 		axios
-			.get(`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${currGroupId}/get_group`)
+			.get(`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${currGroupId}/get_group_dashboard`)
 			.then((res) => {
 				if (res.status === 200) {
 					getCurrUserData();
