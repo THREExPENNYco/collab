@@ -124,7 +124,7 @@ function Dashboard(props) {
 											<Link
 												to={{
 													pathname: `/group_dashboard/group_id=${group._id}`,
-													state: { groupId: group._id, currUserName: currUserName },
+													state: { groupId: group._id, currUserName: passedCurrUserName },
 												}}
 												className='dashboard-info__section-info__content-groups__item__link'>
 												{group.groupName}
@@ -149,7 +149,7 @@ function Dashboard(props) {
 										<Link
 											to={{
 												pathname: `/group_dashboard/group_id=${goal.groupId}`,
-												state: { groupId: goal.groupId, currUserName: currUserName },
+												state: { groupId: goal.groupId, currUserName: passedCurrUserName },
 											}}
 											className='dashboard-info__section-info__content-groups__item__link'>
 											{goal.goalName}
