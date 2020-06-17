@@ -15,7 +15,7 @@ function LoginForm() {
 				passWord: currUserPassWord,
 			})
 			.then((res) => {
-				if (res.status === 200) {
+				if (res.status === 201) {
 					setCurrUserName(res.data.userName);
 					setLoggedIn(true);
 				}

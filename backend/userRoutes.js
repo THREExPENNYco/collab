@@ -47,7 +47,7 @@ router.route('/login').post((req, res) => {
 		}
 		req.session.userId = user._id;
 		req.session.userName = user.userName;
-		res.status(200).json(user);
+		res.status(201).json(user);
 	});
 });
 // route that pulls up group dashboard
@@ -186,11 +186,14 @@ router.route('/groups/user_id=:user_id/find_groups').get((req, res) => {
 			res.status(200).json(groups);
 		})
 		.catch((err) => {
-			res.status(400).json(err);
+			res.status(404).json(err);
 		});
 });
 // create goal and add to group
 router.route('/goals/group_id=:group_id/create_goal').post((req, res) => {
+	console.log(req.session)
+	console.log(req.session.userId)
+	console.log(req.session.userName)
 	checkSesssionAndSessionId(req.session, req.session.userId) ? res.status(401) : null;
 	const goalName = req.body.goalName;
 	const goal = req.body.goal;
