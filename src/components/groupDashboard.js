@@ -330,7 +330,7 @@ function groupDashboard(props) {
 											key={index}
 											src={
 												passedState
-													? passedCurrUserData.image.toString()
+													? currUserData.image.toString()
 													: currUserData.image.toString()
 											}
 										/>

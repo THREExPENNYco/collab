@@ -168,7 +168,7 @@ router.route('/groups/group_id=:group_id/invite_user').post((req, res) => {
 	});
 });
 // route to add user to group array
-router.route('/group_id=:group_id/add_user_to_group').post((req, res) => {
+router.route('/group/group_id=:group_id/add_user_to_group').post((req, res) => {
 	checkSesssionAndSessionId(req.session, req.session.userId) ? res.status(401) : null;
 	Group.findByIdAndUpdate(
 		req.params.group_id,
