@@ -12,8 +12,8 @@ function App() {
 	const [loggedIn, setLoggedIn] = useState(false);
 	const handleLogOut = () => {
 		e.preventDefault();
-		localStorage.removeItem('currUser');
-		localStorage.removeItem('groupId');
+		localStorage.removeItem('currUserName');
+		localStorage.removeItem('currGrroupId');
 		setLoggedIn(true);
 	};
 	return (

@@ -6,10 +6,10 @@ import default_avatar_img from './componentAssets/default_avatar_image.png';
 
 function Dashboard(props) {
 	const passedProps = props.location.state ? true : false;
-	passedProps ? localStorage.setItem('currUser', props.location.state.currUser) : null;
+	passedProps ? localStorage.setItem('currUserName', props.location.state.currUserName) : null;
 	const passedCurrUserName = passedProps
 		? props.location.state.currUserName
-		: localStorage.getItem('currUser');
+		: localStorage.getItem('currUserName');
 	const [currUserData, setCurrUserData] = useState([]);
 	const [currUserGroups, setCurrUserGroups] = useState([]);
 	const [currUserId, setCurrUserId] = useState('');
@@ -65,7 +65,7 @@ function Dashboard(props) {
 				setError(err);
 			});
 	};
-	const getCurrUserGoals = (e) => {
+	const getCurrUserGoals = () => {
 		axios
 			.get(`https://salty-basin-04868.herokuapp.com/goals/curr_user=${passsedCurrUserName}`)
 			.then((res) => {

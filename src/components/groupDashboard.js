@@ -5,9 +5,9 @@ import default_avatar_img from './componentAssets/default_avatar_image.png';
 
 function groupDashboard(props) {
 	const passedState = props.location.state ? true : false;
-	passedState ? localStorage.setItem('groupId', props.location.state.groupId) : null;
-	const currGroupId = passedState ? props.location.state.groupId : localStorage.getItem('groupId');
-	const passedCurrUserData = passedState ? props.location.state.currUserData : localStorage.getItem('currUser');
+	passedState ? localStorage.setItem('currGroupId', props.location.state.groupId) : null;
+	const currGroupId = passedState ? props.location.state.groupId : localStorage.getItem('currGroupId');
+	const passedCurrUserData = passedState ? props.location.state.currUserData : localStorage.getItem('currUserName');
 	const [currUserData, setCurrUserData] = useState({});
 	const [userDataBool, setUserDataBool] = useState(false);
 	const [currGroupPeers, setCurrGroupPeers] = useState([]);
