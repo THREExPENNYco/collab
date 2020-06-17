@@ -169,7 +169,7 @@ router.route('/group_id=:group_id/add_user_to_group').post((req, res) => {
 	);
 });
 // find group
-router.route('/user_id=:user_id/find_group').get((req, res) => {
+router.route('/groups/user_id=:user_id/find_groups').get((req, res) => {
 	checkSesssionAndSessionId(req.session, req.session.userId) ? res.status(401) : null;
 	Group.find({ members: req.params.user_id })
 		.then((groups) => {

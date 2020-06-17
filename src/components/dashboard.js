@@ -40,7 +40,7 @@ function Dashboard(props) {
 	};
 	const getGroups = (groupId) => {
 		axios
-			.get(`https://salty-basin-04868.herokuapp.com/user_id=${groupId}/find_group`)
+			.get(`https://salty-basin-04868.herokuapp.com/groups/user_id=${groupId}/find_groups`)
 			.then((res) => {
 				setCurrUserGroups(res.data);
 			})
@@ -124,7 +124,7 @@ function Dashboard(props) {
 											<Link
 												to={{
 													pathname: `/group_dashboard/group_id=${group._id}`,
-													state: { groupId: group._id, currUserData: currUserData },
+													state: { groupId: group._id, currUserName: currUserName },
 												}}
 												className='dashboard-info__section-info__content-groups__item__link'>
 												{group.groupName}
@@ -149,7 +149,7 @@ function Dashboard(props) {
 										<Link
 											to={{
 												pathname: `/group_dashboard/group_id=${goal.groupId}`,
-												state: { groupId: goal.groupId, currUserData: currUserData },
+												state: { groupId: goal.groupId, currUserName: currUserName },
 											}}
 											className='dashboard-info__section-info__content-groups__item__link'>
 											{goal.goalName}

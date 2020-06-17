@@ -9,8 +9,8 @@ function groupDashboard(props) {
 	const currGroupId = passedState
 		? props.location.state.groupId
 		: localStorage.getItem('currGroupId');
-	const passedCurrUserData = passedState
-		? props.location.state.currUserData
+	const passedCurrUserName = passedState
+		? props.location.state.currUserName
 		: localStorage.getItem('currUserName');
 	const [currUserData, setCurrUserData] = useState({});
 	const [currUserId, setCurrUserId] = useState('');
