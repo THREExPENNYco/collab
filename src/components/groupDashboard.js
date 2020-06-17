@@ -100,7 +100,6 @@ function groupDashboard(props) {
 			});
 	};
 	const handleCreateGoalPost = (e) => {
-		e.preventDefault();
 		axios
 			.post(`https://salty-basin-04868.herokuapp.com/goals/group_id=${currGroupId}/create_goal`, {
 				goalName: newGoalName,
@@ -117,7 +116,6 @@ function groupDashboard(props) {
 			});
 	};
 	const handleCreateComment = (e) => {
-		e.preventDefault();
 		const formData = new FormData();
 		formData.append('image', newImage.newImageData);
 		formData.append('text', newComment);
