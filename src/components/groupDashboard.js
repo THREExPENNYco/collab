@@ -34,7 +34,7 @@ function groupDashboard(props) {
 	const [error, setError] = useState('');
 	useEffect(() => {
 		axios
-			.get(`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${currGroupId}`)
+			.get(`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${currGroupId}/get_group`)
 			.then((res) => {
 				if (res.status === 200) {
 					getCurrUserData();
@@ -83,7 +83,7 @@ function groupDashboard(props) {
 	const handleInvitePeerGet = (e) => {
 		e.preventDefault();
 		axios
-			.post(`https://salty-basin-04868.herokuapp.com/group_id=${currGroupId}/invite_user`, {
+			.post(`https://salty-basin-04868.herokuapp.com/groups/group_id=${currGroupId}/invite_user`, {
 				email: newPeerEmail,
 			})
 			.then((res) => {

@@ -12,7 +12,7 @@ function NewGroupForm(props) {
 	const handleCreateGroup = (e) => {
 		e.preventDefault();
 		axios
-			.post(`https://salty-basin-04868.herokuapp.com/user_id?=${passedCurrUserId}/create_group`, {
+			.post(`https://salty-basin-04868.herokuapp.com/groups/user_id?=${passedCurrUserId}/create_group`, {
 				createdBy: passedCurrUserName,
 				groupName: newGroupName,
 			})
@@ -42,7 +42,7 @@ function NewGroupForm(props) {
 	const addGroupToUser = (data) => {
 		axios
 			.post(
-				`https://salty-basin-04868.herokuapp.com/user_id?=${passedCurrUserId}/group_id?=${data}/group_to_user`
+				`https://salty-basin-04868.herokuapp.com/groups/user_id?=${passedCurrUserId}/group_id?=${data}/group_to_user`
 			)
 			.then(() => {})
 			.catch((err) => {

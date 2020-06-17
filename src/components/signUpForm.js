@@ -11,7 +11,7 @@ function signUpForm() {
 	const signup = (e) => {
 		e.preventDefault();
 		axios
-			.post('https://salty-basin-04868.herokuapp.com/new_user', {
+			.post('https://salty-basin-04868.herokuapp.com/users/new_user', {
 				userName: newUserName,
 				passWord: newPassWord,
 				email: newEmail,

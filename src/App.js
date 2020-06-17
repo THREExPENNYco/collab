@@ -43,9 +43,9 @@ function App() {
 			<Route path='/login' component={LoginForm} />
 			<Route path='/signup' component={SignUpForm} />
 			<Route path='/group_id=:group_id/add_user_to_group' component={LoginForm} />
-			<Route path='/dashboard/curr_user=:curr_user' component={Dashboard} />
+			<Route path='/dashboard/curr_user=:curr_user/get_user_dashboard' component={Dashboard} />
 			<Route path='/user_id=:user_id/create_group' component={NewGroupForm} />
-			<Route path='/group_dashboard/group_id=:group_id' component={GroupDashboard} />
+			<Route path='/group_dashboard/group_id=:group_id/get_group' component={GroupDashboard} />
 		</Router>
 	);
 }
