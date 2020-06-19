@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
-import  { CurrUserContext } from '../App.js';
+import { CurrUserContext } from './CurrUserContext.js';
 
 function LoginForm() {
 	const { currUser, setCurrUser } = useContext(CurrUserContext);
@@ -19,7 +19,6 @@ function LoginForm() {
 			.then((res) => {
 				if (res.status === 201) {
 					setCurrUser(res.data);
-					setCurrUserName(res.data.userName);
 					setLoggedIn(true);
 				}
 			})
@@ -49,7 +48,7 @@ function LoginForm() {
 				/>
 				<input className='form-submit-button' type='submit' value='SUBMIT' />
 			</form>
-			{loggedIn === true ? (
+			{loggedIn ? (
 				<Redirect
 					to={{
 						pathname: `/dashboard/curr_user=${currUserName}/get_user_dashboard`,

@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
+import { CurrUserContext } from './CurrUserContext.js';
 import input_camera_img from './componentAssets/input_camera_img.png';
 import default_avatar_img from './componentAssets/default_avatar_image.png';
 
@@ -10,6 +11,8 @@ function Dashboard(props) {
 	const passedCurrUserName = passedProps
 		? props.location.state.currUserName
 		: localStorage.getItem('currUserName');
+	const { currUser, setCurrUser } = useContext(CurrUserContext);
+	console.log(currUser)
 	const [currUserData, setCurrUserData] = useState([]);
 	const [currUserGroups, setCurrUserGroups] = useState([]);
 	const [currUserId, setCurrUserId] = useState('');
@@ -118,7 +121,7 @@ function Dashboard(props) {
 					<h1 className='dashboard-info__section-header'>GROUPS</h1>
 					<section className='dashboard-info__section-info'>
 						{currUserGroups
-							? currUserGroups.map((group, index) => (
+							? currUser.groups.map((group, index) => (
 									<section className='dashboard-info__section_info__content-groups'>
 										<li key={index} className='dashboard-info__section-info__content-groups__item'>
 											<Link

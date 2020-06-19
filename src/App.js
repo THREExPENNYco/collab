@@ -5,19 +5,18 @@ import Dashboard from './components/dashboard.js';
 import SignUpForm from './components/signUpForm.js';
 import NewGroupForm from './components/newGroupForm.js';
 import GroupDashboard from './components/groupDashboard.js';
+import { CurrUserContext } from './components/CurrUserContext.js'
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import Styles from './Styles.css';
 // Main component for the app
 function App() {
-	const CurrUserContext = createContext(null);
-	const [ currUser, setCurrUser ] = useState('');
+	const [ currUser, setCurrUser ] = useState("context");
 
 	const currUserMemo = useMemo(() => ({currUser, setCurrUser}), [currUser, setCurrUser]);
 
 	return (
 	<CurrUserContext.Provider value={ currUserMemo }> 
 		<Router>
-		{console.log(currUser)}
 			<nav className='nav-bar'>
 				<ul className='nav-bar__items'>
 					<li className='logo'>

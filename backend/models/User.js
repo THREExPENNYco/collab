@@ -41,7 +41,7 @@ const userSchema = new Schema(
 			trim: true,
 		},
 		groups: {
-			type: [mongoose.Types.ObjectId],
+			type: [{ groupId: mongoose.Types.ObjectId, groupName: String }],
 			ref: 'Groups',
 			required: false,
 		},
