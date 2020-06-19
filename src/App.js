@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useMemo, useContext } from 'react';
 import Home from './components/home.js';
 import LoginForm from './components/loginForm.js';
 import Dashboard from './components/dashboard.js';
@@ -9,15 +9,22 @@ import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import Styles from './Styles.css';
 // Main component for the app
 function App() {
-	const [loggedIn, setLoggedIn] = useState(false);
+	const CurrUserContext = useContext(null);
+	const [ currUser, setCurrUser ] = useState({});
+
+	const currUserMemo = useMemo(() => {{currUser, setCurrUser}}, [currUser, setCurrUser])
+
 	const handleLogOut = () => {
 		e.preventDefault();
 		localStorage.removeItem('currUserName');
 		localStorage.removeItem('currGrroupId');
 		setLoggedIn(true);
 	};
+
 	return (
+	<CurrUserContext.Provider value={{ currUserMemo }}> 
 		<Router>
+		{console.log(currUser)}
 			<nav className='nav-bar'>
 				<ul className='nav-bar__items'>
 					<li className='logo'>
@@ -52,6 +59,7 @@ function App() {
 				component={GroupDashboard}
 			/>
 		</Router>
+	</CurrUserContext.Provider> 
 	);
 }
 

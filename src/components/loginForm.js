@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, createContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 
 function LoginForm() {
+	const { currUser, setCurrUser } = useContext(CurrUserContext);
 	const [currUserName, setCurrUserName] = useState('');
 	const [currUserPassWord, setCurrUserPassWord] = useState('');
 	const [loggedIn, setLoggedIn] = useState(false);
@@ -16,6 +17,7 @@ function LoginForm() {
 			})
 			.then((res) => {
 				if (res.status === 201) {
+					setCurrUser(res.data);
 					setCurrUserName(res.data.userName);
 					setLoggedIn(true);
 				}
