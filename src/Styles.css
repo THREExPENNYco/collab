@@ -10,7 +10,6 @@ body {
 	background-color: black;
 	min-height: 50px;
 	width: 100%;
-	top: 0;
 	display: flex;
 	justify-content: space-between;
 	text-decoration: none;
@@ -24,10 +23,15 @@ body {
 .nav-bar a:hover {
 	color: red;
 }
-
+.nav-bar__items {
+	display: flex;
+	width: 100%;
+	justify-content: space-between;
+	list-style-type: none;
+}
 .login-signup {
 	display: flex;
-	justify-content: center;
+	justify-content: end;
 }
 
 .logo {

@@ -19,7 +19,7 @@ function App() {
 	return (
 		<Router>
 			<nav className='nav-bar'>
-				<ul>
+				<ul className='nav-bar__items'>
 					<li className='logo'>
 						<Link to='/'>PEER PRESSURE</Link>
 					</li>
