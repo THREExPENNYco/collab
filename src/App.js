@@ -15,7 +15,7 @@ function App() {
 	const currUserMemo = useMemo(() => ({currUser, setCurrUser}), [currUser, setCurrUser]);
 
 	return (
-	<CurrUserContext.Provider value={{ currUserMemo }}> 
+	<CurrUserContext.Provider value={ currUserMemo }> 
 		<Router>
 		{console.log(currUser)}
 			<nav className='nav-bar'>
