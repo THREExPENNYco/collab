@@ -10,7 +10,7 @@ import Styles from './Styles.css';
 // Main component for the app
 function App() {
 	const CurrUserContext = createContext(null);
-	const [ currUser, setCurrUser ] = useState({});
+	const [ currUser, setCurrUser ] = useState('');
 
 	const currUserMemo = useMemo(() => ({currUser, setCurrUser}), [currUser, setCurrUser]);
 
