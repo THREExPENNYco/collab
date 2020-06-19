@@ -9,7 +9,7 @@ import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import Styles from './Styles.css';
 // Main component for the app
 function App() {
-	const CurrUserContext = useContext(null);
+	const CurrUserContext = useContext("");
 	const [ currUser, setCurrUser ] = useState({});
 
 	const currUserMemo = useMemo(() => {{currUser, setCurrUser}}, [currUser, setCurrUser])
