@@ -12,14 +12,7 @@ function App() {
 	const CurrUserContext = createContext(null);
 	const [ currUser, setCurrUser ] = useState({});
 
-	const currUserMemo = useMemo(() => {{currUser, setCurrUser}}, [currUser, setCurrUser])
-
-	const handleLogOut = () => {
-		e.preventDefault();
-		localStorage.removeItem('currUserName');
-		localStorage.removeItem('currGrroupId');
-		setLoggedIn(true);
-	};
+	const currUserMemo = useMemo(() => {{currUser, setCurrUser}}, [currUser, setCurrUser]);
 
 	return (
 	<CurrUserContext.Provider value={{ currUserMemo }}> 
@@ -31,17 +24,11 @@ function App() {
 						<Link to='/'>PEER PRESSURE</Link>
 					</li>
 					<div className='login-signup'>
-						{loggedIn ? (
-							<li className='login' onClick={(e) => handleLogOut(e)}>
-								<Link to='/'>LOGOUT</Link>
-							</li>
-						) : (
 							<li className='login'>
 								<Link to='/login' onClick={setLoggedIn}>
 									LOGIN
 								</Link>
 							</li>
-						)}
 						<li className='signup'>
 							<Link to='/signup'>SIGN UP</Link>
 						</li>
