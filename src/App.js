@@ -25,7 +25,7 @@ function App() {
 					</li>
 					<div className='login-signup'>
 							<li className='login'>
-								<Link to='/login' onClick={setLoggedIn}>
+								<Link to='/login'>
 									LOGIN
 								</Link>
 							</li>
