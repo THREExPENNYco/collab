@@ -12,7 +12,7 @@ function App() {
 	const CurrUserContext = createContext(null);
 	const [ currUser, setCurrUser ] = useState({});
 
-	const currUserMemo = useMemo(() => {{currUser, setCurrUser}}, [currUser, setCurrUser]);
+	const currUserMemo = useMemo(() => ({currUser, setCurrUser}), [currUser, setCurrUser]);
 
 	return (
 	<CurrUserContext.Provider value={{ currUserMemo }}> 
