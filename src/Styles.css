@@ -29,6 +29,7 @@ body {
 	justify-content: space-between;
 	list-style-type: none;
 	margin-top: auto;
+	margin-left: -40px;
 }
 .login-signup {
 	display: flex;
