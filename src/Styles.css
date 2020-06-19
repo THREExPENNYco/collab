@@ -28,6 +28,7 @@ body {
 	width: 100%;
 	justify-content: space-between;
 	list-style-type: none;
+	margin-top: auto;
 }
 .login-signup {
 	display: flex;
