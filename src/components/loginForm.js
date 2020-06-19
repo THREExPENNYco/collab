@@ -1,6 +1,7 @@
 import React, { useState, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
+import  { CurrUserContext } from '../App.js';
 
 function LoginForm() {
 	const { currUser, setCurrUser } = useContext(CurrUserContext);
