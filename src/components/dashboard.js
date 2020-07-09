@@ -6,11 +6,6 @@ import input_camera_img from './componentAssets/input_camera_img.png';
 import default_avatar_img from './componentAssets/default_avatar_image.png';
 
 function Dashboard(props) {
-	const passedProps = props.location.state ? true : false;
-	passedProps ? localStorage.setItem('currUserName', props.location.state.currUserName) : null;
-	const passedCurrUserName = passedProps
-		? props.location.state.currUserName
-		: localStorage.getItem('currUserName');
 	const { currUser, setCurrUser } = useContext(CurrUserContext);
 	console.log(currUser)
 	const [currUserData, setCurrUserData] = useState([]);
@@ -25,7 +20,7 @@ function Dashboard(props) {
 	const [currUserGoals, setCurrUserGoals] = useState([]);
 	useEffect(() => {
 		axios
-			.get(`https://salty-basin-04868.herokuapp.com/users/curr_user=${passedCurrUserName}/get_user`)
+			.get(`https://salty-basin-04868.herokuapp.com/users/curr_user=${currUser.userName}/get_user`)
 			.then((res) => {
 				if (res.status === 200) {
 					setCurrUserData(res.data);
@@ -70,7 +65,7 @@ function Dashboard(props) {
 	};
 	const getCurrUserGoals = () => {
 		axios
-			.get(`https://salty-basin-04868.herokuapp.com/goals/curr_user=${passedCurrUserName}/find_goals`)
+			.get(`https://salty-basin-04868.herokuapp.com/goals/curr_user=${currUser.userName}/find_goals`)
 			.then((res) => {
 				if (res.status === 200) {
 					setCurrUserGoals(res.data);
@@ -82,7 +77,7 @@ function Dashboard(props) {
 	};
 	return (
 		<section className='dashboard'>
-			<p className='dashboard-hero__top'>{passedCurrUserName.toUpperCase()}</p>
+			<p className='dashboard-hero__top'>{currUser.userName.toUpperCase()}</p>
 			<p className='dashboard-hero__bottom'>DASHBOARD</p>
 			<section className='dashboard-bio__image-container'>
 				{currUserData.image ? (
@@ -120,14 +115,14 @@ function Dashboard(props) {
 				<section className='dashboard-info__section'>
 					<h1 className='dashboard-info__section-header'>GROUPS</h1>
 					<section className='dashboard-info__section-info'>
-						{currUserGroups
+						{currUser 
 							? currUser.groups.map((group, index) => (
 									<section className='dashboard-info__section_info__content-groups'>
 										<li key={index} className='dashboard-info__section-info__content-groups__item'>
 											<Link
 												to={{
 													pathname: `/group_dashboard/group_id=${group._id}/get_group_dashboard`,
-													state: { currGroupId: group._id, currUserName: passedCurrUserName },
+													state: { currGroupId: group._id, currUserName: currUser.userName },
 												}}
 												className='dashboard-info__section-info__content-groups__item__link'>
 												{group.groupName}
@@ -152,7 +147,7 @@ function Dashboard(props) {
 										<Link
 											to={{
 												pathname: `/group_dashboard/group_id=${goal.groupId}/get_group_dashboard`,
-												state: { currGroupId: goal.groupId, currUserName: passedCurrUserName },
+												state: { currGroupId: goal.groupId, currUserName: currUser.userName },
 											}}
 											className='dashboard-info__section-info__content-groups__item__link'>
 											{goal.goalName}
@@ -169,7 +164,7 @@ function Dashboard(props) {
 					</section>
 				</section>
 			</section>
-			{passedCurrUserName ? null : <Redirect to='/login' />}
+			{currUser ? null : <Redirect to='/login' />}
 			{createGroupClicked ? (
 				<Redirect
 					to={{

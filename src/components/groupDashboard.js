@@ -1,9 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import axios from 'axios';
 import input_camera_img from './componentAssets/input_camera_img.png';
 import default_avatar_img from './componentAssets/default_avatar_image.png';
+import { CurrUserContext } from './CurrUserContext.js';
 
-function groupDashboard(props) {
+
+function groupDashboard() {
+	const { currUser, setCurrUser } = useContext(CurrUserContext);
+	console.log("This is the curruser context", currUser)
 	const passedState = props.location.state ? true : false;
 	passedState ? localStorage.setItem('currGroupId', props.location.state.currGroupId) : null;
 	const currGroupId = passedState

@@ -21,7 +21,8 @@ const userSchema = new Schema(
 			type: String,
 			required: [true, 'A password is required'],
 			min: 8,
-			trim: true,
+			trim: true, 
+			selectPopulatedPaths: false,
 		},
 		email: {
 			type: String,

@@ -9,6 +9,7 @@ function LoginForm() {
 	const [currUserPassWord, setCurrUserPassWord] = useState('');
 	const [loggedIn, setLoggedIn] = useState(false);
 	const [error, setError] = useState('');
+	localStorage.setItem("currUser", JSON.stringify(currUser))
 	const login = (e) => {
 		e.preventDefault();
 		axios

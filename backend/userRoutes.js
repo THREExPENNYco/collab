@@ -17,7 +17,7 @@ router.route('/').get((req, res) => {
 });
 // Login route
 router.route('/login').post((req, res) => {
-	User.findOne({ userName: req.body.userName }, (err, user) => {
+	const user = User.findOne({ userName: req.body.userName }, (err, user) => {
 		if (!user || !bcrypt.compareSync(req.body.passWord, user.passWord)) {
 			res.status(401).json(err);
 			return;
@@ -25,7 +25,7 @@ router.route('/login').post((req, res) => {
 		req.session.userId = user._id;
 		req.session.userName = user.userName;
 		res.status(201).json(user);
-	});
+	})
 });
 // Route for user filtered by id
 router.route('/users/user_name=:user_name/get_user').get((req, res) => {
