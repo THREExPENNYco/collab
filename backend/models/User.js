@@ -22,7 +22,6 @@ const userSchema = new Schema(
 			required: [true, 'A password is required'],
 			min: 8,
 			trim: true, 
-			select: false,
 		},
 		email: {
 			type: String,
