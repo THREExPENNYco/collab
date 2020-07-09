@@ -32,7 +32,10 @@ router.route('/login').post((req, res) => {
 router.route('/users/user_name=:user_name/get_user').get((req, res) => {
 	checkSesssionAndSessionId(req.session, req.session.userId) ? res.status(401) : null;
 	User.findOne({ userName: req.params.user_name }, { passWord: 0 })
-		.then((user) => res.status(200).json(user))
+		.then((user) => { 
+			user.passWord = null;
+			res.status(200).json(user)
+		})
 		.catch((err) => res.status(403).json(err));
 });
 // New user route
