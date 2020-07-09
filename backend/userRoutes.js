@@ -31,7 +31,7 @@ router.route('/login').post((req, res) => {
 // Route for user filtered by id
 router.route('/users/user_name=:user_name/get_user').get((req, res) => {
 	checkSesssionAndSessionId(req.session, req.session.userId) ? res.status(401) : null;
-	User.findOne({ userName: req.params.user_name }, { passWord: 0 })
+	User.findOne({ userName: req.params.user_name })
 		.then((user) => { 
 			delete user['passWord']
 			res.status(200).json(user)
