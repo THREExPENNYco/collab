@@ -17,7 +17,7 @@ router.route('/').get((req, res) => {
 });
 // Login route
 router.route('/login').post((req, res) => {
-	const user = User.findOne({ userName: req.body.userName }, (err, user) => {
+	User.findOne({ userName: req.body.userName }, (err, user) => {
 		if (!user || !bcrypt.compareSync(req.body.passWord, user.passWord)) {
 			res.status(401).json(err);
 			return;
