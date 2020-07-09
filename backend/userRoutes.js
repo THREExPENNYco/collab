@@ -22,6 +22,7 @@ router.route('/login').post((req, res) => {
 			res.status(401).json(err);
 			return;
 		}
+		user.passWord = null;
 		req.session.userId = user._id;
 		req.session.userName = user.userName;
 		res.status(201).json(user);
