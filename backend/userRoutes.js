@@ -22,7 +22,7 @@ router.route('/login').post((req, res) => {
 			res.status(401).json(err);
 			return;
 		}
-		delete user['passWord']
+		user.passWord = null;
 		req.session.userId = user._id;
 		req.session.userName = user.userName;
 		res.status(201).json(user);
@@ -33,7 +33,7 @@ router.route('/users/user_name=:user_name/get_user').get((req, res) => {
 	checkSesssionAndSessionId(req.session, req.session.userId) ? res.status(401) : null;
 	User.findOne({ userName: req.params.user_name })
 		.then((user) => { 
-			delete user['passWord']
+			user.passWord = null;
 			res.status(200).json(user)
 		})
 		.catch((err) => res.status(403).json(err));
