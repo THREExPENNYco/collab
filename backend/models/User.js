@@ -22,7 +22,7 @@ const userSchema = new Schema(
 			required: [true, 'A password is required'],
 			min: 8,
 			trim: true, 
-			selectPopulatedPaths: false,
+			select: false,
 		},
 		email: {
 			type: String,
