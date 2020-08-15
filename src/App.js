@@ -10,9 +10,9 @@ import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import Styles from './Styles.css';
 // Main component for the app
 function App() {
-	const [ currUser, setCurrUser ] = useState("context");
+	const [ currUser, setCurrUserContext ] = useState("context");
 
-	const currUserMemo = useMemo(() => ({currUser, setCurrUser}), [currUser, setCurrUser]);
+	const currUserMemo = useMemo(() => ({currUser, setCurrUserContext}), [currUser, setCurrUserContext]);
 
 	return (
 	<CurrUserContext.Provider value={ currUserMemo }> 

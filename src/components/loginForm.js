@@ -4,7 +4,7 @@ import axios from 'axios';
 import { CurrUserContext } from './CurrUserContext.js';
 
 function LoginForm() {
-	const { currUser, setCurrUser } = useContext(CurrUserContext);
+	const { currUser, setCurrUserContext } = useContext(CurrUserContext);
 	const [currUserName, setCurrUserName] = useState('');
 	const [currUserPassWord, setCurrUserPassWord] = useState('');
 	const [loggedIn, setLoggedIn] = useState(false);
@@ -19,7 +19,7 @@ function LoginForm() {
 			})
 			.then((res) => {
 				if (res.status === 201) {
-					setCurrUser(res.data);
+					setCurrUserContext(res.data);
 					setLoggedIn(true);
 				}
 			})

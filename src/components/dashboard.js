@@ -2,33 +2,20 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
 import { CurrUserContext } from './CurrUserContext.js';
-import input_camera_img from './componentAssets/input_camera_img.png';
-import default_avatar_img from './componentAssets/default_avatar_image.png';
+import inputCameraImg from './componentAssets/input_camera_img.png';
+import defaultAvatarImg from './componentAssets/default_avatar_image.png';
 
-function Dashboard(props) {
-	const { currUser, setCurrUser } = useContext(CurrUserContext);
-	console.log(currUser)
-	const [currUserData, setCurrUserData] = useState([]);
-	const [currUserGroups, setCurrUserGroups] = useState([]);
-	const [currUserId, setCurrUserId] = useState('');
+function Dashboard() {
+	let currUser = JSON.parse(localStorage.getItem('currUser'));
 	const [error, setError] = useState('');
 	const [newImage, setNewImage] = useState({
 		newImageData: '',
 		newImageUploadedBool: false,
 	});
 	const [createGroupClicked, setCreateGroupClick] = useState(false);
-	const [currUserGoals, setCurrUserGoals] = useState([]);
 	useEffect(() => {
 		axios
 			.get(`https://salty-basin-04868.herokuapp.com/users/curr_user=${currUser.userName}/get_user`)
-			.then((res) => {
-				if (res.status === 200) {
-					setCurrUserData(res.data);
-					getGroups(res.data._id);
-					setCurrUserId(res.data._id);
-					getCurrUserGoals();
-				}
-			})
 			.catch((err) => {
 				setError(err);
 			});
@@ -36,62 +23,39 @@ function Dashboard(props) {
 	const handleCreateGroup = () => {
 		setCreateGroupClick(true);
 	};
-	const getGroups = (userId) => {
-		axios
-			.get(`https://salty-basin-04868.herokuapp.com/groups/user_id=${userId}/find_groups`)
-			.then((res) => {
-				setCurrUserGroups(res.data);
-			})
-			.catch((err) => {
-				setError(err);
-			});
-	};
 	const uploadUserImage = (e) => {
 		e.preventDefault();
 		const formData = new FormData();
+		S;
 		formData.append('image', newImage.newImageData);
 		axios({
 			method: 'post',
-			url: `/dashboard/upload_image/${currUserId}`,
+			url: `/dashboard/upload_image/${currUser._id}`,
 			data: formData,
 			headers: {
 				'Content-Type': 'multipart/form-data',
 			},
-		})
-			.then()
-			.catch((err) => {
-				setError(err);
-			});
-	};
-	const getCurrUserGoals = () => {
-		axios
-			.get(`https://salty-basin-04868.herokuapp.com/goals/curr_user=${currUser.userName}/find_goals`)
-			.then((res) => {
-				if (res.status === 200) {
-					setCurrUserGoals(res.data);
-				}
-			})
-			.catch((err) => {
-				setError(err);
-			});
+		}).catch((err) => {
+			setError(err);
+		});
 	};
 	return (
 		<section className='dashboard'>
 			<p className='dashboard-hero__top'>{currUser.userName.toUpperCase()}</p>
 			<p className='dashboard-hero__bottom'>DASHBOARD</p>
 			<section className='dashboard-bio__image-container'>
-				{currUserData.image ? (
-					<img className='dashboard-bio__image' src={currUserData.image.toString()}></img>
+				{currUser.image ? (
+					<img className='dashboard-bio__image' src={currUser.image.toString()}></img>
 				) : (
-					<img className='dashboard-bio__image' src={default_avatar_img}></img>
+					<img className='dashboard-bio__image' src={defaultAvatarImg}></img>
 				)}
 			</section>
 			<form encType='multipart/form-data' onSubmit={(e) => uploadUserImage(e)}>
 				<section className='dashboard__members-feed__input__buttons'>
 					<section className='dashboard__members-feed__input__button-container'>
-						<img src={input_camera_img} className='dashboard__members__form-input__camera' />
+						<img src={inputCameraImg} className='dashboard__members__form-input__camera' />
 						<input
-							src={input_camera_img}
+							src={inputCameraImg}
 							className='dashboard__members__form-input__choose-file'
 							type='file'
 							onChange={(e) =>
@@ -115,7 +79,7 @@ function Dashboard(props) {
 				<section className='dashboard-info__section'>
 					<h1 className='dashboard-info__section-header'>GROUPS</h1>
 					<section className='dashboard-info__section-info'>
-						{currUser 
+						{currUser
 							? currUser.groups.map((group, index) => (
 									<section className='dashboard-info__section_info__content-groups'>
 										<li key={index} className='dashboard-info__section-info__content-groups__item'>
@@ -140,8 +104,8 @@ function Dashboard(props) {
 				<section className='dashboard-info__section'>
 					<h1 className='dashboard-info__section-header'>GOALS</h1>
 					<section className='dashboard-info__section-info'>
-						{currUserGoals ? (
-							currUserGoals.map((goal, index) => (
+						{currUser.goals ? (
+							currUser.goals.map((goal, index) => (
 								<section className='dashboard-info__section_info__content-groups'>
 									<li key={index} className='dashboard-info__section-info__content-groups__item'>
 										<Link
