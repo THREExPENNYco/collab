@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import axios from 'axios';
-import { CurrUserContext } from './CurrUserContext.js';
 import inputCameraImg from './componentAssets/input_camera_img.png';
 import defaultAvatarImg from './componentAssets/default_avatar_image.png';
 
@@ -39,8 +38,11 @@ function Dashboard() {
 			setError(err);
 		});
 	};
+	const setLocalStorage = (index, currUser) => { 
+		localStorage.setItem('currGroup', JSON.stringify(currUser.groups[index].toString()));
+	}
 	return (
-		<section className='dashboard'>
+		<section  className='dashboard'>
 			<p className='dashboard-hero__top'>{currUser.userName.toUpperCase()}</p>
 			<p className='dashboard-hero__bottom'>DASHBOARD</p>
 			<section className='dashboard-bio__image-container'>
@@ -83,10 +85,10 @@ function Dashboard() {
 							? currUser.groups.map((group, index) => (
 									<section className='dashboard-info__section_info__content-groups'>
 										<li key={index} className='dashboard-info__section-info__content-groups__item'>
-											<Link
+										{console.log(currUser.groups[index])}
+											<Link onClick={() => setLocalStorage(index, currUser)}
 												to={{
-													pathname: `/group_dashboard/group_id=${group._id}/get_group_dashboard`,
-													state: { currGroupId: group._id, currUserName: currUser.userName },
+													pathname: `/group_dashboard/group_id=${group._id}/get_group_dashboard`
 												}}
 												className='dashboard-info__section-info__content-groups__item__link'>
 												{group.groupName}
@@ -111,7 +113,7 @@ function Dashboard() {
 										<Link
 											to={{
 												pathname: `/group_dashboard/group_id=${goal.groupId}/get_group_dashboard`,
-												state: { currGroupId: goal.groupId, currUserName: currUser.userName },
+											 
 											}}
 											className='dashboard-info__section-info__content-groups__item__link'>
 											{goal.goalName}

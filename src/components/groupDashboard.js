@@ -1,34 +1,19 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import input_camera_img from './componentAssets/input_camera_img.png';
 import default_avatar_img from './componentAssets/default_avatar_image.png';
-import { CurrUserContext } from './CurrUserContext.js';
 
 
 function groupDashboard() {
-	const { currUser, setCurrUser } = useContext(CurrUserContext);
-	console.log("This is the curruser context", currUser)
-	const passedState = props.location.state ? true : false;
-	passedState ? localStorage.setItem('currGroupId', props.location.state.currGroupId) : null;
-	const currGroupId = passedState
-		? props.location.state.currGroupId
-		: localStorage.getItem('currGroupId');
-	const passedCurrUserName = passedState
-		? props.location.state.currUserName
-		: localStorage.getItem('currUserName');
-	const [currUserData, setCurrUserData] = useState({});
-	const [currUserId, setCurrUserId] = useState('');
-	const [userDataBool, setUserDataBool] = useState(false);
-	const [currGroupPeers, setCurrGroupPeers] = useState([]);
-	const [currGroupGoals, setCurrGroupGoals] = useState([]);
-	const [currGroupName, setCurrGroupName] = useState('');
+	const currGroup = JSON.parse(localStorage.getItem('currGroup'));
+	const currUser = JSON.parse(localStorage.getItem('currUser'));
+	const [currGroupComments, setCurrGroupComments] = useState([]);
 	const [newGoalStep, setNewGoalStep] = useState('');
 	const [newComment, setNewComment] = useState('');
 	const [newImage, setNewImage] = useState({
 		newImageUploaded: false,
 		newImageData: [],
 	});
-	const [currGroupComments, setCurrGroupComments] = useState([]);
 	const [createGoalClicked, setCreateGoalClick] = useState(false);
 	const [addPeerClicked, setAddPeerClick] = useState(false);
 	const [newPeerEmail, setNewPeerEmail] = useState('');
@@ -39,49 +24,17 @@ function groupDashboard() {
 	useEffect(() => {
 		axios
 			.get(
-				`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${currGroupId}/get_group_dashboard`
+				`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${currGroup._id}/get_group_dashboard`
 			)
 			.then((res) => {
 				if (res.status === 200) {
-					getCurrUserData();
-					setCurrGroupName(res.data.groupName);
-					getPeerMemberNames();
-					getPeerGoals();
-					getGroupComments();
+					localStorage.setItem('currGroup', res.data);
 				}
 			})
 			.catch((err) => {
 				setError(err);
 			});
 	}, []);
-	const getPeerGoals = () => {
-		axios
-			.get(
-				`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${currGroupId}/get_goals`
-			)
-			.then((res) => {
-				if (res.status === 200) {
-					setCurrGroupGoals(res.data);
-				}
-			})
-			.catch((err) => {
-				setError(err);
-			});
-	};
-	const getPeerMemberNames = () => {
-		axios
-			.get(
-				`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${currGroupId}/get_members`
-			)
-			.then((res) => {
-				if (res.status === 200) {
-					setCurrGroupPeers(res.data);
-				}
-			})
-			.catch((err) => {
-				setError(err);
-			});
-	};
 	const handleCreateGoalBtn = () => {
 		createGoalClicked ? setCreateGoalClick(false) : setCreateGoalClick(true);
 	};
@@ -91,12 +44,13 @@ function groupDashboard() {
 	const handleInvitePeerGet = (e) => {
 		e.preventDefault();
 		axios
-			.post(`https://salty-basin-04868.herokuapp.com/groups/group_id=${currGroupId}/invite_user`, {
+			.post(`https://salty-basin-04868.herokuapp.com/groups/group_id=${currGroup._id}/invite_user`, {
 				email: newPeerEmail,
 			})
 			.then((res) => {
 				if (res.status === 200) {
 					handleAddPeerBtn();
+					getGroupComments();
 				}
 			})
 			.catch((err) => {
@@ -105,7 +59,7 @@ function groupDashboard() {
 	};
 	const handleCreateGoalPost = (e) => {
 		axios
-			.post(`https://salty-basin-04868.herokuapp.com/goals/group_id=${currGroupId}/create_goal`, {
+			.post(`https://salty-basin-04868.herokuapp.com/goals/group_id=${currGroup._id}/create_goal`, {
 				goalName: newGoalName,
 				goal: newGoal,
 				goalDuration: newGoalDuration,
@@ -125,7 +79,7 @@ function groupDashboard() {
 		formData.append('text', newComment);
 		axios({
 			method: 'post',
-			url: `/group_dashboard/group_id=${currGroupId}/user_name=${passedCurrUserName}/user_id=${currUserId}/create_comment`,
+			url: `/group_dashboard/group_id=${currGroup._id}/user_name=${currUser.userName}/user_id=${currUser._id}/create_comment`,
 			data: formData,
 			headers: {
 				'Content-Type': 'multipart/form-data',
@@ -133,7 +87,8 @@ function groupDashboard() {
 		})
 			.then((res) => {
 				if (res.status === 200) {
-					setCurrGroupComments(currGroupComments.concat(res.data));
+					let updatedGroup = currGroup.comments.concat(res.data);
+					localStorage.setItem('currGroup', updatedGroup);
 				}
 			})
 			.catch((err) => {
@@ -143,7 +98,7 @@ function groupDashboard() {
 	const getGroupComments = () => {
 		axios
 			.get(
-				`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${currGroupId}/get_comments`
+				`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${currGroup._id}/get_comments`
 			)
 			.then((res) => {
 				if (res.status === 200) {
@@ -154,23 +109,9 @@ function groupDashboard() {
 				setError(err);
 			});
 	};
-	const getCurrUserData = () => {
-		axios
-			.get(`https://salty-basin-04868.herokuapp.com/users/user_name=${passedCurrUserName}/get_user`)
-			.then((res) => {
-				if (res.status === 200) {
-					setCurrUserData(res.data);
-					setCurrUserId(res.data._id);
-					setUserDataBool(true);
-				}
-			})
-			.catch((err) => {
-				setError(err);
-			});
-	};
 	return (
 		<section>
-			<p className='dashboard-hero__top'>{currGroupName.toUpperCase()}</p>
+			<p className='dashboard-hero__top'>{currGroup.groupName.toUpperCase()}</p>
 			<p className='dashboard-hero__bottom'>DASHBOARD</p>
 			<hr className='dashboard-hero__hr'></hr>
 			<section className='dashboard-group'>
@@ -327,19 +268,17 @@ function groupDashboard() {
 								<section
 									key={index}
 									className='dashboard-group__members-feed__comments-continer__avatar-container'>
-									{userDataBool ? (
 										<img
 											className='dashboard-group__members-feed__comments-container__avatar'
 											key={index}
-											src={currUserData.image.toString()}
+											src={currUser.image.toString()}
 										/>
-									) : (
 										<img
 											className='dashboard-group__members-feed__comments-container__avatar'
 											key={index}
 											src={default_avatar_img}
 										/>
-									)}
+									)
 									<p
 										key={index}
 										className='dashboard-group__members-feed__comments-container__username'>
