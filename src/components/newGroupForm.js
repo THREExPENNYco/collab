@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import axios from 'axios';
 
-function NewGroupForm(props) {
-	const passedCurrUserId = props.location.state.currUserData._id;
-	const passedCurrUserName = props.location.state.currUserData.userName;
+function NewGroupForm() {
+	const currUser = JSON.parse(localStorage.getItem('currUser'));
 	const [newGroupName, setNewGroupName] = useState('');
 	const [error, setError] = useState(null);
 	const [createdGroup, setCreateGroupSuccess] = useState(false);
@@ -12,8 +11,8 @@ function NewGroupForm(props) {
 	const handleCreateGroup = (e) => {
 		e.preventDefault();
 		axios
-			.post(`https://salty-basin-04868.herokuapp.com/groups/user_id?=${passedCurrUserId}/create_group`, {
-				createdBy: passedCurrUserName,
+			.post(`https://salty-basin-04868.herokuapp.com/groups/user_id=${currUser._id}/create_group`, {
+				createdBy: currUser._id,
 				groupName: newGroupName,
 			})
 			.then((res) => {
@@ -31,9 +30,12 @@ function NewGroupForm(props) {
 	const addUserToGroup = (data) => {
 		axios
 			.post(
-				`https://salty-basin-04868.herokuapp.com/user_id?=${passedCurrUserId}/group_id?=${data}/add_user_to_group`
+				`https://salty-basin-04868.herokuapp.com/groups/group_id=${data}/add_user_to_group`, 
+				{
+					peerId: currUser._id,
+					peerName: currUser.userName
+				}
 			)
-			.then(() => {})
 			.catch((err) => {
 				setError(err);
 			});
@@ -42,9 +44,11 @@ function NewGroupForm(props) {
 	const addGroupToUser = (data) => {
 		axios
 			.post(
-				`https://salty-basin-04868.herokuapp.com/groups/user_id?=${passedCurrUserId}/group_id?=${data}/group_to_user`
+				`https://salty-basin-04868.herokuapp.com/groups/user_id=${currUser._id}/group_to_user`, { 
+					groupName: newGroupName,
+					groupId: data
+				}
 			)
-			.then(() => {})
 			.catch((err) => {
 				setError(err);
 			});
@@ -66,8 +70,7 @@ function NewGroupForm(props) {
 			{createdGroup ? (
 				<Redirect
 					to={{
-						pathname: `/dashboard/curr_user=${passedCurrUserName}`,
-						state: { currUser: passedCurrUserName },
+						pathname: `/dashboard/curr_user=${currUser._id}`,
 					}}
 				/>
 			) : null}

@@ -39,7 +39,8 @@ function Dashboard() {
 		});
 	};
 	const setLocalStorage = (index, currUser) => { 
-		localStorage.setItem('currGroup', JSON.stringify(currUser.groups[index].toString()));
+		localStorage.setItem('currGroup', JSON.stringify(currUser.groups[index]));
+		localStorage.setItem('currGroupId', JSON.stringify(currUser.groups[index].groupId))
 	}
 	return (
 		<section  className='dashboard'>
@@ -85,8 +86,10 @@ function Dashboard() {
 							? currUser.groups.map((group, index) => (
 									<section className='dashboard-info__section_info__content-groups'>
 										<li key={index} className='dashboard-info__section-info__content-groups__item'>
-										{console.log(currUser.groups[index])}
-											<Link onClick={() => setLocalStorage(index, currUser)}
+										{console.log(currUser)}
+											<Link onClick={() =>  { 
+												setLocalStorage(index, currUser)
+											}}
 												to={{
 													pathname: `/group_dashboard/group_id=${group._id}/get_group_dashboard`
 												}}
@@ -134,8 +137,7 @@ function Dashboard() {
 			{createGroupClicked ? (
 				<Redirect
 					to={{
-						pathname: `/groups/user_id=${currUserData._id}/create_group`,
-						state: { currUserData: currUserData },
+						pathname: `/groups/user_id=${currUser._id}/create_group`,
 					}}
 				/>
 			) : null}

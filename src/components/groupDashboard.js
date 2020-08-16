@@ -3,11 +3,14 @@ import axios from 'axios';
 import input_camera_img from './componentAssets/input_camera_img.png';
 import default_avatar_img from './componentAssets/default_avatar_image.png';
 
-
 function groupDashboard() {
 	const currGroup = JSON.parse(localStorage.getItem('currGroup'));
 	const currUser = JSON.parse(localStorage.getItem('currUser'));
+	const currGroupId = JSON.parse(localStorage.getItem('currGroupId')); 
+	console.log(typeof currGroupId)
+	const [currGroupPeers, setCurrGroupPeers] = useState([]);
 	const [currGroupComments, setCurrGroupComments] = useState([]);
+	const [currGroupGoals, setCurrGroupGoals] = useState([]);
 	const [newGoalStep, setNewGoalStep] = useState('');
 	const [newComment, setNewComment] = useState('');
 	const [newImage, setNewImage] = useState({
@@ -24,11 +27,14 @@ function groupDashboard() {
 	useEffect(() => {
 		axios
 			.get(
-				`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${currGroup._id}/get_group_dashboard`
+				`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${currGroupId}/get_group_dashboard`
 			)
 			.then((res) => {
 				if (res.status === 200) {
-					localStorage.setItem('currGroup', res.data);
+					localStorage.setItem('currGroup', JSON.stringify(res.data));
+					getGroupComments(); 
+					getPeerGoals();
+					getPeerMemberNames();
 				}
 			})
 			.catch((err) => {
@@ -44,7 +50,7 @@ function groupDashboard() {
 	const handleInvitePeerGet = (e) => {
 		e.preventDefault();
 		axios
-			.post(`https://salty-basin-04868.herokuapp.com/groups/group_id=${currGroup._id}/invite_user`, {
+			.post(`https://salty-basin-04868.herokuapp.com/groups/group_id=${currGroupId}/invite_user`, {
 				email: newPeerEmail,
 			})
 			.then((res) => {
@@ -59,7 +65,7 @@ function groupDashboard() {
 	};
 	const handleCreateGoalPost = (e) => {
 		axios
-			.post(`https://salty-basin-04868.herokuapp.com/goals/group_id=${currGroup._id}/create_goal`, {
+			.post(`https://salty-basin-04868.herokuapp.com/goals/group_id=${currGroupId}/create_goal`, {
 				goalName: newGoalName,
 				goal: newGoal,
 				goalDuration: newGoalDuration,
@@ -79,7 +85,7 @@ function groupDashboard() {
 		formData.append('text', newComment);
 		axios({
 			method: 'post',
-			url: `/group_dashboard/group_id=${currGroup._id}/user_name=${currUser.userName}/user_id=${currUser._id}/create_comment`,
+			url: `/group_dashboard/group_id=${currGroupId}/user_name=${currUser.userName}/user_id=${currUser._id}/create_comment`,
 			data: formData,
 			headers: {
 				'Content-Type': 'multipart/form-data',
@@ -88,7 +94,7 @@ function groupDashboard() {
 			.then((res) => {
 				if (res.status === 200) {
 					let updatedGroup = currGroup.comments.concat(res.data);
-					localStorage.setItem('currGroup', updatedGroup);
+					localStorage.setItem('currGroup', JSON.stringify(updatedGroup));
 				}
 			})
 			.catch((err) => {
@@ -98,11 +104,39 @@ function groupDashboard() {
 	const getGroupComments = () => {
 		axios
 			.get(
-				`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${currGroup._id}/get_comments`
+				`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${currGroupId}/get_comments`
 			)
 			.then((res) => {
 				if (res.status === 200) {
 					setCurrGroupComments(currGroupComments.concat(res.data));
+				}
+			})
+			.catch((err) => {
+				setError(err);
+			});
+	};
+	const getPeerGoals = () => {
+		axios
+			.get(
+				`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${currGroupId}/get_goals`
+			)
+			.then((res) => {
+				if (res.status === 200) {
+					setCurrGroupGoals(res.data);
+				}
+			})
+			.catch((err) => {
+				setError(err);
+			});
+	};
+	const getPeerMemberNames = () => {
+		axios
+			.get(
+				`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${currGroupId}/get_members`
+			)
+			.then((res) => {
+				if (res.status === 200) {
+					setCurrGroupPeers(res.data);
 				}
 			})
 			.catch((err) => {
@@ -268,17 +302,19 @@ function groupDashboard() {
 								<section
 									key={index}
 									className='dashboard-group__members-feed__comments-continer__avatar-container'>
+									{ currUser ? 
 										<img
 											className='dashboard-group__members-feed__comments-container__avatar'
 											key={index}
 											src={currUser.image.toString()}
 										/>
+										:
 										<img
 											className='dashboard-group__members-feed__comments-container__avatar'
 											key={index}
 											src={default_avatar_img}
 										/>
-									)
+									}
 									<p
 										key={index}
 										className='dashboard-group__members-feed__comments-container__username'>
@@ -313,6 +349,7 @@ function groupDashboard() {
 					<hr className='dashboard-group__members-header__hr'></hr>
 				</section>
 			</section>
+			{console.log(currGroupPeers)}
 		</section>
 	);
 }
