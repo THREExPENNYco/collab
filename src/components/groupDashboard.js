@@ -163,10 +163,10 @@ function groupDashboard() {
 								/>
 							</form>
 						) : (
-							currGroupPeers.map((member, index) => (
+							currGroupPeers.map((peer, index) => (
 								<ul key={index}>
 									<li key={index} className='dashboard-group__members-peers'>
-										{member.userName.toUpperCase()}
+										{peer.peerName.toUpperCase()}
 									</li>
 								</ul>
 							))
