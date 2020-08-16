@@ -16,7 +16,7 @@ const groupSchema = new Schema(
 			required: [true, 'Group must have a name'],
 			unique: [true, 'Group name is already taken'],
 		},
-		peers: {
+		peers: [{
 			peerId: {
 				type: [mongoose.Types.ObjectId],
 				ref: 'User',
@@ -25,7 +25,7 @@ const groupSchema = new Schema(
 				type: String,
 				trim: true,
 			}
-		},
+		}],
 		goals: {
 			type: [mongoose.Types.ObjectId],
 			ref: 'Goals',
