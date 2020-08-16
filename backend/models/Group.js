@@ -18,7 +18,7 @@ const groupSchema = new Schema(
 		},
 		peers: [{
 			peerId: {
-				type: [mongoose.Types.ObjectId],
+				type: mongoose.Types.ObjectId,
 				ref: 'User',
 			},
 		  peerName: {
