@@ -94,7 +94,7 @@ router.route('/group_dashboard/group_id=:group_id/get_members').get((req, res) =
 		req.params.group_id
 	)
 		.then((group) => {
-			res.status(208).json('hello');
+			res.status(208).json(group);
 		})
 		.catch((err) => {
 			res.status(404).json(err);
