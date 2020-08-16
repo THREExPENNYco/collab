@@ -90,12 +90,11 @@ router.route('/group_dashboard/group_id=:group_id/get_group_dashboard').get((req
 // route to grab members in the group
 router.route('/group_dashboard/group_id=:group_id/get_members').get((req, res) => {
 	if (checkSesssionAndSessionId(req.session, req.session.userId)) return res.status(401);
-	User.find(
-		{ groups: { groupId: req.params.group_id, groupName: "Mukco's Group" } },
-		{ userName: 1 }
+	Group.findById(
+		req.params.group_id
 	)
-		.then((users) => {
-			res.status(200).json(users);
+		.then((group) => {
+			res.status(208).json('hello');
 		})
 		.catch((err) => {
 			res.status(404).json(err);

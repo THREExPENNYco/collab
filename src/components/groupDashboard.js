@@ -34,7 +34,7 @@ function groupDashboard() {
 					localStorage.setItem('currGroup', JSON.stringify(res.data));
 					getGroupComments(); 
 					getPeerGoals();
-					getPeerMemberNames();
+					getGroupMembers();
 				}
 			})
 			.catch((err) => {
@@ -129,10 +129,10 @@ function groupDashboard() {
 				setError(err);
 			});
 	};
-	const getPeerMemberNames = () => {
+	const getGroupMembers = () => {
 		axios
 			.get(
-				`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${currGroupId}/get_members`
+				`https://salty-basin-04868.herokuapp.com/group_dashboard/group_id=${currGroupId}/get_members`,
 			)
 			.then((res) => {
 				if (res.status === 200) {
