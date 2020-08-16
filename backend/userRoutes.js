@@ -143,7 +143,6 @@ router.route('/groups/user_id=:user_id/create_group').post((req, res) => {
 // add group to user array
 router.route('/groups/user_id=:user_id/group_to_user').post((req, res) => {
 	if (checkSesssionAndSessionId(req.session, req.session.userId)) return res.status(401);
-	console.log('this iss', decodedGroupName);
 	User.findByIdAndUpdate(
 		req.params.user_id,
 		{ $push: { groups: { groupId: req.body.groupId, groupName: req.body.groupName } } },
