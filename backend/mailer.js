@@ -9,7 +9,7 @@ const sendInviteEmail = (user, groupId) => {
 		tagStyles: 'text-align: center; font-size: 12px;',
 		buttonStyles: 'display: inherit; margin-top: 15px; margin-left: auto; margin-right: auto; color: white; background-color: black; border-style: none; width: 85px; height: 25px;'
 	}
-	const emailHref = `https://salty-basin-04868.herokuapp.com/signup`;
+	const emailHref = `https://salty-basin-04868.herokuapp.com/#/signup`;
 	const msg = {
 		to: user.toString().trim(),
 		from: 'info@peerpressure.me',
