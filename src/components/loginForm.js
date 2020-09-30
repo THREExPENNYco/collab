@@ -21,6 +21,7 @@ function LoginForm() {
 				if (res.status === 201) {
 					setCurrUserContext(res.data);
 					setLoggedIn(true);
+					localStorage.setItem('loggedIn?', 'true');
 				}
 			})
 			.catch((err) => {

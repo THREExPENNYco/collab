@@ -38,12 +38,12 @@ function Dashboard() {
 			setError(err);
 		});
 	};
-	const setLocalStorage = (index, currUser) => { 
+	const setLocalStorage = (index, currUser) => {
 		localStorage.setItem('currGroup', JSON.stringify(currUser.groups[index]));
-		localStorage.setItem('currGroupId', JSON.stringify(currUser.groups[index].groupId))
-	}
+		localStorage.setItem('currGroupId', JSON.stringify(currUser.groups[index].groupId));
+	};
 	return (
-		<section  className='dashboard'>
+		<section className='dashboard'>
 			<p className='dashboard-hero__top'>{currUser.userName.toUpperCase()}</p>
 			<p className='dashboard-hero__bottom'>DASHBOARD</p>
 			<section className='dashboard-bio__image-container'>
@@ -86,12 +86,13 @@ function Dashboard() {
 							? currUser.groups.map((group, index) => (
 									<section className='dashboard-info__section_info__content-groups'>
 										<li key={index} className='dashboard-info__section-info__content-groups__item'>
-										{console.log(currUser)}
-											<Link onClick={() =>  { 
-												setLocalStorage(index, currUser)
-											}}
+											{console.log(currUser)}
+											<Link
+												onClick={() => {
+													setLocalStorage(index, currUser);
+												}}
 												to={{
-													pathname: `/group_dashboard/group_id=${group._id}/get_group_dashboard`
+													pathname: `/group_dashboard/group_id=${group._id}/get_group_dashboard`,
 												}}
 												className='dashboard-info__section-info__content-groups__item__link'>
 												{group.groupName}
@@ -116,7 +117,6 @@ function Dashboard() {
 										<Link
 											to={{
 												pathname: `/group_dashboard/group_id=${goal.groupId}/get_group_dashboard`,
-											 
 											}}
 											className='dashboard-info__section-info__content-groups__item__link'>
 											{goal.goalName}

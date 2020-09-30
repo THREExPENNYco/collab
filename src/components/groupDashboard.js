@@ -6,8 +6,8 @@ import default_avatar_img from './componentAssets/default_avatar_image.png';
 function groupDashboard() {
 	const currGroup = JSON.parse(localStorage.getItem('currGroup'));
 	const currUser = JSON.parse(localStorage.getItem('currUser'));
-	const currGroupId = JSON.parse(localStorage.getItem('currGroupId')); 
-	console.log(typeof currGroupId)
+	const currGroupId = JSON.parse(localStorage.getItem('currGroupId'));
+	console.log("This is the new group ID: ", currGroupId);
 	const [currGroupPeers, setCurrGroupPeers] = useState([]);
 	const [currGroupComments, setCurrGroupComments] = useState([]);
 	const [currGroupGoals, setCurrGroupGoals] = useState([]);
@@ -69,6 +69,10 @@ function groupDashboard() {
 				goalName: newGoalName,
 				goal: newGoal,
 				goalDuration: newGoalDuration,
+				createdBy: { 
+					userName: currUser.userName, 
+					userId: currUser._id
+				}
 			})
 			.then((res) => {
 				if (res.status === 200) {
@@ -166,7 +170,7 @@ function groupDashboard() {
 							currGroupPeers.map((peer, index) => (
 								<ul key={index}>
 									<li key={index} className='dashboard-group__members-peers'>
-										{peer.peerName.toUpperCase()}
+										{ peer.peerName?.toUpperCase() }
 									</li>
 								</ul>
 							))
