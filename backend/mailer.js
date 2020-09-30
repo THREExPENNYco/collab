@@ -12,7 +12,7 @@ const sendInviteEmail = (user, groupId) => {
 		from: 'info@peerpressure.me',
 		subject: "You've been invited to a Peer Pressure group!",
 		text: 'You have been invited to the a Peer Pressure Group!',
-		html: `<strong style="${style.tagStyles}" >You've been invited to accomplish goals with your peers!</strong>
+		html: `<strong style="${styles.tagStyles}" >You've been invited to accomplish goals with your peers!</strong>
 		<button type="button" style="${styles.buttonStyles}">
 		<a style="decoration: none; color: white;" href="${emailHref}">JOIN</a>
 		</button>`,
