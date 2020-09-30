@@ -32,7 +32,7 @@ function groupDashboard() {
 			.then((res) => {
 				if (res.status === 200) {
 					localStorage.setItem('currGroup', JSON.stringify(res.data));
-					getGroupComments(); 
+					getGroupComments();
 					getPeerGoals();
 					getGroupMembers();
 				}
@@ -69,8 +69,8 @@ function groupDashboard() {
 				goalName: newGoalName,
 				goal: newGoal,
 				goalDuration: newGoalDuration,
-				createdBy: { 
-					userName: currUser.userName, 
+				createdBy: {
+					userName: currUser.userName,
 					userId: currUser._id
 				}
 			})
@@ -167,14 +167,14 @@ function groupDashboard() {
 								/>
 							</form>
 						) : (
-							currGroupPeers.map((peer, index) => (
-								<ul key={index}>
-									<li key={index} className='dashboard-group__members-peers'>
-										{ peer.peerName?.toUpperCase() }
-									</li>
-								</ul>
-							))
-						)}
+								currGroupPeers.map((peer, index) => (
+									<ul key={index}>
+										<li key={index} className='dashboard-group__members-peers'>
+											{peer.peerName?.toUpperCase()}
+										</li>
+									</ul>
+								))
+							)}
 						{addPeerClicked ? (
 							<section>
 								<input
@@ -191,13 +191,13 @@ function groupDashboard() {
 								/>
 							</section>
 						) : (
-							<input
-								className='dashboard-group__goal-submit-button'
-								type='submit'
-								value='ADD PEER'
-								onClick={() => handleAddPeerBtn()}
-							/>
-						)}
+								<input
+									className='dashboard-group__goal-submit-button'
+									type='submit'
+									value='ADD PEER'
+									onClick={() => handleAddPeerBtn()}
+								/>
+							)}
 					</section>
 				</section>
 				<section className='dasboard-group__goals-section'>
@@ -225,20 +225,20 @@ function groupDashboard() {
 								/>
 							</form>
 						) : (
-							currGroupGoals.map((goal, index) => (
-								<section>
-									<ul key={index}>
-										<li key={index} className='dashboard-group__members-peers'>
-											<p className='dashboard-group__goals-goal'>{goal.goalName.toUpperCase()}</p>
-											<p className='dashboard-group__goals-username'>
-												CREATED BY: {goal.createdBy.userName.toUpperCase()}
-											</p>
-										</li>
-									</ul>
-									<hr className='dashboard-group__goals-header__hr'></hr>
-								</section>
-							))
-						)}
+								currGroupGoals.map((goal, index) => (
+									<section>
+										<ul key={index}>
+											<li key={index} className='dashboard-group__members-peers'>
+												<p className='dashboard-group__goals-goal'>{goal.goalName.toUpperCase()}</p>
+												<p className='dashboard-group__goals-username'>
+													CREATED BY: {goal.createdBy.userName.toUpperCase()}
+												</p>
+											</li>
+										</ul>
+										<hr className='dashboard-group__goals-header__hr'></hr>
+									</section>
+								))
+							)}
 						{createGoalClicked ? (
 							<section>
 								<input
@@ -258,13 +258,13 @@ function groupDashboard() {
 								</p>
 							</section>
 						) : (
-							<input
-								className='dashboard-group__goal-submit-button'
-								type='submit'
-								value='CREATE GOAL'
-								onClick={() => handleCreateGoalBtn()}
-							/>
-						)}
+								<input
+									className='dashboard-group__goal-submit-button'
+									type='submit'
+									value='CREATE GOAL'
+									onClick={() => handleCreateGoalBtn()}
+								/>
+							)}
 					</section>
 				</section>
 				<section className='dashboard-group__members-feed'>
@@ -306,7 +306,7 @@ function groupDashboard() {
 								<section
 									key={index}
 									className='dashboard-group__members-feed__comments-continer__avatar-container'>
-									{ currUser ? 
+									{currUser ?
 										<img
 											className='dashboard-group__members-feed__comments-container__avatar'
 											key={index}
